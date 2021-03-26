@@ -10,13 +10,13 @@ def index(request):
     coffees = Worksche.objects.all()
     return render(request, 'sche.html', {'coffees':coffees})
 
-# def addsche(request):
-#     form = WorkscheForm(request.POST or None)
-#     if form.is_valid():
-#         form.save()
-#         messages.success(request, '新增成功')
-#         return redirect('sche')
-#     return render(request,
-#                   'sche_modify.html',
-#                   {'form':form},
-#                   )
+def addsche(request):
+    form = WorkscheForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        messages.success(request, '新增成功')
+        return redirect('sche')
+    return render(request,
+                  'sche_modify.html',
+                  {'form':form},
+                  )
