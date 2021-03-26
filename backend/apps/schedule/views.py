@@ -1,6 +1,22 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import  HttpResponse
-# Create your views here.
+from django.template import context
+
+from .models import Worksche
+from .forms import WorkscheForm
+from django.contrib import messages
 
 def index(request):
-    return HttpResponse('排班')
+    coffees = Worksche.objects.all()
+    return render(request, 'sche.html', {'coffees':coffees})
+
+# def addsche(request):
+#     form = WorkscheForm(request.POST or None)
+#     if form.is_valid():
+#         form.save()
+#         messages.success(request, '新增成功')
+#         return redirect('sche')
+#     return render(request,
+#                   'sche_modify.html',
+#                   {'form':form},
+#                   )
