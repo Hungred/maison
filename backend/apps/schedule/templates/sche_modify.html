@@ -130,10 +130,13 @@
                         </select>
                     </div>
                 </div> -->
-
+				<form action="" method="POST">
+				{% csrf_token %}
+    			{% bootstrap_form form %}
                 <button class="btn waves-effect waves-light right sche_btn" type="submit" id="action">
                     送出
                 </button>
+				</form>
 			</div>
 		</div>
 	</div>
