@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>修改班表</title>
+
+    <meta name="description" content="Source code generated using layoutit.com">
+    <meta name="author" content="LayoutIt!">
+{% load static %}
+    <link href="{% static '/css/bootstrap.min.css' %}" rel="stylesheet">
+	<link href="{% static '/fullcalendar-5.5.1 (1)/lib/main.css' %}" rel='stylesheet' />
+    <script src="{% static '/fullcalendar-5.5.1 (1)/lib/main.js' %}"></script>
+	<link href="{% static '/css/style_manager.css' %}" rel="stylesheet">
+
+  </head>
+  {% load bootstrap4 %}
+  <body class="body_bg">
+
+    <div class="container-fluid">
+		<div class="row nav_bg">
+			<div class="col-md-6">
+				<h3 class="nav_logo">
+					MAISON DE OCÉAN
+				</h3>
+			</div>
+			<div class="col-md-6 nav_align">
+				<img alt="Bootstrap Image Preview" src="{% static '/images/logo.jpg' %}" class="rounded-circle nav_img">
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-2 list_bar">
+				<h3 class="list_text">
+					<a  href="{% url 'schedule:index' %}">班表</a>
+				</h3>
+                <h3 class="list_text">
+					訂位
+				</h3>
+                <h3 class="list_text">
+					點餐
+				</h3>
+                <h3 class="list_text">
+					顧客回饋
+				</h3>
+                <h3 class="list_text">
+					營收報表
+				</h3>
+			</div>
+
+			<div class="col-md-10 cal" >
+				<h3 class="page_title">
+					修改班表
+				</h3>
+                
+                <!-- <div class="row">
+                    <div class="input-field col s12">
+                        <label for="id_project" class="sche_label">員工：</label> 
+                        <select name="project" required id="id_project" class="selectbar">
+                            <option value="" selected>---------</option>
+                            <option value="89">B01</option>
+                            <option value="31">M01</option>
+                            <option value="25">E01</option>
+                            <option value="63">E02</option>
+                            <option value="80">E03</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <label for="id_project" class="sche_label">出勤時：</label> 
+                        <select name="project" required id="id_project" class="selectbar">
+                            <option value="" selected>---------</option>
+                            <option value="89">10</option>
+                            <option value="31">11</option>
+                            <option value="25">12</option>
+                            <option value="63">13</option>
+                            <option value="80">14</option>
+                            <option value="80">15</option>
+                            <option value="80">16</option>
+                            <option value="80">17</option>
+                            <option value="80">18</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <label for="id_project" class="sche_label">出勤分：</label> 
+                        <select name="project" required id="id_project" class="selectbar">
+                            <option value="" selected>---------</option>
+                            <option value="89">00</option>
+                            <option value="31">15</option>
+                            <option value="25">30</option>
+                            <option value="63">45</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <label for="id_project" class="sche_label">退勤時：</label> 
+                        <select name="project" required id="id_project" class="selectbar">
+                            <option value="" selected>---------</option>
+                            <option value="89">10</option>
+                            <option value="31">11</option>
+                            <option value="25">12</option>
+                            <option value="63">13</option>
+                            <option value="80">14</option>
+                            <option value="80">15</option>
+                            <option value="80">16</option>
+                            <option value="80">17</option>
+                            <option value="80">18</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <label for="id_project" class="sche_label">退勤分：</label> 
+                        <select name="project" required id="id_project" class="selectbar">
+                            <option value="" selected>---------</option>
+                            <option value="89">00</option>
+                            <option value="31">15</option>
+                            <option value="25">30</option>
+                            <option value="63">45</option>
+                        </select>
+                    </div>
+                </div> -->
+				<form action="" method="POST">
+				{% csrf_token %}
+    			{% bootstrap_form form %}
+                <button class="btn waves-effect waves-light right sche_btn" type="submit" id="action">
+                    送出
+                </button>
+				</form>
+			</div>
+		</div>
+	</div>
+
+    <script src="{% static '/js/jquery.min.js' %}"></script>
+    <script src="{% static '/js/bootstrap.min.js' %}"></script>
+    <script src="{% static '/js/scripts.js' %}"></script>
+  </body>
+</html>

@@ -4,7 +4,8 @@ from . import views
 
 app_name='schedule'
 urlpatterns = [
-    path('', views.index),
-    path('sche_modify/', views.addsche),
+    path('', views.index, name='index'),
+    path('sche_modify/', views.addsche, name='add'),
+    path('sche_update/<int:pk>/', views.updatesche, name='update')
 
 ]
