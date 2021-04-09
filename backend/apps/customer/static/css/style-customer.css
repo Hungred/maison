@@ -1,0 +1,198 @@
+
+body{
+    background-color:black;
+    background-image: url("image/bg.jpg");  
+    background-attachment:fixed;
+    background-repeat: no-repeat;
+    background-size:1200px 600px;
+    background-position:center;
+    font-size: 18px;
+}
+
+#header{
+    height: 150px;
+    
+    padding-bottom: 40px;
+}
+#logo{
+    border-radius: 10px;
+    text-align: center;
+    position:relative;
+    z-index:100;
+
+}
+
+#button{
+    
+    color: white;
+    
+    font-size: 30px;
+    background-color: transparent;
+    border: transparent;
+}
+
+#button:hover{
+    color:#C1BCBC;
+}
+#button:active{
+    border-color:black;
+}
+a {
+    color:white;
+    text-decoration:none;
+}
+a:hover{
+    color:#C1BCBC;
+    text-decoration:none;
+}
+
+#carousel{
+    height: 800px;
+    position:relative;
+   
+   
+}
+#carousel-img{
+    position:absolute;
+    
+}
+#food{
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+#food-img{
+    width: 500px;
+    height: 500px;
+    
+}
+#food-con{
+    font-size: 18px;
+    color:white;
+    
+}
+.logo{
+    max-width: 100%;
+    height: auto;
+}
+
+
+#activity
+.act{
+    
+    text-align: center;
+    
+}
+.act-img{
+    width: 500px; 
+    height: 500px;
+    text-align: center;
+}
+.act-img img{
+    width: 500px;
+    height: 500px;
+}
+.act-img-td {
+    width: 500px; 
+    height: 100px;
+    text-align: center;
+}
+.contenter{
+    width: 100%;
+    
+}
+.content{
+    margin-left: 10%;
+    
+}
+.more{
+    
+    width: 2000px;
+}
+
+.more li{
+    
+    display:inline;
+    float:left;
+    margin-bottom: 60px;
+}
+.pic{
+    width:500px;
+}
+.more-des{
+    width: 400px;
+    background-color: whitesmoke;
+    text-align: center;
+}
+.more-des button{
+    width: 100px;
+    height: 40px;
+    background-color:#C1BCBC;
+    border-radius: 30px;
+    border-color: black;
+}
+.more-des button:hover{
+    background-color: whitesmoke;
+}
+
+#about
+#about-des{
+height: 600px;
+font-size: 18px;
+}
+
+
+#food
+.nav-list{
+    margin-top:30px; 
+    padding:0; 
+    text-align:center;
+}
+
+.nav-list span { 
+    margin-right:3px; 
+    margin-left:3px; 
+    border:#E0E0E0 2px outset; 
+    padding:5px; 
+    font-size:14px; 
+    color:#E0E0E0; 
+}
+
+.nav-list span a { 
+    text-decoration:none; 
+    color:#E0E0E0; 
+}
+
+.nav-list span a:hover { 
+    background:#9933FF; 
+    
+}
+.menu-content{
+    margin-left: 15%;
+    margin-right:15%;
+    height: 400px;
+}
+.menu{
+    padding:10px;
+}
+#menu ul{
+    width:300px;
+    margin-left:0px;
+}
+
+#menu img{
+    width: 200px;
+    height: 200px;
+}
+
+.menu li{
+    
+    display:inline;
+    float:left;
+    margin-bottom: 60px;
+}
+.menu-pic{
+    width:250px;
+}
+.menu-des{
+    color:white;
+}
