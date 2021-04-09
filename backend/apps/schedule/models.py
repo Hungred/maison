@@ -1,4 +1,6 @@
 from django.db import models
+from datetime import date
+from django.utils import timezone
 
 class Position(models.TextChoices):
     BOSS = 'B', '老闆'
@@ -33,7 +35,7 @@ class Worksche(models.Model):
         Employee,
         on_delete=models.PROTECT,
         verbose_name='員工編號')
-    workdate = models.DateField('出勤日期', auto_now=False, auto_now_add=False)
+    workdate = models.DateField('出勤日期', auto_now=False, auto_now_add=False, default=date.today)
     workhour = models.IntegerField('出勤時')
     workmin = models.IntegerField('出勤分')
     offhour = models.IntegerField('退勤時')
