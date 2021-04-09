@@ -146,10 +146,18 @@ textarea{
     overflow:hidden;
 }
 
-input[type="checkbox"]{
-
+input[type=checkbox]+table {
+    user-select: none; /* 防止文字被滑鼠選取反白 */
 }
 
 input[type="checkbox"]:checked+table{
-    background-color: red;
+    background-color: #1A1344;
+}
+
+input[type="checkbox"]{
+    display: none;
+}
+
+label{
+    display: inline;
 }
