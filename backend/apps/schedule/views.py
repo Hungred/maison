@@ -26,8 +26,6 @@ def addsche(request):
 
 def updatesche(request, pk):
     worksche = get_object_or_404(Worksche, serno=pk)
-    print(pk)
-    print(worksche.serno)
     form = WorkscheForm(request.POST or None, instance=worksche)
     if form.is_valid():
         form.save()

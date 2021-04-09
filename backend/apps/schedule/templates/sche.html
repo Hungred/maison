@@ -31,16 +31,16 @@
 			  center: 'title',
 			  right: 'dayGridMonth,timeGridWeek,timeGridDay'
 			},
-			initialDate: '2021-02-26',
+
 			navLinks: true, // can click day/week names to navigate views
 			selectable: true,
 			selectMirror: true,
 			select: function(arg) {
 			  window.open("sche_modify", "修改班表");
 			},
-			eventClick: function(arg) {
-				window.location.href=""
-			  },
+			eventClick: function(arg) {{% for worksche in worksches %}
+				window.location.href="{% url 'schedule:update' worksche.serno %}"
+			  {% endfor %}},
 			editable: true,
 			dayMaxEvents: true, // allow "more" link when too many events
 			events: [{% for worksche in worksches %}
@@ -55,13 +55,6 @@
 		});
 
  	</script>
-	<p>
-        {% if worksche.serno %}
-            <p>{{ worksche.serno }}</p>
-        {% else %}
-            <p>no this value</p>
-        {% endif %}
-    </p>
     <div class="container-fluid">
 		<div class="row nav_bg">
 			<div class="col-md-6">
@@ -72,7 +65,7 @@
 			</div>
 			<div class="col-md-6 nav_align">
 
-				<img alt="Bootstrap Image Preview" src="{% static '/images/logo.jpg' %} class="rounded-circle nav_img">
+				<img alt="Bootstrap Image Preview" src="{% static '/images/logo.jpg' %}" class="rounded-circle nav_img">
 			</div>
 		</div>
 
@@ -82,7 +75,7 @@
 					<a  href="{% url 'schedule:index' %}">班表</a>
 				</h3>
                 <h3 class="list_text">
-
+					<a href="">訂位</a>
 
 				</h3>
                 <h3 class="list_text">
