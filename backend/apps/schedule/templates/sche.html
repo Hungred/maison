@@ -38,14 +38,19 @@
 			select: function(arg) {
 			  window.open("sche_modify", "修改班表");
 			},
-			eventClick: function(arg) {{% for worksche in worksches %}
-				window.location.href="{% url 'schedule:update' worksche.serno %}"
-			  {% endfor %}},
+			eventClick: function(info) {
+				 info.jsEvent.preventDefault();
+
+				  if (info.event.url) {
+      				window.open(info.event.url);
+    			}
+			  },
 			editable: true,
 			dayMaxEvents: true, // allow "more" link when too many events
 			events: [{% for worksche in worksches %}
 			  {	title: '{{ worksche.empid }} {{ worksche.workhour }}~{{ worksche.offhour }} {{ worksche.job }}',
 			  	start: '{{ worksche.workdate|date:'Y-m-d' }}',
+			  	url:'{% url 'schedule:update' worksche.serno %}',
 
 			  },
 			{% endfor %}]
