@@ -36,10 +36,10 @@ class Worksche(models.Model):
         on_delete=models.PROTECT,
         verbose_name='員工編號')
     workdate = models.DateField('出勤日期', auto_now=False, auto_now_add=False, default=date.today)
-    workhour = models.IntegerField('出勤時')
-    workmin = models.IntegerField('出勤分')
-    offhour = models.IntegerField('退勤時')
-    offmin = models.IntegerField('退勤分')
+    workhour = models.CharField('出勤時', max_length=2)
+    workmin = models.CharField('出勤分', max_length=2)
+    offhour = models.CharField('退勤時', max_length=2)
+    offmin = models.CharField('退勤分', max_length=2)
     job = models.CharField('崗位', max_length=10, choices=Job.choices)
 
     def __str__(self):

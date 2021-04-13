@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+{% load bootstrap4 %}
+
+
+<h3>確認刪除</h3>
+
+
+
+<form action="" method="POST">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    <button type="submit" class="btn btn-outline-info float-right">確定</button>
+    <a class="btn btn-warning" href="{% url 'schedule:index' %}">取消</a>
+</form>
+
+
+
+
+</body>
+</html>
