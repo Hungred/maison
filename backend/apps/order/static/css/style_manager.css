@@ -57,7 +57,7 @@
 
 .list_bar{
     background-color: white;
-    height: 1200px;
+    height: 1800px;
     padding-top: 20px;
 }
 
@@ -76,7 +76,6 @@
 
 .cal{
     margin-top: 20px;
-    text-align: center;
 }
 
 a{
@@ -109,4 +108,26 @@ a{
     background-color: #1A1344;
 }
 
-    
+table{
+    border-width: 2px;
+    border-style: solid;
+    font-size: 27px;
+    margin-bottom: 10px;
+    background-color: #fff;
+}
+
+th{
+    padding-right: 170px;
+}
+
+tr{
+    padding-right: 170px;
+}
+
+.res_date{
+    color: red;
+}
+
+#calendar{
+    margin-top: 30px;
+}

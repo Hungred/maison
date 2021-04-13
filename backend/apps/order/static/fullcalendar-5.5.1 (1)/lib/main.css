@@ -316,7 +316,6 @@ When it's NOT activated, the fc-button classes won't even be in the DOM.
     top: 0;
     right: 0;
     left: 0;
-    bottom: 0;
   }
 .fc .fc-scroller-harness {
     position: relative;

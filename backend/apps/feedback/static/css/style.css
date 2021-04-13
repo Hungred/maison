@@ -1,0 +1,163 @@
+.nav_bg{
+    background-color: #1A1344;
+    height: 60px;
+}
+
+.nav_logo{
+    color: white;
+    margin-top: 15px;
+}
+
+.nav_img{
+    width: 50px;
+    height: 50px;
+    margin-top: 5px;
+}
+
+.nav_align{
+    text-align: right;
+}
+
+.body_bg{
+    background-color: #D3DAEF;
+}
+
+.login_img{
+    width: 180px;
+    height: 180px;
+}
+
+.login_img_align{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.account{
+    font-size: 20px;
+    color: black;
+
+}
+
+.account_align{
+    text-align: center;
+}
+
+.text_size{
+    height: 25px;
+    line-height: 0%;
+    margin: 0;
+}
+
+.btn_color{
+    background-color: #1A1344;
+    color: white;
+    margin-top: 10px;
+}
+
+.list_bar{
+    background-color: white;
+    height: 1500px;
+    padding-top: 20px;
+}
+
+.list_text{
+    color: black;
+    text-align: center;
+    border-bottom: solid gray 1px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+}
+
+#calendar{
+    margin: 0 auto;
+    background-color: white;
+}
+
+.cal{
+    margin-top: 20px;
+    text-align: center;
+}
+
+a{
+    color: black;
+}
+
+.page_title{
+    color: black;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.fc-toolbar{
+    background-color: #1A1344;
+    color: white;
+    height: 50px;
+    padding: 10px;
+}
+
+.sche_label{
+    font-size: 20px;
+}
+
+.selectbar{
+    font-size: 20px;
+}
+
+.sche_btn{
+    color: white;
+    background-color: #1A1344;
+}
+
+table{
+    border-width: 2px;
+    border-style: solid;
+    font-size: 27px;
+    margin-bottom: 10px;
+    margin-left:auto; 
+    margin-right:auto;
+}
+
+th{
+    padding-right: 50px;
+    padding-top: 15px;
+}
+
+tr{
+    padding-right: 50px;
+    padding-top: 15px;
+}
+
+td{
+    padding-top: 15px;
+}
+
+.res_date{
+    color: red;
+}
+
+#calendar{
+    margin-top: 30px;
+}
+
+textarea{
+    max-width: 180px;
+    max-height: 45px;
+    overflow:hidden;
+}
+
+input[type=checkbox]+table {
+    user-select: none; /* 防止文字被滑鼠選取反白 */
+}
+
+input[type="checkbox"]:checked+table{
+    background-color: #1A1344;
+}
+
+input[type="checkbox"]{
+    display: none;
+}
+
+label{
+    display: inline;
+}
