@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -16,20 +17,16 @@
   </head>
   {% load bootstrap4 %}
   <body class="body_bg">
-
-<h3>登入</h3>
+<h1>AuthDev</h1>
+<h3>註冊</h3>
 
 <form action="" method="POST">
     {% csrf_token %}
     {{ form }}
 
-    <input class="btn btn-primary" type="submit" value="登入" />
-    <p>還沒有帳號嗎? <a href="{% url 'login:register' %}">註冊</a></p>
+    <br/>
+    <input class="btn btn-success" type="submit" value="儲存"  />
 </form>
-
-
-
-
     <script src="{% static '/js/jquery.min.js' %}"></script>
     <script src="{% static '/js/bootstrap.min.js'%}"></script>
     <script src="{% static '/js/scripts.js' %}"></script>

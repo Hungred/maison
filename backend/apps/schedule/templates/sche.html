@@ -66,11 +66,17 @@
 
 				<h3 class="nav_logo">
 					MAISON DE OCÉAN
+					<a class="btn  btn-primary" href="{% url 'login:logout' %}" role="button">登出 &#187;</a>
 				</h3>
-			</div>
-			<div class="col-md-6 nav_align">
 
+			</div>
+			<div class="col-md-3 nav_align">
+				<h4 style="color:white;">{{ user.username }}</h4>
+
+			</div>
+			<div class="col-md-3 nav_align">
 				<img alt="Bootstrap Image Preview" src="{% static '/images/logo.jpg' %}" class="rounded-circle nav_img">
+
 			</div>
 		</div>
 
