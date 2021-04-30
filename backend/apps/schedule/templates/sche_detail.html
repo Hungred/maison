@@ -55,12 +55,13 @@
 					班表詳細
 				</h3>
 
-
-				<p>員工編號:{{ worksche.empid }}</p>
-                <p>上班時間:{{ worksche.workhour }}:{{ worksche.workmin }}~{{ worksche.offhour }}:{{ worksche.offmin }}</p>
-				<p>崗位:{{ worksche.job }}</p>
-				<a href="{% url 'schedule:update' worksche.serno %}" class="btn waves-effect waves-light right sche_btn">修改</a>
-				<a href="{% url 'schedule:delete' worksche.serno %}" class="btn btn-danger">刪除</a>
+				<h5>
+					<p><b>員工編號: </b>{{ worksche.empid }}</p>
+					<p><b>上班時間: </b>{{ worksche.workhour }}:{{ worksche.workmin }}~{{ worksche.offhour }}:{{ worksche.offmin }}</p>
+					<p><b>崗位: </b>{{ worksche.job }}</p>
+					<a href="{% url 'schedule:update' worksche.serno %}" class="btn waves-effect waves-light right sche_btn">修改</a>
+					<a href="{% url 'schedule:delete' worksche.serno %}" class="btn btn-danger">刪除</a>
+				</h2>
 			</div>
 		</div>
 	</div>
