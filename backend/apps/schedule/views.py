@@ -10,7 +10,7 @@ from django.forms.models import model_to_dict
 import json
 from .forms import DeleteConfirmForm
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
+
 
 @login_required(login_url="login:index")
 def index(request):
