@@ -10,10 +10,10 @@
     <meta name="description" content="Source code generated using layoutit.com">
     <meta name="author" content="LayoutIt!">
 	{% load static %}
-    <link href="{% static '/sche/css/bootstrap.min.css' %}" rel="stylesheet">
-	<link href="{% static '/sche/fullcalendar-5.5.1 (1)/lib/main.css' %}" rel='stylesheet' />
-    <script src="{% static '/sche/fullcalendar-5.5.1 (1)/lib/main.js' %}"></script>
-	<link href="{% static '/sche/css/style_manager.css' %}" rel="stylesheet">
+    <link href="{% static 'sche/css/bootstrap.min.css' %}" rel="stylesheet">
+	<link href="{% static 'sche/fullcalendar-5.5.1 (1)/lib/main.css' %}" rel='stylesheet' />
+    <script src="{% static 'sche/fullcalendar-5.5.1 (1)/lib/main.js' %}"></script>
+	<link href="{% static 'sche/css/style_manager.css' %}" rel="stylesheet">
 
 
 
@@ -27,8 +27,9 @@
 
 		  var calendar = new FullCalendar.Calendar(calendarEl, {
 			headerToolbar: {
-			  right: 'prev,next today',
-			  left: 'title',
+			  left: 'prev,next today',
+			  center: 'title',
+			  right: 'dayGridMonth,timeGridWeek,timeGridDay'
 			},
 
 			navLinks: true, // can click day/week names to navigate views
@@ -38,9 +39,9 @@
 			  window.open("sche_modify", "修改班表");
 			},
 			eventClick: function(info) {
-				info.jsEvent.preventDefault();
+				 info.jsEvent.preventDefault();
 
-				if (info.event.url) {
+				  if (info.event.url) {
       				window.open(info.event.url);
     			}
 			  },
@@ -54,11 +55,9 @@
 			  },
 			{% endfor %}]
 		  });
+
 		  calendar.render();
 		});
-
-		opener.location.reload(true);
-		window.close();
 
  	</script>
     <div class="container-fluid">
@@ -68,15 +67,16 @@
 				<h3 class="nav_logo">
 					MAISON DE OCÉAN
 					<a class="btn  btn-primary" href="{% url 'login:logout' %}" role="button">登出 &#187;</a>
+					<a class="btn  btn-primary" href="{% url 'login:change' %}" role="button">修改密碼 &#187;</a>
 				</h3>
 
 			</div>
 			<div class="col-md-3 nav_align">
-				<h4 style="color:white;">{{ user.username }}</h4>
+				<h4 style="color:white;"><a href="{% url 'login:profile' user.username %}" style="color:white;">{{ user.username }}</a>, 您好!</h4>
 
 			</div>
 			<div class="col-md-3 nav_align">
-				<img alt="Bootstrap Image Preview" src="{% static '/sche/images/logo.jpg' %}" class="rounded-circle nav_img">
+				<img alt="Bootstrap Image Preview" src="{% static '/images/logo.jpg' %}" class="rounded-circle nav_img">
 
 			</div>
 		</div>
@@ -110,10 +110,9 @@
 		</div>
 	</div>
 
-	
-    <script src="{% static '/sche/js/jquery.min.js' %}"></script>
-    <script src="{% static '/sche/js/bootstrap.min.js' %}"></script>
-    <script src="{% static '/sche/js/scripts.js' %}"></script>
+    <script src="{% static '/js/jquery.min.js' %}"></script>
+    <script src="{% static '/js/bootstrap.min.js' %}"></script>
+    <script src="{% static '/js/scripts.js' %}"></script>
 
   </body>
 </html>
