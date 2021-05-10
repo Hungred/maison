@@ -5,8 +5,9 @@ from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 from .forms import RegisterForm, LoginForm, ChangepwdForm, ActiveEmpForm
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib.auth.models import User
-from django.contrib.auth.decorators import login_required
-
+from django.contrib.auth.decorators import login_required, permission_required
+from django import template
+from .models import Employee_data
 # Create your views here.
 
 def sign_up(request):
@@ -57,10 +58,25 @@ def change_password(request):
         'form': form
     })
 
+@login_required
 def profile(request, username):
     user = get_object_or_404(User, username=username)
     return render(request, 'profile.html', {'user': user})
 
+# @login_required
+# def update_pf(request, pk):
+#     user = get_object_or_404(User, pk=pk)
+#     form = UpdateProfileForm(request.POST or None)
+#     if form.is_valid():
+#         form.save()
+#         return redirect('schedule:index')
+#     return render(request, 'update_pf.html', {'form':form})
+
+def emp_list(request):
+    emps = Employee_data.objects.all()
+    return render(request, 'employee/emp_list.html', {'emps': emps})
+
+@permission_required('login.add_employee_data', raise_exception=True)
 def active_emp(request):
     form = ActiveEmpForm(request.POST or None)
     if form.is_valid():
@@ -71,3 +87,12 @@ def active_emp(request):
                   'active_emp.html',
                   {'form':form},
                   )
+
+@permission_required('login.change_employee_data', raise_exception=True)
+def update_emp(request, pk):
+    emp = get_object_or_404(Employee_data, pk=pk)
+    form = ActiveEmpForm(request.POST or None, instance=emp)
+    if form.is_valid():
+        form.save()
+        return redirect('schedule:index')
+    return render(request, 'employee/update_emp.html', {'form':form})
