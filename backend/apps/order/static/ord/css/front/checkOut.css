@@ -1,0 +1,563 @@
+﻿body {
+    background: #eee;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+section{
+    display:none;
+}
+
+.clearfix {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/*標題[確認購物車]*/
+#site-header {
+
+}
+
+    #site-header h1 {
+        font-size: 2.5rem;
+        font-weight: 300;
+        padding-top: 5rem;
+        padding-bottom:1rem;
+        position: relative;
+        color: #2c3033;
+        font-weight: 700;
+    }
+        #site-header h1:before {
+            background-color: #FFD740;
+            content: "";
+            height: 10px;
+            left: 0;
+            position: absolute;
+            width: 5.5rem;
+            z-index: -1;
+            bottom: 25px;
+        }
+
+
+a {
+    color: #000;
+    text-decoration: none;
+    -webkit-transition: color .2s linear;
+    -moz-transition: color .2s linear;
+    -ms-transition: color .2s linear;
+    -o-transition: color .2s linear;
+    transition: color .2s linear;
+}
+
+    a:hover {
+        color: #53b5aa;
+    }
+
+#site-header h1 span {
+    color: #53b5aa;
+}
+
+    #site-header h1 span.last-span {
+        background: #fff;
+        padding-right: 150px;
+        position: absolute;
+        left: 217px;
+        -webkit-transition: all .2s linear;
+        -moz-transition: all .2s linear;
+        -ms-transition: all .2s linear;
+        -o-transition: all .2s linear;
+        transition: all .2s linear;
+    }
+
+    #site-header h1:hover span.last-span, #site-header h1 span.is-open {
+        left: 363px;
+    }
+
+#site-header h1 em {
+    font-size: 16px;
+    font-style: normal;
+    vertical-align: middle;
+}
+
+
+#cartList {
+    width: 100%;
+}
+
+    #cartList h1 {
+        font-weight: 450;
+    }
+
+    #cartList a {
+        color: white;
+        text-decoration: none;
+        -webkit-transition: color .2s linear;
+        -moz-transition: color .2s linear;
+        -ms-transition: color .2s linear;
+        -o-transition: color .2s linear;
+        transition: color .2s linear;
+    }
+
+        #cartList a:hover {
+            color: white;
+        }
+
+.product.removed {
+    margin-left: 980px !important;
+    opacity: 0;
+}
+
+.product {
+    border: 1px solid #eee;
+    margin: 20px 0;
+    width: 100%;
+    height: 195px;
+    position: relative;
+    -webkit-transition: margin .2s linear, opacity .2s linear;
+    -moz-transition: margin .2s linear, opacity .2s linear;
+    -ms-transition: margin .2s linear, opacity .2s linear;
+    -o-transition: margin .2s linear, opacity .2s linear;
+    transition: margin .2s linear, opacity .2s linear;
+}
+
+    .product img {
+        width: 100%;
+        height: 100%;
+    }
+
+    .product header, .product .content {
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-style: none none solid none;
+        float: left;
+    }
+
+    .product header {
+        background: #000;
+        margin: 0 1% 20px 0;
+        overflow: hidden;
+        padding: 0;
+        position: relative;
+        width: 24%;
+        height: 195px;
+    }
+
+        .product header:hover img {
+            opacity: .7;
+        }
+
+        .product header:hover h3 {
+            bottom: 73px;
+        }
+
+        .product header h3 {
+            background: #53b5aa;
+            color: #fff;
+            font-size: 22px;
+            font-weight: 300;
+            line-height: 49px;
+            text-align: center;
+            margin: 0;
+            position: absolute;
+            bottom: -50px;
+            right: 0;
+            left: 0;
+            -webkit-transition: bottom .2s linear;
+            -moz-transition: bottom .2s linear;
+            -ms-transition: bottom .2s linear;
+            -o-transition: bottom .2s linear;
+            transition: bottom .2s linear;
+        }
+
+.remove {
+    cursor: pointer;
+}
+
+.product .content {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    height: 140px;
+    padding: 0 20px;
+    width: 75%;
+}
+
+.product h1 {
+    color: #53b5aa;
+    font-size: 25px;
+    font-weight: 300;
+    margin: 1rem 0;
+}
+
+.product footer.content {
+    height: 50px;
+    margin: 6px 0 0 0;
+    padding: 0;
+}
+
+.product footer .price {
+    background: #fcfcfc;
+    float: right;
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 49px;
+    margin: 0;
+    padding: 0 30px;
+}
+
+.product footer .full-price {
+    background: #53b5aa;
+    color: #fff;
+    float: right;
+    font-size: 22px;
+    font-weight: 300;
+    line-height: 49px;
+    margin: 0;
+    padding: 0 30px;
+    -webkit-transition: margin .15s linear;
+    -moz-transition: margin .15s linear;
+    -ms-transition: margin .15s linear;
+    -o-transition: margin .15s linear;
+    transition: margin .15s linear;
+}
+
+/*數量鍵+-*/
+.qt, .qt-plus, .qt-minus {
+    display: block;
+    float: left;
+}
+
+.qt {
+    font-size: 19px;
+    line-height: 50px;
+    width: 70px;
+    text-align: center;
+}
+
+.qt-plus, .qt-minus {
+    background: #fcfcfc;
+    border: none;
+    font-size: 30px;
+    font-weight: 300;
+    height: 100%;
+    padding: 0 20px;
+    -webkit-transition: background .2s linear;
+    -moz-transition: background .2s linear;
+    -ms-transition: background .2s linear;
+    -o-transition: background .2s linear;
+    transition: background .2s linear;
+}
+
+    .qt-plus:hover, .qt-minus:hover {
+        background: #53b5aa;
+        color: #fff;
+        cursor: pointer;
+    }
+
+.qt-plus {
+    line-height: 50px;
+}
+
+.qt-minus {
+    line-height: 47px;
+}
+
+
+
+/*----------結帳頁尾------------*/
+#chechout-footer {
+    background: #fff;
+    padding: 1rem 2rem;
+}
+
+    #chechout-footer h1 {
+        background: #fcfcfc;
+        border: 1px solid #ccc;
+        border-style: none none solid none;
+        font-size: 24px;
+        font-weight: 300;
+        margin: 0 0 7px 0;
+        padding: 14px 40px;
+        text-align: right;
+    }
+
+    #chechout-footer td {
+        font-size: 1.5rem;
+        font-weight: 300;
+        margin: 1rem auto;
+        line-height: 3rem;
+    }
+
+    #chechout-footer .money {
+        text-align: right;
+    }
+
+    #chechout-footer h3 {
+        font-size: 19px;
+        font-weight: 300;
+        margin: 15px 0;
+    }
+
+/* 下一步btn、繼續購物btn */
+.next-btn, .shopping-btn {
+    display: block;
+    border-radius: 2rem;
+    width: 85%;
+    background-color: #53b5aa;
+    border-style: none;
+    cursor: pointer;
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 400;
+    padding: 1rem 2rem;
+    text-align: center;
+    -webkit-transition: all .2s linear;
+    -moz-transition: all .2s linear;
+    -ms-transition: all .2s linear;
+    -o-transition: all .2s linear;
+    transition: all .2s linear;
+}
+
+    .next-btn:hover {
+        color: #fff;
+        background-color: #429188;
+    }
+
+/*繼續購物btn*/
+.shopping-btn {
+    background-color: #FAA918;
+}
+
+    .shopping-btn:hover {
+        background-color: #e19005;
+    }
+
+.total {
+    color: #FF7177;
+}
+
+
+.type {
+    background: #fcfcfc;
+    font-size: 13px;
+    padding: 10px 16px;
+    left: 100%;
+}
+
+.type, .color {
+    border: 1px solid #ccc;
+    border-style: none none solid none;
+    position: absolute;
+}
+
+.color {
+    width: 40px;
+    height: 40px;
+    right: -40px;
+}
+
+.red {
+    background: #cb5a5e;
+}
+
+.yellow {
+    background: #f1c40f;
+}
+
+.blue {
+    background: #3598dc;
+}
+
+.minused {
+    margin: 0 50px 0 0 !important;
+}
+
+.added {
+    margin: 0 -50px 0 0 !important;
+}
+
+/*============ 填寫資料表單 ====================*/
+#fillDate {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.filldata-card {
+    box-shadow: 0 0 15px 0px rgba(0, 0, 0, 0.35);
+    border-radius: 1.5rem;
+    position: relative;
+    background-color: white;
+}
+
+/*表頭*/
+.filldata-header {
+    background-color: #53B5AA;
+    color: white;
+    border-top-left-radius: 1.5rem;
+    border-top-right-radius: 1.5rem;
+    text-align: center;
+    line-height:4rem;
+    width: 100%;
+    font-size:1.5rem;
+}
+
+.filldata-content{
+    padding:1rem 8rem;
+
+}
+
+/*表尾*/
+/* 上一步btn、送出訂單btn */
+.submit-btn, .return-btn {    
+    float:right;
+    display: block;
+    border-radius: 2rem;    
+    background-color: #FAA918;
+    border-style: none;
+    cursor: pointer;
+    color: #fff !important;
+    font-size: 1.5rem;
+    font-weight: 400;
+    padding: 1rem 2rem;
+    text-align: center;
+    -webkit-transition: all .2s linear;
+    -moz-transition: all .2s linear;
+    -ms-transition: all .2s linear;
+    -o-transition: all .2s linear;
+    transition: all .2s linear;
+}
+
+    .return-btn:hover {
+        text-decoration: none;
+        color: #fff;
+        background-color: #e19005;
+    }
+
+.submit-btn {
+    margin-left:2rem;
+    background-color: #53b5aa;
+}
+
+    .submit-btn:hover {
+        background-color: #429188;
+    }
+
+    /*width>1024*/
+    @media(min-width:1025px) {
+        /*填寫資料表單*/
+        #fillDate {
+        width: 60%;
+        padding-top: 2rem;
+        margin: 0 auto;
+    }
+}
+
+
+/* width<768*/
+@media (max-width:769px) {
+    #site-header h1 {
+        font-size: 2rem;
+    }
+
+    /*填寫表單*/
+    .filldata-content {
+        padding: 1rem 4rem;
+    }
+    .submit-btn {
+        margin-left: 8.5rem;
+    }
+}
+
+
+/* width<375*/
+@media (max-width:376px) {
+
+    #site-header h1 {
+        font-size: 1.6rem;
+    }
+
+    .product {
+        margin: 2.2rem 0;
+    }
+
+        .product h1 {
+            font-size: 1.2rem;
+        }
+
+        .product header {
+            width: 28%;
+            height: 140px;
+            margin-bottom: 5px;
+        }
+
+            /*刪除*/
+            .product header h3 {
+                font-size: 1rem;
+                bottom: 0;
+                line-height: 2rem;
+            }
+
+            .product header:hover h3 {
+                bottom: 3.5rem;
+            }
+
+
+        .product .content {
+            height: 140px;
+            width: 70%;
+        }
+
+        .product footer.content {
+            width: 100%;
+            height: 50px;
+            margin: 0 auto;
+            padding: 0;
+        }
+
+        .product footer .price {
+            display: none;
+        }
+
+    /*結帳頁尾*/
+    #chechout-footer td {
+        font-size: 1.5rem;
+    }
+
+    .shopping-btn, .next-btn {
+        width: 100%;
+        font-size: 1.3rem;
+        padding: 1rem 1rem;
+    }
+
+    .shopping-col {
+        -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 2;
+        order: 2;
+    }
+
+    .next-col {
+        padding: 1rem 1rem;
+        -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+        order: 1;
+    }
+
+    /*====== 填寫表單 ======*/
+    #fillDate {
+        width: 100%;
+    }
+    .filldata-content {
+        padding: 0.8rem 1rem;
+    }
+    .filldata-header p{
+        font-size:1.2rem;
+    }
+    .submit-btn, .return-btn{
+        font-size:1rem;
+    }
+    .submit-btn{
+        margin-left:3rem;
+    }
+
+}

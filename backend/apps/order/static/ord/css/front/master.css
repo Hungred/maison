@@ -1,0 +1,461 @@
+html,
+body {
+    margin: 0;
+    height: 100%;
+}
+
+body {
+    font-family: "Didact Gothic", Arial, 文泉驛正黑, "WenQuanYi Zen Hei", "儷黑 Pro", "LiHei Pro", 微軟正黑體, "Microsoft JhengHei", 標楷體, DFKai-SB, sans-serif !important;
+    font-size: 1.2rem;
+    color: gray;
+    background-color: #F6F5F1;
+}
+
+
+
+/*====================== navbar ====================================*/
+.topMenu {
+    width: 100%;
+    height: 3rem;
+    position: fixed;
+    top: 0;
+    z-index: 900;
+    overflow: hidden;
+    background-color: white;
+    box-shadow: 0 12px 20px -12px rgba(0, 0, 0, 0.35);
+    /*    opacity: 0.8;*/
+}
+
+
+.topMenu a {
+    float: right;
+    /*    border-left: 1px solid #03A9F4;*/
+
+    display: block;
+    color: #009344;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    font-size: 1.3rem;
+}
+
+.topMenu a:hover {
+    text-decoration: none;
+    background-color: #009344;
+    color: white !important;
+    font-size: 1.5rem;
+    transition: .5s ease;
+
+}
+
+.topMenu .a-trigger i {
+    /*    font-size: 1.5rem;*/
+    /*    padding-right: 0.5rem;*/
+    width: 2rem;
+}
+
+.topMenu #navLogo {
+    width: 150px;
+}
+
+.topMenu #navLogo a:hover {
+    /* 背景無顏色*/
+    background-color: transparent;
+    padding-right: 0;
+
+}
+
+#navTitleFont {
+    position: absolute;
+    top: -0.2rem;
+    left: 5rem;
+    font-size: 2.2rem;
+    color: #009344;
+    cursor: pointer;
+}
+
+#navLogo {
+    position: fixed;
+    top: -0.5rem;
+    left: -0.5rem;
+    
+}
+
+
+#navLogo img {
+    width: 50%;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+/* menu鍵*/
+#rwdMenu {
+    display: none;
+    /*在PC上隱藏 */
+    border: none;
+    background-color: #41D9BD;
+    color: white;
+    border-radius: 10%;
+    overflow: hidden;
+    margin-top: 0.5rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+    padding: 6px 10px;
+    font-size: 1.2rem;
+}
+
+#rwdMenu:hover {
+    font-size: 1.5rem;
+    background-color: #41D98A;
+}
+
+
+#navTitle {
+    display: none;
+}
+
+
+/*iconfont的大小*/
+.topMenu a i {
+    padding-right: 0.8rem;
+    font-size: 1.2rem;
+}
+
+/*--- fix底部的nav ---*/
+.bottomMenu {
+    display: none;
+    width: 100%;
+    height: 3rem;
+    position: fixed;
+    bottom: 0;
+    z-index: 900;
+    overflow: hidden;
+    background-color: white;
+    box-shadow: 0 -12px 20px -12px rgba(0, 0, 0, 0.35), 0 12px 20px -12px rgba(0, 0, 0, 0.35);
+    /*    opacity: 0.8;*/
+}
+
+.bottomMenu a {
+    display: inline-block;
+    width:100px;
+
+    text-align:center;
+    color: #009344;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    font-size: 1.3rem;
+}
+    .bottomMenu a:hover {
+        text-decoration: none;
+        background-color: #009344;
+        color: white !important;
+        transition: .5s ease;
+    }
+
+    .bottomMenu a > i {
+        padding-right: 0.8rem;
+        font-size: 1.2rem;
+    }
+
+
+    /*=============== footer =======================*/
+    .wrapper {
+        min-height: 100%;
+        margin-bottom: -50px;
+        /* 等于footer的高度 */
+    }
+
+
+.push {
+    height: 50px;
+}
+
+.bs-footer {
+    height:auto;
+    color: #777;
+    background-color: white;
+    text-align: center;
+    border-top: 1px solid #cccccc;
+}
+
+.bs-footer span {
+    color: #8CC540;
+}
+
+/* footer social icons */
+
+ul.social-network {
+    list-style: none;
+    display: inline;
+    margin-left: 0 !important;
+    padding: 0;
+}
+
+ul.social-network li {
+    display: inline;
+    margin: 0 5px;
+}
+
+
+/* social icons 滑鼠移動時的顏色*/
+.social-network a.icoFacebook:hover {
+    background-color: #3B5998;
+}
+
+.social-network a.icoInstagram:hover {
+    background-color: #D5447B;
+}
+
+.social-network a.icoTwitter:hover {
+    background-color: #07C4F7;
+}
+.social-network a.icoYoutube:hover {
+    background-color: #F8362A;
+}
+
+.social-network a:hover i {
+    color: #fff;
+}
+
+.social-network a.socialIcon:hover,
+.socialHoverClass {
+    color: #44BCDD;
+}
+
+.social-circle li a {
+    border: 1px solid #8CC540;
+    display: inline-block;
+    position: relative;
+    margin: 0 auto 0 auto;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    text-align: center;
+    width: 30px;
+    height: 30px;
+    font-size: 15px;
+}
+
+.social-circle li a:hover {
+    border: 0.1px solid #ffffff;
+}
+
+.social-circle li a:hover i,
+.triggeredHover {
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -ms--transform: rotate(360deg);
+    transform: rotate(360deg);
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    -o-transition: all 0.2s;
+    -ms-transition: all 0.2s;
+    transition: all 0.2s;
+}
+
+.social-circle li i {
+    margin: 0;
+    line-height: 30px;
+    text-align: center;
+}
+
+
+.social-circle i {
+    color: #595959;
+    -webkit-transition: all 0.8s;
+    -moz-transition: all 0.8s;
+    -o-transition: all 0.8s;
+    -ms-transition: all 0.8s;
+    transition: all 0.8s;
+}
+
+.social-network a {
+    /*  background-color: #F9F9F9;*/
+}
+
+
+/*================ 購物車 ===============================================*/
+/*購物車無商品*/
+.noItem {
+    text-align: center;
+    padding-top: 1rem;
+}
+
+.shopCart {
+    padding-top: 1rem;
+    position: fixed;
+    /*在masterPage.js裡有位置設定*/
+    right: 0;
+    display: none;
+    background-color: white;
+    width: auto;
+    /*min-height: 100%;*/
+    height: auto;
+    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
+    font-size: 1.1rem;
+    z-index: 3;
+}
+
+.shopCartItem {
+    display: flex;
+    flex: 6;
+    padding: 0.5rem 0.5rem;
+    width: 100%;
+    margin: 0 auto;
+}
+
+    .shopCartItem a {
+        display: flex;
+        flex: 5;
+        color: gray;
+    }
+
+        .shopCartItem a:hover {
+            /*background-color: #ffffe6;*/
+            text-decoration: none;
+        }
+
+    .shopCartItem div {
+        padding-left: 1rem;
+        font-size: 1.1rem;
+        line-height: 1rem;
+        padding-top: 5px;
+    }
+
+        .shopCartItem div > span {
+            color: #FF6426;
+        }
+
+    .shopCartItem img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .shopCartItem .ItemQuantity {
+        flex: 1;
+    }
+
+    .shopCartItem .DelBtn {
+        font-size: 0.8rem;
+        height: 30px;
+        width: 30px;
+        padding-right: 1.4rem;
+    }
+
+/*--前往結帳--*/
+.shopCartFooter {
+    padding: 1rem 1.5rem;
+    margin-top: 1rem;
+    margin-left: 2px;
+    border-top: 1px solid #bfbfbf;
+}
+
+    .shopCartFooter p {
+        flex: 2;
+        text-align: center;
+        padding-top: 2px;
+        color: #ff1a1a;
+        font-size:1.2rem;
+    }
+
+    .shopCartFooter a {
+        flex: 2;
+        background-color: #ff1a1a;
+        color: white;
+        text-decoration: none;
+        border-radius: 2rem;
+        width: 8rem;
+        height: 2rem;
+        padding-top: 2px;
+        cursor: pointer;
+        display: inline-block;
+        font-size: 1.2rem;
+        text-align: center;
+    }
+
+        .shopCartFooter a:hover {
+            text-decoration: none;
+            background-color: #ff4d4d;
+            color: white !important;
+        }
+ 
+
+
+
+/*--- RWD width<1025 ----*/
+@media (max-width:1025px) {}
+
+/* width<768*/
+@media (max-width:769px) {
+
+    p {
+        font-size: 1rem;
+    }
+
+  
+
+   
+}
+
+/* ---當視窗小於652時---*/
+@media screen and (max-width: 653px) {
+
+    /*隱藏TopNav超連結*/
+    .navlinkGroup a {
+        display: none;
+    }
+
+    /*顯示bottomNav*/
+    .bottomMenu {
+        display: block;
+    }    
+}
+
+/* width<375*/
+@media (max-width:376px) {
+    p {
+        font-size: 1rem;
+    }
+    
+    /*購物車*/
+    .shopCart {
+        padding-top:0;
+        /*在masterPage.js裡有位置設定*/
+        width: auto;
+        /*min-height: 20%;*/
+        height:auto;
+        z-index: 3;
+    }
+    
+    /*--navbar--*/
+    #navTitleFont {
+        top: 0.3rem;
+        left: 5rem;
+        font-size: 1.8rem;
+
+    }
+
+    /*--- fix底部的nav ---*/
+    .bottomMenu a {
+        padding: 0.5rem 0;
+        font-size: 1rem;
+        border-right: 1px solid #b3b3b3;
+    }
+
+        .bottomMenu a:hover {
+            font-size: 1em;
+            transition: .5s ease;
+        }
+
+        .bottomMenu a > i {
+            padding-left: 5px;
+            padding-right: 0.5rem;
+            font-size: 1rem;
+        }
+
+}
+
+
+
+
+       
+           
