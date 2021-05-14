@@ -11,7 +11,7 @@
 
 					<a href="{% url 'schedule:index' %}" class="btn waves-effect waves-light right sche_btn">返回</a>
 					<a href="{% url 'login:change' %}" class="btn btn-danger">修改密碼</a>
-					<a href="" class="btn btn-danger">修改資料</a>
+					<a href="{% url 'login:update_profile' user.username %}" class="btn btn-danger">修改資料</a>
 
 				</h4>
 {% endblock %}

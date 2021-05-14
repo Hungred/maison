@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
-from .forms import RegisterForm, LoginForm, ChangepwdForm, ActiveEmpForm
+from .forms import *
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required, permission_required
@@ -63,14 +63,14 @@ def profile(request, username):
     user = get_object_or_404(User, username=username)
     return render(request, 'profile.html', {'user': user})
 
-# @login_required
-# def update_pf(request, pk):
-#     user = get_object_or_404(User, pk=pk)
-#     form = UpdateProfileForm(request.POST or None)
-#     if form.is_valid():
-#         form.save()
-#         return redirect('schedule:index')
-#     return render(request, 'update_pf.html', {'form':form})
+@login_required #如何過濾欄位?
+def update_pf(request, username):
+    user = get_object_or_404(User, username=username)
+    form = RegisterForm(request.POST or None, instance=user)
+    if form.is_valid():
+        form.save()
+        return redirect('schedule:index')
+    return render(request, 'update_pf.html', {'form':form})
 
 def emp_list(request):
     emps = Employee_data.objects.all()
@@ -96,3 +96,16 @@ def update_emp(request, pk):
         form.save()
         return redirect('schedule:index')
     return render(request, 'employee/update_emp.html', {'form':form})
+
+@permission_required('login.delete_employee_data', raise_exception=True) #如果無法刪除如何導向?
+def delete_emp(request, pk):
+    emp = get_object_or_404(Employee_data, pk=pk)
+    form = DeleteConfirmForm(request.POST or None)
+    if form.is_valid() and form.cleaned_data['check']:
+        emp.delete()
+        messages.success(request, '刪除成功')
+        return redirect('schedule:index')
+    else:
+        messages.success(request, '刪除失敗')
+
+    return render(request, 'employee/delete_emp.html', {'form': form})

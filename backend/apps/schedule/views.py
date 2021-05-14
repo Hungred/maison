@@ -38,7 +38,7 @@ def addsche(request):
                   {'form':form},
                   )
 
-@login_required(login_url="login:index")
+@permission_required('schedule.change_worksche', raise_exception=True)
 def updatesche(request, pk):
     worksche = get_object_or_404(Worksche, serno=pk)
     form = WorkscheForm(request.POST or None, instance=worksche)
@@ -47,7 +47,7 @@ def updatesche(request, pk):
         return redirect('schedule:index')
     return render(request, 'sche_update.html', {'form':form})
 
-@login_required(login_url="login:index")
+@permission_required('schedule.delete_worksche', raise_exception=True)
 def delsche(request, pk):
     worksche = get_object_or_404(Worksche, serno=pk)
     form = DeleteConfirmForm(request.POST or None)

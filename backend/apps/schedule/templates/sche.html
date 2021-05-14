@@ -100,11 +100,13 @@
                 <h3 class="list_text">
 					營收報表
 				</h3>
+				{% if request.user|has_group:"boss" %}
 				<h3 class="list_text">
-					{% if request.user|has_group:"boss" %}
+
     				<a  href="{% url 'login:emp_list' %}" >員工管理</a>
-					{% endif %}
+
 				</h3>
+				{% endif %}
 			</div>
 
 			<div class="col-md-10 cal" >
