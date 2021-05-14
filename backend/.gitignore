@@ -1,5 +1,9 @@
+﻿maison.xd
 # macOS
 .DS_Store
+
+#DB
+*.sqlite3
 
 # PyCharm
 .idea/
