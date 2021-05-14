@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>班表</title>
+    <title>MAISON DE OCÉAN</title>
 
     <meta name="description" content="Source code generated using layoutit.com">
     <meta name="author" content="LayoutIt!">
@@ -19,6 +19,7 @@
 
   </head>
   {% load bootstrap4 %}
+  {% load auth_extras %}
   <body class="body_bg">
 
 	<script>
@@ -67,7 +68,7 @@
 				<h3 class="nav_logo">
 					MAISON DE OCÉAN
 					<a class="btn  btn-primary" href="{% url 'login:logout' %}" role="button">登出 &#187;</a>
-					<a class="btn  btn-primary" href="{% url 'login:change' %}" role="button">修改密碼 &#187;</a>
+
 				</h3>
 
 			</div>
@@ -99,9 +100,15 @@
                 <h3 class="list_text">
 					營收報表
 				</h3>
+				<h3 class="list_text">
+					{% if request.user|has_group:"boss" %}
+    				<a  href="{% url 'login:emp_list' %}" >員工管理</a>
+					{% endif %}
+				</h3>
 			</div>
 
 			<div class="col-md-10 cal" >
+				{% bootstrap_messages %}
 				<h3 class="page_title">
 					班表
 				</h3>

@@ -15,8 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.shortcuts import redirect
+from utils import error_handlers
 
 urlpatterns = [
+    path('', lambda request: redirect('schedule:index'), name='root'),
     path('login/', include('apps.login.urls')),
     path('schedule/', include('apps.schedule.urls')),
     path('reservation/', include('apps.reservation.urls')),
@@ -27,3 +30,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
 ]
+
+handler403 = 'utils.error_handlers.permission_denied'

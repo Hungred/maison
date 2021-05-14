@@ -1,73 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+{% extends 'share/layout.html' %}
 
-    <title>修改班表</title>
-
-    <meta name="description" content="Source code generated using layoutit.com">
-    <meta name="author" content="LayoutIt!">
-{% load static %}
-    <link href="{% static '/log/css/bootstrap.min.css' %}" rel="stylesheet">
-	<link href="{% static '/log/fullcalendar-5.5.1 (1)/lib/main.css' %}" rel='stylesheet' />
-    <script src="{% static '/log/fullcalendar-5.5.1 (1)/lib/main.js' %}"></script>
-	<link href="{% static '/log/css/style_manager.css' %}" rel="stylesheet">
-
-  </head>
-  {% load bootstrap4 %}
-  <body class="body_bg">
-
-    <div class="container-fluid">
-		<div class="row nav_bg">
-			<div class="col-md-6">
-				<h3 class="nav_logo">
-					MAISON DE OCÉAN
-				</h3>
-			</div>
-			<div class="col-md-6 nav_align">
-				<img alt="Bootstrap Image Preview" src="{% static 'log/images/logo.jpg' %}" class="rounded-circle nav_img">
-			</div>
-		</div>
-
-		<div class="row">
-			<div class="col-md-2 list_bar">
-				<h3 class="list_text">
-					<a  href="{% url 'schedule:index' %}">班表</a>
-				</h3>
-                <h3 class="list_text">
-					訂位
-				</h3>
-                <h3 class="list_text">
-					點餐
-				</h3>
-                <h3 class="list_text">
-					顧客回饋
-				</h3>
-                <h3 class="list_text">
-					營收報表
-				</h3>
-			</div>
-
-			<div class="col-md-10 cal" >
+{% block main %}
 				<h3 class="page_title">
 					個人資料
 				</h3>
 
-				<h5>
+				<h4>
 					<p><b>帳號: </b>{{ user.username }}</p>
 					<p><b>電子郵件: </b>{{ user.email }}</p>
 
 					<a href="{% url 'schedule:index' %}" class="btn waves-effect waves-light right sche_btn">返回</a>
 					<a href="{% url 'login:change' %}" class="btn btn-danger">修改密碼</a>
-				</h2>
-			</div>
-		</div>
-	</div>
+					<a href="" class="btn btn-danger">修改資料</a>
 
-    <script src="{% static 'log/js/jquery.min.js' %}"></script>
-    <script src="{% static 'log/js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'log/js/scripts.js' %}"></script>
-  </body>
-</html>
+				</h4>
+{% endblock %}
