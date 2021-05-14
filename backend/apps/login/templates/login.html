@@ -29,17 +29,24 @@
       </div>
 
       <div class="row">
-        <div class="col-md-12 cal" >
-          <h3>登入</h3>
+        <div class="col-md-12" >
+          <h3 class="cal">登入<br>
           <img src="{% static '/log/images/logo.png' %}" class="login_img login_img_align" style="border-radius: 50%;">
-            <form action="" method="POST">
-              <table class="account">
-                {% csrf_token %}
-                {{ form }}
-              </table>
-                <input class="btn btn-primary" type="submit" value="登入" />
-                <p>還沒有帳號嗎? <a href="{% url 'login:register' %}">註冊</a></p>
-            </form>
+          </h3>
+          <div class="row">
+            <div class="col-md-5"></div>
+            <div class="col-md-3" style="padding-right: 84px; margin-left: -20PX;">
+              <form action="" method="POST">
+                <table class="account">
+                  {% csrf_token %}
+                  {{ form }}
+                </table>
+                <br>
+                <p style="color: red; text-align: center;">還沒有帳號嗎? <a href="{% url 'login:register' %}">註冊</a></p>
+                <input class="btn btn-primary" type="submit" value="登入" style="float: right;" />
+              </form>
+            </div>
+          </div>
         </div>
       </div>
     </div>
