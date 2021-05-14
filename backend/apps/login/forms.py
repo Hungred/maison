@@ -4,6 +4,9 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from .models import Employee_data
 
+class DeleteConfirmForm(forms.Form):
+    check = forms.BooleanField(label='你確定要刪除嗎？')
+
 class RegisterForm(UserCreationForm):
     username = forms.CharField(
         label="帳號",
@@ -61,7 +64,7 @@ class ActiveEmpForm(ModelForm):
         model = Employee_data
         fields = '__all__'
 
-# class UpdateProfileForm(forms.Form):
+# class UpdateProfileForm(UserCreationForm):
 #     email = forms.EmailField(
 #         label="電子郵件",
 #         widget=forms.EmailInput(attrs={'class': 'form-control'})
