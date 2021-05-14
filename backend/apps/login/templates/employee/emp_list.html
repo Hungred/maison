@@ -1,0 +1,36 @@
+{% extends 'share/layout.html' %}
+
+{% block main %}
+				<h3 class="page_title">
+					員工列表
+				</h3>
+                <table class="table table-striped">
+                <thead>
+            <tr>
+                <th>使用者名稱</th>
+                <th>員工編號</th>
+                <th>員工姓名</th>
+                <th>職位</th>
+            </tr>
+            </thead>
+                    <tbody>
+				{% for emp in emps %}
+            <tr>
+                <td>{{ emp.user }}</td>
+                <td>
+                    {{ emp.empid }}</a>        </td>
+                <td>{{ emp.empname }}</td>
+                <td>{{ emp.position }}</td>
+                <td><a href="{% url 'login:update_emp' emp.id %}"
+            class="btn btn-outline-info float-right">
+        修改
+        </a></td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td class="text-center" colspan="4">沒有咖啡～</td>
+            </tr>
+            {% endfor %}
+                    </tbody>
+                </table>
+{% endblock %}
