@@ -2,8 +2,7 @@
 # macOS
 .DS_Store
 
-#DB
-db.sqlite3
+
 
 # PyCharm
 .idea/
