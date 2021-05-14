@@ -18,9 +18,9 @@ class Food(models.Model):
 
 class Ord(models.Model):
     serno = models.AutoField(primary_key=True)
-    ordtime = models.DateTimeField('日期時間')
+    ordtime = models.DateTimeField('日期時間', auto_now=True)
     tabnum = models.CharField('桌號', max_length=3)
-    ordcheck = models.IntegerField('處理狀態')
+    ordcheck = models.IntegerField('處理狀態', default=0)
 
     def __str__(self):
         field_values = []
