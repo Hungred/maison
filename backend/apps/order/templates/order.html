@@ -9,13 +9,11 @@
 
     <meta name="description" content="Source code generated using layoutit.com">
     <meta name="author" content="LayoutIt!">
-    
-    <link href="../static/ord/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../static/ord/css/style_manager.css" rel="stylesheet">
 
     {% load static %}
     <link href="{% static '/ord/css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static '/ord/css/style_manager.css' %}" rel="stylesheet">
+
 
   </head>
   {% load bootstrap4 %}
@@ -29,8 +27,7 @@
 				</h3>
 			</div>
 			<div class="col-md-6 nav_align">
-
-				<img alt="Bootstrap Image Preview" src="{% static '/images/logo.jpg' %} class="rounded-circle nav_img">
+				<img alt="Bootstrap Image Preview" src="{% static '/ord/images/logo.jpg' %}" class="rounded-circle nav_img">
 			</div>
 		</div>
 
@@ -61,13 +58,15 @@
 				<div class="row">
                     <div class="col-md-6">
                         <span class="res_date">訂單</span>
+                        {% for Ord in order %}
                         <table>
                             <tr>
-                                <th>林小姐</th>
-                                <th>A01桌</th>
-                                <td>$1,200</td>
+                                <th>{{ Ord.ordtime|date:'Y-m-d h:i'}}</th>
+                                <th>{{ Ord.tabnum }}桌</th>
+                                <td>{{ Ord.ordcheck }}</td>
                             </tr>
                         </table>
+                        {% endfor %}
                         <table>
                             <tr>
                                 <th>林小姐</th>
@@ -127,9 +126,6 @@
 		</div>
 	</div>
 
-    <script src="../static/ord/js/jquery.min.js"></script>
-    <script src="../static/ord/js/bootstrap.min.js"></script>
-    <script src="../static/ord/js/scripts.js"></script>
 
     <script src="{% static '/ord/js/jquery.min.js' %}"></script>
     <script src="{% static '/ord/js/bootstrap.min.js'%}"></script>
