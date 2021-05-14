@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, JsonResponse
 from django.template import context
 
-from .models import Ord, Food
+from .models import *
 from django.contrib import messages
 from django.core import serializers
 from django.forms.models import model_to_dict
@@ -17,4 +17,15 @@ def index(request):
 
 def orderdetail(request):
     food = Food.objects.all()
-    return render(request, 'orderdetail.html', {'food':food})
+    ord = Ord.objects.all()
+    # ordinfo = ordinfo.objects.all()
+
+    context = {
+        'food': food,
+        'ord': ord,
+        # 'ordinfo': ordinfo,
+    }
+    return render(request, 'orderdetail.html', context)
+
+def checkout(request):
+    return render(request, 'checkout.html')

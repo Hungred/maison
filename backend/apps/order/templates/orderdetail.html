@@ -129,11 +129,11 @@
                 <div class="row">
                     <div id="fristlist" class="tabcontent">
                         <!--start accordion-->
-
+                        {% for Food in food %}
                         <div class="container">                            
 
                             <div class="accordion">
-                               {% for Food in order %}
+
                                 <div class="accordion-item">
                                     <a  style="color:black"> {{ Food.foodname }} </a>
                                     <div class="content">
@@ -142,26 +142,27 @@
                                         <p>數量1份 &nbsp;&nbsp;&nbsp;$<span>358</span>元</p>
                                     </div>
                                 </div>
-                                {% endfor %}
-                                <div class="accordion-item">
-                                    <a>墨西哥菲力牛肉披薩{{ Food.foodname }}</a>
-                                    <div class="content">
-                                        <img src="https://images2.gamme.com.tw/news2/2019/71/95/q5yanaCdlaKYqA-150x110.jpeg" />
-                                        <p>採窯烤披薩做法餅皮酥脆可口讓人愛不釋手。</p>
-                                        <p>數量1份 &nbsp;&nbsp;&nbsp;$<span>358</span>元</p>
-                                    </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <a>墨西哥菲力牛肉披薩</a>
-                                    <div class="content">
-                                        <img src="https://images2.gamme.com.tw/news2/2019/71/95/q5yanaCdlaKYqA-150x110.jpeg" />
-                                        <p>採窯烤披薩做法餅皮酥脆可口讓人愛不釋手。</p>
-                                        <p>數量1份 &nbsp;&nbsp;&nbsp;$<span>358</span>元</p>
-                                    </div>
-                                </div>
+
+<!--                                <div class="accordion-item">-->
+<!--                                    <a>{{ Food.foodname }}</a>-->
+<!--                                    <div class="content">-->
+<!--                                        <img src="https://images2.gamme.com.tw/news2/2019/71/95/q5yanaCdlaKYqA-150x110.jpeg" />-->
+<!--                                        <p>採窯烤披薩做法餅皮酥脆可口讓人愛不釋手。</p>-->
+<!--                                        <p>數量1份 &nbsp;&nbsp;&nbsp;$<span>358</span>元</p>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="accordion-item">-->
+<!--                                    <a>{{ Food.foodname }}</a>-->
+<!--                                    <div class="content">-->
+<!--                                        <img src="https://images2.gamme.com.tw/news2/2019/71/95/q5yanaCdlaKYqA-150x110.jpeg" />-->
+<!--                                        <p>採窯烤披薩做法餅皮酥脆可口讓人愛不釋手。</p>-->
+<!--                                        <p>數量1份 &nbsp;&nbsp;&nbsp;$<span>358</span>元</p>-->
+<!--                                    </div>-->
+<!--                                </div>-->
                             </div>
 
                         </div>
+                        {% endfor %}
                         <!--end accordion-->
                                                
                     </div>
@@ -173,14 +174,16 @@
                         <div class="order-history">
                             <table class=" col-md-12 table table-hover table-borderless pre-scrollable">
                                 <thead>
-                                    {% for Ord in orderdetail %}
+                                    {% for Ord in ord %}
+
                                     <tr>
-                                        <th class="cn-col-3">訂購日期{{ Ord.ordtime }}</th>
-                                        <th class="cn-col-3">訂單編號{{ ordinfo.o_id }}</th>
+                                        <th class="cn-col-3">{{ Ord.ordtime }}</th>
+                                        <th class="cn-col-3">訂單編號</th>
                                         <!--<th>商品名稱</th>-->
                                         <th class="cn-col-3">狀態{{ Ord.ordcheck }}</th>
                                         <th class="cn-col-3">總金額</th>
                                     </tr>
+
                                     {% endfor %}
                                 </thead>
                                 <tbody>
