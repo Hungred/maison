@@ -3,7 +3,7 @@
 .DS_Store
 
 #DB
-*.sqlite3
+db.sqlite3
 
 # PyCharm
 .idea/
