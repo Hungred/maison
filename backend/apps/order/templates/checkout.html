@@ -41,7 +41,7 @@
         <div class="navlinkGroup">
             <a class="a-trigger" href="" id="navTitle">&nbsp;</a>
             <a class="navShopCart a-trigger" href="#"><i class="fas fa-shopping-cart"></i></a>
-            <a class="a-trigger" href="OrderDetail.html"><i class="fas fa-user"></i>訂單明細</a>
+            <a class="a-trigger" href="{% url 'order:orderdetail'  %}"><i class="fas fa-user"></i>訂單明細</a>
             <a class="a-trigger" href="product.html"><i class="fas fa-utensils"></i>菜單</a>
             
             <button id="rwdMenu" onclick="toggleClass()">
@@ -55,7 +55,7 @@
         <div class="row">
             <a class="a-trigger col-sm-3" href="index.html"><i class="fas fa-store"></i>簡介</a>
             <a class="a-trigger col-sm-3" href="product.html"><i class="fas fa-utensils"></i>菜單</a>
-            <a class="a-trigger col-sm-3" href="OrderDetail.html"><i class="fas fa-user"></i>訂單明細</a>
+            <a class="a-trigger col-sm-3" href="{% url 'order:orderdetail'  %}"><i class="fas fa-user"></i>訂單明細</a>
             <a class="navShopCart a-trigger col-sm-3" href="#"><i class="fas fa-shopping-cart"></i></a>
         </div>
     </div>
@@ -153,11 +153,11 @@
                         <span class="qt-plus">+</span>
 
                         <h2 class="full-price">
-                            29.98
+                            200
                         </h2>
 
                         <h2 class="price">
-                            14.99
+                            100
                         </h2>
                     </footer>
                 </article>
@@ -187,11 +187,11 @@
                         <span class="qt-plus">+</span>
 
                         <h2 class="full-price">
-                            79.99
+                            100
                         </h2>
 
                         <h2 class="price">
-                            79.99
+                            100
                         </h2>
                     </footer>
                 </article>
@@ -221,11 +221,11 @@
                         <span class="qt-plus">+</span>
 
                         <h2 class="full-price">
-                            53.99
+                            300
                         </h2>
 
                         <h2 class="price">
-                            17.99
+                           100
                         </h2>
                     </footer>
                 </article>
@@ -240,23 +240,23 @@
                             <table width="100%">
                                 <tr>
                                     <td width="50%">小計</td>
-                                    <td width="50%" class="money"><div>$&nbsp;&nbsp;<span class="subtotal">163.96</span></div></td>
+                                    <td width="50%" class="money"><div>$&nbsp;&nbsp;<span class="subtotal">600</span></div></td>
                                 </tr>
-                                <tr>
-                                    <td>折扣</td>
-                                    <td class="money"><div>$&nbsp;&nbsp;<span class="discount">-50</span></div></td>
-                                </tr>
-                                <tr>
-                                    <td>運費</td>
-                                    <td class="money">
-                                        <div>$&nbsp;&nbsp;<span class="shipping">50</span></div>
-                                    </td>
-                                </tr>
+<!--                                <tr>-->
+<!--                                    <td>折扣</td>-->
+<!--                                    <td class="money"><div>$&nbsp;&nbsp;<span class="discount">-50</span></div></td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                    <td>運費</td>-->
+<!--                                    <td class="money">-->
+<!--                                        <div>$&nbsp;&nbsp;<span class="shipping">50</span></div>-->
+<!--                                    </td>-->
+<!--                                </tr>-->
                                 <tr style="border-bottom:1px solid #CDCDCD"><td><p></p></td></tr>
                                 <tr>
                                     <td>總計</td>
                                     <td class="money">
-                                        <div>$&nbsp;&nbsp;<span class="total">177.16</span></div>
+                                        <div>$&nbsp;&nbsp;<span class="total">600</span></div>
                                     </td>
                                 </tr>
                             </table>
@@ -290,28 +290,28 @@
                     </div>
                     <div class="filldata-content">
                         <form>
-                            <div class="form-group row">
-                                <label for="" class="col-4 col-form-label">姓名</label>
-                                <div class="col-8">
-                                    <input id="" name="" type="text" class="form-control">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="" class="col-4 col-form-label">電話</label>
-                                <div class="col-8">
-                                    <input id="" name="" type="text" class="form-control">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="" class="col-4 col-form-label">e-mail</label>
-                                <div class="col-8">
-                                    <input id="" name="" type="text" class="form-control">
-                                </div>
-                            </div>
+<!--                            <div class="form-group row">-->
+<!--                                <label for="" class="col-4 col-form-label">姓名</label>-->
+<!--                                <div class="col-8">-->
+<!--                                    <input id="" name="" type="text" class="form-control">-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="form-group row">-->
+<!--                                <label for="" class="col-4 col-form-label">電話</label>-->
+<!--                                <div class="col-8">-->
+<!--                                    <input id="" name="" type="text" class="form-control">-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="form-group row">-->
+<!--                                <label for="" class="col-4 col-form-label">e-mail</label>-->
+<!--                                <div class="col-8">-->
+<!--                                    <input id="" name="" type="text" class="form-control">-->
+<!--                                </div>-->
+<!--                            </div>-->
                             <div class="form-group row">
                                 <div class="col-md-12">
                                     <button class="submit-btn">送出訂單</button>
-                                    <a class="return-btn" href="#cartList">回上一步</a>
+                                    <a class="return-btn" style="text-align:left;" href="#cartList">回上一步</a>
                                 </div>
                             </div>
                         </form>
@@ -353,6 +353,7 @@
     <!-- jquery plugins here-->
     <!-- jquery -->
     <script src="~/js/jquery-1.12.1.min.js"></script>
+    <script src="{% static 'ord/js/jquery-1.12.1.min.js' %}"></script>
     <!-- popper js -->
     <script src="~/js/popper.min.js"></script>
     <!-- bootstrap js -->
@@ -360,7 +361,7 @@
     <!-- easing js -->
     <script src="~/js/jquery.magnific-popup.js"></script>
     <!-- swiper js -->
-    <script src="~/js/swiper.min.js"></script>
+    <script src="{% static 'ord/js/swiper.min.js' %}"></script>
     <!-- swiper js -->
     <script src="~/js/masonry.pkgd.js"></script>
     <!-- particles js -->
@@ -370,9 +371,9 @@
     <script src="~/js/gijgo.min.js"></script>
     <script src="~/js/jquery.nice-select.min.js"></script>
     <!-- custom js -->
-    <script src="~/js/custom.js"></script>
-    <script src="~/js/masterPage.js"></script>
-
+    <script src="{% static 'ord/js/popper.js' %}"></script>
+    <script src="{% static 'ord/js/custom.js' %}"></script>
+    <script src="{% static 'ord/js/masterPage.js' %}"></script>
 
 
     <!--此網站的js-->
@@ -407,7 +408,7 @@
             });
 
 
-
+            /運費 折扣/
             price = Math.round(price * 100) / 100;
             var discount = parseInt($(".discount").html());
             var shipping = parseFloat($(".shipping").html());
@@ -472,7 +473,7 @@
         });
 
 
-        //section的顯示=======================================================
+        /section的顯示/
         var currentSection = 0;
 
         showSection(currentSection);
@@ -500,7 +501,7 @@
         });
 
 
-        //「送出訂單」messageBox=====================================
+        /「送出訂單」messageBox/
         $(function () {
 
             $('.submit-btn').click(function () {
@@ -516,7 +517,10 @@
                         if (willDelete) {
                             swal({
                                 title: "訂購完成",
-                                text: "如需查詢訂單內容：會員中心 >> 訂單查詢，即可查看內容",
+
+
+                                text: "你的訂單編號是: 20210518 如需查詢訂單內容：請至訂單明細，即可查看內容",
+
                                 icon: "success",
                             });
                         } else {
