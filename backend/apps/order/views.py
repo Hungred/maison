@@ -30,6 +30,5 @@ def orderdetail(request):
 def checkout(request):
     return render(request, 'checkout.html')
 
-def checkout(request):
-    food = Food.objects.all()
-    return render(request, 'checkout.html', {'food':food})
+def product(request):
+    return render(request, 'product.html')
