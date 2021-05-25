@@ -29,3 +29,6 @@ def orderdetail(request):
 
 def checkout(request):
     return render(request, 'checkout.html')
+
+def product(request):
+    return render(request, 'product.html')
