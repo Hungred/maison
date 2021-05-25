@@ -1,14 +1,12 @@
+
 {% extends 'share/layout.html' %}
 
 {% block main %}
 			<div class="col-md-10 cal" >
 				<h3 class="page_title">
-					顧客回饋
+					搜尋結果
 				</h3>
-<form action="{% url 'feedback:search_result' %}" method="get">
-      <input name="query" type="text" placeholder="ex:姓名, 2021-05-25" >
-      <button type="submit" name="button">Submit</button>
-    </form>
+
 				<div class="row">
                     <div class="col-md-12">
                         {% for feedback in feedbacks %}
@@ -20,8 +18,13 @@
 
                             </tr>
                         </table>
+						{% empty %}
+   							查無相關資料
+
                         {% endfor %}
+						<p><a class="btn  btn-primary" href="{% url 'feedback:index' %}">返回</a></p>
 					</div>
+
 				</div>
 			</div>
 
