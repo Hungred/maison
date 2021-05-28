@@ -1,104 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+{% extends 'share/layout.html' %}
 
-    <title>顧客回饋</title>
-
-    <meta name="description" content="Source code generated using layoutit.com">
-    <meta name="author" content="LayoutIt!">
-    
-    <link href="../static/feed/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../static/feed/css/style_manager.css" rel="stylesheet">
-
-    {% load static %}
-    <link href="{% static '/feed/css/bootstrap.min.css' %}" rel="stylesheet">
-    <link href="{% static '/feed/css/style_manager.css' %}" rel="stylesheet">
-
-  </head>
-  {% load bootstrap4 %}
-  <body class="body_bg">
-
-    <div class="container-fluid">
-		<div class="row nav_bg">
-			<div class="col-md-6">
-				<h3 class="nav_logo">
-					MAISON DE OCÉAN
-				</h3>
-			</div>
-			<div class="col-md-6 nav_align">
-
-				<img alt="Bootstrap Image Preview" src="{% static '/images/logo.jpg' %} class="rounded-circle nav_img">
-			</div>
-		</div>
-
-		<div class="row">
-			<div class="col-md-2 list_bar">
-				<h3 class="list_text">
-					<a  href="sche.html">班表</a>
-				</h3>
-                <h3 class="list_text">
-					訂位
-				</h3>
-                <h3 class="list_text">
-					<a  href="order.html">點餐</a>
-				</h3>
-                <h3 class="list_text">
-					顧客回饋
-				</h3>
-                <h3 class="list_text">
-					營收報表
-				</h3>
-			</div>
-
+{% block main %}
 			<div class="col-md-10 cal" >
 				<h3 class="page_title">
 					顧客回饋
 				</h3>
-
+<form action="{% url 'feedback:search_result' %}" method="get">
+      <input name="query" type="text" placeholder="ex:姓名, 2021-05-25" >
+      <button type="submit" name="button">Submit</button>
+    </form>
 				<div class="row">
                     <div class="col-md-12">
+                        {% for feedback in feedbacks %}
                         <table>
                             <tr>
-                                <th>林小姐</th>
-                                <td class="feed_time">2021/04/13</td>
+                                <th>{{ feedback.name }}</th>
+                                <td><a href="{% url 'feedback:detail' feedback.id %}">詳細>></a> </td>
+                                <td class="feed_time">{{ feedback.cometime }}</td>
+
                             </tr>
                         </table>
-                        <table>
-                            <tr>
-                                <th>林小姐</th>
-                                <br>
-                                <td class="feed_time">2021/04/13</td>
-                            </tr>
-                        </table>
-                        <table>
-                            <tr>
-                                <th>林小姐</th>
-                                <br>
-                                <td class="feed_time">2021/04/13</td>
-                            </tr>
-                        </table>
-                        <table>
-                            <tr>
-                                <th>林小姐</th>
-                                <br>
-                                <td class="feed_time">2021/04/13</td>
-                            </tr>
-                        </table>
+                        {% endfor %}
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>
 
-    <script src="../static/feed/js/jquery.min.js"></script>
-    <script src="../static/feed/js/bootstrap.min.js"></script>
-    <script src="../static/feed/js/scripts.js"></script>
-
-    <script src="{% static '/feed/js/jquery.min.js' %}"></script>
-    <script src="{% static '/feed/js/bootstrap.min.js'%}"></script>
-    <script src="{% static '/feed/js/scripts.js' %}"></script>
-  </body>
-</html>
+{% endblock %}

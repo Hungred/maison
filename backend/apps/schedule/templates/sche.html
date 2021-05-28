@@ -60,7 +60,11 @@
 		  calendar.render();
 		});
 
+		opener.location.reload(true);
+    	window.close();
+
  	</script>
+
     <div class="container-fluid">
 		<div class="row nav_bg">
 			<div class="col-md-6">
@@ -72,13 +76,10 @@
 				</h3>
 
 			</div>
-			<div class="col-md-3 nav_align">
-				<h4 style="color:white;"><a href="{% url 'login:profile' user.username %}" style="color:white;">{{ user.username }}</a>, 您好!</h4>
-
-			</div>
-			<div class="col-md-3 nav_align">
+		
+			<div class="col-md-6 nav_align">
 				<img alt="Bootstrap Image Preview" src="{% static 'sche/images/logo.jpg' %}" class="rounded-circle nav_img">
-
+				<h4 style="color:white; float: right; padding-top: 15px; margin-left: 10px;"><a href="{% url 'login:profile' user.username %}" style="color:white;">{{ user.username }}</a>, 您好!</h4>
 			</div>
 		</div>
 
@@ -95,7 +96,7 @@
 					<a  href="order.html">點餐</a>
 				</h3>
                 <h3 class="list_text">
-					顧客回饋
+					<a  href="{% url 'feedback:index' %}">顧客回饋</a>
 				</h3>
                 <h3 class="list_text">
 					營收報表

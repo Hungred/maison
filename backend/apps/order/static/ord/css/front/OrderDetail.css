@@ -1,0 +1,304 @@
+﻿
+/*.container-fluid {
+    padding-left: 25%;
+    padding-right: 25%;
+}*/
+
+.OrderDetail {
+   padding-top:5rem;
+}
+
+/*標題*/
+    .OrderDetail h1 {
+        font-size: 2.5rem;
+        font-weight: 300;       
+        padding-bottom: 1rem;
+        position: relative;
+        color: #2c3033;
+        font-weight: 700;
+    
+}
+        .OrderDetail h1::before {
+            background-color: #8CCDC6;
+            content: "";
+            height: 10px;
+            left: 0;
+            position: absolute;
+            width: 5.5rem;
+            z-index: -1;
+            bottom: 25px;
+        }
+
+/*=========== 最新購買 =======================*/
+h3 {
+    font-size: 1.75rem;
+    color: #373d51;
+    padding: 1.3rem;
+    margin: 0;
+}
+
+.accordion a {
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 100%;
+    padding: 1rem 3rem 1rem 1rem;
+    color: #7288a2;
+    font-size: 1.3rem;
+    font-weight: 400;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+    .accordion a:hover,
+    .accordion a:hover::after {
+        cursor: pointer;
+        color: #03b5d2;
+    }
+
+        .accordion a:hover::after {
+            border: 1px solid #03b5d2;
+        }
+
+    .accordion a.active {
+        color: #03b5d2;
+        border-bottom: 1px solid #03b5d2;
+    }
+
+
+
+    .accordion a::after {       
+        content: '\02795'; /* Unicode character for "plus" sign (+) */
+        position: absolute;
+        float: right;
+        right: 1rem;
+        font-size: 0.8rem;
+        color: #7288a2;
+        padding: 5px;
+        width: 30px;
+        height: 30px;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;
+        border: 1px solid #7288a2;
+        text-align: center;
+    }
+
+    .accordion a.active::after {
+       
+        content: "\2796"; /* Unicode character for "minus" sign (-) */
+        color: #03b5d2;
+        border: 1px solid #03b5d2;
+    }
+
+   
+
+    .accordion .content {
+        opacity: 0;
+        padding: 0 1rem;
+        max-height: 0;
+        border-bottom: 1px solid #e5e5e5;
+        overflow: hidden;
+        clear: both;
+        -webkit-transition: all 0.2s ease 0.15s;
+        -o-transition: all 0.2s ease 0.15s;
+        transition: all 0.2s ease 0.15s;
+    }
+        /*手風琴-圖片靠左*/
+        .accordion .content img {
+            float: left;
+            margin-right: 5rem;
+            width:150px;
+        }
+
+        /*手風琴-文字*/
+        .accordion .content p {
+            font-size: 1.2rem;
+            font-weight: 300;
+        }
+        .accordion .content p span {
+            color: #FF4D4D;
+        }
+
+        .accordion .content.active {
+            opacity: 1;
+            padding: 1rem;
+            max-height: 100%;
+            -webkit-transition: all 0.35s ease 0.15s;
+            -o-transition: all 0.35s ease 0.15s;
+            transition: all 0.35s ease 0.15s;
+        }
+
+
+
+/*==================Tabs的CSS====================*/
+/*Style the tab 標籤的樣式*/
+
+/*-- tab標題列--*/
+.tabs-list {
+   
+}
+
+
+.tab {
+    width: 100%;
+    overflow: hidden;
+    background-color: #FBA004;
+    border-radius: 3rem;
+}
+
+    /* Style the buttons inside the tab 裡面bnt樣式*/
+    .tab button {
+        background-color: inherit;
+        float: left;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 14px 16px;
+        transition: 0.3s;
+        font-size: 1.5rems;
+        width: 33.33%;
+        color:white;
+    }
+
+        /* Change background color of buttons on hover 懸停時bnt底色*/
+        .tab button:hover {
+            
+            background-color: #fbbd50;
+        }
+
+        /* Create an active/current tablink class */
+        .tab button.active {
+            background-color: #fbbd50;
+        }
+
+/* Style the tab content 標簽內容樣式*/
+.tabcontent {
+    display: none;
+    margin: 0 auto;
+    width: 95%;
+    background-color: white;
+    padding-top:1rem;
+    padding-bottom:2rem;
+    padding-left:5rem;
+    padding-right:5rem;
+    margin-bottom:1rem;
+}
+
+
+
+/*============ 歷史紀錄 ==================*/
+.order-history {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    width: 100%;
+    margin: auto;
+}
+    .order-history table {
+        line-height: 1.5rem;
+        border-style: none;
+        border-color: white;
+    }
+
+    /*無框線*/
+    .order-history .table thead th, .table td, .table th {
+        border-style: none;
+    }
+
+.order-history table thead {
+    background-color: #FFF1BF;
+}
+
+    .order-history table td {
+        /*color: #0047b3;*/
+    }
+
+    .order-history table .td-dollar {
+        color: #ff4d4d;
+    }
+/*============ 客服回應 ==================*/
+.common-input {
+    border: 1px solid rgba(111,117,152,0.3);
+    line-height: 48px;
+    width: 100%;
+    display: block;
+    background: transparent;
+    padding: 0 25px;
+    color: #777;
+}
+
+    .common-input:focus {
+        border: 1.2px solid rgba(255, 100, 38,0.5);
+    }
+.mt-10 {
+    margin-top: 10px;
+}
+
+.send-MsgBtn {
+    float: right;
+    padding-top: 0.5rem;
+}
+
+
+
+/* width<768*/
+@media (max-width:769px) {
+    /*---- Tab ---*/
+    .tabcontent {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+
+    /*--- 手風琴 ---*/
+    .accordion .content img {        
+        margin-right: 1rem;
+        width: 150px;
+    }
+}
+
+@media (max-width:376px) {
+    /*---- Tab ---*/
+    /*tab標題列*/
+    .table-list {
+        padding-left: 0.2rem;
+        padding-right: 0.2rem;
+    }
+
+    .tabcontent {      
+        padding-left: 1rem;
+        padding-right: 1rem;
+     
+    }
+
+    /*--- 歷史記錄--- */
+    
+    /*不知為啥，無效----table的螢光棒*/
+    .order-history .table-hover tbody tr:hover td {
+        cursor: pointer;
+        background-color: #C3FFC3;
+    }
+
+    .order-history .table thead th, .table td, .table th {
+        border-style: none;
+    }
+    .order-history .table thead, .table th, .table td {
+        font-size: 0.8rem;
+        padding: .3rem;
+    }
+
+
+    .message-content {
+        padding: 0 1rem;
+    }
+
+    /*--- 手風琴 ---*/
+    .accordion .content img {
+        width: 250px;
+        margin-bottom: 1rem;
+    }
+}

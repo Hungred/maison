@@ -1,0 +1,368 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <!--   RWD-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!--    線上bootstrap 4.0-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!--    iconfont-->
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+   
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static '/ord/css/front/master.css' %}">
+    <!--     此網站的css-->
+    <link rel="stylesheet" href="{% static '/ord/css/front/OrderDetail.css' %}">
+
+</head>
+ {% load bootstrap4 %}
+<body>
+
+    <!--start  navbar-->
+    <!--網頁版的nav-->
+    <div class="topMenu">
+        <div id="navLogo">
+            <a href="masterPage.html"><img src="images/img/logo.jpg" alt=""></a>
+        </div>
+        <p id="navTitleFont">Restaurant</p>
+        <div class="navlinkGroup">
+            <a class="a-trigger" href="" id="navTitle">&nbsp;</a>
+            <a class="navShopCart a-trigger" href="#"><i class="fas fa-shopping-cart"></i></a>
+            <a class="a-trigger" href="OrderDetail.html"><i class="fas fa-user"></i>訂單明細</a>
+            <a class="a-trigger" href="product.html"><i class="fas fa-utensils"></i>菜單</a>
+            <a class="a-trigger" href="index.html"><i class="fas fa-store"></i>簡介</a>
+            <button id="rwdMenu" onclick="toggleClass()">
+                <span>menu</span>
+            </button>
+        </div>
+    </div>
+    
+    <!--行動裝置的nav-->
+    <div class="bottomMenu">
+        <div class="row">
+            <a class="a-trigger col-sm-3" href="index.html"><i class="fas fa-store"></i>簡介</a>
+            <a class="a-trigger col-sm-3" href="product.html"><i class="fas fa-utensils"></i>菜單</a>
+            <a class="a-trigger col-sm-3" href="OrderDetail.html"><i class="fas fa-user"></i>訂單明細</a>
+            <a class="navShopCart a-trigger col-sm-3" href="#"><i class="fas fa-shopping-cart"></i></a>
+        </div>
+    </div>
+    <!--end  navbar-->
+
+    <div class="wrapper">
+
+        <!--start 購物車-->
+        <div class="container-fluid">
+            <div class="shopCart">
+                <p></p>
+                <div id="shopCartContent">
+                    <p class="noItem">購物車內目前沒有商品</p>
+                    <!--購物內容 1-->
+                    <div class="shopCartItem">
+                        <a href="#">
+                            <img src="image/img/food_menu/3.jpg" />
+                            <div>
+                                <p>油醋燻鮭魚</p>
+                                <span>$270</span>
+                            </div>
+                        </a>
+                        <span class="ItemQuantity">1份</span>
+                        <button class="DelBtn btn btn-outline-secondary"><span class="fas fa-trash-alt"></span></button>
+                    </div>
+
+                    <!--購物內容 2-->
+                    <div class="shopCartItem">
+                        <a href="#">
+                            <img src="image/img/food_menu/single_food_1.png" />
+                            <div>
+                                <p>天使巧克力蛋糕</p>
+                                <span>$120</span>
+                            </div>
+                        </a>
+                        <span class="ItemQuantity">1份</span>
+                        <button class="DelBtn btn btn-outline-secondary"><span class="fas fa-trash-alt"></span></button>
+                    </div>
+
+                    <!--購物內容 3-->
+                    <div class="shopCartItem">
+                        <a href="#">
+                            <img src="image/img/food_menu/single_food_1.png" />
+                            <div>
+                                <p>天使巧克力蛋糕</p>
+                                <span>$120</span>
+                            </div>
+                        </a>
+                        <span class="ItemQuantity">1份</span>
+                        <button class="DelBtn btn btn-outline-secondary"><span class="fas fa-trash-alt"></span></button>
+                    </div>
+                </div>
+
+
+                <div class="shopCartFooter row">
+                    <p>合計：$510</p>
+                    <a href="checkOut.html">立即結帳</a>
+                </div>
+            </div>
+
+        </div>
+        <!--end 購物車-->
+
+        <!--start 訂單明細 content -->
+        <div class="container">
+            <div class="OrderDetail">
+                <h1>訂單明細</h1>
+                <!--Tabs_list-->
+                <div class="table-list row">
+                    <div class="tab">
+                        <button class="tablinks" onclick="openLab(event, 'fristlist')" id="defaultOpen">最新購買</button>
+                        <button class="tablinks" onclick="openLab(event, 'twolist')">歷史記錄</button>
+                        <button class="tablinks" onclick="openLab(event, 'threelist')">客服回應</button>
+                    </div>
+                </div>
+
+                <!--Tabs_最新購買 內容-->
+                <div class="row">
+                    <div id="fristlist" class="tabcontent">
+                        <!--start accordion-->
+                        {% for Food in food %}
+                        <div class="container">                            
+
+                            <div class="accordion">
+
+                                <div class="accordion-item">
+                                    <a  style="color:black"> {{ Food.foodname }} </a>
+                                    <div class="content">
+                                        <img src="https://images2.gamme.com.tw/news2/2019/71/95/q5yanaCdlaKYqA-150x110.jpeg" />
+                                        <p>採窯烤披薩做法餅皮酥脆可口讓人愛不釋手。</p>
+                                        <p>數量1份 &nbsp;&nbsp;&nbsp;$<span>358</span>元</p>
+                                    </div>
+                                </div>
+
+<!--                                <div class="accordion-item">-->
+<!--                                    <a>{{ Food.foodname }}</a>-->
+<!--                                    <div class="content">-->
+<!--                                        <img src="https://images2.gamme.com.tw/news2/2019/71/95/q5yanaCdlaKYqA-150x110.jpeg" />-->
+<!--                                        <p>採窯烤披薩做法餅皮酥脆可口讓人愛不釋手。</p>-->
+<!--                                        <p>數量1份 &nbsp;&nbsp;&nbsp;$<span>358</span>元</p>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="accordion-item">-->
+<!--                                    <a>{{ Food.foodname }}</a>-->
+<!--                                    <div class="content">-->
+<!--                                        <img src="https://images2.gamme.com.tw/news2/2019/71/95/q5yanaCdlaKYqA-150x110.jpeg" />-->
+<!--                                        <p>採窯烤披薩做法餅皮酥脆可口讓人愛不釋手。</p>-->
+<!--                                        <p>數量1份 &nbsp;&nbsp;&nbsp;$<span>358</span>元</p>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+                            </div>
+
+                        </div>
+                        {% endfor %}
+                        <!--end accordion-->
+                                               
+                    </div>
+                </div>
+                
+                <!--Tabs_歷史紀錄 內容-->
+                <div class="row">
+                    <div id="twolist" class="tabcontent">
+                        <div class="order-history">
+                            <table class=" col-md-12 table table-hover table-borderless pre-scrollable">
+                                <thead>
+                                    {% for Ord in ord %}
+
+                                    <tr>
+                                        <th class="cn-col-3">{{ Ord.ordtime }}</th>
+                                        <th class="cn-col-3">訂單編號</th>
+                                        <!--<th>商品名稱</th>-->
+                                        <th class="cn-col-3">狀態{{ Ord.ordcheck }}</th>
+                                        <th class="cn-col-3">總金額</th>
+                                    </tr>
+
+                                    {% endfor %}
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>2019-05-04</td>
+                                        <td>201901041642M0012</td>
+                                        <!--<td>油醋燻鮭魚</td>-->
+                                        <td>已取貨</td>
+                                        <td class="td-dollar">$&nbsp;725</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2019-05-03</td>
+                                        <td>201901041642M0012</td>
+                                        <td>已取貨</td>
+                                        <td class="td-dollar">$&nbsp;500</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2019-05-01</td>
+                                        <td>201901041642M0012</td>
+                                        <td>已取貨</td>
+                                        <td class="td-dollar">$&nbsp;1250</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2019-04-20</td>
+                                        <td>201901041642M0012</td>
+                                        <td>已取貨</td>
+                                        <td class="td-dollar">$&nbsp;1300</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2019-03-12</td>
+                                        <td>201901041642M0012</td>
+                                        <td>已取貨</td>
+                                        <td class="td-dollar">$&nbsp;178</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2019-03-11</td>
+                                        <td>201901041642M0012</td>
+                                        <td>已取貨</td>
+                                        <td class="td-dollar">$&nbsp;180</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2019-03-08</td>
+                                        <td>201901041642M0012</td>
+                                        <td>已取貨</td>
+                                        <td class="td-dollar">$&nbsp;2500</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+               
+                <!--Tabs_客戶回應 內容-->
+                <div class="row">
+                    <div id="threelist" class="customer-sevice tabcontent">
+                        <div class="customer-sevice-panel">
+                            <form>
+                                <div class="message-content row">
+                                    <input  class="common-input mt-10" placeholder="Enter your name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your name'" required="" type="text">
+                                    <input class="common-input mt-10" placeholder="Enter email address" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'"  required="" type="email">
+                                    <textarea class="common-input mt-10" placeholder="Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'" required=""></textarea>
+                                </div>
+                                <div class="send-MsgBtn row">
+                                    <button class="btn btn-success">送出</button>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+               
+
+
+
+            </div>
+        </div>
+       
+        <!--end 訂單明細 content-->
+
+        <!--必要! 為了把footer置底用-->
+        <div class="push"></div>
+    </div>
+
+    <!--start Footer -->
+    <footer class="bs-footer">
+        <!-- Copyright -->
+        <div class="py-3">
+            © 2019 Copyright
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Big Champion&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <!--社群icon連結-->
+            <ul class="social-network social-circle">
+                <li><a href="#" class="icoFacebook" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                <li><a href="#" class="icoInstagram" title="Instagram"><i class="fab fa-instagram"></i></a></li>
+                <li><a href="#" class="icoTwitter" title="Twitter"><i class="fab fa-twitter"></i></a></li>
+                <li><a href="#" class="icoYoutube" title="Youtube"><i class="fab fa-youtube"></i></a></li>
+            </ul>
+        </div>
+
+
+    </footer>
+    <!--end Footer -->
+    <!-- jquery plugins here-->
+    <!-- jquery -->
+    <script src="~/js/jquery-1.12.1.min.js"></script>
+    <!-- popper js -->
+    <script src="~/js/popper.min.js"></script>
+    <!-- bootstrap js -->
+    <script src="~/js/bootstrap.min.js"></script>
+    <!-- easing js -->
+    <script src="~/js/jquery.magnific-popup.js"></script>
+    <!-- swiper js -->
+    <script src="~/js/swiper.min.js"></script>
+    <!-- swiper js -->
+    <script src="~/js/masonry.pkgd.js"></script>
+    <!-- particles js -->
+    <script src="~/js/owl.carousel.min.js"></script>
+    <!-- swiper js -->
+    <script src="~/js/slick.min.js"></script>
+    <script src="~/js/gijgo.min.js"></script>
+    <script src="~/js/jquery.nice-select.min.js"></script>
+    <!-- custom js -->
+    <script src="~/js/custom.js"></script>
+
+    <!--此網站的js-->
+    <script src="~/js/masterPage.js"></script>
+
+
+    <script>
+
+        //測試用手風琴======================================
+        const items = document.querySelectorAll(".accordion a");
+
+        
+        items.forEach(item => item.addEventListener('click', toggleAccordion));
+
+        function toggleAccordion() {
+            this.classList.toggle('active');
+            this.nextElementSibling.classList.toggle('active'); 
+        }
+
+
+
+        //分頁Lab使用==============================================
+        function openLab(evt, labTabs) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(labTabs).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        $(document).ready(function () {
+            //$('.accordion').on('click', function () {
+            //    //添加下面這行是因為Lab點擊時顏色會改變,但是
+            //    //Lab要自動打開,所以網頁在load時顏色會閃一下
+            //    //所以移除一開始的顏色功能
+            //    $('.accordion').removeClass('active');
+            //})
+            ////自動打開 手風琴Lab
+            //$('.accordion').click();
+
+
+
+
+        })
+        //自動打開 第一頁分頁的Lab
+        document.getElementById("defaultOpen").click();
+        
+        
+
+    </script>
+
+
+</body>
+
+</html>

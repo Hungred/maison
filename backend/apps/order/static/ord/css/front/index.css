@@ -1,0 +1,125 @@
+html,
+body {
+    margin: 0;
+    height: 100%;
+}
+
+body {
+    font-family: "Didact Gothic", Arial, 文泉驛正黑, "WenQuanYi Zen Hei", "儷黑 Pro", "LiHei Pro", 微軟正黑體, "Microsoft JhengHei", 標楷體, DFKai-SB, sans-serif !important;
+    font-size: 1.2rem;
+    color: gray;
+    background-color: #F6F5F1;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Didact Gothic", Arial, 文泉驛正黑, "WenQuanYi Zen Hei", "儷黑 Pro", "LiHei Pro", 微軟正黑體, "Microsoft JhengHei", 標楷體, DFKai-SB, sans-serif !important;
+    
+}
+
+/*回到TOP btn*/
+#scrollUp {
+    bottom: 4.5rem;
+    right:1rem;
+    background-color: #FEC40E;
+}
+    #scrollUp:hover {
+        background-color: #fba004;
+    }
+
+/*==============直立式輪播 ======================*/
+.hero-area, .hero-post-slides {
+    top: 2.5rem;
+    background-color: white;
+}
+
+.single-hero-post .hero-slides-content{
+    left:0;
+    right:0;
+    padding-left:1rem;
+}
+
+.single-hero-post .hero-slides-content .post-title h4 {
+    font-weight: 400;
+}
+
+    .single-hero-post .hero-slides-content .post-title h4:hover {
+        color: #FEE380;
+    }
+
+/*=================關於我們=========================*/
+#aboutUs{
+
+}
+
+    #aboutUs .aboutUs-content {
+        padding-top: 5.5rem;
+        padding-bottom: 1rem;
+    }
+
+    #aboutUs .aboutUs-content  .primary-heading {
+
+   font-weight:500;
+    }
+    .aboutUS-text p {
+        font-size: 1.2rem;
+        line-height: 2rem;
+    }
+
+/*=================圖片輪播========================*/
+.blog-content-area{
+    background-color:white;
+    padding-top:2rem;
+    padding-bottom:2rem;
+}
+
+.featured-post-area .carousel-indicators li .post-title h5:hover {
+    color: #e29003;
+}
+
+.featured-post-area .carousel-indicators {
+    background-color: #F6F5F1;
+}
+
+.featured-post-area .carousel-inner .carousel-item .featured-post-content .post-title h2:hover {
+    color: #FEE380;
+}
+/*===============也許你會喜歡======================*/
+.maybe-youlike {
+    padding-top: 2.5rem;
+    padding-bottom: 3rem;
+}
+
+.section-heading span {
+    color: #FF6426;
+}
+
+
+
+/*--- RWD width>1025 ----*/
+@media (min-width:1025px) {
+    .single-hero-post .hero-slides-content .post-title h4 {
+        font-size:1.2rem;
+    }
+}
+
+
+/*--- RWD width<1025 ----*/
+@media (max-width:1025px) {
+}
+
+/* width<768*/
+@media (max-width:769px) {
+
+   
+}
+
+
+/* width<375*/
+@media (max-width:376px) {
+    #scrollUp {
+        bottom: 8rem;
+      
+    }
+}
+
+ 

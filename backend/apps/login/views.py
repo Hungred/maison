@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required, permission_required
 from django import template
 from .models import Employee_data
+from django.db.models import ProtectedError
 # Create your views here.
 
 def sign_up(request):
@@ -63,10 +64,10 @@ def profile(request, username):
     user = get_object_or_404(User, username=username)
     return render(request, 'profile.html', {'user': user})
 
-@login_required #如何過濾欄位?
+@login_required
 def update_pf(request, username):
     user = get_object_or_404(User, username=username)
-    form = RegisterForm(request.POST or None, instance=user)
+    form = UpdateProfileForm(request.POST or None, instance=user)
     if form.is_valid():
         form.save()
         return redirect('schedule:index')
@@ -102,10 +103,14 @@ def delete_emp(request, pk):
     emp = get_object_or_404(Employee_data, pk=pk)
     form = DeleteConfirmForm(request.POST or None)
     if form.is_valid() and form.cleaned_data['check']:
-        emp.delete()
-        messages.success(request, '刪除成功')
-        return redirect('schedule:index')
-    else:
-        messages.success(request, '刪除失敗')
+        try:
+            emp.delete()
+            messages.success(request, '刪除成功')
+            return redirect('schedule:index')
+        except ProtectedError as res:
+            messages.error(request, '刪除失敗')
+            return redirect('schedule:index')
+        except Exception as e:
+            print(e)
 
     return render(request, 'employee/delete_emp.html', {'form': form})

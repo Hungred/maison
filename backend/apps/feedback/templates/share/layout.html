@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>MAISON DE OCÉAN</title>
+
+    <meta name="description" content="Source code generated using layoutit.com">
+    <meta name="author" content="LayoutIt!">
+{% load static %}
+   <link href="{% static 'sche/css/bootstrap.min.css' %}" rel="stylesheet">
+	<link href="{% static 'sche/fullcalendar-5.5.1 (1)/lib/main.css' %}" rel='stylesheet' />
+    <script src="{% static 'sche/fullcalendar-5.5.1 (1)/lib/main.js' %}"></script>
+	<link href="{% static 'sche/css/style_manager.css' %}" rel="stylesheet">
+	<link href="{% static '/feed/css/style_manager.css' %}" rel="stylesheet">
+  </head>
+  {% load bootstrap4 %}
+  {% load auth_extras %}
+  <body class="body_bg">
+
+    <div class="container-fluid">
+		<div class="row nav_bg">
+			<div class="col-md-6">
+				{% bootstrap_messages %}
+				<h3 class="nav_logo">
+					MAISON DE OCÉAN
+				</h3>
+			</div>
+			<div class="col-md-6 nav_align">
+				<img alt="Bootstrap Image Preview" src="{% static 'sche/images/logo.jpg' %}" class="rounded-circle nav_img">
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-2 list_bar">
+				<h3 class="list_text">
+					<a  href="{% url 'schedule:index' %}">班表</a>
+				</h3>
+                <h3 class="list_text">
+					訂位
+				</h3>
+                <h3 class="list_text">
+					點餐
+				</h3>
+                <h3 class="list_text">
+					<a  href="{% url 'feedback:index' %}">顧客回饋</a>
+				</h3>
+                <h3 class="list_text">
+					營收報表
+				</h3>
+                <h3 class="list_text">
+					{% if request.user|has_group:"boss" %}
+    				<a  href="{% url 'login:emp_list' %}" >員工管理</a>
+					{% endif %}
+				</h3>
+			</div>
+
+			<div class="col-md-10 cal" >
+				{% bootstrap_messages %} <!-- #在網頁上顯示處理訊息 -->
+                {% block main %}{% endblock %}
+			</div>
+		</div>
+	</div>
+
+    <script src="{% static '/js/jquery.min.js' %}"></script>
+    <script src="{% static '/js/bootstrap.min.js' %}"></script>
+    <script src="{% static '/js/scripts.js' %}"></script>
+  </body>
+</html>

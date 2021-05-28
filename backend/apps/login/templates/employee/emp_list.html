@@ -1,7 +1,8 @@
 {% extends 'share/layout.html' %}
 
 {% block main %}
-				<h3 class="page_title">
+                <a href="{% url 'login:active_emp' %}" class="btn btn-primary float-right" style="float: right; margin-top: 20px;">新增</a>
+				<h3 class="page_title" style="margin-bottom: 20px; text-align: center; margin-top: 20px;">
 					員工列表
 				</h3>
                 <table class="table table-striped">
@@ -21,10 +22,10 @@
                     {{ emp.empid }}</a>        </td>
                 <td>{{ emp.empname }}</td>
                 <td>{{ emp.position }}</td>
-                <td><a href="{% url 'login:update_emp' emp.id %}"
-            class="btn btn-outline-info float-right">
-        修改
-        </a></td>
+                <td>
+                    <a href="{% url 'login:update_emp' emp.id %}" class="btn btn-primary float-right">修改</a>
+                    <a href="{% url 'login:delete_emp' emp.id %}" class="btn btn-primary float-right" style="margin-right: 10px;">刪除</a>
+                </td>
             </tr>
             {% empty %}
             <tr>

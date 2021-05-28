@@ -1,0 +1,31 @@
+
+{% extends 'share/layout.html' %}
+
+{% block main %}
+			<div class="col-md-10 cal" >
+				<h3 class="page_title">
+					搜尋結果
+				</h3>
+
+				<div class="row">
+                    <div class="col-md-12">
+                        {% for feedback in feedbacks %}
+                        <table>
+                            <tr>
+                                <th>{{ feedback.name }}</th>
+                                <td><a href="{% url 'feedback:detail' feedback.id %}">詳細>></a> </td>
+                                <td class="feed_time">{{ feedback.cometime }}</td>
+
+                            </tr>
+                        </table>
+						{% empty %}
+   							查無相關資料
+
+                        {% endfor %}
+						<p><a class="btn  btn-primary" href="{% url 'feedback:index' %}">返回</a></p>
+					</div>
+
+				</div>
+			</div>
+
+{% endblock %}

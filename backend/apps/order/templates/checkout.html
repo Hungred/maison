@@ -1,0 +1,543 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <!--   RWD-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!--    線上bootstrap 4.0-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!--    iconfont-->
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    {% load static %}
+
+    <!--     此網站的css-->
+    <link rel="stylesheet" href="{% static '/ord/css/front/master.css' %}">
+    <link rel="stylesheet" href="{% static '/ord/css/front/checkOut.css' %}">
+    <link rel="stylesheet" href="{% static '/ord/css/front/slick.css' %}">
+    <link rel="stylesheet" href="{% static '/ord/css/front/gijgo.min.css' %}">
+    <link rel="stylesheet" href="{% static '/ord/css/front/nice-select.css' %}">
+    <link rel="stylesheet" href="{% static '/ord/css/front/all.css' %}">
+    <link rel="stylesheet" href="{% static '/ord/css/front/animate.css' %}">
+
+
+</head>
+ {% load bootstrap4 %}
+<body>
+
+    <!--start  navbar-->
+    <!--網頁版的nav-->
+    <div class="topMenu">
+        <div id="navLogo">
+            <a href="masterPage.html"><img src="images/img/logo.jpg" alt=""></a>
+        </div>
+        <p id="navTitleFont">Restaurant</p>
+        <div class="navlinkGroup">
+            <a class="a-trigger" href="" id="navTitle">&nbsp;</a>
+            <a class="navShopCart a-trigger" href="#"><i class="fas fa-shopping-cart"></i></a>
+            <a class="a-trigger" href="{% url 'order:orderdetail'  %}"><i class="fas fa-user"></i>訂單明細</a>
+            <a class="a-trigger" href="product.html"><i class="fas fa-utensils"></i>菜單</a>
+            
+            <button id="rwdMenu" onclick="toggleClass()">
+                <span>menu</span>
+            </button>
+        </div>
+    </div>
+
+    <!--行動裝置的nav-->
+    <div class="bottomMenu">
+        <div class="row">
+            <a class="a-trigger col-sm-3" href="index.html"><i class="fas fa-store"></i>簡介</a>
+            <a class="a-trigger col-sm-3" href="product.html"><i class="fas fa-utensils"></i>菜單</a>
+            <a class="a-trigger col-sm-3" href="{% url 'order:orderdetail'  %}"><i class="fas fa-user"></i>訂單明細</a>
+            <a class="navShopCart a-trigger col-sm-3" href="#"><i class="fas fa-shopping-cart"></i></a>
+        </div>
+    </div>
+    <!--end  navbar-->
+
+    <div class="wrapper">
+
+        <!--start 購物車-->
+        <div class="container-fluid">
+            <div class="shopCart">
+                <p></p>
+                <div id="shopCartContent">
+                    <p class="noItem">購物車內目前沒有商品</p>
+                    <!--購物內容 1-->
+                    <div class="shopCartItem">
+                        <a href="#">
+                            <img src="image/img/food_menu/3.jpg" />
+                            <div>
+                                <p style="color: black;">{{ Food.foodname }} </p>
+                                <span>$270</span>
+                            </div>
+                        </a>
+                        <span class="ItemQuantity">1份</span>
+                        <button class="DelBtn btn btn-outline-secondary"><span class="fas fa-trash-alt"></span></button>
+                    </div>
+
+                    <!--購物內容 2-->
+                    <div class="shopCartItem">
+                        <a href="#">
+                            <img src="image/img/food_menu/single_food_1.png" />
+                            <div>
+                                <p>天使巧克力蛋糕</p>
+                                <span>$120</span>
+                            </div>
+                        </a>
+                        <span class="ItemQuantity">1份</span>
+                        <button class="DelBtn btn btn-outline-secondary"><span class="fas fa-trash-alt"></span></button>
+                    </div>
+
+                    <!--購物內容 3-->
+                    <div class="shopCartItem">
+                        <a href="#">
+                            <img src="image/img/food_menu/single_food_1.png" />
+                            <div>
+                                <p>天使巧克力蛋糕</p>
+                                <span>$120</span>
+                            </div>
+                        </a>
+                        <span class="ItemQuantity">1份</span>
+                        <button class="DelBtn btn btn-outline-secondary"><span class="fas fa-trash-alt"></span></button>
+                    </div>
+                </div>
+
+
+                <div class="shopCartFooter row">
+                    <p>合計：$510</p>
+                    <a href="#">立即結帳</a>
+                </div>
+            </div>
+
+        </div>
+        <!--end 購物車-->
+        <!--start 結帳 content-->
+        <header id="site-header">
+            <div class="container">
+                <h1>確認購物車</h1>
+            </div>
+        </header>
+
+
+        <!--1.確認商品-->
+        <section id="cartList" class="sectionTab">
+            <div class="container">
+                <!--產品1-->
+                <article class="product">
+                    <header>
+                        <a class="remove">
+                            <img src="image/img/food_menu/lg/3.jpg" />
+                            <h3>刪除</h3>
+                        </a>
+                    </header>
+
+                    <div class="content">
+
+                        <h1>油醋燻鮭魚</h1>
+                        <p>
+                            以蘿蔓生菜為基底，鋪上肥美鮮嫩的燻鮭魚
+                            再淋上義式油醋醬，適合2-3人分享
+                        </p>
+                    </div>
+
+                    <footer class="content">
+                        <span class="qt-minus">-</span>
+                        <span class="qt">2</span>
+                        <span class="qt-plus">+</span>
+
+                        <h2 class="full-price">
+                            200
+                        </h2>
+
+                        <h2 class="price">
+                            100
+                        </h2>
+                    </footer>
+                </article>
+                <!--產品2-->
+                <article class="product">
+                    <header>
+                        <a class="remove">
+                            <img src="image/img/food_menu/lg/3.jpg" />
+                            <h3>刪除</h3>
+                        </a>
+                    </header>
+
+                    <div class="content">
+
+                        <h1>油醋燻鮭魚</h1>
+                        <p>
+                            以蘿蔓生菜為基底，鋪上肥美鮮嫩的燻鮭魚
+                            再淋上義式油醋醬，適合2-3人分享
+                        </p>
+
+                    </div>
+
+                    <footer class="content">
+
+                        <span class="qt-minus">-</span>
+                        <span class="qt">1</span>
+                        <span class="qt-plus">+</span>
+
+                        <h2 class="full-price">
+                            100
+                        </h2>
+
+                        <h2 class="price">
+                            100
+                        </h2>
+                    </footer>
+                </article>
+                <!--產品3-->
+                <article class="product">
+                    <header>
+                        <a class="remove">
+                            <img src="image/img/food_menu/lg/3.jpg" />
+                            <h3>刪除</h3>
+                        </a>
+                    </header>
+
+                    <div class="content">
+
+                        <h1>油醋燻鮭魚</h1>
+                        <p>
+                            以蘿蔓生菜為基底，鋪上肥美鮮嫩的燻鮭魚
+                            再淋上義式油醋醬，適合2-3人分享
+                        </p>
+
+                    </div>
+
+                    <footer class="content">
+
+                        <span class="qt-minus">-</span>
+                        <span class="qt">3</span>
+                        <span class="qt-plus">+</span>
+
+                        <h2 class="full-price">
+                            300
+                        </h2>
+
+                        <h2 class="price">
+                           100
+                        </h2>
+                    </footer>
+                </article>
+            </div>
+
+            <!--結帳頁尾-->
+            <div id="chechout-footer">
+                <div class="container-fluid">
+
+                    <div class="row justify-content-end">
+                        <div class="footContent1 col-md-4">
+                            <table width="100%">
+                                <tr>
+                                    <td width="50%">小計</td>
+                                    <td width="50%" class="money"><div>$&nbsp;&nbsp;<span class="subtotal">600</span></div></td>
+                                </tr>
+<!--                                <tr>-->
+<!--                                    <td>折扣</td>-->
+<!--                                    <td class="money"><div>$&nbsp;&nbsp;<span class="discount">-50</span></div></td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                    <td>運費</td>-->
+<!--                                    <td class="money">-->
+<!--                                        <div>$&nbsp;&nbsp;<span class="shipping">50</span></div>-->
+<!--                                    </td>-->
+<!--                                </tr>-->
+                                <tr style="border-bottom:1px solid #CDCDCD"><td><p></p></td></tr>
+                                <tr>
+                                    <td>總計</td>
+                                    <td class="money">
+                                        <div>$&nbsp;&nbsp;<span class="total">600</span></div>
+                                    </td>
+                                </tr>
+                            </table>
+
+
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-end">
+
+                        <div class="col-md-4 shopping-col">
+                            <button class="shopping-btn">繼續購物</button>
+                        </div>
+                        <div class="col-md"></div>
+                        <div class="col-md-4 next-col">
+                            <a class="next-btn" href="#fillDate">下一步</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--2.填寫資料-->
+        <section id="fillDate" class="sectionTab">
+            <div class="container">
+
+                <div class="filldata-card">
+                    <div class="filldata-header">
+                        <p>確認訂單</p>
+                    </div>
+                    <div class="filldata-content">
+                        <form>
+<!--                            <div class="form-group row">-->
+<!--                                <label for="" class="col-4 col-form-label">姓名</label>-->
+<!--                                <div class="col-8">-->
+<!--                                    <input id="" name="" type="text" class="form-control">-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="form-group row">-->
+<!--                                <label for="" class="col-4 col-form-label">電話</label>-->
+<!--                                <div class="col-8">-->
+<!--                                    <input id="" name="" type="text" class="form-control">-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="form-group row">-->
+<!--                                <label for="" class="col-4 col-form-label">e-mail</label>-->
+<!--                                <div class="col-8">-->
+<!--                                    <input id="" name="" type="text" class="form-control">-->
+<!--                                </div>-->
+<!--                            </div>-->
+                            <div class="form-group row">
+                                <div class="col-md-12">
+                                    <button class="submit-btn">送出訂單</button>
+                                    <a class="return-btn" style="text-align:left;" href="#cartList">回上一步</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+        <p></p>
+
+
+        <!--end 結帳 content-->
+        <!--必要! 為了把footer置底用-->
+        <div class="push"></div>
+    </div>
+
+    <!--start Footer -->
+    <footer class="bs-footer">
+        <!-- Copyright -->
+        <div class="py-3">
+            © 2019 Copyright
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Big Champion&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <!--社群icon連結-->
+            <ul class="social-network social-circle">
+                <li><a href="#" class="icoFacebook" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                <li><a href="#" class="icoInstagram" title="Instagram"><i class="fab fa-instagram"></i></a></li>
+                <li><a href="#" class="icoTwitter" title="Twitter"><i class="fab fa-twitter"></i></a></li>
+                <li><a href="#" class="icoYoutube" title="Youtube"><i class="fab fa-youtube"></i></a></li>
+            </ul>
+        </div>
+
+
+    </footer>
+    <!--end Footer -->
+    <!-- jquery plugins here-->
+    <!-- jquery -->
+    <script src="~/js/jquery-1.12.1.min.js"></script>
+    <script src="{% static 'ord/js/jquery-1.12.1.min.js' %}"></script>
+    <!-- popper js -->
+    <script src="~/js/popper.min.js"></script>
+    <!-- bootstrap js -->
+    <script src="~/js/bootstrap.min.js"></script>
+    <!-- easing js -->
+    <script src="~/js/jquery.magnific-popup.js"></script>
+    <!-- swiper js -->
+    <script src="{% static 'ord/js/swiper.min.js' %}"></script>
+    <!-- swiper js -->
+    <script src="~/js/masonry.pkgd.js"></script>
+    <!-- particles js -->
+    <script src="~/js/owl.carousel.min.js"></script>
+    <!-- swiper js -->
+    <script src="~/js/slick.min.js"></script>
+    <script src="~/js/gijgo.min.js"></script>
+    <script src="~/js/jquery.nice-select.min.js"></script>
+    <!-- custom js -->
+    <script src="{% static 'ord/js/popper.js' %}"></script>
+    <script src="{% static 'ord/js/custom.js' %}"></script>
+    <script src="{% static 'ord/js/masterPage.js' %}"></script>
+
+
+    <!--此網站的js-->
+    <!--Sweet alert-->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script>
+        var check = false;
+
+        function changeVal(el) {
+
+            var qt = parseFloat(el.parent().children(".qt").html());
+
+            //尋找this內，所有節點(含父節點、子節點)類別名稱為price
+            //var price = parseFloat(el.parent().children(".price").html());
+            var price = parseFloat(el.siblings(".price").html());
+
+            var eq = Math.round(price * qt * 100) / 100;
+
+            el.parent().children(".full-price").html(eq + "");
+
+
+            changeTotal();
+        }
+
+        function changeTotal() {
+
+            var price = 0;
+
+            $(".full-price").each(function (index) {
+                price += parseFloat($(".full-price").eq(index).html());
+            });
+
+
+            /運費 折扣/
+            price = Math.round(price * 100) / 100;
+            var discount = parseInt($(".discount").html());
+            var shipping = parseFloat($(".shipping").html());
+            var fullPrice = Math.round((price + shipping + discount) * 100) / 100;
+
+            if (price == 0) {
+                fullPrice = 0;
+            }
+
+            $(".subtotal").html(price);
+            $(".discount").html(discount);
+            $(".total").html(fullPrice);
+        }
+
+        $(document).ready(function () {
+
+            $(".remove").click(function () {
+                var el = $(this);
+                el.parent().parent().addClass("removed");
+                window.setTimeout(
+                    function () {
+                        el.parent().parent().slideUp('fast', function () {
+                            el.parent().parent().remove();
+                            if ($(".product").length == 0) {
+                                if (check) {
+                                    $("#cart").html("<h1>The shop does not function, yet!</h1>");
+                                } else {
+                                    $("#cart").html("<h1>購物車內目前沒有商品</h1>");
+                                }
+                            }
+                            changeTotal();
+                        });
+                    }, 200);
+            });
+
+            $(".qt-plus").click(function () {
+                $(this).parent().children(".qt").html(parseInt($(this).parent().children(".qt").html()) + 1);
+
+                $(this).parent().children(".full-price").addClass("added");
+
+                var el = $(this);
+                window.setTimeout(function () { el.parent().children(".full-price").removeClass("added"); changeVal(el); }, 150);
+            });
+
+            $(".qt-minus").click(function () {
+
+                child = $(this).parent().children(".qt");
+
+                if (parseInt(child.html()) > 1) {
+                    child.html(parseInt(child.html()) - 1);
+                }
+
+                $(this).parent().children(".full-price").addClass("minused");
+
+                var el = $(this);
+                window.setTimeout(function () { el.parent().children(".full-price").removeClass("minused"); changeVal(el); }, 150);
+            });
+
+            window.setTimeout(function () { $(".is-open").removeClass("is-open") }, 1200);
+
+
+        });
+
+
+        /section的顯示/
+        var currentSection = 0;
+
+        showSection(currentSection);
+
+        // Display the current section
+        function showSection(n) {
+            var section = document.getElementsByClassName('sectionTab');
+            section[n].style.display = "block";
+        }
+
+        $(function () {
+
+            $('.next-btn').click(function () {
+                $('#fillDate').show();
+                $('#cartList').hide();
+
+            });
+
+            $('.return-btn').click(function () {
+                $('#cartList').show();
+                $('#fillDate').hide();
+
+            });
+
+        });
+
+
+        /「送出訂單」messageBox/
+        $(function () {
+
+            $('.submit-btn').click(function () {
+
+                swal({
+                    title: "確定要送出訂單嗎?",
+                    text: "將傳送訂購資料到商家，請勿關閉頁面",
+                    icon: "warning",
+                    buttons: ["取消", "確定"],
+                    dangerMode: true,
+                })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            swal({
+                                title: "訂購完成",
+
+
+                                text: "你的訂單編號是: 20210518 如需查詢訂單內容：請至訂單明細，即可查看內容",
+
+                                icon: "success",
+                            });
+                        } else {
+                            //swal("Your imaginary file is safe!");
+                        }
+                    });
+
+            });
+
+
+        });
+
+
+
+    </script>
+
+
+</body>
+
+</html>
