@@ -18,3 +18,11 @@ if (strDate >= 0 && strDate <= 9) {
 }
 
 var nowDate = date.getFullYear() + seperator + nowMonth + seperator + strDate;
+
+function openForm() {
+  document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+}

@@ -14,6 +14,7 @@
     <link href="{% static 'customer/css/style-customer.css' %}" rel="stylesheet">
 
   </head>
+    {% load bootstrap4 %}
   <body style="background-image: url({% static 'customer/image/bg.jpg' %});">
 
     <div class="container-fluid">
@@ -45,7 +46,7 @@
 				</td>
 			</tr>
 		</table>
-		
+
 	</div>
 	<div class="row" id="carousel">
 		<div class="col-md-12">
@@ -69,11 +70,11 @@
 						<img class="d-block w-100" id="carousel-img" alt="Carousel Bootstrap Third" src="{% static 'customer/image/2.jpg' %}">
 					</div>
 				</div> <a class="carousel-control-prev" href="#carousel-685819" data-slide="prev">
-						<span class="carousel-control-prev-icon"></span> 
+						<span class="carousel-control-prev-icon"></span>
 						<span class="sr-only">Previous</span>
-					</a> 
+					</a>
 					<a class="carousel-control-next" href="#carousel-685819" data-slide="next">
-						<span class="carousel-control-next-icon"></span> 
+						<span class="carousel-control-next-icon"></span>
 						<span class="sr-only">Next</span>
 					</a>
 			</div>
@@ -121,6 +122,27 @@
 			<img src="{% static 'customer/image/ins.png' %}" >
 		</div>
 	</div>
+|
+	<body>
+		<button class="open-button" onclick="openForm()">互動機器人</button>
+		<div class="chat-popup" id="myForm">
+		  <form action="" class="form-container">
+			<h1>互動機器人</h1>
+			<button type="button" class="btn ord" onclick=""> 訂位</button>
+			<button type="button" class="btn ord" onclick=""> 價目</button>
+			<div class="row">
+				<div class="col">
+					<!-- 加上訊息顯示 -->
+					{% bootstrap_messages %}
+
+					{% block main %}{% endblock %}
+				</div>
+			</div>
+			<button type="submit" class="btn">Submit</button>
+			<button type="button" class="btn cancel" onclick="closeForm()">關閉</button>
+		  </form>
+		</div>
+	</body>
 	<div class="row" style="background-color: #707070; height: 200px;padding-top:50px ;">
 		<div class="col-md-12">
 			<div class="row">
@@ -143,6 +165,7 @@
 			</div>
 		</div>
 	</div>
+
 	<div class="row">
 		<div class="col-md-12">
 			<div class="row">
