@@ -2,20 +2,22 @@
 {% extends 'share/layout.html' %}
 
 {% block main %}
-			<div class="col-md-10 cal" >
-				<h3 class="page_title">
+			
+				<h3 class="page_title" style="margin-bottom: 20px; text-align: center;">
 					搜尋結果
 				</h3>
 
 				<div class="row">
                     <div class="col-md-12">
                         {% for feedback in feedbacks %}
-                        <table>
+                        <table style="margin-left:auto; margin-right:auto;">
                             <tr>
-                                <th>{{ feedback.name }}</th>
-                                <td><a href="{% url 'feedback:detail' feedback.id %}">詳細>></a> </td>
-                                <td class="feed_time">{{ feedback.cometime }}</td>
-
+                                <th style="padding-bottom: 30px; padding-left: 10px;">
+									顧客姓名: {{ feedback.name }}
+									<br>
+									<a href="{% url 'feedback:detail' feedback.id %}">詳細>></a>
+								</th>
+								<td class="feed_time" style="padding-top: 60px; padding-right: 10px;">時間: {{ feedback.cometime }}</td>
                             </tr>
                         </table>
 						{% empty %}
@@ -26,6 +28,6 @@
 					</div>
 
 				</div>
-			</div>
+			
 
 {% endblock %}
