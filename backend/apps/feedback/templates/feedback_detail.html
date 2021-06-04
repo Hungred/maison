@@ -1,21 +1,40 @@
 {% extends 'share/layout.html' %}
 
 {% block main %}
-			<div class="col-md-10 cal" >
-				<h3 class="page_title">
+			
+				<h3 class="page_title" style="margin-bottom: 20px; text-align: center;">
 					回饋詳細
 				</h3>
 
 				<div class="row">
                     <div class="col-md-12">
+						
 
-						<p>{{ feedbacks.name }}</p>
-						<p>{{ feedbacks.email }}</p>
-						<p>{{ feedbacks.content }}</p>
-						<p>{{ feedbacks.cometime }}</p>
-						<p><a class="btn  btn-primary" href="{% url 'feedback:index' %}">返回</a></p>
+						<div class="row">
+								<div class="col-md-12">
+									
+									<table style="margin-left:auto; margin-right:auto;">								
+										<tr>
+											<th style="padding-bottom: 30px; padding-left: 10px;">
+												<p>顧客姓名: {{ feedbacks.name }}</p>
+												<p>顧客信箱: {{ feedbacks.email }}</p>
+												<p>內容: <br>
+													{{ feedbacks.content }}
+												</p>
+											</th>
+										</tr>
+										<tr>
+											<td class="feed_time" style="padding-right: 10px;">時間: {{ feedbacks.cometime }}</td>
+										</tr>
+									</table>
+			
+							
+									
+									<p><a class="btn  btn-primary" href="{% url 'feedback:index' %}">返回</a></p>
+								</div>
+							</div>
 					</div>
 				</div>
-			</div>
+
 
 {% endblock %}
