@@ -31,6 +31,7 @@
 			</div>
 			<div class="col-md-6 nav_align">
 				<img alt="Bootstrap Image Preview" src="{% static 'sche/images/logo.jpg' %}" class="rounded-circle nav_img">
+				<h4 style="color:white; float: right; padding-top: 15px; margin-left: 10px;"><a href="{% url 'login:profile' user.username %}" style="color:white;">{{ user.username }}</a>, 您好!</h4>
 			</div>
 		</div>
 

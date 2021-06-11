@@ -6,8 +6,21 @@
 				<h3 class="page_title" style="margin-bottom: 20px; text-align: center; margin-top: 20px;">
 					新增班表
 				</h3>
+<form action="" method="POST">
+	{% csrf_token %}
+	{{ form.empid.label_tag }}
+	{{ form.empid }} <br>
+	{{ form.workdate.label_tag }}
+	{{ form.workdate }} <br>
+	出勤時間:
+	{{ form.workhour }} : {{ form.workmin }} <br>
+	退勤時間:
+	{{ form.offhour }} : {{ form.offmin }} <br>
+	{{ form.job.label_tag }}
+	{{ form.job }} <br>
+	<button type="submit" class="btn btn-primary">送出</button>
+    <a href="{% url 'schedule:index' %}" class="btn btn-primary">返回</a>
 
-					{% include 'share/_form.html' %}
 
 
 {% endblock %}

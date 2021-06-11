@@ -17,7 +17,7 @@
   </head>
   {% load bootstrap4 %}
   <body class="body_bg">
-  {% bootstrap_messages %}
+  
     <div class="container-fluid">
       <div class="row nav_bg">
         <div class="col-md-6">
@@ -37,7 +37,8 @@
             {{ form }}
         
             <br/>
-            <input class="btn btn-primary" type="submit" value="儲存" style="float: right;"  />
+            <a href="{% url 'schedule:index' %}" class="btn btn-primary">返回</a>
+            <input class="btn btn-primary" type="submit" value="送出" style="float: right;"  />
           </form>
         </div>
       </div>

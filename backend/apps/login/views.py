@@ -18,6 +18,8 @@ def sign_up(request):
         if form.is_valid():
             form.save()
             return redirect('login:index')
+        else:
+            messages.error(request, 'Please correct the error below.')
     context = {
         'form': form
     }
