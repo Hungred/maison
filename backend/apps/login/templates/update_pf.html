@@ -1,8 +1,18 @@
 {% extends 'share/layout.html' %}
 
 {% block main %}
-<h3 style="text-align: center; margin-top: 20px; margin-bottom: 20px;">填寫員工資料</h3>
+<h3 style="text-align: center; margin-top: 20px; margin-bottom: 20px;">修改資料</h3>
 
-{% include 'share/_form.html' %}
+<form action="" method="POST">
+{% csrf_token %}
+    {{ form.last_name.label_tag }}
+	{{ form.last_name }} <br>
+	{{ form.first_name.label_tag }}
+	{{ form.first_name }} <br>
+	{{ form.email.label_tag }}
+	{{ form.email }} <br>
+
+	<button type="submit" class="btn btn-primary">送出</button>
+    <a href="{% url 'schedule:index' %}" class="btn btn-primary">返回</a>
 
 {% endblock %}

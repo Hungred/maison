@@ -23,25 +23,25 @@
 			<tr>
 				<td style="text-align: center;">
 					<button id ="button" type="button" href="">
-						<a href="environment.html">環境介紹</a>
+						<a style="color:white" href="{% url 'customer:environment'  %}"> 環境介紹 </a>
 					</button>
 				</td>
 				<td style="text-align: center;">
 					<button id ="button" type="button">
-						<a href="food.html">餐點介紹</a>
+						<a href="{% url 'customer:food'  %}">餐點介紹</a>
 					</button>
 				</td>
 				<td style="text-align: center;">
-					<img id=".logo" src="{% static 'customer/image/logo1.jpg' %}" href="index.html"style="border-radius: 20px;">
+					<a href="{% url 'customer:index'  %}"><img id=".logo" src="{% static 'customer/image/logo1.jpg' %}"  style="border-radius: 20px;"></a>
 				</td>
 				<td style="text-align: center;">
 					<button id ="button" type="button">
-						<a href="activity1.html">活動專區</a>
+						<a href="{% url 'customer:activity'  %}">活動專區</a>
 					</button>
 				</td>
 				<td style="text-align: center;">
 					<button id ="button" type="button">
-						<a href="about.html">關於我們</a>
+						<a href="{% url 'customer:about'  %}">關於我們</a>
 					</button>
 				</td>
 			</tr>

@@ -9,12 +9,13 @@
 
     <meta name="description" content="Source code generated using layoutit.com">
     <meta name="author" content="LayoutIt!">
-
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/style-customer.css" rel="stylesheet">
+{% load static %}
+    <link href="{% static 'customer/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'customer/css/style-customer.css' %}" rel="stylesheet">
 
   </head>
-  <body style="background-image: url('image/bg.jpg');">
+   {% load bootstrap4 %}
+  <body style="background-image: url({% static 'customer/image/bg.jpg' %});">
 
     <div class="container-fluid">
 	<div class="row" id="header" >
@@ -22,24 +23,25 @@
 			<tr>
 				<td style="text-align: center;">
 					<button id ="button" type="button" href="">
-						<a href="environment.html">環境介紹</a>
+						<a href="{% url 'customer:environment'  %}">環境介紹</a>
 					</button>
 				</td>
 				<td style="text-align: center;">
 					<button id ="button" type="button">
-						<a href="food.html">餐點介紹</a>
+						<a href="{% url 'customer:food'  %}">餐點介紹</a>
 					</button>
 				</td>
 				<td style="text-align: center;">
-					<img id=".logo" src="image/logo1.jpg" href="index.html"style="border-radius: 20px;"></td>
+					<a href="{% url 'customer:index'  %}"><img id=".logo" src="{% static 'customer/image/logo1.jpg' %}"  style="border-radius: 20px;"></a>
+				</td>
 				<td style="text-align: center;">
 					<button id ="button" type="button">
-						<a href="activity1.html">活動專區</a>
+						<a href="{% url 'customer:activity'  %}">活動專區</a>
 					</button>
 				</td>
 				<td style="text-align: center;">
 					<button id ="button" type="button">
-						<a href="about.html">關於我們</a>
+						<a href="{% url 'customer:about'  %}">關於我們</a>
 					</button>
 				</td>
 			</tr>
@@ -59,13 +61,13 @@
 				</ol>
 				<div class="carousel-inner" style="height:800px ;z-index:-1;">
 					<div class="carousel-item carousel-item-next carousel-item-left">
-						<img  class="d-block w-100" id="carousel-img" alt="Carousel Bootstrap First" src="image/2.jpg">
+						<img  class="d-block w-100" id="carousel-img" alt="Carousel Bootstrap First" src="{% static 'customer/image/2.jpg' %}">
 					</div>
 					<div class="carousel-item">
-						<img class="d-block w-100" id="carousel-img" alt="Carousel Bootstrap Second" src="image/2.jpg">
+						<img class="d-block w-100" id="carousel-img" alt="Carousel Bootstrap Second" src="{% static 'customer/image/2.jpg' %}">
 					</div>
 					<div class="carousel-item active carousel-item-left">
-						<img class="d-block w-100" id="carousel-img" alt="Carousel Bootstrap Third" src="image/2.jpg">
+						<img class="d-block w-100" id="carousel-img" alt="Carousel Bootstrap Third" src="{% static 'customer/image/2.jpg' %}">
 					</div>
 				</div> <a class="carousel-control-prev" href="#carousel-685819" data-slide="prev">
 						<span class="carousel-control-prev-icon"></span> 
@@ -116,31 +118,31 @@
 				<span style="margin-left:10px;color:white;">主餐</span>
 				<ul class="menu">
 					<li>
-						<figure class="menu-pic"><img src="image/food1.jpg"  width="220" height="200" /></figure>
+						<figure class="menu-pic"><img src="{% static 'customer/image/food1.jpg' %}" width="220" height="200" /></figure>
 						<div class="menu-des">
 							<p>菲力牛排</p>
 						</div>
 					</li>
 					<li>
-						<figure class="menu-pic"><img src="image/food1.jpg"  width="220" height="200" /></figure>
+						<figure class="menu-pic"><img src="{% static 'customer/image/food1.jpg' %}"   width="220" height="200" /></figure>
 						<div class="menu-des">
 							<p>菲力牛排</p>
 						</div>
 					</li>
 					<li>
-						<figure class="menu-pic"><img src="image/food1.jpg"  width="220" height="200" /></figure>
+						<figure class="menu-pic"><img src="{% static 'customer/image/food1.jpg' %}"   width="220" height="200" /></figure>
 						<div class="menu-des">
 							<p>菲力牛排</p>
 						</div>
 					</li>
 					<li>
-						<figure class="menu-pic"><img src="image/food1.jpg"  width="220" height="200" /></figure>
+						<figure class="menu-pic"><img src="{% static 'customer/image/food1.jpg' %}"   width="220" height="200" /></figure>
 						<div class="menu-des">
 							<p>菲力牛排</p>
 						</div>
 					</li>
 					<li>
-						<figure class="menu-pic"><img src="image/food1.jpg"  width="220" height="200" /></figure>
+						<figure class="menu-pic"><img src="{% static 'customer/image/food1.jpg' %}"   width="220" height="200" /></figure>
 						<div class="menu-des">
 							<p>菲力牛排</p>
 						</div>
@@ -151,31 +153,31 @@
 				<span style="margin-left:10px;color:white;">單點</span>
 				<ul class="menu">
 					<li>
-						<figure class="menu-pic"><img src="image/food1.jpg"  width="220" height="200" /></figure>
+						<figure class="menu-pic"><img src="{% static 'customer/image/food1.jpg' %}"   width="220" height="200" /></figure>
 						<div class="menu-des">
 							<p>菲力牛排</p>
 						</div>
 					</li>
 					<li>
-						<figure class="menu-pic"><img src="image/food1.jpg"  width="220" height="200" /></figure>
+						<figure class="menu-pic"><img src="{% static 'customer/image/food1.jpg' %}"   width="220" height="200" /></figure>
 						<div class="menu-des">
 							<p>菲力牛排</p>
 						</div>
 					</li>
 					<li>
-						<figure class="menu-pic"><img src="image/food1.jpg"  width="220" height="200" /></figure>
+						<figure class="menu-pic"><img src="{% static 'customer/image/food1.jpg' %}"   width="220" height="200" /></figure>
 						<div class="menu-des">
 							<p>菲力牛排</p>
 						</div>
 					</li>
 					<li>
-						<figure class="menu-pic"><img src="image/food1.jpg"  width="220" height="200" /></figure>
+						<figure class="menu-pic"><img src="{% static 'customer/image/food1.jpg' %}"   width="220" height="200" /></figure>
 						<div class="menu-des">
 							<p>菲力牛排</p>
 						</div>
 					</li>
 					<li>
-						<figure class="menu-pic"><img src="image/food1.jpg"  width="220" height="200" /></figure>
+						<figure class="menu-pic"><img src="{% static 'customer/image/food1.jpg' %}"   width="220" height="200" /></figure>
 						<div class="menu-des">
 							<p>菲力牛排</p>
 						</div>
@@ -186,31 +188,31 @@
 				<span style="margin-left:10px;color:white;">炸物</span>
 				<ul class="menu">
 					<li>
-						<figure class="menu-pic"><img src="image/food1.jpg"  width="220" height="200" /></figure>
+						<figure class="menu-pic"><img src="{% static 'customer/image/food1.jpg' %}"   width="220" height="200" /></figure>
 						<div class="menu-des">
 							<p>菲力牛排</p>
 						</div>
 					</li>
 					<li>
-						<figure class="menu-pic"><img src="image/food1.jpg"  width="220" height="200" /></figure>
+						<figure class="menu-pic"><img src="{% static 'customer/image/food1.jpg' %}"  width="220" height="200" /></figure>
 						<div class="menu-des">
 							<p>菲力牛排</p>
 						</div>
 					</li>
 					<li>
-						<figure class="menu-pic"><img src="image/food1.jpg"  width="220" height="200" /></figure>
+						<figure class="menu-pic"><img src="{% static 'customer/image/food1.jpg' %}"  width="220" height="200" /></figure>
 						<div class="menu-des">
 							<p>菲力牛排</p>
 						</div>
 					</li>
 					<li>
-						<figure class="menu-pic"><img src="image/food1.jpg"  width="220" height="200" /></figure>
+						<figure class="menu-pic"><img src="{% static 'customer/image/food1.jpg' %}"   width="220" height="200" /></figure>
 						<div class="menu-des">
 							<p>菲力牛排</p>
 						</div>
 					</li>
 					<li>
-						<figure class="menu-pic"><img src="image/food1.jpg"  width="220" height="200" /></figure>
+						<figure class="menu-pic"><img src="{% static 'customer/image/food1.jpg' %}"  width="220" height="200" /></figure>
 						<div class="menu-des">
 							<p>菲力牛排</p>
 						</div>
@@ -221,31 +223,31 @@
 				<span style="margin-left:10px;color:white;">茶</span>
 				<ul class="menu">
 					<li>
-						<figure class="menu-pic"><img src="image/food1.jpg"  width="220" height="200" /></figure>
+						<figure class="menu-pic"><img src="{% static 'customer/image/food1.jpg' %}"   width="220" height="200" /></figure>
 						<div class="menu-des">
 							<p>菲力牛排</p>
 						</div>
 					</li>
 					<li>
-						<figure class="menu-pic"><img src="image/food1.jpg"  width="220" height="200" /></figure>
+						<figure class="menu-pic"><img src="{% static 'customer/image/food1.jpg' %}"   width="220" height="200" /></figure>
 						<div class="menu-des">
 							<p>菲力牛排</p>
 						</div>
 					</li>
 					<li>
-						<figure class="menu-pic"><img src="image/food1.jpg"  width="220" height="200" /></figure>
+						<figure class="menu-pic"><img src="{% static 'customer/image/food1.jpg' %}"   width="220" height="200" /></figure>
 						<div class="menu-des">
 							<p>菲力牛排</p>
 						</div>
 					</li>
 					<li>
-						<figure class="menu-pic"><img src="image/food1.jpg"  width="220" height="200" /></figure>
+						<figure class="menu-pic"><img src="{% static 'customer/image/food1.jpg' %}"   width="220" height="200" /></figure>
 						<div class="menu-des">
 							<p>菲力牛排</p>
 						</div>
 					</li>
 					<li>
-						<figure class="menu-pic"><img src="image/food1.jpg"  width="220" height="200" /></figure>
+						<figure class="menu-pic"><img src="{% static 'customer/image/food1.jpg' %}"   width="220" height="200" /></figure>
 						<div class="menu-des">
 							<p>菲力牛排</p>
 						</div>
@@ -256,31 +258,31 @@
 				<span style="margin-left:10px;color:white;">咖啡</span>
 				<ul class="menu">
 					<li>
-						<figure class="menu-pic"><img src="image/food1.jpg"  width="220" height="200" /></figure>
+						<figure class="menu-pic"><img src="{% static 'customer/image/food1.jpg' %}"   width="220" height="200" /></figure>
 						<div class="menu-des">
 							<p>菲力牛排</p>
 						</div>
 					</li>
 					<li>
-						<figure class="menu-pic"><img src="image/food1.jpg"  width="220" height="200" /></figure>
+						<figure class="menu-pic"><img src="{% static 'customer/image/food1.jpg' %}"   width="220" height="200" /></figure>
 						<div class="menu-des">
 							<p>菲力牛排</p>
 						</div>
 					</li>
 					<li>
-						<figure class="menu-pic"><img src="image/food1.jpg"  width="220" height="200" /></figure>
+						<figure class="menu-pic"><img src="{% static 'customer/image/food1.jpg' %}"  width="220" height="200" /></figure>
 						<div class="menu-des">
 							<p>菲力牛排</p>
 						</div>
 					</li>
 					<li>
-						<figure class="menu-pic"><img src="image/food1.jpg"  width="220" height="200" /></figure>
+						<figure class="menu-pic"><img src="{% static 'customer/image/food1.jpg' %}"   width="220" height="200" /></figure>
 						<div class="menu-des">
 							<p>菲力牛排</p>
 						</div>
 					</li>
 					<li>
-						<figure class="menu-pic"><img src="image/food1.jpg"  width="220" height="200" /></figure>
+						<figure class="menu-pic"><img src="{% static 'customer/image/food1.jpg' %}"   width="220" height="200" /></figure>
 						<div class="menu-des">
 							<p>菲力牛排</p>
 						</div>
@@ -291,31 +293,31 @@
 				<span style="margin-left:10px;color:white;">氣泡飲</span>
 				<ul class="menu">
 					<li>
-						<figure class="menu-pic"><img src="image/food1.jpg"  width="220" height="200" /></figure>
+						<figure class="menu-pic"><img src="{% static 'customer/image/food1.jpg' %}"  width="220" height="200" /></figure>
 						<div class="menu-des">
 							<p>菲力牛排</p>
 						</div>
 					</li>
 					<li>
-						<figure class="menu-pic"><img src="image/food1.jpg"  width="220" height="200" /></figure>
+						<figure class="menu-pic"><img src="{% static 'customer/image/food1.jpg' %}"   width="220" height="200" /></figure>
 						<div class="menu-des">
 							<p>菲力牛排</p>
 						</div>
 					</li>
 					<li>
-						<figure class="menu-pic"><img src="image/food1.jpg"  width="220" height="200" /></figure>
+						<figure class="menu-pic"><img src="{% static 'customer/image/food1.jpg' %}"   width="220" height="200" /></figure>
 						<div class="menu-des">
 							<p>菲力牛排</p>
 						</div>
 					</li>
 					<li>
-						<figure class="menu-pic"><img src="image/food1.jpg"  width="220" height="200" /></figure>
+						<figure class="menu-pic"><img src="{% static 'customer/image/food1.jpg' %}"   width="220" height="200" /></figure>
 						<div class="menu-des">
 							<p>菲力牛排</p>
 						</div>
 					</li>
 					<li>
-						<figure class="menu-pic"><img src="image/food1.jpg"  width="220" height="200" /></figure>
+						<figure class="menu-pic"><img src="{% static 'customer/image/food1.jpg' %}"  width="220" height="200" /></figure>
 						<div class="menu-des">
 							<p>菲力牛排</p>
 						</div>
@@ -326,31 +328,31 @@
 				<span style="margin-left:10px;color:white;">甜點</span>
 				<ul class="menu">
 					<li>
-						<figure class="menu-pic"><img src="image/food1.jpg"  width="220" height="200" /></figure>
+						<figure class="menu-pic"><img src="{% static 'customer/image/food1.jpg' %}"   width="220" height="200" /></figure>
 						<div class="menu-des">
 							<p>菲力牛排</p>
 						</div>
 					</li>
 					<li>
-						<figure class="menu-pic"><img src="image/food1.jpg"  width="220" height="200" /></figure>
+						<figure class="menu-pic"><img src="{% static 'customer/image/food1.jpg' %}"   width="220" height="200" /></figure>
 						<div class="menu-des">
 							<p>菲力牛排</p>
 						</div>
 					</li>
 					<li>
-						<figure class="menu-pic"><img src="image/food1.jpg"  width="220" height="200" /></figure>
+						<figure class="menu-pic"><img src="{% static 'customer/image/food1.jpg' %}"   width="220" height="200" /></figure>
 						<div class="menu-des">
 							<p>菲力牛排</p>
 						</div>
 					</li>
 					<li>
-						<figure class="menu-pic"><img src="image/food1.jpg"  width="220" height="200" /></figure>
+						<figure class="menu-pic"><img src="{% static 'customer/image/food1.jpg' %}"   width="220" height="200" /></figure>
 						<div class="menu-des">
 							<p>菲力牛排</p>
 						</div>
 					</li>
 					<li>
-						<figure class="menu-pic"><img src="image/food1.jpg"  width="220" height="200" /></figure>
+						<figure class="menu-pic"><img src="{% static 'customer/image/food1.jpg' %}"   width="220" height="200" /></figure>
 						<div class="menu-des">
 							<p>菲力牛排</p>
 						</div>
@@ -415,16 +417,16 @@
 					<p style="color: white;">滿山望海</p>
 				</div>
 				<div class="col-md-6" style="text-align: right;">
-					<img src="image/instagram (1).png"style="margin-right:10px;"></img>
-					<img src="image/facebook (3).png"></img>
+					<img src="{% static 'customer/image/instagram (1).png' %}"style="margin-right:10px;"></img>
+					<img src="{% static 'customer/image/facebook (3).png' %}"></img>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
 
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/scripts.js"></script>
+    <script src="{% static 'customer/js/jquery.min.js' %}"></script>
+    <script src="{% static 'customer/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'customer/js/scripts.js' %}"></script>
   </body>
 </html>
