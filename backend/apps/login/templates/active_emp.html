@@ -2,7 +2,21 @@
 
 {% block main %}
 <h3 style="margin-bottom: 20px; text-align: center; margin-top: 20px;">填寫員工資料</h3>
-
-{% include 'share/_form.html' %}
+<form action="" method="POST">
+{% csrf_token %}
+    {{ form.user.label_tag }}
+	{{ form.user }} <br>
+	{{ form.empid.label_tag }}
+	{{ form.empid }} <br>
+	{{ form.empname.label_tag }}
+	{{ form.empname }} <br>
+	{{ form.phonenum.label_tag }}
+	{{ form.phonenum }} <br>
+    {{ form.position.label_tag }}
+	{{ form.position }} <br>
+	{{ form.job.label_tag }}
+	{{ form.job }} <br>
+	<button type="submit" class="btn btn-primary">送出</button>
+    <a href="{% url 'schedule:index' %}" class="btn btn-primary">返回</a>
 
 {% endblock %}

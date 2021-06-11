@@ -18,6 +18,8 @@ def sign_up(request):
         if form.is_valid():
             form.save()
             return redirect('login:index')
+        else:
+            messages.error(request, '請修正以下錯誤')
     context = {
         'form': form
     }
@@ -32,6 +34,8 @@ def sign_in(request):
         if user is not None:
             login(request, user)
             return redirect('schedule:index')
+    else:
+        messages.error(request, '查無使用者或密碼錯誤!')
     context = {
         'form': form
     }
@@ -49,10 +53,10 @@ def change_password(request):
         if form.is_valid():
             user = form.save()
             update_session_auth_hash(request, user)  # Important!
-            messages.success(request, 'Your password was successfully updated!')
+            messages.success(request, '密碼更新成功!')
             return redirect('login:index')
         else:
-            messages.error(request, 'Please correct the error below.')
+            messages.error(request, '請修正以下錯誤')
     else:
         form = PasswordChangeForm(request.user)
     return render(request, 'change.html', {
