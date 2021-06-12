@@ -1,17 +1,37 @@
 {% extends 'share/layout.html' %}
 
 {% block main %}
-				<h3 class="page_title" style="margin-bottom: 20px; text-align: center; margin-top: 20px;">
+				<h3 class="page_title" style="margin-bottom: 40px; text-align: center; margin-top: 20px;">
 					班表詳細
 				</h3>
 
-				<h2>
-					<p><b>員工編號: </b>{{ worksche.empid }}</p>
-					<p><b>上班時間: </b>{{ worksche.workhour }}:{{ worksche.workmin }}~{{ worksche.offhour }}:{{ worksche.offmin }}</p>
-					<p><b>崗位: </b>{{ worksche.job }}</p>
-					<a href="{% url 'schedule:update' worksche.serno %}" class="btn waves-effect waves-light right sche_btn">修改</a>
-					<a href="{% url 'schedule:delete' worksche.serno %}" class="btn btn-danger">刪除</a>
-				</h2>
+				<table style="background-color: #D3DAEF; margin: 0 auto; font-size: 24px; width: 300px; border: none;">
+					<tr>
+						<th style="padding-bottom: 10px;">
+							<p><b>員工編號：</b>{{ worksche.empid }}</p>
+						</th>
+					</tr>
+
+					<tr>
+						<th style="padding-bottom: 10px; padding-top: 10px;">
+							<p><b>上班時間：</b>{{ worksche.workhour }}:{{ worksche.workmin }}~{{ worksche.offhour }}:{{ worksche.offmin }}</p>
+						</th>
+					</tr>
+
+					<tr>
+						<th style="padding-bottom: 10px; padding-top: 10px;">
+							<p><b>崗位：</b>{{ worksche.job }}</p>
+						</th>
+					</tr>
+					
+					<tr style="float: right;">
+						<th style="padding-top: 10px;">
+							<a href="{% url 'schedule:update' worksche.serno %}" class="btn waves-effect waves-light right sche_btn">修改</a>
+							<a href="{% url 'schedule:delete' worksche.serno %}" class="btn btn-danger">刪除</a>
+						</th>
+					</tr>
+					
+				</table>
 
 {% endblock %}
 

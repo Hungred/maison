@@ -39,7 +39,7 @@ class Worksche(models.Model):
     workmin = models.CharField('出勤分', max_length=2)
     offhour = models.CharField('退勤時', max_length=2)
     offmin = models.CharField('退勤分', max_length=2)
-    job = models.CharField('崗位', max_length=10, choices=Job.choices)
+    job = models.CharField('工作崗位', max_length=10, choices=Job.choices)
 
     def __str__(self):
         field_values = []

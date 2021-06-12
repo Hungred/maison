@@ -3,25 +3,92 @@
 
 {% block main %}
 
-				<h3 class="page_title" style="margin-bottom: 20px; text-align: center; margin-top: 20px;">
-					新增班表
-				</h3>
-<form action="" method="POST">
-	{% csrf_token %}
-	{{ form.empid.label_tag }}
-	{{ form.empid }} <br>
-	{{ form.workdate.label_tag }}
-	{{ form.workdate }} <br>
-	出勤時間:
-	{{ form.workhour }} : {{ form.workmin }} <br>
-	退勤時間:
-	{{ form.offhour }} : {{ form.offmin }} <br>
-	{{ form.job.label_tag }}
-	{{ form.job }} <br>
-	<button type="submit" class="btn btn-primary">送出</button>
-    <a href="{% url 'schedule:index' %}" class="btn btn-primary">返回</a>
+<style>
+	select{
+		width: 500px;
+		height: 45px;
+		border-radius: .25rem;
+		border: 1px solid rgba(0,0,0,.15);
+	}
 
+	select:focus{
+		background-color: #fff;
+		border-color: #5cb3fd;
+		outline: 0;
+	}
 
+	input{
+		-ms-touch-action: manipulation;
+      	touch-action: manipulation;
+		width: 500px;
+		background-clip: padding-box;
+		border: 1px solid rgba(0,0,0,.15);
+		border-radius: .25rem;
+		-webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+		transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+
+	}
+
+	input:focus{
+		background-color: #fff;
+		border-color: #5cb3fd;
+		outline: 0;
+	}
+
+	p>input{
+		width: 240px;
+	}
+</style>
+
+<h3 class="page_title" style="margin-bottom: 40px; text-align: center; margin-top: 20px;">
+	新增班表
+</h3>
+
+<table style="background-color: #D3DAEF; margin: 0 auto; font-size: 24px; width: 400px; border: none;">
+	<form action="" method="POST">
+		{% csrf_token %}
+		<tr>
+			<th style="padding-bottom: 10px;">
+				{{ form.empid.label_tag }}
+				{{ form.empid }}
+			</th>
+		</tr>
+		
+		<tr>
+			<th style="padding-bottom: 10px; padding-top: 10px;">
+				{{ form.workdate.label_tag }}
+				{{ form.workdate }}
+			</th>
+		</tr>
+		
+		<tr>
+			<th style="padding-bottom: 10px; padding-top: 10px;">
+				出勤時間：
+				<p>{{ form.workhour }} : {{ form.workmin }}</p>
+			</th>
+		</tr>
+		
+		<tr>
+			<th style="padding-bottom: 10px;">
+				退勤時間：
+				<p>{{ form.offhour }} : {{ form.offmin }}</p>
+			</th>
+		</tr>
+		
+		<tr>
+			<th style="padding-bottom: 10px;">
+				{{ form.job.label_tag }}
+				{{ form.job }}
+			</th>
+		</tr>
+		
+		<tr style="float: right;">
+			<th style="padding-top: 10px;">
+				<button type="submit" class="btn btn-primary">送出</button>
+				<a href="{% url 'schedule:index' %}" class="btn btn-primary">返回</a>
+			</th>
+		</tr>
+</table>
 
 {% endblock %}
 
