@@ -34,8 +34,8 @@ def sign_in(request):
         if user is not None:
             login(request, user)
             return redirect('schedule:index')
-    else:
-        messages.error(request, '查無使用者或密碼錯誤!')
+        else:
+            messages.error(request, '查無使用者或密碼錯誤!')
     context = {
         'form': form
     }
