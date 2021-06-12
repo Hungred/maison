@@ -1,10 +1,33 @@
 {% extends 'share/layout.html' %}
 
 {% block main %}
-<h3 style="text-align: center; margin-top: 20px; margin-bottom: 20px;">修改密碼</h3>
+
+<style>
+    form{
+        text-align: left;
+        font-size: 24px;
+    }
+
+    .form-group{
+        width: 400px;
+        margin: 0 auto;
+    }
+
+    form>button{
+        margin-top: 20px;
+        margin-left: 840px;
+    }
+
+    form>a{
+        margin-top: 20px;
+        color: green;
+    }
+</style>
+
+<h3 style="text-align: center; margin-top: 20px; margin-bottom: 0px;">修改密碼</h3>
+
 
 {% include 'share/_form.html' %}
-
 
 
 {% endblock %}
