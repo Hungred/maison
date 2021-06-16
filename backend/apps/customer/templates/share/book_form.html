@@ -1,0 +1,40 @@
+{% load bootstrap4 %}
+
+<!--<form action="" method="POST">-->
+<!--    {% csrf_token %}-->
+<!--    {% bootstrap_form form %}-->
+<!--    <button type="submit" class="btn btn-outline-info float-right">送出</button>-->
+<!--    <a href="{% url 'customer:index' %}" class="btn btn-primary">返回</a>-->
+<!--</form>-->
+{% load widget_tweaks %}
+{% load static %}
+    <script src="{% static 'customer/js/jquery.min.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js" integrity="sha256-FEqEelWI3WouFOo2VWP/uJfs1y8KJ++FLh2Lbqc8SJk=" crossorigin="anonymous"></script>
+
+    <!-- XDSoft DateTimePicker -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css" integrity="sha256-DOS9W6NR+NFe1fUhEE0PGKY/fubbUCnOfTje2JMDw3Y=" crossorigin="anonymous" />
+<form method="post" novalidate >
+  {% csrf_token %}
+
+  {% for hidden_field in form.hidden_fields %}
+    {{ hidden_field }}
+  {% endfor %}
+
+  {% for field in form.visible_fields %}
+    <div class="form-group">
+      {{ field.label_tag }}
+      {% render_field field class="form-control" %}
+      {% if field.help_text %}
+        <small class="form-text text-muted">{{ field.help_text }}</small>
+      {% endif %}
+    </div>
+  {% endfor %}
+    <script>
+      $(function () {
+        $("#id_booktime").datetimepicker();
+      });
+    </script>
+     <button type="submit" class="btn btn-outline-info float-right">送出</button>
+    <a href="{% url 'customer:index' %}" class="btn btn-primary">返回</a>
+
+

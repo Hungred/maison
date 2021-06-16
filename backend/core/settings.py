@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'bootstrap4',
-
+    'widget_tweaks',
     'apps.feedback',
     'apps.login',
     'apps.order',

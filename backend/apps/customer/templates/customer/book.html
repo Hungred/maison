@@ -1,10 +1,17 @@
 {% extends 'share/customerlayout.html' %}
 
 {% block main %}
-<div class="row">
-    <div class="col col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
-        <h2>新增訂位</h2>
-        {% include 'share/_form.html' %}
-    </div>
-</div>
+
+<button class="open-button" onclick="openForm()">互動機器人</button>
+		<div class="chat-popup" id="myForm" style="display:block">
+		  <div action="" class="form-container" style="overflow: scroll; width: 300px; height: 500px">
+			<h1 style="text-align: center;">互動機器人</h1>
+            <div class="row">
+                <div class="col col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3" >
+                    <h3>新增訂位</h3>
+                    {% include 'share/book_form.html' %}
+                </div>
+            </div>
+		  </div>
+		</div>
 {% endblock %}

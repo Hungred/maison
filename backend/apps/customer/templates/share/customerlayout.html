@@ -124,29 +124,10 @@
 	</div>
 |
 	<body>
-		<button class="open-button" onclick="openForm()">互動機器人</button>
-		<div class="chat-popup" id="myForm">
-		  <div action="" class="form-container">
-			<h1>互動機器人</h1>
-			  {% block main %}
-			<button type="button" class="btn ord" onclick="">
-				<a href="{% url 'customer:book' %}"
-                   class="btn btn-outline-info float-right">
-                    訂位
-                </a>
-			</button>
+	{% bootstrap_messages %}
 
-			<button type="button" class="btn ord" onclick=""> 價目</button>
-			<div class="row">
-				<div class="col">
-					<!-- 加上訊息顯示 -->
-
-				</div>
-			</div>
-			  {% endblock %}
-			<button type="button" class="btn cancel" onclick="closeForm()">關閉</button>
-		  </div>
-		</div>
+	{% block main %}
+	{% endblock %}
 	</body>
 	<div class="row" style="background-color: #707070; height: 200px;padding-top:50px ;">
 		<div class="col-md-12">
@@ -189,5 +170,7 @@
     <script src="{% static 'customer/js/jquery.min.js' %}"></script>
     <script src="{% static 'customer/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'customer/js/scripts.js' %}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js" integrity="sha256-FEqEelWI3WouFOo2VWP/uJfs1y8KJ++FLh2Lbqc8SJk=" crossorigin="anonymous"></script>
+
   </body>
 </html>

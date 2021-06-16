@@ -1,1 +1,26 @@
 {% extends 'share/customerlayout.html' %}
+
+{% block main %}
+<button class="open-button" onclick="openForm()">互動機器人</button>
+
+		<div class="chat-popup" id="myForm">
+		  <div action="" class="form-container">
+			<h1>互動機器人</h1>
+			<button type="button" class="btn ord" onclick="">
+				<a href="{% url 'customer:book' %}"
+                   class="btn btn-outline-info float-right">
+                    訂位
+                </a>
+			</button>
+
+			<button type="button" class="btn ord" onclick=""> 價目</button>
+			<div class="row">
+				<div class="col">
+					<!-- 加上訊息顯示 -->
+				</div>
+			</div>
+
+			<button type="button" class="btn cancel" onclick="closeForm()">關閉</button>
+		  </div>
+		</div>
+{% endblock %}
