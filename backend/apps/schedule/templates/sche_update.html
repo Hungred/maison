@@ -44,48 +44,50 @@
 </h3>
 
 <table style="background-color: #D3DAEF; margin: 0 auto; font-size: 24px; width: 400px; border: none;">
-	{% csrf_token %}
-	<tr>
-		<th style="padding-bottom: 10px;">
-			{{ form.empid.label_tag }}
-			{{ form.empid }} 
-		</th>
-	</tr>
+	<form action="" method="POST">
+		{% csrf_token %}
+		<tr>
+			<th style="padding-bottom: 10px;">
+				{{ form.empid.label_tag }}
+				{{ form.empid }} 
+			</th>
+		</tr>
 
-	<tr>
-		<th style="padding-bottom: 10px; padding-top: 10px;">
-			{{ form.workdate.label_tag }}
-			{{ form.workdate }} 
-		</th>
-	</tr>
+		<tr>
+			<th style="padding-bottom: 10px; padding-top: 10px;">
+				{{ form.workdate.label_tag }}
+				{{ form.workdate }} 
+			</th>
+		</tr>
 
-	<tr>
-		<th style="padding-bottom: 10px; padding-top: 10px;">
-			出勤時間：
-			<p> {{ form.workhour }} : {{ form.workmin }} </p>
-		</th>
-	</tr>
+		<tr>
+			<th style="padding-bottom: 10px; padding-top: 10px;">
+				出勤時間：
+				<p> {{ form.workhour }} : {{ form.workmin }} </p>
+			</th>
+		</tr>
 
-	<tr>
-		<th style="padding-bottom: 10px;">
-			退勤時間：
-			<p> {{ form.offhour }} : {{ form.offmin }} </p>
-		</th>
-	</tr>
+		<tr>
+			<th style="padding-bottom: 10px;">
+				退勤時間：
+				<p> {{ form.offhour }} : {{ form.offmin }} </p>
+			</th>
+		</tr>
 
-	<tr>
-		<th style="padding-bottom: 10px;">
-			{{ form.job.label_tag }}
-			{{ form.job }} 
-		</th>
-	</tr>
-	
-	<tr style="float: right;">
-		<th style="padding-top: 10px;">
-			<button type="submit" class="btn btn-primary">送出</button>
-			<a href="{% url 'schedule:index' %}" class="btn btn-primary">返回</a>
-		</th>
-	</tr>
+		<tr>
+			<th style="padding-bottom: 10px;">
+				{{ form.job.label_tag }}
+				{{ form.job }} 
+			</th>
+		</tr>
+		
+		<tr style="float: right;">
+			<th style="padding-top: 10px;">
+				<button type="submit" class="btn btn-primary">送出</button>
+				<a href="{% url 'schedule:index' %}" class="btn btn-primary">返回</a>
+			</th>
+		</tr>
+	</form>
 </table>
 
 {% endblock %}
