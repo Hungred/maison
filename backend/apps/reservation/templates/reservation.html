@@ -65,6 +65,8 @@
 
   </head>
   {% load bootstrap4 %}
+  {% load auth_extras %}
+
   <body class="body_bg">
 
     <div class="container-fluid">
@@ -83,20 +85,27 @@
 		<div class="row">
 			<div class="col-md-2 list_bar">
 				<h3 class="list_text">
-					<a  href="sche.html">班表</a>
+					<a  href="{% url 'schedule:index' %}">班表</a>
 				</h3>
                 <h3 class="list_text">
-					訂位
+					<a href="{% url 'reservation:index' %}">訂位</a>
+
 				</h3>
                 <h3 class="list_text">
-					<a  href="order.html">點餐</a>
+					<a  href="{% url 'order:index' %}">點餐</a>
 				</h3>
                 <h3 class="list_text">
-					顧客回饋
+					<a  href="{% url 'feedback:index' %}">顧客回饋</a>
 				</h3>
                 <h3 class="list_text">
 					營收報表
 				</h3>
+				{% if request.user|has_group:"boss" %}
+				<h3 class="list_text">
+
+    				<a  href="{% url 'login:emp_list' %}" >員工管理</a>
+				</h3>
+                {% endif %}
 			</div>
 
 			<div class="col-md-10" >
