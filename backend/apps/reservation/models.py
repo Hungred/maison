@@ -31,7 +31,7 @@ class Book(models.Model):
     bookadt = models.PositiveIntegerField('大人數量', default=0)
     bookchd = models.PositiveIntegerField('小孩數量', default=0)
     booktime = models.DateTimeField('時間')
-    remark = models.TextField('備注')
+    remark = models.TextField('備注', null=True)
     systime = models.DateTimeField('系統時間', auto_now_add=True)
 
     def __str__(self):
