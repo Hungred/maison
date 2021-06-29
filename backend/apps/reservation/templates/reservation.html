@@ -115,73 +115,35 @@
 				</h3>
 
                 <div class="row">
-                    <div class="col-md-6">
-                        <span class="res_date">{{ time }}</span>
-                        {% for reservation in reservations %}
-                        {% if reservation.booktime|compare_days:0 %}
-                            <table>
-                            <tr>
-                                <th>{{ reservation.bookname }}小姐/先生</th>
-                                <th>{{ reservation.bookadt }}大{{ reservation.bookchd }}小</th>
-                                <td>{{ reservation.booktime }}</td>
-                            </tr>
-                        </table>
-                        {% endif %}
-                        {% endfor %}
-
-
-                        <span class="res_date">{{ time|plus_days:1 }}</span>
-                        {% for reservation in reservations %}
-                        {% if reservation.booktime|compare_days:1 %}
-                            <table>
-                            <tr>
-                                <th>{{ reservation.bookname }}小姐/先生</th>
-                                <th>{{ reservation.bookadt }}大{{ reservation.bookchd }}小</th>
-                                <td>{{ reservation.booktime }}</td>
-                            </tr>
-                        </table>
+                    {% for reservations in recent_reservations %}
+                        {% if forloop.counter0|divisibleby:2 %}
+                            <div class="col-6">
                         {% endif %}
 
-                        {% endfor %}
-                    </div>
-
-                    <div class="col-md-6">
-
-                        <span class="res_date">{{ time|plus_days:2 }}</span>
-                        {% for reservation in reservations %}
-                        {% if reservation.booktime|compare_days:2 %}
+                        <span class="res_date">{{ reservations.date }}</span>
+                        {% for reservation in reservations.reservations %}
                             <table>
-                            <tr>
-                                <th>{{ reservation.bookname }}小姐/先生</th>
-                                <th>{{ reservation.bookadt }}大{{ reservation.bookchd }}小</th>
-                                <td>{{ reservation.booktime }}</td>
-                            </tr>
-                        </table>
-                        {% endif %}
-                        {% endfor %}
-
-                        <span class="res_date">{{ time|plus_days:3 }}</span>
-                        {% for reservation in reservations %}
-                        {% if reservation.booktime|compare_days:3 %}
-                            <table>
-                            <tr>
-                                <th>{{ reservation.bookname }}小姐/先生</th>
-                                <th>{{ reservation.bookadt }}大{{ reservation.bookchd }}小</th>
-                                <td>{{ reservation.booktime }}</td>
-                            </tr>
-                        </table>
-                        {% endif %}
+                                <tr>
+                                    <th>{{ reservation.bookname }}小姐/先生</th>
+                                    <th>{{ reservation.bookadt }}大{{ reservation.bookchd }}小</th>
+                                    <td>{{ reservation.booktime }}</td>
+                                </tr>
+                            </table>
                         {% empty %}
-                        <table>
-                            <tr>
-                                <th>暫無資料</th>
-                                <th></th>
-                                <td></td>
-                            </tr>
-                        </table>
+                            <table>
+                                <tr>
+                                    <th>暫無資料</th>
+                                    <th></th>
+                                    <td></td>
+                                </tr>
+                            </table>
                         {% endfor %}
+
+                        {% if forloop.counter|divisibleby:2 %}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
                     </div>
-                </div>
                 <div id='calendar'></div>
 			</div>
 		</div>
