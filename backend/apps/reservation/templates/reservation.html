@@ -23,8 +23,6 @@
 
 		document.addEventListener('DOMContentLoaded', function() {
 		  var calendarEl = document.getElementById('calendar');
-		  
-		
 
 		  var calendar = new FullCalendar.Calendar(calendarEl, {
 			headerToolbar: {
@@ -32,34 +30,38 @@
 			  center: 'title',
 			  right: 'dayGridMonth,timeGridWeek,timeGridDay'
 			},
-			initialDate: '2021-03-26',
+
 			navLinks: true, // can click day/week names to navigate views
 			selectable: true,
 			selectMirror: true,
 			select: function(arg) {
-			  window.open("sche_modify", "修改班表");
+			  window.open("reservation_add", "新增訂位");
 			},
-			eventClick: function(arg) {
-			  if (confirm('刪除資料')) {
-				arg.event.remove()
-			  }
-			},
+			eventClick: function(info) {
+				 info.jsEvent.preventDefault();
+
+				  if (info.event.url) {
+      				window.open(info.event.url);
+    			}
+			  },
 			editable: true,
 			dayMaxEvents: true, // allow "more" link when too many events
-			events: [
-			  {
-				title: 'E01 10~18',
-				start: '2021-03-02'
+			events: [{% for reservations in reservations %}
+
+			  {	title: '{{ reservations.bookname }} {{ reservations.bookadt }}大{{ reservations.bookchd }}小 {{ reservations.booktime|time:"H:i" }}',
+			  	start: '{{ reservations.booktime|date:'Y-m-d' }}',
+			  	url:'{% url 'reservation:detail' reservations.serno %}',
+
 			  },
-              {
-                title: 'E01 10~18',
-				start: '2021-03-03' 
-              } 
-			],
+
+			{% endfor %}]
 		  });
-	  
+
 		  calendar.render();
 		});
+
+		opener.location.reload(true);
+    	window.close();
 	  
 	</script>
 
@@ -75,11 +77,13 @@
 			<div class="col-md-6">
 				<h3 class="nav_logo">
 					MAISON DE OCÉAN
+                    <a class="btn  btn-primary" href="{% url 'login:logout' %}" role="button">登出 &#187;</a>
 				</h3>
 			</div>
 			<div class="col-md-6 nav_align">
 
-				<img alt="Bootstrap Image Preview" src="{% static '/images/logo.jpg' %} " class="rounded-circle nav_img">
+				<img alt="Bootstrap Image Preview" src="{% static '/res/images/logo.jpg' %} " class="rounded-circle nav_img">
+                <h4 style="color:white; float: right; padding-top: 15px; margin-left: 10px;"><a href="{% url 'login:profile' user.username %}" style="color:white;">{{ user.username }}</a>, 您好!</h4>
 			</div>
 		</div>
 
