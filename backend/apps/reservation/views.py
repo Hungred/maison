@@ -54,7 +54,7 @@ def addbook(request):
     form = ReservationForm(request.POST or None)
     if form.is_valid():
         form.save()
-    
+
         return redirect('reservation:index')
     return render(request,
                   'reservation_new.html',
