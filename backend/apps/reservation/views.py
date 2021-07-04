@@ -21,20 +21,21 @@ def index(request):
     reservations = Book.objects.all()
 
     today = datetime.today()
+
     results = [{
         'date': (today + timedelta(days=i)).date(),
         'reservations': []
     } for i in range(5)]#先產出這四天的日期塞到陣列中
     recent_reservations = Book.objects\
         .filter(booktime__range=[today.date(), results[-1]['date']])#從資料庫抓出近四天的預約
-    print(recent_reservations)
+
 
     for reservation in recent_reservations:
         check_day = reservation.booktime.replace(tzinfo=None)#把timezone拿掉
         index = (check_day - today).days + 1
         results[index]['reservations'].append(reservation)
 
-    print(results)
+
     del(results[-1])
 
     context = {'reservations':reservations, 'recent_reservations': results}

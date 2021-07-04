@@ -128,7 +128,7 @@
                         {% for reservation in reservations.reservations %}
                             <table>
                                 <tr>
-                                    <th>{{ reservation.bookname }}小姐/先生</th>
+                                    <th><a href="{% url 'reservation:detail' reservation.serno %}">{{ reservation.bookname }}小姐/先生</a></th>
                                     <th>{{ reservation.bookadt }}大{{ reservation.bookchd }}小</th>
                                     <td>{{ reservation.booktime }}</td>
                                 </tr>

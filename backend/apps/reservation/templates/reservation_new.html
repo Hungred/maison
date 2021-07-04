@@ -1,10 +1,14 @@
 {% extends 'share/layout.html' %}
 
 {% block main %}
+{% load bootstrap4 %}
+{% bootstrap_messages %}
 
 <h3 class="page_title" style="margin-bottom: 40px; text-align: center; margin-top: 20px;">
 	新增訂位
+	{{ form.non_field_errors }}
 </h3>
+
 {% load widget_tweaks %}
 <table style="background-color: #D3DAEF; margin: 0 auto; font-size: 24px; width: 400px; border: none;">
 	<form action="" method="POST">
@@ -26,7 +30,9 @@
 		<tr>
 			<th style="padding-bottom: 10px; padding-top: 10px;">
 				<p>{{ form.bookadt.label_tag }}{{ form.bookadt }}</p>
+				{{ form.bookadt.errors }}
                 <p>{{ form.bookchd.label_tag }}{{ form.bookchd }}</p>
+
 			</th>
 		</tr>
 
@@ -34,6 +40,7 @@
 			<th style="padding-bottom: 10px;">
 
 				<p>{{ form.booktime.label_tag }}{{ form.booktime }}</p>
+				{{ form.booktime.errors }}
 			</th>
 		</tr>
 
