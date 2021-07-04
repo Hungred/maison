@@ -2,7 +2,7 @@ from django.db import models
 from datetime import date
 from django.utils import timezone
 from django.contrib.auth.models import User
-
+User._meta.get_field('email')._unique = True #email不能重複
 
 class Position(models.TextChoices):
     BOSS = 'B', '老闆'
@@ -24,4 +24,12 @@ class Employee_data(models.Model):
         field_values.append(str(self.empname))
         return ' '.join(field_values)
 
-
+# @receiver(post_delete, sender=Employee_data)
+# def delete_tag(instance, **kwargs):
+#     emps = Employee_data.objects.all()
+#     for emp in emps:
+#         # after Tag item deleting, book.tag is set to None
+#         # so if boook's tag is null, get it's author's first tag
+#         if not book.tag:
+#             book.tag = book.author.tags.first()
+#             book.save()

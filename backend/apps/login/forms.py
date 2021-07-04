@@ -37,12 +37,12 @@ class RegisterForm(UserCreationForm):
         model = User
         fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2')
 
-    # # 驗證郵箱
-    # def clean(self):
-    #     email = self.cleaned_data['email']
-    #     user = User.objects.filter(username=email)
-    #     if user:  # 郵箱已經被註冊了
-    #         raise forms.ValidationError(u"郵箱已被註冊")
+    # 驗證email是否已註冊:輸入沒重複的email會噴錯 改用models.py的除錯
+    # def clean_email(self):
+    #     email = self.cleaned_data.get('email')
+    #     if User.objects.filter(email=email).exists():
+    #         raise forms.ValidationError("電子郵件已被註冊")
+    #     return self.cleaned_data
 
 
 

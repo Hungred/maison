@@ -47,16 +47,18 @@
 	<form action="" method="POST">
 		{% csrf_token %}
 		<tr>
-			<th style="padding-bottom: 10px;">
+			<th style="padding-bottom: 10px;">{{ form.non_field_errors }}
 				{{ form.empid.label_tag }}
-				{{ form.empid }} 
+				{{ form.empid }}
+				{{ form.empid.errors }}
 			</th>
 		</tr>
 
 		<tr>
 			<th style="padding-bottom: 10px; padding-top: 10px;">
 				{{ form.workdate.label_tag }}
-				{{ form.workdate }} 
+				{{ form.workdate }}
+				{{ form.workdate.errors }}
 			</th>
 		</tr>
 
@@ -64,6 +66,7 @@
 			<th style="padding-bottom: 10px; padding-top: 10px;">
 				出勤時間：
 				<p> {{ form.workhour }} : {{ form.workmin }} </p>
+				{{ form.workhour.errors }}{{ form.workmin.errors }}
 			</th>
 		</tr>
 
@@ -71,13 +74,15 @@
 			<th style="padding-bottom: 10px;">
 				退勤時間：
 				<p> {{ form.offhour }} : {{ form.offmin }} </p>
+				{{ form.offhour.errors }}{{ form.offmin.errors }}
 			</th>
 		</tr>
 
 		<tr>
 			<th style="padding-bottom: 10px;">
 				{{ form.job.label_tag }}
-				{{ form.job }} 
+				{{ form.job }}
+				{{ form.job.errors }}
 			</th>
 		</tr>
 		

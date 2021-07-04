@@ -29,10 +29,15 @@ def detailsche(request, pk):
 @permission_required('schedule.add_worksche', raise_exception=True)
 def addsche(request):
     form = WorkscheForm(request.POST or None)
-    if form.is_valid():
-        form.save()
 
-        return redirect('schedule:index')
+    if form.is_valid():
+        try:
+            form.save()
+            messages.success(request, '新增成功')
+            return redirect('schedule:index')
+        except Exception:
+            messages.error(request, '請確認資料無誤')
+            return redirect('schedule:index')
     return render(request,
                   'sche_modify.html',
                   {'form':form},

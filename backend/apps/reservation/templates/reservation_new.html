@@ -6,17 +6,19 @@
 
 <h3 class="page_title" style="margin-bottom: 40px; text-align: center; margin-top: 20px;">
 	新增訂位
-	{{ form.non_field_errors }}
+
 </h3>
 
 {% load widget_tweaks %}
 <table style="background-color: #D3DAEF; margin: 0 auto; font-size: 24px; width: 400px; border: none;">
 	<form action="" method="POST">
 		{% csrf_token %}
+
 		<tr>
-			<th style="padding-bottom: 10px;">
+			<th style="padding-bottom: 10px;">{{ form.non_field_errors }}
 				{{ form.bookname.label_tag }}
 				{{ form.bookname }}
+
 			</th>
 		</tr>
 

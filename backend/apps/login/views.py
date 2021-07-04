@@ -112,7 +112,7 @@ def delete_emp(request, pk):
             messages.success(request, '刪除成功')
             return redirect('schedule:index')
         except ProtectedError as res:
-            messages.error(request, '刪除失敗')
+            messages.error(request, '刪除失敗,因該員工在班表上留有出勤紀錄')
             return redirect('schedule:index')
         except Exception as e:
             print(e)
