@@ -29,10 +29,15 @@ def detailsche(request, pk):
 @permission_required('schedule.add_worksche', raise_exception=True)
 def addsche(request):
     form = WorkscheForm(request.POST or None)
+
     if form.is_valid():
-        form.save()
-        messages.success(request, '新增成功')
-        return redirect('schedule:index')
+        try:
+            form.save()
+            messages.success(request, '新增成功')
+            return redirect('schedule:index')
+        except Exception:
+            messages.error(request, '請確認資料無誤')
+            return redirect('schedule:index')
     return render(request,
                   'sche_modify.html',
                   {'form':form},
@@ -53,6 +58,6 @@ def delsche(request, pk):
     form = DeleteConfirmForm(request.POST or None)
     if form.is_valid() and form.cleaned_data['check']:
         worksche.delete()
-        messages.success(request, '刪除成功')
+
         return redirect('schedule:index')
     return render(request, 'sche_del.html', {'form': form})

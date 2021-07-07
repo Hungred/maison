@@ -32,11 +32,58 @@
         <div class="col-md-12">
           {% bootstrap_messages %}
           <h3 style="margin-bottom: 20px; text-align: center; margin-top: 20px;">註冊</h3>
-
+          {{ form.non_field_errors }}
           <form action="" method="POST">
             {% csrf_token %}
-            {{ form }}
-        
+            <tr>
+			<th style="padding-bottom: 10px;">
+				{{ form.username.label_tag }}
+                {{ form.username }}
+              {{ form.username.errors }}
+			</th>
+		</tr>
+
+            <tr>
+			<th style="padding-bottom: 10px;">
+				{{ form.last_name.label_tag }}
+                {{ form.last_name }}
+              {{ form.last_name.errors }}
+			</th>
+		</tr>
+
+            <tr>
+			<th style="padding-bottom: 10px;">
+				{{ form.first_name.label_tag }}
+                {{ form.first_name }}
+              {{ form.first_name.errors }}
+			</th>
+		</tr>
+
+            <tr>
+			<th style="padding-bottom: 10px;">
+				{{ form.email.label_tag }}
+                {{ form.email }}
+                {{ form.email.errors }}
+			</th>
+		</tr>
+
+            <tr>
+			<th style="padding-bottom: 10px;">
+				{{ form.password1.label_tag }}
+                {{ form.password1 }}
+              {{ form.password1.errors }}
+			</th>
+		</tr>
+
+            <tr>
+			<th style="padding-bottom: 10px;">
+				{{ form.password2.label_tag }}
+                {{ form.password2 }}
+              {{ form.password2.errors }}
+			</th>
+		</tr>
+
+
             <br/>
             <a href="{% url 'schedule:index' %}" class="btn btn-primary">返回</a>
             <input class="btn btn-primary" type="submit" value="送出" style="float: right;"  />

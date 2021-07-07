@@ -39,60 +39,64 @@
 	}
 </style>
 
-<h3 class="page_title" style="margin-bottom: 40px; text-align: center; margin-top: 20px;">
-	修改班表
-</h3>
 
+
+
+
+<h3 class="page_title" style="margin-bottom: 40px; text-align: center; margin-top: 20px;">
+	修改訂位
+</h3>
+{% load widget_tweaks %}
 <table style="background-color: #D3DAEF; margin: 0 auto; font-size: 24px; width: 400px; border: none;">
 	<form action="" method="POST">
 		{% csrf_token %}
 		<tr>
 			<th style="padding-bottom: 10px;">{{ form.non_field_errors }}
-				{{ form.empid.label_tag }}
-				{{ form.empid }}
-				{{ form.empid.errors }}
+				{{ form.bookname.label_tag }}
+				{{ form.bookname }}
+				{{ form.bookname.errors }}
 			</th>
 		</tr>
 
 		<tr>
 			<th style="padding-bottom: 10px; padding-top: 10px;">
-				{{ form.workdate.label_tag }}
-				{{ form.workdate }}
-				{{ form.workdate.errors }}
+				{{ form.booktel.label_tag }}
+				{{ form.booktel }}
+				{{ form.booktel.errors }}
 			</th>
 		</tr>
 
 		<tr>
 			<th style="padding-bottom: 10px; padding-top: 10px;">
-				出勤時間：
-				<p> {{ form.workhour }} : {{ form.workmin }} </p>
-				{{ form.workhour.errors }}{{ form.workmin.errors }}
+				<p>{{ form.bookadt.label_tag }}{{ form.bookadt }}</p>
+                <p>{{ form.bookchd.label_tag }}{{ form.bookchd }}</p>
+				{{ form.bookadt.errors }}
+				{{ form.bookchd.errors }}
 			</th>
 		</tr>
 
 		<tr>
 			<th style="padding-bottom: 10px;">
-				退勤時間：
-				<p> {{ form.offhour }} : {{ form.offmin }} </p>
-				{{ form.offhour.errors }}{{ form.offmin.errors }}
+
+				<p>{{ form.booktime.label_tag }}{{ form.booktime }}</p>
+				{{ form.booktime.errors }}
 			</th>
 		</tr>
 
 		<tr>
 			<th style="padding-bottom: 10px;">
-				{{ form.job.label_tag }}
-				{{ form.job }}
-				{{ form.job.errors }}
+				{{ form.remark.label_tag }}
+				{{ form.remark }}
+				{{ form.remark.errors }}
 			</th>
 		</tr>
-		
+
 		<tr style="float: right;">
 			<th style="padding-top: 10px;">
 				<button type="submit" class="btn btn-primary">送出</button>
-				<a href="{% url 'schedule:index' %}" class="btn btn-primary">返回</a>
+				<a href="{% url 'reservation:index' %}" class="btn btn-primary">返回</a>
 			</th>
-		</tr>
-	</form>
-</table>
+		</tr></table>
+
 
 {% endblock %}

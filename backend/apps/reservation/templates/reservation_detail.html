@@ -1,216 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+{% extends 'share/layout.html' %}
 
-    <title>訂位清單</title>
-
-    <meta name="description" content="Source code generated using layoutit.com">
-    <meta name="author" content="LayoutIt!">
-    
-    <link href="../static/res/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../static/res/css/style.css" rel="stylesheet">
-    <link href='../static/res/fullcalendar-5.5.1 (1)/lib/main.css' rel='stylesheet' />
-    <script src='../static/res/fullcalendar-5.5.1 (1)/lib/main.js'></script>
-
-    {% load static %}
-    <link href="{% static '/res/css/bootstrap.min.css' %}" rel="stylesheet">
-    <link href="{% static '/res/css/style_manager.css' %}" rel="stylesheet">
-
-  </head>
-  {% load bootstrap4 %}
-  <body class="body_bg">
-
-    <div class="container-fluid">
-		<div class="row nav_bg">
-			<div class="col-md-6">
-				<h3 class="nav_logo">
-					MAISON DE OCÉAN
+{% block main %}
+				<h3 class="page_title" style="margin-bottom: 40px; text-align: center; margin-top: 20px;">
+					訂位詳細
 				</h3>
-			</div>
-			<div class="col-md-6 nav_align">
 
-				<img alt="Bootstrap Image Preview" src="{% static '/images/logo.jpg' %} " class="rounded-circle nav_img">
-			</div>
-		</div>
+				<table style="background-color: #D3DAEF; margin: 0 auto; font-size: 24px; width: 300px; border: none;">
+					<tr>
+						<th style="padding-bottom: 10px;">
+							<p><b>顧客姓氏：</b>{{ book.bookname }}</p>
+						</th>
+					</tr>
 
-		<div class="row">
-			<div class="col-md-2 list_bar">
-				<h3 class="list_text">
-					<a  href="sche.html">班表</a>
-				</h3>
-                <h3 class="list_text">
-					訂位
-				</h3>
-                <h3 class="list_text">
-					<a  href="order.html">點餐</a>
-				</h3>
-                <h3 class="list_text">
-					顧客回饋
-				</h3>
-                <h3 class="list_text">
-					營收報表
-				</h3>
-			</div>
+					<tr>
+						<th style="padding-bottom: 10px; padding-top: 10px;">
+							<p><b>顧客電話：</b>{{ book.booktel }}</p>
+						</th>
+					</tr>
 
-			<div class="col-md-10 cal" >
-				<h3 class="page_title ">
-					訂位清單
-				</h3>
-                
-                <span class="res_date">2021/03/30</span>
+                    <tr>
+						<th style="padding-bottom: 10px; padding-top: 10px;">
+							<p><b>人數：</b>{{ book.bookadt }}大{{ book.bookchd }}小</p>
+						</th>
+					</tr>
 
-                <label>
-                    <table>
-                        <input type="checkbox">
-                        <tr>
-                            <th><textarea>林小姐</textarea></th>
-                            <th><textarea>4位</textarea></th>
-                            <th><textarea>0912345678</textarea></th>
-                            <td><textarea>10:30</textarea></td>
-                        </tr>
-                    </table>
-                </label>
-                <label>
-                    <table>
-                        <input type="checkbox">
-                        <tr>
-                            <th><textarea>林小姐</textarea></th>
-                            <th><textarea>4位</textarea></th>
-                            <th><textarea>0912345678</textarea></th>
-                            <td><textarea>10:30</textarea></td>
-                        </tr>
-                    </table>
-                </label>
-                <label>
-                    <table>
-                        <input type="checkbox">
-                        <tr>
-                            <th><textarea>林小姐</textarea></th>
-                            <th><textarea>4位</textarea></th>
-                            <th><textarea>0912345678</textarea></th>
-                            <td><textarea>10:30</textarea></td>
-                        </tr>
-                    </table>
-                </label>
-                <label>
-                    <table>
-                        <input type="checkbox">
-                        <tr>
-                            <th><textarea>林小姐</textarea></th>
-                            <th><textarea>4位</textarea></th>
-                            <th><textarea>0912345678</textarea></th>
-                            <td><textarea>10:30</textarea></td>
-                        </tr>
-                    </table>
-                </label>
-                <label>
-                    <table>
-                        <input type="checkbox">
-                        <tr>
-                            <th><textarea>林小姐</textarea></th>
-                            <th><textarea>4位</textarea></th>
-                            <th><textarea>0912345678</textarea></th>
-                            <td><textarea>10:30</textarea></td>
-                        </tr>
-                    </table>
-                </label>
-                <label>
-                    <table>
-                        <input type="checkbox">
-                        <tr>
-                            <th><textarea>林小姐</textarea></th>
-                            <th><textarea>4位</textarea></th>
-                            <th><textarea>0912345678</textarea></th>
-                            <td><textarea>10:30</textarea></td>
-                        </tr>
-                    </table>
-                </label>
-                <label>
-                    <table>
-                        <input type="checkbox">
-                        <tr>
-                            <th><textarea>林小姐</textarea></th>
-                            <th><textarea>4位</textarea></th>
-                            <th><textarea>0912345678</textarea></th>
-                            <td><textarea>10:30</textarea></td>
-                        </tr>
-                    </table>
-                </label>
-                <label>
-                    <table>
-                        <input type="checkbox">
-                        <tr>
-                            <th><textarea>林小姐</textarea></th>
-                            <th><textarea>4位</textarea></th>
-                            <th><textarea>0912345678</textarea></th>
-                            <td><textarea>10:30</textarea></td>
-                        </tr>
-                    </table>
-                </label>
-                <label>
-                    <table>
-                        <input type="checkbox">
-                        <tr>
-                            <th><textarea>林小姐</textarea></th>
-                            <th><textarea>4位</textarea></th>
-                            <th><textarea>0912345678</textarea></th>
-                            <td><textarea>10:30</textarea></td>
-                        </tr>
-                    </table>
-                </label>
-                <label>
-                    <table>
-                        <input type="checkbox">
-                        <tr>
-                            <th><textarea>林小姐</textarea></th>
-                            <th><textarea>4位</textarea></th>
-                            <th><textarea>0912345678</textarea></th>
-                            <td><textarea>10:30</textarea></td>
-                        </tr>
-                    </table>
-                </label>
-                <label>
-                    <table>
-                        <input type="checkbox">
-                        <tr>
-                            <th><textarea>林小姐</textarea></th>
-                            <th><textarea>4位</textarea></th>
-                            <th><textarea>0912345678</textarea></th>
-                            <td><textarea>10:30</textarea></td>
-                        </tr>
-                    </table>
-                </label>
-                <label>
-                    <table>
-                        <input type="checkbox">
-                        <tr>
-                            <th><textarea>林小姐</textarea></th>
-                            <th><textarea>4位</textarea></th>
-                            <th><textarea>0912345678</textarea></th>
-                            <td><textarea>10:30</textarea></td>
-                        </tr>
-                    </table>
-                </label>
-                
-                <button class="btn waves-effect waves-light right sche_btn" type="submit" id="action">
-                    完成
-                </button>
-                <button class="btn waves-effect waves-light right sche_btn" type="submit" id="action">
-                    新增
-                </button>
-			</div>
-		</div>
-	</div>
+					<tr>
+						<th style="padding-bottom: 10px; padding-top: 10px;">
+							<p><b>時間：</b>{{ book.booktime }}</p>
+						</th>
+					</tr>
 
-    <script src="../static/res/js/jquery.min.js"></script>
-    <script src="../static/res/js/bootstrap.min.js"></script>
-    <script src="../static/res/js/scripts.js"></script>
+                    <tr>
+						<th style="padding-bottom: 10px; padding-top: 10px;">
+							<p><b>備註：</b>{{ book.remark }}</p>
+						</th>
+					</tr>
+					
+					<tr style="float: right;">
+						<th style="padding-top: 10px;">
+							<a href="{% url 'reservation:index' %}" class="btn waves-effect waves-light right sche_btn">返回</a>
+<a href="{% url 'reservation:update' book.serno %}" class="btn waves-effect waves-light right sche_btn">修改</a>
+<a href="{% url 'reservation:delete' book.serno %}" class="btn btn-danger">刪除</a>
+						</th>
+					</tr>
+					
+				</table>
 
-    <script src="{% static '/res/js/jquery.min.js' %}"></script>
-    <script src="{% static '/res/js/bootstrap.min.js'%}"></script>
-    <script src="{% static '/res/js/scripts.js' %}"></script>
-  </body>
-</html>
+{% endblock %}
+

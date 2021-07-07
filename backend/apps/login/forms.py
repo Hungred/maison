@@ -2,7 +2,7 @@ from django import forms
 from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Employee_data
+from .models import *
 
 class DeleteConfirmForm(forms.Form):
     check = forms.BooleanField(label='你確定要刪除嗎？')
@@ -36,6 +36,13 @@ class RegisterForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2')
+
+    # 驗證email是否已註冊:輸入沒重複的email會噴錯 改用models.py的除錯
+    # def clean_email(self):
+    #     email = self.cleaned_data.get('email')
+    #     if User.objects.filter(email=email).exists():
+    #         raise forms.ValidationError("電子郵件已被註冊")
+    #     return self.cleaned_data
 
 
 

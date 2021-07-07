@@ -31,11 +31,11 @@ class Book(models.Model):
     bookadt = models.PositiveIntegerField('大人數量', default=0)
     bookchd = models.PositiveIntegerField('小孩數量', default=0)
     booktime = models.DateTimeField('時間')
-    remark = models.TextField('備注', null=True)
+    remark = models.TextField('備註', blank=True)
     systime = models.DateTimeField('系統時間', auto_now_add=True)
 
     def __str__(self):
-        return str(self.systime)+str(self.bookname)
+        return str(self.booktime)+str(self.bookname)
 
 
 class Wt(models.Model):

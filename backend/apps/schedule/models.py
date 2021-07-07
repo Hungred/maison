@@ -20,6 +20,10 @@ from ..login.models import Employee_data
 #         field_values.append(str(self.empname))
 #         return ' '.join(field_values)
 
+
+
+
+
 class Job(models.TextChoices):
     # enum = value, display
     KITCHEN = 'Kitchen', '廚房'
@@ -32,7 +36,7 @@ class Worksche(models.Model):
     serno = models.AutoField('流水號', primary_key=True)
     empid = models.ForeignKey(
         Employee_data,
-        on_delete=models.PROTECT,
+        on_delete=models.CASCADE, #應思考如何刪除員工但留下班表紀錄
         verbose_name='員工編號')
     workdate = models.DateField('出勤日期', auto_now=False, auto_now_add=False, default=date.today)
     workhour = models.CharField('出勤時', max_length=2)
@@ -48,3 +52,5 @@ class Worksche(models.Model):
         field_values.append(str(self.workdate))
         field_values.append(str(self.job))
         return ' '.join(field_values)
+
+

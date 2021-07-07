@@ -1,11 +1,5 @@
 {% load bootstrap4 %}
 
-<!--<form action="" method="POST">-->
-<!--    {% csrf_token %}-->
-<!--    {% bootstrap_form form %}-->
-<!--    <button type="submit" class="btn btn-outline-info float-right">送出</button>-->
-<!--    <a href="{% url 'customer:index' %}" class="btn btn-primary">返回</a>-->
-<!--</form>-->
 {% load widget_tweaks %}
 {% load static %}
     <script src="{% static 'customer/js/jquery.min.js' %}"></script>
@@ -27,11 +21,15 @@
       {% if field.help_text %}
         <small class="form-text text-muted">{{ field.help_text }}</small>
       {% endif %}
+      {% for error in field.errors %}
+      <span class="help-block">{{ error }}</span>
+      {% endfor %}
     </div>
   {% endfor %}
     <script>
       $(function () {
-        $("#id_booktime").datetimepicker();
+        $("#id_booktime").datetimepicker(
+        {step:30,});
       });
     </script>
      <button type="submit" class="btn btn-outline-info float-right">送出</button>

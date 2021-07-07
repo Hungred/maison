@@ -1,78 +1,75 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+{% extends 'share/layout.html' %}
 
-    <title>新增訂位</title>
-
-    <meta name="description" content="Source code generated using layoutit.com">
-    <meta name="author" content="LayoutIt!">
-    
-    <link href="../static/res/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../static/res/css/style.css" rel="stylesheet">
-    <link href='../static/res/fullcalendar-5.5.1 (1)/lib/main.css' rel='stylesheet' />
-    <script src='../static/res/fullcalendar-5.5.1 (1)/lib/main.js'></script>
-
-    {% load static %}
-    <link href="{% static '/res/css/bootstrap.min.css' %}" rel="stylesheet">
-    <link href="{% static '/res/css/style_manager.css' %}" rel="stylesheet">
-
-  </head>
-  {% load bootstrap4 %}
-  <body class="body_bg">
-
-    <div class="container-fluid">
-		<div class="row nav_bg">
-			<div class="col-md-6">
-				<h3 class="nav_logo">
-					MAISON DE OCÉAN
-				</h3>
-			</div>
-			<div class="col-md-6 nav_align">
-
-				<img alt="Bootstrap Image Preview" src="{% static '/images/logo.jpg' %} " class="rounded-circle nav_img">
-			</div>
-		</div>
-
-		<div class="row">
-			<div class="col-md-2 list_bar">
-				<h3 class="list_text">
-					<a  href="sche.html">班表</a>
-				</h3>
-                <h3 class="list_text">
-					訂位
-				</h3>
-                <h3 class="list_text">
-					<a  href="order.html">點餐</a>
-				</h3>
-                <h3 class="list_text">
-					顧客回饋
-				</h3>
-                <h3 class="list_text">
-					營收報表
-				</h3>
-			</div>
-
-			<div class="col-md-10 cal" >
-				<h3 class="page_title ">
-					新增訂位
-				</h3>
-
-                <button class="btn waves-effect waves-light right sche_btn" type="submit" id="action">
-                    新增
-                </button>
-			</div>
-		</div>
-	</div>
-
-    <script src="../static/res/js/jquery.min.js"></script>
-    <script src="../static/res/js/bootstrap.min.js"></script>
-    <script src="../static/res/js/scripts.js"></script>
-
+{% block main %}
+{% load static %}
+{% load bootstrap4 %}
+{% bootstrap_messages %}
     <script src="{% static '/res/js/jquery.min.js' %}"></script>
-    <script src="{% static '/res/js/bootstrap.min.js'%}"></script>
-    <script src="{% static '/res/js/scripts.js' %}"></script>
-  </body>
-</html>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js" integrity="sha256-FEqEelWI3WouFOo2VWP/uJfs1y8KJ++FLh2Lbqc8SJk=" crossorigin="anonymous"></script>
+
+    <!-- XDSoft DateTimePicker -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css" integrity="sha256-DOS9W6NR+NFe1fUhEE0PGKY/fubbUCnOfTje2JMDw3Y=" crossorigin="anonymous" />
+
+<h3 class="page_title" style="margin-bottom: 40px; text-align: center; margin-top: 20px;">
+	新增訂位
+
+</h3>
+
+{% load widget_tweaks %}
+<table style="background-color: #D3DAEF; margin: 0 auto; font-size: 24px; width: 400px; border: none;">
+	<form action="" method="POST">
+		{% csrf_token %}
+
+		<tr>
+			<th style="padding-bottom: 10px;">{{ form.non_field_errors }}
+				{{ form.bookname.label_tag }}
+				{{ form.bookname }}
+
+			</th>
+		</tr>
+
+		<tr>
+			<th style="padding-bottom: 10px; padding-top: 10px;">
+				{{ form.booktel.label_tag }}
+				{{ form.booktel }}
+			</th>
+		</tr>
+
+		<tr>
+			<th style="padding-bottom: 10px; padding-top: 10px;">
+				<p>{{ form.bookadt.label_tag }}{{ form.bookadt }}</p>
+				{{ form.bookadt.errors }}
+                <p>{{ form.bookchd.label_tag }}{{ form.bookchd }}</p>
+
+			</th>
+		</tr>
+
+		<tr>
+			<th style="padding-bottom: 10px;">
+
+				<p>{{ form.booktime.label_tag }}{{ form.booktime }}</p>
+				{{ form.booktime.errors }}
+			</th>
+		</tr>
+    <script>
+      $(function () {
+        $("#id_booktime").datetimepicker(
+        {step:30,});
+      });
+    </script>
+		<tr>
+			<th style="padding-bottom: 10px;">
+				{{ form.remark.label_tag }}
+				{{ form.remark }}
+			</th>
+		</tr>
+
+		<tr style="float: right;">
+			<th style="padding-top: 10px;">
+				<button type="submit" class="btn btn-primary">送出</button>
+				<a href="{% url 'reservation:index' %}" class="btn btn-primary">返回</a>
+			</th>
+		</tr></table>
+
+
+{% endblock %}
