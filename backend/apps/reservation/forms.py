@@ -13,7 +13,7 @@ class ReservationForm(ModelForm):
         today = datetime.today()
         bookdate = self.cleaned_data.get('booktime')  # 取得樣板所填寫的資料
         check_day = bookdate.replace(tzinfo=None)
-        if (check_day - today).days<=1:
+        if (check_day - today).days<1:
             raise forms.ValidationError('訂位時間不正確')
         if int(bookdate.minute)<30:
             bookdate=bookdate.replace(minute=00)

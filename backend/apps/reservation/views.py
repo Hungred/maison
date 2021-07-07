@@ -3,7 +3,8 @@ from django.http import HttpResponse, JsonResponse
 from django.template import context
 from .models import *
 from .forms import *
-from datetime import date
+import datetime as dt
+from datetime import datetime, date
 from django.utils.timezone import datetime, timedelta
 from django.contrib.auth.decorators import login_required, permission_required
 
@@ -21,25 +22,26 @@ def index(request):
     reservations = Book.objects.all()
 
     today = datetime.today()
-
+    today2 = dt.date.today()
     results = [{
-        'date': (today + timedelta(days=i)).date(),
+        'date': (today2 + timedelta(days=i)),
         'reservations': []
     } for i in range(5)]#先產出這四天的日期塞到陣列中
     recent_reservations = Book.objects\
         .filter(booktime__range=[today.date(), results[-1]['date']])#從資料庫抓出近四天的預約
-    print('result:', results)
 
-
+    print(results)
     for reservation in recent_reservations:
         check_day = reservation.booktime.replace(tzinfo=None)#把timezone拿掉
-        index = (check_day - today).days + 1
-        print('checkday:', check_day)
-        print('index:', index)
+        check_day= check_day.date()
+        # print(type(check_day.date()))
+        index = (check_day - today2).days
+        print('check:', check_day)
+        print('index', index)
         results[index]['reservations'].append(reservation)
 
     print('res1:', results)
-    del(results[4])
+    del(results[-1])
     print('res2:', results)
 
     context = {'reservations':reservations, 'recent_reservations': results}
