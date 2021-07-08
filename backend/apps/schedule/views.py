@@ -3,6 +3,7 @@ from django.http import HttpResponse, JsonResponse
 from django.template import context
 
 from .models import Worksche
+from ..login.models import Employee_data
 from .forms import WorkscheForm
 from django.contrib import messages
 from django.core import serializers
@@ -10,12 +11,50 @@ from django.forms.models import model_to_dict
 import json
 from .forms import DeleteConfirmForm
 from django.contrib.auth.decorators import login_required, permission_required
+from datetime import datetime, date
+from django.utils.timezone import datetime, timedelta
+import datetime as dt
+
+
 
 
 @login_required(login_url="login:index")
 def index(request):
     worksches = Worksche.objects.all()
-    return render(request, 'sche.html', {'worksches':worksches})
+    employees = Employee_data.objects.all()
+    today = datetime.today()
+
+    #抓出這一周的班表
+    date = dt.date.today()
+    start_week = date - dt.timedelta(date.weekday())
+    end_week = start_week + dt.timedelta(7)
+    recent_sche = Worksche.objects.filter(workdate__range=[start_week, end_week])
+
+    #定義要傳到前端的資料串
+    week_sche = [{
+        'weekday': (i),
+        'sche': []
+    } for i in range(1, 7)]#加上'empid' 想辦法分類對應班表到對應員工 以員工數為基準 所以weekday要改傳入方式
+
+    #產生員工列表
+    emplist=[]
+    emps = Employee_data.objects.filter()
+    for emp in emps:
+        emplist.append(emp)
+    print(emplist)
+
+    #將最近的班表分類到資料串
+    for worksche in recent_sche:
+        check_day = worksche.workdate.isoweekday()
+        for i in range(6):
+            if check_day == week_sche[i]['weekday']:
+                week_sche[i]['sche'].append(worksche)
+        print(week_sche)
+        # week_sche['sche'].append(worksche)
+
+
+    context = {'worksches': worksches, 'employees': employees, 'today': today, 'weeksche': week_sche, 'emplist':emplist}
+    return render(request, 'sche.html', context)
 
 def get_user(request):
     user = User.objects.all()

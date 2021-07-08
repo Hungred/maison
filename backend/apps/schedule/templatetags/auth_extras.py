@@ -8,3 +8,10 @@ def has_group(user, group_name):
     group = Group.objects.get(name=group_name)
     return True if group in user.groups.all() else False
 
+@register.filter(name='times')
+def times(number):
+    return range(1,number)
+
+@register.filter(name='to_string')
+def to_string(data):
+    return str(data)

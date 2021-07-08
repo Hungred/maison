@@ -130,15 +130,11 @@
 								  <tr>
 									<td>員工</td>
 								  </tr>
+								{% for emp in employees %}
 								  <tr>
-									<td>洪曉園</td>
+									<td>{{ emp.empid }} {{ emp.empname }}</td>
 								  </tr>
-								  <tr>
-									<td>王小豪</td>
-								  </tr>
-								  <tr>
-									<td>蔡皢影</td>
-								  </tr>
+								  {% endfor %}
 							</table>
 					</div>
 
@@ -153,14 +149,21 @@
 								<td>星期六</td>
 								<td>星期日</td>
 							</tr>
-							<tr>
-								<td></td>
-								<td></td>
-								<td>O</td>
-								<td></td>
-								<td>O</td>
-								<td></td>
-								<td></td>
+
+							{% for weeksche in weeksche %}
+							{% for sche in weeksche.sche %}
+
+
+							<tr>{% for i in 7|times %}
+								<td>
+									{% for emp in employees %}
+									{% if emp.empid|to_string == sche.empid|to_string %}
+									{% if weeksche.weekday == i %}
+									{{ sche.workhour }}
+									{% endif %}{% endif %}
+
+									{% endfor %}{% endfor %}{% endfor %}{% endfor %}</td>
+
 							</tr>
 							<tr>
 								<td></td>

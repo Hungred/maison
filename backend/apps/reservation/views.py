@@ -30,21 +30,21 @@ def index(request):
     recent_reservations = Book.objects\
         .filter(booktime__range=[today.date(), results[-1]['date']])#從資料庫抓出近四天的預約
 
-    print(results)
+    # print(results)
     for reservation in recent_reservations:
         check_day = reservation.booktime.replace(tzinfo=None)#把timezone拿掉
-        check_day= check_day.date()
+        check_day = check_day.date()
         # print(type(check_day.date()))
         index = (check_day - today2).days
         print('check:', check_day)
         print('index', index)
         results[index]['reservations'].append(reservation)
 
-    print('res1:', results)
-    del(results[-1])
-    print('res2:', results)
 
-    context = {'reservations':reservations, 'recent_reservations': results}
+    del(results[-1])
+    print('res2:', results[2])
+
+    context = {'reservations': reservations, 'recent_reservations': results}
     return render(request, 'reservation.html', context)
 
 def get_user(request):
