@@ -31,4 +31,13 @@ def checkout(request):
     return render(request, 'checkout.html')
 
 def product(request):
-    return render(request, 'product.html')
+    if request.method == "GET":
+        food = Food.objects.all()
+        ord = Ord.objects.all()
+
+        context = {
+            'food': food,
+            'ord': ord,
+
+        }
+        return render(request, 'product.html', context)
