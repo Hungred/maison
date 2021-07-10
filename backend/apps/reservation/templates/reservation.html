@@ -19,6 +19,20 @@
     <link href="{% static '/res/css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static '/res/css/style_manager.css' %}" rel="stylesheet">
 
+    <style>
+        tr{
+            padding-right: 60px;
+        }
+
+        th{
+            padding-right: 60px;
+        }
+
+        table{
+            font-size: 20px;
+        }
+    </style>
+
     <script>
 
 		document.addEventListener('DOMContentLoaded', function() {
@@ -62,7 +76,17 @@
 
 		opener.location.reload(true);
     	window.close();
-	  
+
+    	function show1() {
+            var show1 = document.getElementById('show1');
+            var hide1 = document.getElementById('hide1');
+            if (hide1.style.display === 'none') {
+                  hide1.style.display = 'block';
+            }
+            else {
+                  hide1.style.display = 'none';
+            }
+        }
 	</script>
 
   </head>
@@ -124,7 +148,9 @@
                             <div class="col-6">
                         {% endif %}
 
-                        <span class="res_date">{{ reservations.date }}</span>
+                        <span class="res_date" id="show1" onclick="show1()">{{ reservations.date }}<br></span>
+
+                        <div id="hide1" style="display: none;">
                         {% for reservation in reservations.reservations %}
                             <table>
                                 <tr>
@@ -133,6 +159,7 @@
                                     <td>{{ reservation.booktime }}</td>
                                 </tr>
                             </table>
+
                         {% empty %}
                             <table>
                                 <tr>
@@ -141,13 +168,14 @@
                                     <td></td>
                                 </tr>
                             </table>
-                        {% endfor %}
 
+                        {% endfor %}
+                        </div>
                         {% if forloop.counter|divisibleby:2 %}
                             </div>
                         {% endif %}
                     {% endfor %}
-                    </div>
+                </div>
                 <div id='calendar'></div>
 			</div>
 		</div>

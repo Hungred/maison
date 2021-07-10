@@ -57,7 +57,7 @@
     <!--網頁版的nav-->
     <div class="topMenu">
         <div id="navLogo">
-            <a href="product.html"><img src="~/img/logo.jpg" alt=""></a>
+            <a href="product.html"><img src="{% static 'ord/images/img/logo.jpg' %}" alt=""></a>
         </div>
         <p id="navTitleFont">Maison</p>
         <div class="navlinkGroup">
@@ -74,13 +74,12 @@
     <div class="bottomMenu">
         <div class="row">
             <a class="a-trigger col-sm-3" href="index.html"><i class="fas fa-store"></i>簡介</a>
-            <a class="a-trigger col-sm-3" href="product.html"><i class="fas fa-utensils"></i>菜單</a>
-            <a class="a-trigger col-sm-3" href="OrderDetail.html"><i class="fas fa-user"></i>訂單明細</a>
+            <a class="a-trigger col-sm-3" href="{% url 'order:product'  %}"><i class="fas fa-utensils"></i>菜單</a>
+            <a class="a-trigger col-sm-3" href="{% url 'order:orderdetail'  %}"><i class="fas fa-user"></i>訂單明細</a>
             <a class="navShopCart a-trigger col-sm-3" href="#"><i class="fas fa-shopping-cart"></i></a>
         </div>
     </div>
     <!--end  navbar-->
-
     <div class="wrapper">
         <!--start 購物車-->
         <div class="container-fluid">
@@ -91,7 +90,7 @@
                     <!--購物內容 1-->
                     <div class="shopCartItem">
                         <a href="#">
-                            <img src="~/img/food_menu/3.jpg" />
+                            <img src="{% static 'ord/images/img/food_menu/3.jpg' %}" />
                             <div>
                                 <p>油醋燻鮭魚</p>
                                 <span>$270</span>
@@ -104,7 +103,7 @@
                     <!--購物內容 2-->
                     <div class="shopCartItem">
                         <a href="#">
-                            <img src="~/img/food_menu/single_food_1.png" />
+                            <img src="{% static 'ord/images/img/food_menu/3.jpg' %}" />
                             <div>
                                 <p>天使巧克力蛋糕</p>
                                 <span>$120</span>
@@ -117,7 +116,7 @@
                     <!--購物內容 3-->
                     <div class="shopCartItem">
                         <a href="#">
-                            <img src="~/img/food_menu/single_food_1.png" />
+                            <img src="{% static 'ord/images/img/food_menu/3.jpg' %}" />
                             <div>
                                 <p>天使巧克力蛋糕</p>
                                 <span>$120</span>
@@ -131,7 +130,7 @@
 
                 <div class="shopCartFooter row">
                     <p>合計：$510</p>
-                    <a href="checkOut.html">立即結帳</a>
+                    <a href="{% url 'order:checkout'  %}">立即結帳</a>
                 </div>
             </div>
 
@@ -166,13 +165,13 @@
                             <div class="tab-pane show active single-member" id="Special" role="tabpanel" aria-labelledby="Special-tab">
                                 <div class="row">
                                     <div class="col-sm-6 col-lg-6">
+                                        {% for Food in  food %}
                                         <div class="single_food_item media">
                                             <img src="{% static 'ord/images/img/food_menu/3.jpg' %}"class="mr-3 seeFoodDetail" onclick="currentSlide(1)" alt="...">
                                             <div class="media-body align-self-center">
-                                                <h3>油醋燻鮭魚</h3>
-                                                <p>傳統義式油醋醬佐挪威頂級鮭魚片</p>
-                                                <h5>$270</h5>
-
+                                                <h3> {{ Food.foodname }} </h3>
+                                                <p>{{ Food.foodtag }}</p>
+                                                <h5>${{ Food.foodprice }}</h5>
                                                 <!--按鈕集合-->
                                                 <ul class="footItemIconGruop">
                                                     <li>
@@ -194,143 +193,7 @@
                                                 </ul>
                                             </div>
                                         </div>
-                                        <div class="single_food_item media">
-                                            <img src="~/img/food_menu/single_food_2.png" class="mr-3 seeFoodDetail" onclick="currentSlide(2)" alt="...">
-                                            <div class="media-body align-self-center">
-                                                <h3>Roasted Marrow</h3>
-                                                <p>They're wherein heaven seed hath nothing</p>
-                                                <h5>$40.00</h5>
-                                                <!--按鈕集合-->
-                                                <ul class="footItemIconGruop">
-                                                    <li>
-                                                        <!--連結到imagemodal-->
-                                                        <span class="seePicBtn seeFoodDetail" onclick="currentSlide(2)">
-                                                            <i class="fas fa-search"></i>
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <a class="addCartBtn" href="#">
-                                                            <i class="fas fa-cart-plus"></i>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="addLoveBtn" href="#">
-                                                            <i class="fas fa-heart"></i>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="single_food_item media">
-                                            <img src="~/img/food_menu/single_food_3.png" class="mr-3 seeFoodDetail" onclick="currentSlide(3)" alt="...">
-                                            <div class="media-body align-self-center">
-                                                <h3>Summer Cooking</h3>
-                                                <p>They're wherein heaven seed hath nothing</p>
-                                                <h5>$40.00</h5>
-                                                <!--按鈕集合-->
-                                                <ul class="footItemIconGruop">
-                                                    <li>
-                                                        <!--連結到imagemodal-->
-                                                        <span class="seePicBtn seeFoodDetail" onclick="currentSlide(3)">
-                                                            <i class="fas fa-search"></i>
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <a class="addCartBtn" href="#">
-                                                            <i class="fas fa-cart-plus"></i>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="addLoveBtn" href="#">
-                                                            <i class="fas fa-heart"></i>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-lg-6">
-                                        <div class="single_food_item media">
-                                            <img src="~/img/food_menu/single_food_4.png" class="mr-3 seeFoodDetail" onclick="currentSlide(4)" alt="...">
-                                            <div class="media-body align-self-center">
-                                                <h3>Easter Delight</h3>
-                                                <p>They're wherein heaven seed hath nothing</p>
-                                                <h5>$40.00</h5>
-                                                <!--按鈕集合-->
-                                                <ul class="footItemIconGruop">
-                                                    <li>
-                                                        <!--連結到imagemodal-->
-                                                        <span class="seePicBtn seeFoodDetail" onclick="currentSlide(4)">
-                                                            <i class="fas fa-search"></i>
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <a class="addCartBtn" href="#">
-                                                            <i class="fas fa-cart-plus"></i>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="addLoveBtn" href="#">
-                                                            <i class="fas fa-heart"></i>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="single_food_item media">
-                                            <img src="~/img/food_menu/single_food_5.png" class="mr-3 seeFoodDetail" onclick="currentSlide(5)" alt="...">
-                                            <div class="media-body align-self-center">
-                                                <h3>Tiener Schnitze</h3>
-                                                <p>They're wherein heaven seed hath nothing</p>
-                                                <h5>$40.00</h5>
-                                                <!--按鈕集合-->
-                                                <ul class="footItemIconGruop">
-                                                    <li>
-                                                        <!--連結到imagemodal-->
-                                                        <span class="seePicBtn seeFoodDetail" onclick="currentSlide(5)">
-                                                            <i class="fas fa-search"></i>
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <a class="addCartBtn" href="#">
-                                                            <i class="fas fa-cart-plus"></i>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="addLoveBtn" href="#">
-                                                            <i class="fas fa-heart"></i>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="single_food_item media">
-                                            <img src="~/img/food_menu/single_food_6.png" class="mr-3 seeFoodDetail" onclick="currentSlide(6)" alt="...">
-                                            <div class="media-body align-self-center">
-                                                <h3>Chicken Roast</h3>
-                                                <p>They're wherein heaven seed hath nothing</p>
-                                                <h5>$40.00</h5>
-                                                <!--按鈕集合-->
-                                                <ul class="footItemIconGruop">
-                                                    <li>
-                                                        <!--連結到imagemodal-->
-                                                        <span class="seePicBtn seeFoodDetail" onclick="currentSlide(6)">
-                                                            <i class="fas fa-search"></i>
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <a class="addCartBtn" href="#">
-                                                            <i class="fas fa-cart-plus"></i>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="addLoveBtn" href="#">
-                                                            <i class="fas fa-heart"></i>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
+                                        {% endfor %}
                                     </div>
                                 </div>
                             </div>
@@ -338,12 +201,14 @@
                             <div class="tab-pane single-member" id="Breakfast" role="tabpanel" aria-labelledby="Breakfast-tab">
                                 <div class="row">
                                     <div class="col-sm-6 col-lg-6">
+                                        {% for Food in  food %}
+                                        {% if Food.foodtype in "A" %}
                                         <div class="single_food_item media">
-                                            <img src="{% static 'ord/images/img/food_menu/single_food_4.jpg' %}"class="mr-3" alt="...">
+                                            <img src="{% static 'ord/images/img/food_menu/3.jpg' %}"class="mr-3" alt="...">
                                             <div class="media-body align-self-center">
-                                                <h3>Easter Delight</h3>
-                                                <p>They're wherein heaven seed hath nothing</p>
-                                                <h5>$40.00</h5>
+                                                <h3>{{ Food.foodname }}</h3>
+                                                <p>{{ Food.foodtag }}</p>
+                                                <h5>${{ Food.foodprice }}</h5>
                                                 <!--按鈕集合-->
                                                 <ul class="footItemIconGruop">
                                                     <li>
@@ -364,48 +229,8 @@
                                                 </ul>
                                             </div>
                                         </div>
-                                        <div class="single_food_item media">
-                                            <img src="~/img/food_menu/single_food_5.png" class="mr-3" alt="...">
-                                            <div class="media-body align-self-center">
-                                                <h3>Tiener Schnitze</h3>
-                                                <p>They're wherein heaven seed hath nothing</p>
-                                                <h5>$40.00</h5>
-                                            </div>
-                                        </div>
-                                        <div class="single_food_item media">
-                                            <img src="~/img/food_menu/single_food_6.png" class="mr-3" alt="...">
-                                            <div class="media-body align-self-center">
-                                                <h3>Chicken Roast</h3>
-                                                <p>They're wherein heaven seed hath nothing</p>
-                                                <h5>$40.00</h5>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-lg-6">
-                                        <div class="single_food_item media">
-                                            <img src="~/img/food_menu/single_food_1.png" class="mr-3" alt="...">
-                                            <div class="media-body align-self-center">
-                                                <h3>Pork Sandwich</h3>
-                                                <p>They're wherein heaven seed hath nothing</p>
-                                                <h5>$40.00</h5>
-                                            </div>
-                                        </div>
-                                        <div class="single_food_item media">
-                                            <img src="~/img/food_menu/single_food_2.png" class="mr-3" alt="...">
-                                            <div class="media-body align-self-center">
-                                                <h3>Roasted Marrow</h3>
-                                                <p>They're wherein heaven seed hath nothing</p>
-                                                <h5>$40.00</h5>
-                                            </div>
-                                        </div>
-                                        <div class="single_food_item media">
-                                            <img src="~/img/food_menu/single_food_3.png" class="mr-3" alt="...">
-                                            <div class="media-body align-self-center">
-                                                <h3>Summer Cooking</h3>
-                                                <p>They're wherein heaven seed hath nothing</p>
-                                                <h5>$40.00</h5>
-                                            </div>
-                                        </div>
+                                        {% endif %}
+                                        {% endfor %}
                                     </div>
                                 </div>
                             </div>
@@ -413,172 +238,112 @@
                             <div class="tab-pane single-member" id="Launch" role="tabpanel" aria-labelledby="Launch-tab">
                                 <div class="row">
                                     <div class="col-sm-6 col-lg-6">
+                                        {% for Food in  food %}
+                                        {% if Food.foodtype in "B" %}
                                         <div class="single_food_item media">
-                                            <img src="~/img/food_menu/single_food_1.png" class="mr-3" alt="...">
+                                            <img src="{% static 'ord/images/img/food_menu/3.jpg' %}" class="mr-3" alt="...">
                                             <div class="media-body align-self-center">
-                                                <h3>Pork Sandwich</h3>
-                                                <p>They're wherein heaven seed hath nothing</p>
-                                                <h5>$40.00</h5>
+                                                <h3>{{ Food.foodname }}</h3>
+                                                <p>{{ Food.foodtag }}</p>
+                                                <h5>${{ Food.foodprice }}</h5>
+                                                <!--按鈕集合-->
+                                                <ul class="footItemIconGruop">
+                                                    <li>
+                                                        <span class="seePicBtn">
+                                                            <i class="fas fa-search"></i>
+                                                        </span>
+                                                    </li>
+                                                    <li>
+                                                        <a class="addCartBtn" href="#">
+                                                            <i class="fas fa-cart-plus"></i>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="addLoveBtn" href="#">
+                                                            <i class="fas fa-heart"></i>
+                                                        </a>
+                                                    </li>
+                                                </ul>
                                             </div>
                                         </div>
-                                        <div class="single_food_item media">
-                                            <img src="~/img/food_menu/single_food_2.png" class="mr-3" alt="...">
-                                            <div class="media-body align-self-center">
-                                                <h3>Roasted Marrow</h3>
-                                                <p>They're wherein heaven seed hath nothing</p>
-                                                <h5>$40.00</h5>
-                                            </div>
-                                        </div>
-                                        <div class="single_food_item media">
-                                            <img src="~/img/food_menu/single_food_3.png" class="mr-3" alt="...">
-                                            <div class="media-body align-self-center">
-                                                <h3>Summer Cooking</h3>
-                                                <p>They're wherein heaven seed hath nothing</p>
-                                                <h5>$40.00</h5>
-                                            </div>
-                                        </div>
+                                        {% endif %}
+                                        {% endfor %}
                                     </div>
-                                    <div class="col-sm-6 col-lg-6">
-                                        <div class="single_food_item media">
-                                            <img src="~/img/food_menu/single_food_4.png" class="mr-3" alt="...">
-                                            <div class="media-body align-self-center">
-                                                <h3>Easter Delight</h3>
-                                                <p>They're wherein heaven seed hath nothing</p>
-                                                <h5>$40.00</h5>
-                                            </div>
-                                        </div>
-                                        <div class="single_food_item media">
-                                            <img src="~/img/food_menu/single_food_5.png" class="mr-3" alt="...">
-                                            <div class="media-body align-self-center">
-                                                <h3>Tiener Schnitze</h3>
-                                                <p>They're wherein heaven seed hath nothing</p>
-                                                <h5>$40.00</h5>
-                                            </div>
-                                        </div>
-                                        <div class="single_food_item media">
-                                            <img src="~/img/food_menu/single_food_6.png" class="mr-3" alt="...">
-                                            <div class="media-body align-self-center">
-                                                <h3>Chicken Roast</h3>
-                                                <p>They're wherein heaven seed hath nothing</p>
-                                                <h5>$40.00</h5>
-                                            </div>
-                                        </div>
-                                    </div>
-
                                 </div>
                             </div>
-                            <!-- Tab5 -->
+                            <!-- Tab4 -->
                             <div class="tab-pane single-member" id="Sneaks" role="tabpanel" aria-labelledby="Sneaks-tab">
                                 <div class="row">
                                     <div class="col-sm-6 col-lg-6">
+                                        {% for Food in  food %}
+                                        {% if Food.foodtype in "C" %}
                                         <div class="single_food_item media">
-                                            <img src="~/img/food_menu/single_food_1.png" class="mr-3" alt="...">
+                                            <img src="{% static 'ord/images/img/food_menu/3.jpg' %}" class="mr-3" alt="...">
                                             <div class="media-body align-self-center">
-                                                <h3>Pork Sandwich</h3>
-                                                <p>They're wherein heaven seed hath nothing</p>
-                                                <h5>$40.00</h5>
+                                                <h3>{{ Food.foodname }}</h3>
+                                                <p>{{ Food.foodtag }}</p>
+                                                <h5>${{ Food.foodprice }}</h5>
+                                                <!--按鈕集合-->
+                                                <ul class="footItemIconGruop">
+                                                    <li>
+                                                        <span class="seePicBtn">
+                                                            <i class="fas fa-search"></i>
+                                                        </span>
+                                                    </li>
+                                                    <li>
+                                                        <a class="addCartBtn" href="#">
+                                                            <i class="fas fa-cart-plus"></i>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="addLoveBtn" href="#">
+                                                            <i class="fas fa-heart"></i>
+                                                        </a>
+                                                    </li>
+                                                </ul>
                                             </div>
                                         </div>
-                                        <div class="single_food_item media">
-                                            <img src="~/img/food_menu/single_food_2.png" class="mr-3" alt="...">
-                                            <div class="media-body align-self-center">
-                                                <h3>Roasted Marrow</h3>
-                                                <p>They're wherein heaven seed hath nothing</p>
-                                                <h5>$40.00</h5>
-                                            </div>
-                                        </div>
-                                        <div class="single_food_item media">
-                                            <img src="~/img/food_menu/single_food_3.png" class="mr-3" alt="...">
-                                            <div class="media-body align-self-center">
-                                                <h3>Summer Cooking</h3>
-                                                <p>They're wherein heaven seed hath nothing</p>
-                                                <h5>$40.00</h5>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-lg-6">
-                                        <div class="single_food_item media">
-                                            <img src="~/img/food_menu/single_food_4.png" class="mr-3" alt="...">
-                                            <div class="media-body align-self-center">
-                                                <h3>Easter Delight</h3>
-                                                <p>They're wherein heaven seed hath nothing</p>
-                                                <h5>$40.00</h5>
-                                            </div>
-                                        </div>
-                                        <div class="single_food_item media">
-                                            <img src="~/img/food_menu/single_food_5.png" class="mr-3" alt="...">
-                                            <div class="media-body align-self-center">
-                                                <h3>Tiener Schnitze</h3>
-                                                <p>They're wherein heaven seed hath nothing</p>
-                                                <h5>$40.00</h5>
-                                            </div>
-                                        </div>
-                                        <div class="single_food_item media">
-                                            <img src="~/img/food_menu/single_food_6.png" class="mr-3" alt="...">
-                                            <div class="media-body align-self-center">
-                                                <h3>Chicken Roast</h3>
-                                                <p>They're wherein heaven seed hath nothing</p>
-                                                <h5>$40.00</h5>
-                                            </div>
-                                        </div>
+                                        {% endif %}
+                                        {% endfor %}
                                     </div>
                                 </div>
                             </div>
-                            <!-- Tab6 -->
+                            <!-- Tab5 -->
                             <div class="tab-pane single-member" id="tab6" role="tabpanel" aria-labelledby="Breakfast-tab">
                                 <div class="row">
                                     <div class="col-sm-6 col-lg-6">
+                                        {% for Food in  food %}
+                                        {% if Food.foodtype in "D" %}
                                         <div class="single_food_item media">
-                                            <img src="~/img/food_menu/single_food_4.png" class="mr-3" alt="...">
+                                            <img src="{% static 'ord/images/img/food_menu/3.jpg' %}" class="mr-3" alt="...">
                                             <div class="media-body align-self-center">
-                                                <h3>Easter Delight</h3>
-                                                <p>They're wherein heaven seed hath nothing</p>
-                                                <h5>$40.00</h5>
+                                                <h3>{{ Food.foodname }}</h3>
+                                                <p>{{ Food.foodtag }}</p>
+                                                <h5>${{ Food.foodprice }}</h5>
+                                                <!--按鈕集合-->
+                                                <ul class="footItemIconGruop">
+                                                    <li>
+                                                        <span class="seePicBtn">
+                                                            <i class="fas fa-search"></i>
+                                                        </span>
+                                                    </li>
+                                                    <li>
+                                                        <a class="addCartBtn" href="#">
+                                                            <i class="fas fa-cart-plus"></i>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="addLoveBtn" href="#">
+                                                            <i class="fas fa-heart"></i>
+                                                        </a>
+                                                    </li>
+                                                </ul>
                                             </div>
                                         </div>
-                                        <div class="single_food_item media">
-                                            <img src="~/img/food_menu/single_food_5.png" class="mr-3" alt="...">
-                                            <div class="media-body align-self-center">
-                                                <h3>Tiener Schnitze</h3>
-                                                <p>They're wherein heaven seed hath nothing</p>
-                                                <h5>$40.00</h5>
-                                            </div>
-                                        </div>
-                                        <div class="single_food_item media">
-                                            <img src="~/img/food_menu/single_food_6.png" class="mr-3" alt="...">
-                                            <div class="media-body align-self-center">
-                                                <h3>Chicken Roast</h3>
-                                                <p>They're wherein heaven seed hath nothing</p>
-                                                <h5>$40.00</h5>
-                                            </div>
-                                        </div>
+                                        {% endif %}
+                                        {% endfor %}
                                     </div>
-                                    <div class="col-sm-6 col-lg-6">
-                                        <div class="single_food_item media">
-                                            <img src="~/img/food_menu/single_food_1.png" class="mr-3" alt="...">
-                                            <div class="media-body align-self-center">
-                                                <h3>Pork Sandwich</h3>
-                                                <p>They're wherein heaven seed hath nothing</p>
-                                                <h5>$40.00</h5>
-                                            </div>
-                                        </div>
-                                        <div class="single_food_item media">
-                                            <img src="~/img/food_menu/single_food_2.png" class="mr-3" alt="...">
-                                            <div class="media-body align-self-center">
-                                                <h3>Roasted Marrow</h3>
-                                                <p>They're wherein heaven seed hath nothing</p>
-                                                <h5>$40.00</h5>
-                                            </div>
-                                        </div>
-                                        <div class="single_food_item media">
-                                            <img src="~/img/food_menu/single_food_3.png" class="mr-3" alt="...">
-                                            <div class="media-body align-self-center">
-                                                <h3>Summer Cooking</h3>
-                                                <p>They're wherein heaven seed hath nothing</p>
-                                                <h5>$40.00</h5>
-                                            </div>
-                                        </div>
-                                    </div>
+
                                 </div>
                             </div>
                         </div>
