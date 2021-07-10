@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="{% static '/ord/css/front/OrderDetail.css' %}">
 
 </head>
+
  {% load bootstrap4 %}
 <body>
 
@@ -47,8 +48,8 @@
     <div class="bottomMenu">
         <div class="row">
             <a class="a-trigger col-sm-3" href="index.html"><i class="fas fa-store"></i>簡介</a>
-            <a class="a-trigger col-sm-3" href="product.html"><i class="fas fa-utensils"></i>菜單</a>
-            <a class="a-trigger col-sm-3" href="OrderDetail.html"><i class="fas fa-user"></i>訂單明細</a>
+            <a class="a-trigger col-sm-3" href="{% url 'order:product'  %}"><i class="fas fa-utensils"></i>菜單</a>
+            <a class="a-trigger col-sm-3" href="{% url 'order:orderdetail'  %}"><i class="fas fa-user"></i>訂單明細</a>
             <a class="navShopCart a-trigger col-sm-3" href="#"><i class="fas fa-shopping-cart"></i></a>
         </div>
     </div>
@@ -129,18 +130,23 @@
                 <div class="row">
                     <div id="fristlist" class="tabcontent">
                         <!--start accordion-->
+
                         {% for Food in food %}
                         <div class="container">                            
 
                             <div class="accordion">
 
                                 <div class="accordion-item">
+                                    {% for Orderinfo in orderinfo %}
+                                    {% if Food.food%}
                                     <a  style="color:black"> {{ Food.foodname }} </a>
                                     <div class="content">
                                         <img src="https://images2.gamme.com.tw/news2/2019/71/95/q5yanaCdlaKYqA-150x110.jpeg" />
                                         <p>採窯烤披薩做法餅皮酥脆可口讓人愛不釋手。</p>
-                                        <p>數量1份 &nbsp;&nbsp;&nbsp;$<span>358</span>元</p>
+                                        <p>數量{{ Orderinfo.foodq }}份 &nbsp;&nbsp;&nbsp;$<span>358</span>元</p>
                                     </div>
+
+                                    {% endfor %}
                                 </div>
 
 <!--                                <div class="accordion-item">-->
@@ -162,7 +168,9 @@
                             </div>
 
                         </div>
-                        {% endfor %}
+                         {% endfor %}
+
+
                         <!--end accordion-->
                                                
                     </div>
@@ -178,7 +186,7 @@
 
                                     <tr>
                                         <th class="cn-col-3">{{ Ord.ordtime }}</th>
-                                        <th class="cn-col-3">訂單編號</th>
+                                        <th class="cn-col-3">訂單編號 : {{ Ord.serno }}</th>
                                         <!--<th>商品名稱</th>-->
                                         <th class="cn-col-3">狀態{{ Ord.ordcheck }}</th>
                                         <th class="cn-col-3">總金額</th>

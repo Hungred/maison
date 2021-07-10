@@ -57,7 +57,7 @@
     <!--網頁版的nav-->
     <div class="topMenu">
         <div id="navLogo">
-            <a href="product.html"><img src="~/img/logo.jpg" alt=""></a>
+            <a href="product.html"><img src="{% static 'ord/images/img/logo.jpg' %}" alt=""></a>
         </div>
         <p id="navTitleFont">Maison</p>
         <div class="navlinkGroup">
@@ -74,13 +74,12 @@
     <div class="bottomMenu">
         <div class="row">
             <a class="a-trigger col-sm-3" href="index.html"><i class="fas fa-store"></i>簡介</a>
-            <a class="a-trigger col-sm-3" href="product.html"><i class="fas fa-utensils"></i>菜單</a>
-            <a class="a-trigger col-sm-3" href="OrderDetail.html"><i class="fas fa-user"></i>訂單明細</a>
+            <a class="a-trigger col-sm-3" href="{% url 'order:product'  %}"><i class="fas fa-utensils"></i>菜單</a>
+            <a class="a-trigger col-sm-3" href="{% url 'order:orderdetail'  %}"><i class="fas fa-user"></i>訂單明細</a>
             <a class="navShopCart a-trigger col-sm-3" href="#"><i class="fas fa-shopping-cart"></i></a>
         </div>
     </div>
     <!--end  navbar-->
-
     <div class="wrapper">
         <!--start 購物車-->
         <div class="container-fluid">
@@ -91,7 +90,7 @@
                     <!--購物內容 1-->
                     <div class="shopCartItem">
                         <a href="#">
-                            <img src="~/img/food_menu/3.jpg" />
+                            <img src="{% static 'ord/images/img/food_menu/3.jpg' %}" />
                             <div>
                                 <p>油醋燻鮭魚</p>
                                 <span>$270</span>
@@ -104,7 +103,7 @@
                     <!--購物內容 2-->
                     <div class="shopCartItem">
                         <a href="#">
-                            <img src="~/img/food_menu/single_food_1.png" />
+                            <img src="{% static 'ord/images/img/food_menu/3.jpg' %}" />
                             <div>
                                 <p>天使巧克力蛋糕</p>
                                 <span>$120</span>
@@ -117,7 +116,7 @@
                     <!--購物內容 3-->
                     <div class="shopCartItem">
                         <a href="#">
-                            <img src="~/img/food_menu/single_food_1.png" />
+                            <img src="{% static 'ord/images/img/food_menu/3.jpg' %}" />
                             <div>
                                 <p>天使巧克力蛋糕</p>
                                 <span>$120</span>
@@ -131,7 +130,7 @@
 
                 <div class="shopCartFooter row">
                     <p>合計：$510</p>
-                    <a href="checkOut.html">立即結帳</a>
+                    <a href="{% url 'order:checkout'  %}">立即結帳</a>
                 </div>
             </div>
 
@@ -247,6 +246,24 @@
                                                 <h3>{{ Food.foodname }}</h3>
                                                 <p>{{ Food.foodtag }}</p>
                                                 <h5>${{ Food.foodprice }}</h5>
+                                                <!--按鈕集合-->
+                                                <ul class="footItemIconGruop">
+                                                    <li>
+                                                        <span class="seePicBtn">
+                                                            <i class="fas fa-search"></i>
+                                                        </span>
+                                                    </li>
+                                                    <li>
+                                                        <a class="addCartBtn" href="#">
+                                                            <i class="fas fa-cart-plus"></i>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="addLoveBtn" href="#">
+                                                            <i class="fas fa-heart"></i>
+                                                        </a>
+                                                    </li>
+                                                </ul>
                                             </div>
                                         </div>
                                         {% endif %}
@@ -266,6 +283,24 @@
                                                 <h3>{{ Food.foodname }}</h3>
                                                 <p>{{ Food.foodtag }}</p>
                                                 <h5>${{ Food.foodprice }}</h5>
+                                                <!--按鈕集合-->
+                                                <ul class="footItemIconGruop">
+                                                    <li>
+                                                        <span class="seePicBtn">
+                                                            <i class="fas fa-search"></i>
+                                                        </span>
+                                                    </li>
+                                                    <li>
+                                                        <a class="addCartBtn" href="#">
+                                                            <i class="fas fa-cart-plus"></i>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="addLoveBtn" href="#">
+                                                            <i class="fas fa-heart"></i>
+                                                        </a>
+                                                    </li>
+                                                </ul>
                                             </div>
                                         </div>
                                         {% endif %}
@@ -285,6 +320,24 @@
                                                 <h3>{{ Food.foodname }}</h3>
                                                 <p>{{ Food.foodtag }}</p>
                                                 <h5>${{ Food.foodprice }}</h5>
+                                                <!--按鈕集合-->
+                                                <ul class="footItemIconGruop">
+                                                    <li>
+                                                        <span class="seePicBtn">
+                                                            <i class="fas fa-search"></i>
+                                                        </span>
+                                                    </li>
+                                                    <li>
+                                                        <a class="addCartBtn" href="#">
+                                                            <i class="fas fa-cart-plus"></i>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="addLoveBtn" href="#">
+                                                            <i class="fas fa-heart"></i>
+                                                        </a>
+                                                    </li>
+                                                </ul>
                                             </div>
                                         </div>
                                         {% endif %}
