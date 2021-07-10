@@ -35,7 +35,7 @@
 	}
 
 	p>input{
-		width: 240px;
+		width: 500px;
 	}
 </style>
 
@@ -52,7 +52,7 @@
 		{% csrf_token %}
 		<tr>
 			<th style="padding-bottom: 10px;">{{ form.non_field_errors }}
-				{{ form.bookname.label_tag }}
+				{{ form.bookname.label_tag }}<br>
 				{{ form.bookname }}
 				{{ form.bookname.errors }}
 			</th>
@@ -60,7 +60,7 @@
 
 		<tr>
 			<th style="padding-bottom: 10px; padding-top: 10px;">
-				{{ form.booktel.label_tag }}
+				{{ form.booktel.label_tag }}<br>
 				{{ form.booktel }}
 				{{ form.booktel.errors }}
 			</th>
@@ -68,8 +68,8 @@
 
 		<tr>
 			<th style="padding-bottom: 10px; padding-top: 10px;">
-				<p>{{ form.bookadt.label_tag }}{{ form.bookadt }}</p>
-                <p>{{ form.bookchd.label_tag }}{{ form.bookchd }}</p>
+				<p>{{ form.bookadt.label_tag }}<br>{{ form.bookadt }}</p>
+                {{ form.bookchd.label_tag }}<br>{{ form.bookchd }}
 				{{ form.bookadt.errors }}
 				{{ form.bookchd.errors }}
 			</th>
@@ -77,15 +77,14 @@
 
 		<tr>
 			<th style="padding-bottom: 10px;">
-
-				<p>{{ form.booktime.label_tag }}{{ form.booktime }}</p>
+				{{ form.booktime.label_tag }}<br>{{ form.booktime }}
 				{{ form.booktime.errors }}
 			</th>
 		</tr>
 
 		<tr>
 			<th style="padding-bottom: 10px;">
-				{{ form.remark.label_tag }}
+				{{ form.remark.label_tag }}<br>
 				{{ form.remark }}
 				{{ form.remark.errors }}
 			</th>
@@ -96,7 +95,8 @@
 				<button type="submit" class="btn btn-primary">送出</button>
 				<a href="{% url 'reservation:index' %}" class="btn btn-primary">返回</a>
 			</th>
-		</tr></table>
+		</tr>
+</table>
 
 
 {% endblock %}
