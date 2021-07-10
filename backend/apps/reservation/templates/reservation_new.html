@@ -4,6 +4,44 @@
 {% load static %}
 {% load bootstrap4 %}
 {% bootstrap_messages %}
+
+<style>
+	select{
+		width: 500px;
+		height: 45px;
+		border-radius: .25rem;
+		border: 1px solid rgba(0,0,0,.15);
+	}
+
+	select:focus{
+		background-color: #fff;
+		border-color: #5cb3fd;
+		outline: 0;
+	}
+
+	input{
+		-ms-touch-action: manipulation;
+      	touch-action: manipulation;
+		width: 500px;
+		background-clip: padding-box;
+		border: 1px solid rgba(0,0,0,.15);
+		border-radius: .25rem;
+		-webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+		transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+
+	}
+
+	input:focus{
+		background-color: #fff;
+		border-color: #5cb3fd;
+		outline: 0;
+	}
+
+	p>input{
+		width: 500px;
+	}
+</style>
+
     <script src="{% static '/res/js/jquery.min.js' %}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js" integrity="sha256-FEqEelWI3WouFOo2VWP/uJfs1y8KJ++FLh2Lbqc8SJk=" crossorigin="anonymous"></script>
 
@@ -22,7 +60,7 @@
 
 		<tr>
 			<th style="padding-bottom: 10px;">{{ form.non_field_errors }}
-				{{ form.bookname.label_tag }}
+				{{ form.bookname.label_tag }}<br>
 				{{ form.bookname }}
 
 			</th>
@@ -30,16 +68,16 @@
 
 		<tr>
 			<th style="padding-bottom: 10px; padding-top: 10px;">
-				{{ form.booktel.label_tag }}
+				{{ form.booktel.label_tag }}<br>
 				{{ form.booktel }}
 			</th>
 		</tr>
 
 		<tr>
 			<th style="padding-bottom: 10px; padding-top: 10px;">
-				<p>{{ form.bookadt.label_tag }}{{ form.bookadt }}</p>
+				<p>{{ form.bookadt.label_tag }}<br>{{ form.bookadt }}</p>
 				{{ form.bookadt.errors }}
-                <p>{{ form.bookchd.label_tag }}{{ form.bookchd }}</p>
+                <p>{{ form.bookchd.label_tag }}<br>{{ form.bookchd }}</p>
 
 			</th>
 		</tr>
@@ -47,7 +85,7 @@
 		<tr>
 			<th style="padding-bottom: 10px;">
 
-				<p>{{ form.booktime.label_tag }}{{ form.booktime }}</p>
+				<p>{{ form.booktime.label_tag }}<br>{{ form.booktime }}</p>
 				{{ form.booktime.errors }}
 			</th>
 		</tr>
@@ -69,7 +107,8 @@
 				<button type="submit" class="btn btn-primary">送出</button>
 				<a href="{% url 'reservation:index' %}" class="btn btn-primary">返回</a>
 			</th>
-		</tr></table>
+		</tr>
+</table>
 
 
 {% endblock %}
