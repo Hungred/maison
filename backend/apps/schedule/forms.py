@@ -24,6 +24,9 @@ class WorkscheForm(ModelForm):
         offmin = self.cleaned_data.get('offmin')
         if int(offmin) not in possible_min:
             raise forms.ValidationError('非可能的退勤時間')
+
+        if int(workhour) > int(offhour):
+            raise forms.ValidationError('退勤時間必須晚於出勤時間')
         return
 
 

@@ -32,25 +32,26 @@ def index(request):
 
     #定義要傳到前端的資料串
     week_sche = [{
+        'emp': [],
         'weekday': (i),
         'sche': []
-    } for i in range(1, 8)]#加上'empid' 想辦法分類對應班表到對應員工 以員工數為基準 所以weekday要改傳入方式
-    print(week_sche)
+    } for i in range(1, 7)]#加上'empid' 想辦法分類對應班表到對應員工 以員工數為基準 所以weekday要改傳入方式
+
     #產生員工列表
     emplist=[]
     emps = Employee_data.objects.filter()
-    for emp in emps:
-        emplist.append(emp)
-
+    for i in range(len(emps)):
+        for emp in emps:
+            week_sche[i]['emp'].append(emp.empid)
+    print(week_sche)
 
     #將最近的班表分類到資料串
     for worksche in recent_sche:
         check_day = worksche.workdate.isoweekday()
-        for i in range(7):
+        for i in range(6):
             if check_day == week_sche[i]['weekday']:
                 week_sche[i]['sche'].append(worksche)
 
-    print(week_sche)
         # week_sche['sche'].append(worksche)
 
 
@@ -101,3 +102,21 @@ def delsche(request, pk):
 
         return redirect('schedule:index')
     return render(request, 'sche_del.html', {'form': form})
+
+
+for emp in employees
+							for weeksche in weeksche
+							for sche in weeksche.sche
+
+
+							 for i in 8|times
+								<td>
+
+									if emp.empid|to_string == sche.empid|to_cut_string
+									if weeksche.weekday == i
+									{{ sche.workhour }}:{{ sche.workmin }}~{{ sche.offhour }}:{{ sche.offmin }}
+									{% endif %}{% endif %}
+
+									</td>{% endfor %}{% endfor %}{% endfor %}{% endfor %}
+
+							</tr>

@@ -15,3 +15,12 @@ def times(number):
 @register.filter(name='to_string')
 def to_string(data):
     return str(data)
+
+@register.filter(name='to_cut_string')
+def to_cut_string(data):
+    cut = str(data)
+    return cut[0:4]
+
+@register.filter(name='print')
+def print(data):
+    return print(data)

@@ -71,6 +71,7 @@
     	}
 		.sche_table td{
 			width:100px;
+			border: 1px solid #333;
 		}
 	</style>
     <div class="container-fluid">
@@ -125,22 +126,12 @@
 				</h3>
 				<div id='calendar'></div>
 				<div class="row" style="height:300px;margin-top:20px;">
-					<div class="col-md-4 " >
-							<table>
-								  <tr>
-									<td>員工</td>
-								  </tr>
-								{% for emp in employees %}
-								  <tr>
-									<td>{{ emp.empid }} {{ emp.empname }}</td>
-								  </tr>
-								  {% endfor %}
-							</table>
-					</div>
+
 
 					<div class="col-md-8 " >
-						<table class=" sche_table">
+						<table class="sche_table">
 							<tr>
+								<td>員工</td>
 								<td>星期一</td>
 								<td>星期二</td>
 								<td>星期三</td>
@@ -149,40 +140,28 @@
 								<td>星期六</td>
 								<td>星期日</td>
 							</tr>
+							{% for emp in employees %}
+								  <tr>
+									<td>{{ emp.empid }} {{ emp.empname }}</td>
+									  {% for i in 8|times %}
+									  <td>
 
-							{% for weeksche in weeksche %}
-							{% for sche in weeksche.sche %}
+										  {% for weeksche in weeksche %}
+									{% for sche in weeksche.sche %}
+										  {% if emp.empid|to_string == sche.empid|to_cut_string %}
+												{% if weeksche.weekday == i %}
+
+												{{ sche.workhour }}:{{ sche.workmin }}~{{ sche.offhour }}:{{ sche.offmin }}
+												{% endif %}
+												{% endif %}
+									  		{% endfor %}
+										  {% endfor %}</td>{% endfor %}
+
+								  </tr>{% endfor %}
 
 
-							<tr>{% for i in 7|times %}
-								<td>
-									{% for emp in employees %}
-									{% if emp.empid|to_string == sche.empid|to_string %}
-									{% if weeksche.weekday == i %}
-									{{ sche.workhour }}
-									{% endif %}{% endif %}
 
-									{% endfor %}{% endfor %}{% endfor %}{% endfor %}</td>
 
-							</tr>
-							<tr>
-								<td></td>
-								<td></td>
-								<td>O</td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td>O</td>
-							</tr>
-							<tr>
-								<td></td>
-								<td></td>
-								<td>O</td>
-								<td></td>
-								<td>O</td>
-								<td>O</td>
-								<td></td>
-							</tr>
 						</table>
 					<div>
 				</div>
