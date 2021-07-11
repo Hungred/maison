@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+{% load bootstrap4 %}
+  {% load auth_extras %}
+  {% load date_calculating %}
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -77,22 +80,22 @@
 		opener.location.reload(true);
     	window.close();
 
-    	function show1() {
-            var show1 = document.getElementById('show1');
-            var hide1 = document.getElementById('hide1');
-            if (hide1.style.display === 'none') {
-                  hide1.style.display = 'block';
+{% for i in 5|times %}
+    	function show{{i}}() {
+            var show{{i}} = document.getElementById('show{{i}}');
+            var hide{{i}} = document.getElementById('hide{{i}}');
+            if (hide{{i}}.style.display === 'none') {
+                  hide{{i}}.style.display = 'block';
             }
             else {
                   hide1.style.display = 'none';
             }
         }
+        {% endfor %}
 	</script>
 
   </head>
-  {% load bootstrap4 %}
-  {% load auth_extras %}
-  {% load date_calculating %}
+
 
   <body class="body_bg">
 
@@ -148,9 +151,9 @@
                             <div class="col-6">
                         {% endif %}
 
-                        <span class="res_date" id="show1" onclick="show1()">{{ reservations.date }}<br></span>
+                        <span class="res_date" id="show{{ forloop.counter }}" onclick="show{{ forloop.counter }}()">{{ reservations.date }}<br></span>
 
-                        <div id="hide1" style="display: none;">
+                        <div id="hide{{ forloop.counter }}" style="display: none;">
                         {% for reservation in reservations.reservations %}
                             <table>
                                 <tr>
