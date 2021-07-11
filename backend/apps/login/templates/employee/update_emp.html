@@ -45,9 +45,10 @@
 	<form action="" method="POST">
 	{% csrf_token %}
 	<tr>
-		<th style="padding-bottom: 10px;">
+		<th style="padding-bottom: 10px;">{{ form.non_field_errors }}
 			{{ form.user.label_tag }}
 			{{ form.user }}
+			{{ form.user.errors }}
 		</th>
 	</tr>
 
@@ -55,6 +56,7 @@
 		<th style="padding-bottom: 10px; padding-top: 10px;">
 			{{ form.empid.label_tag }}
 			{{ form.empid }}
+			{{ form.empid.errors }}
 		</th>
 	</tr>
 
@@ -62,6 +64,7 @@
 		<th style="padding-bottom: 10px; padding-top: 10px;">
 			{{ form.empname.label_tag }}
 			{{ form.empname }}
+			{{ form.empname.errors }}
 		</th>
 	</tr>
 
@@ -69,6 +72,7 @@
 		<th style="padding-bottom: 10px; padding-top: 10px;">
 			{{ form.phonenum.label_tag }}
 			{{ form.phonenum }}
+			{{ form.phonenum.errors }}
 		</th>
 	</tr>
 
@@ -76,6 +80,7 @@
 		<th style="padding-bottom: 10px; padding-top: 10px;">
 			{{ form.position.label_tag }}
 			{{ form.position }}
+			{{ form.position.errors }}
 		</th>
 	</tr>
 	
@@ -83,6 +88,7 @@
 		<th style="padding-bottom: 10px; padding-top: 10px;">
 			{{ form.job.label_tag }}
 			{{ form.job }}
+			{{ form.job.errors }}
 		</th>
 	</tr>
 

@@ -62,6 +62,7 @@
 			<th style="padding-bottom: 10px;">{{ form.non_field_errors }}
 				{{ form.bookname.label_tag }}<br>
 				{{ form.bookname }}
+				{{ form.bookname.errors }}
 
 			</th>
 		</tr>
@@ -70,6 +71,7 @@
 			<th style="padding-bottom: 10px; padding-top: 10px;">
 				{{ form.booktel.label_tag }}<br>
 				{{ form.booktel }}
+				{{ form.booktel.errors }}
 			</th>
 		</tr>
 
@@ -78,6 +80,7 @@
 				<p>{{ form.bookadt.label_tag }}<br>{{ form.bookadt }}</p>
 				{{ form.bookadt.errors }}
                 <p>{{ form.bookchd.label_tag }}<br>{{ form.bookchd }}</p>
+				{{ form.bookchd.errors }}
 
 			</th>
 		</tr>
@@ -99,6 +102,7 @@
 			<th style="padding-bottom: 10px;">
 				{{ form.remark.label_tag }}
 				{{ form.remark }}
+				{{ form.remark.errors }}
 			</th>
 		</tr>
 
