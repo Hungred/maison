@@ -11,3 +11,4 @@ def has_group(user, group_name):
 @register.filter(name='times')
 def times(number):
     return range(1,number)
+

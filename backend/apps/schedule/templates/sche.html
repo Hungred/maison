@@ -30,14 +30,14 @@
 			headerToolbar: {
 			  left: 'prev,next today',
 			  center: 'title',
-			  right: 'dayGridMonth,timeGridWeek,timeGridDay'
+			  right: 'dayGridMonth'
 			},
 
 			navLinks: true, // can click day/week names to navigate views
 			selectable: true,
 			selectMirror: true,
 			select: function(arg) {
-			  window.open("sche_modify", "修改班表");
+
 			},
 			eventClick: function(info) {
 				 info.jsEvent.preventDefault();
@@ -63,6 +63,17 @@
 		opener.location.reload(true);
     	window.close();
 
+    	function show() {
+            var show = document.getElementById('show');
+            var hide = document.getElementById('hide');
+            if (hide.style.display === 'none') {
+                  hide.style.display = 'block';
+            }
+            else {
+                  hide.style.display = 'none';
+            }
+        }
+
  	</script>
 	<style>
     	.sche_table{
@@ -72,6 +83,7 @@
 		.sche_table td{
 			width:100px;
 			border: 1px solid #333;
+			word-break: break-all;
 		}
 	</style>
     <div class="container-fluid">
@@ -122,23 +134,24 @@
 			<div class="col-md-10 cal" >
 				{% bootstrap_messages %}
 				<h3 class="page_title">
-					班表
+					班表<a href="{% url 'schedule:add' %}" type="submit" class="btn btn-primary" style="float: right;">新增班表</a>
 				</h3>
-				<div id='calendar'></div>
+
 				<div class="row" style="height:300px;margin-top:20px;">
-
-
+					<span class="" id="show" onclick="show()"><button type="submit" class="btn btn-primary">本週班表</button></span><br>
 					<div class="col-md-8 " >
+						<div id="hide{{ forloop.counter }}" style="display: none;">
 						<table class="sche_table">
+
 							<tr>
 								<td>員工</td>
-								<td>星期一</td>
-								<td>星期二</td>
-								<td>星期三</td>
-								<td>星期四</td>
-								<td>星期五</td>
-								<td>星期六</td>
-								<td>星期日</td>
+								<td>{{start|date:'m月d日'}}<br>星期一</td>
+								<td>{{ start|weekdate:1|date:'m月d日' }}<br>星期二</td>
+								<td>{{ start|weekdate:2|date:'m月d日' }}<br>星期三</td>
+								<td>{{ start|weekdate:3|date:'m月d日' }}<br>星期四</td>
+								<td>{{ start|weekdate:4|date:'m月d日' }}<br>星期五</td>
+								<td>{{ start|weekdate:5|date:'m月d日' }}<br>星期六</td>
+								<td>{{ start|weekdate:6|date:'m月d日' }}<br>星期日</td>
 							</tr>
 							{% for emp in employees %}
 								  <tr>
@@ -158,15 +171,13 @@
 										  {% endfor %}</td>{% endfor %}
 
 								  </tr>{% endfor %}
-
-
-
-
 						</table>
-					<div>
-				</div>
+
+						</div>
 			</div>
 		</div>
+
+				<div id='calendar'></div>
 	</div>
 
     <script src="{% static 'sche/js/jquery.min.js' %}"></script>

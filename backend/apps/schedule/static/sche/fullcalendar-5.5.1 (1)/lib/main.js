@@ -12447,6 +12447,7 @@ var FullCalendar = (function (exports) {
                 monthMode: true,
                 fixedWeekCount: true,
             },
+
         },
     });
 

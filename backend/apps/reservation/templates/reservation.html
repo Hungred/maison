@@ -52,7 +52,7 @@
 			selectable: true,
 			selectMirror: true,
 			select: function(arg) {
-			  window.open("reservation_add", "新增訂位");
+			  
 			},
 			eventClick: function(info) {
 				 info.jsEvent.preventDefault();
@@ -178,15 +178,14 @@
                             </div>
                         {% endif %}
                     {% endfor %}
+                    <a href="{% url 'reservation:add' %}" type="submit" class="btn btn-primary" style="float: left;">新增訂位</a><br>
                 </div>
                 <div id='calendar'></div>
 			</div>
 		</div>
 	</div>
 
-<!--    <script src="../static/res/js/jquery.min.js"></script>-->
-<!--    <script src="../static/res/js/bootstrap.min.js"></script>-->
-<!--    <script src="../static/res/js/scripts.js"></script>-->
+
 
     <script src="{% static '/res/js/jquery.min.js' %}"></script>
     <script src="{% static '/res/js/bootstrap.min.js'%}"></script>

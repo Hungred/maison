@@ -1,6 +1,6 @@
 from django import template
 from django.contrib.auth.models import Group
-
+import datetime as dt
 register = template.Library()
 
 @register.filter(name='has_group')
@@ -24,3 +24,7 @@ def to_cut_string(data):
 @register.filter(name='print')
 def print(data):
     return print(data)
+
+@register.filter(name='weekdate')
+def weekdate(date, days):
+    return date + dt.timedelta(days)

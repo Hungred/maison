@@ -35,12 +35,6 @@ def index(request):
         'weekday': (i),
         'sche': []
     } for i in range(1, 8)]#加上'empid' 想辦法分類對應班表到對應員工 以員工數為基準 所以weekday要改傳入方式
-    print(week_sche)
-    #產生員工列表
-    emplist=[]
-    emps = Employee_data.objects.filter()
-    for emp in emps:
-        emplist.append(emp)
 
 
     #將最近的班表分類到資料串
@@ -50,11 +44,13 @@ def index(request):
             if check_day == week_sche[i]['weekday']:
                 week_sche[i]['sche'].append(worksche)
 
-    print(week_sche)
+
         # week_sche['sche'].append(worksche)
 
 
-    context = {'worksches': worksches, 'employees': employees, 'today': today, 'weeksche': week_sche, 'emplist':emplist}
+    context = {'worksches': worksches, 'employees': employees,
+               'today': today, 'weeksche': week_sche,
+               'start': start_week}
     return render(request, 'sche.html', context)
 
 def get_user(request):

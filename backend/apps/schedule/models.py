@@ -38,7 +38,7 @@ class Worksche(models.Model):
         Employee_data,
         on_delete=models.CASCADE, #應思考如何刪除員工但留下班表紀錄
         verbose_name='員工編號')
-    workdate = models.DateField('出勤日期', auto_now=False, auto_now_add=False, default=date.today)
+    workdate = models.DateField('出勤日期', auto_now=False, auto_now_add=False)
     workhour = models.CharField('出勤時', max_length=2)
     workmin = models.CharField('出勤分', max_length=2)
     offhour = models.CharField('退勤時', max_length=2)
