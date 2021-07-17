@@ -44,7 +44,7 @@ def index(request):
     del(results[-1])
     print('res2:', results[2])
 
-    context = {'reservations': reservations, 'recent_reservations': results}
+    context = {'reservations': reservations, 'recent_reservations': results, 'today': today2}
     return render(request, 'reservation.html', context)
 
 def get_user(request):
