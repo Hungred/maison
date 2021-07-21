@@ -29,9 +29,9 @@
     <!--網頁版的nav-->
     <div class="topMenu">
         <div id="navLogo">
-            <a href="masterPage.html"><img src="images/img/logo.jpg" alt=""></a>
+            <a href="product.html" ><img src="{% static 'ord/images/img/logo.jpg' %}" alt=""></a>
         </div>
-        <p id="navTitleFont">Restaurant</p>
+         <p id="navTitleFont" style="color:#1A1344;">Maison</p>
         <div class="navlinkGroup">
             <a class="a-trigger" href="" id="navTitle">&nbsp;</a>
             <a class="navShopCart a-trigger" href="#"><i class="fas fa-shopping-cart"></i></a>
@@ -47,10 +47,10 @@
     <!--行動裝置的nav-->
     <div class="bottomMenu">
         <div class="row">
-            <a class="a-trigger col-sm-3" href="index.html"><i class="fas fa-store"></i>簡介</a>
-            <a class="a-trigger col-sm-3" href="{% url 'order:product'  %}"><i class="fas fa-utensils"></i>菜單</a>
-            <a class="a-trigger col-sm-3" href="{% url 'order:orderdetail'  %}"><i class="fas fa-user"></i>訂單明細</a>
-            <a class="navShopCart a-trigger col-sm-3" href="#"><i class="fas fa-shopping-cart"></i></a>
+            <a class="a-trigger col-sm-3" id="BackTop"  style="color:#1A1344;"><i class="fa-solid fa-angles-up"></i>回到頂部</a>
+            <a class="a-trigger col-sm-3" href="{% url 'order:product'  %}"   style="color:#1A1344;"><i class="fas fa-utensils"></i>菜單</a>
+            <a class="a-trigger col-sm-3" href="{% url 'order:orderdetail'  %}"   style="color:#1A1344;"><i class="fas fa-user"></i>訂單明細</a>
+            <a class="navShopCart a-trigger col-sm-3" href="#"  style="color:#1A1344;"><i class="fas fa-shopping-cart"></i></a>
         </div>
     </div>
     <!--end  navbar-->
@@ -130,7 +130,7 @@
                 <div class="row">
                     <div id="fristlist" class="tabcontent">
                         <!--start accordion-->
-                        {% for Ord in ord %}
+
                         {% for Orderinfo in orderinfo %}
 
 
@@ -169,7 +169,7 @@
 
                         </div>
 
-                        {% endfor %}
+
                          {% endfor %}
 
 
@@ -358,7 +358,18 @@
         //自動打開 第一頁分頁的Lab
         document.getElementById("defaultOpen").click();
         
-        
+        $(function(){
+            $('#BackTop').click(function(){
+                $('html,body').animate({scrollTop:0}, 333);
+            });
+            $(window).scroll(function() {
+                if ( $(this).scrollTop() > 300 ){
+                    $('#BackTop').fadeIn(222);
+                } else {
+                    $('#BackTop').stop().fadeOut(222);
+                }
+            }).scroll();
+        });
 
     </script>
 
