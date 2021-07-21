@@ -143,16 +143,22 @@
 						<div id="hide{{ forloop.counter }}" style="display: none;">
 						<table class="sche_table">
 
-							<tr>
-								<td>員工</td>
-								<td>{{start|date:'m月d日'}}<br>星期一</td>
-								<td>{{ start|weekdate:1|date:'m月d日' }}<br>星期二</td>
-								<td>{{ start|weekdate:2|date:'m月d日' }}<br>星期三</td>
-								<td>{{ start|weekdate:3|date:'m月d日' }}<br>星期四</td>
-								<td>{{ start|weekdate:4|date:'m月d日' }}<br>星期五</td>
-								<td>{{ start|weekdate:5|date:'m月d日' }}<br>星期六</td>
-								<td>{{ start|weekdate:6|date:'m月d日' }}<br>星期日</td>
-							</tr>
+							<td>員工</td>
+
+                                {% if start == today %}
+                                <td><font color="red">{{start|date:'m月d日'}}<br>Mon</font></td>
+                                {% else %}
+                                <td>{{start|date:'m月d日'}}<br>Mon</td>
+                                {% endif %}
+
+                                {% for i in 7|times %}
+                                {% if start|weekdate:i == today %}
+                                <td><font color="red">{{ start|weekdate:i|date:'m月d日' }}<br>{{i|to_weekday}}</font></td>
+                                {% else %}
+                                <td>{{ start|weekdate:i|date:'m月d日' }}<br>{{i|to_weekday}}</td>
+                                {% endif %}
+                                {% endfor %}
+                            </tr>
 							{% for emp in employees %}
 								  <tr>
 									<td>{{ emp.empid }} {{ emp.empname }}</td>

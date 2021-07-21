@@ -49,7 +49,7 @@ def index(request):
 
 
     context = {'worksches': worksches, 'employees': employees,
-               'today': today, 'weeksche': week_sche,
+               'today': date, 'weeksche': week_sche,
                'start': start_week}
     return render(request, 'sche.html', context)
 

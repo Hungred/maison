@@ -19,7 +19,7 @@
 
 
   </head>
-	{% load bootstrap4 %}
+  {% load bootstrap4 %}
   {% load auth_extras %}
   <body class="body_bg">
 
@@ -35,43 +35,22 @@
 				</h3>
 
 			</div>
-			
+
 			<div class="col-md-6 nav_align">
 				<img alt="Bootstrap Image Preview" src="{% static 'sche/images/logo.jpg' %}" class="rounded-circle nav_img">
-				<h4 style="color:white; float: right; padding-top: 15px; margin-left: 10px;"><a href="{% url 'login:profile' user.username %}" style="color:white;">{{ user.username }}</a>, 您好!</h4>
+                <h4 style="color:white; float: right; padding-top: 15px; margin-left: 10px;"><a href="{% url 'login:profile' user.username %}" style="color:white;">{{ user.username }}</a>, 您好!</h4>
+
 			</div>
 		</div>
 
 		<div class="row">
-			<div class="col-md-2 list_bar">
-				<h3 class="list_text">
-					<a  href="{% url 'schedule:index' %}">班表</a>
-				</h3>
-                <h3 class="list_text">
-					<a href="{% url 'reservation:index' %}">訂位</a>
 
-				</h3>
-                <h3 class="list_text">
-					<a  href="{% url 'order:index' %}">點餐</a>
-				</h3>
-                <h3 class="list_text">
-					<a  href="{% url 'feedback:index' %}">顧客回饋</a>
-				</h3>
-                <h3 class="list_text">
-					營收報表
-				</h3>
-				{% if request.user|has_group:"boss" %}
-				<h3 class="list_text">
-
-    				<a  href="{% url 'login:emp_list' %}" >員工管理</a>
-
-				</h3>
-				{% endif %}
-			</div>
 
 			<div class="col-md-10" >
 				{% bootstrap_messages %} <!-- #在網頁上顯示處理訊息 -->
-                {% block main %}{% endblock %}
+                您的帳號權限不足，無法訪問此頁面。<br>
+                <a href="{% url 'schedule:index' %}" class="btn btn-primary">返回首頁</a>
+                <a href="{% url 'login:logout' %}" class="btn btn-primary">登出</a>
 			</div>
 		</div>
 	</div>
