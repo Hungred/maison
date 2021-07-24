@@ -157,7 +157,7 @@
                                 <button id="show{{ forloop.counter }}" onclick="show{{ forloop.counter }}()" class="btn" style="margin-top:5px;">{{ reservations.date }}<br></button><br>
                                 {% endif %}
 
-                        <div id="hide{{ forloop.counter }}" style="display: none;">
+                        <div id="hide{{ forloop.counter }}" style="display: none;margin-top:5px;">
                         {% for reservation in reservations.reservations %}
                             <table>
                                 <tr>
@@ -182,8 +182,9 @@
                             </div>
                         {% endif %}
                     {% endfor %}
-                    <a href="{% url 'reservation:add' %}" type="submit" class="btn btn-primary" style="float: left;">新增訂位</a><br>
+
                 </div>
+                <a href="{% url 'reservation:add' %}" type="submit" class="btn btn-primary" style="float: right;">新增訂位</a><br>
                 <div id='calendar'></div>
 			</div>
 		</div>

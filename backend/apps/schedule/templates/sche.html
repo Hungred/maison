@@ -79,10 +79,13 @@
     	.sche_table{
     		background-color:white;
     		border:3px #cccccc solid;
+    		height:280px;
+    		width:1020px;
     	}
 		.sche_table td{
 			width:100px;
-			border: 1px solid #333;
+			height:55.81px;
+			border: 1px solid;
 			word-break: break-all;
 		}
 	</style>
@@ -134,10 +137,11 @@
 			<div class="col-md-10 cal" >
 				{% bootstrap_messages %}
 				<h3 class="page_title">
-					班表<a href="{% url 'schedule:add' %}" type="submit" class="btn btn-primary" style="float: right;">新增班表</a>
+					班表
 				</h3>
 
-				<div class="row" style="height:300px;margin-top:20px;">
+				<div class="row" style="margin-top:20px;margin-bottom:20px;">
+					<span style="margin-left:10px;margin-right:10px;"><a href="{% url 'schedule:add' %}" type="submit" class="btn btn-primary">新增班表</a></span>
 					<span class="" id="show" onclick="show()"><button type="submit" class="btn btn-primary">本週班表</button></span><br>
 					<div class="col-md-8 " >
 						<div id="hide{{ forloop.counter }}" style="display: none;">
