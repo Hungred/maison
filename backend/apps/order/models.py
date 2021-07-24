@@ -13,8 +13,16 @@ class Food(models.Model):
     foodprice = models.IntegerField('餐點價錢')
     foodtag = models.TextField('餐點特徵')
 
+
+
     def __str__(self):
-       return str(self.foodname)
+        field_values = []
+
+        field_values.append(str(self.foodname))
+        field_values.append(str(self.fid))
+        return ' '.join(field_values)
+
+
 
 class Ord(models.Model):
     serno = models.AutoField(primary_key=True)
@@ -45,6 +53,7 @@ class ordinfo(models.Model):
         verbose_name='餐點編號',
         default=''
     )
+
 
     foodq = models.IntegerField('數量', default=0)
     ordice = models.CharField('冰塊', max_length=3, null=True, blank=True)

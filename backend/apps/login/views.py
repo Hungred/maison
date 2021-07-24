@@ -5,7 +5,7 @@ from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 from .forms import *
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib.auth.models import User
-from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.auth.decorators import login_required, permission_required, user_passes_test
 from django import template
 from .models import Employee_data
 from django.db.models import ProtectedError
@@ -77,9 +77,29 @@ def update_pf(request, username):
         return redirect('schedule:index')
     return render(request, 'update_pf.html', {'form':form})
 
+def is_member(user):
+    return user.groups.filter(name='boss').exists()
+
+def group_required(*group_names):
+    """Requires user membership in at least one of the groups passed in."""
+    def in_groups(u):
+        if u.is_authenticated:
+            if bool(u.groups.filter(name__in=group_names)) | u.is_superuser:
+                return True
+        return False
+
+    return user_passes_test(in_groups, login_url='login:permission_denied')
+
+@login_required
+# @user_passes_test(is_member)
+@group_required('boss')
 def emp_list(request):
     emps = Employee_data.objects.all()
     return render(request, 'employee/emp_list.html', {'emps': emps})
+
+@login_required
+def permission_denied(request):
+    return render(request, 'employee/permission_denied.html')
 
 @permission_required('login.add_employee_data', raise_exception=True)
 def active_emp(request):

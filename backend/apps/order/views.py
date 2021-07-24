@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, JsonResponse
 from django.template import context
 
-from apps.feedback.models import CustomerFeedback
+
 from .models import *
 
 from django.contrib import messages
@@ -21,13 +21,11 @@ def orderdetail(request):
     food = Food.objects.all()
     ord = Ord.objects.all()
     orderinfo = ordinfo.objects.all()
-    feedbacks = CustomerFeedback.objects.all()
-
     context = {
         'food': food,
         'ord': ord,
         'orderinfo': orderinfo,
-        'feedbacks': feedbacks,
+
     }
     return render(request, 'orderdetail.html', context)
 
@@ -44,3 +42,5 @@ def product(request):
             'ord': ord,
         }
         return render(request, 'product.html', context)
+
+

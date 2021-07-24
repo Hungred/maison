@@ -28,3 +28,14 @@ def print(data):
 @register.filter(name='weekdate')
 def weekdate(date, days):
     return date + dt.timedelta(days)
+
+@register.filter(name='to_weekday')
+def to_weekday(date):
+    return {
+            '1': 'Tue',
+            '2': 'Wed',
+            '3': 'Thu',
+            '4': 'Fri',
+            '5': 'Sat',
+            '6': 'Sun',
+        }[str(date)]

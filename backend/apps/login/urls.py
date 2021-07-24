@@ -26,6 +26,7 @@ urlpatterns = [
     path('profile/<str:username>', views.profile, name='profile'),
     path('profile/<str:username>/update', views.update_pf, name='update_profile'),
     path('emp_list', views.emp_list, name='emp_list'),
+    path('permission_denied', views.permission_denied, name='permission_denied'),
     path('act_emp', views.active_emp, name='active_emp'),
     path('update_emp/<int:pk>/', views.update_emp, name='update_emp'),
     path('delete_emp/<int:pk>/', views.delete_emp, name='delete_emp'),

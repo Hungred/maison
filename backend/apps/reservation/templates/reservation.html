@@ -151,7 +151,11 @@
                             <div class="col-6">
                         {% endif %}
 
-                        <span class="res_date" id="show{{ forloop.counter }}" onclick="show{{ forloop.counter }}()">{{ reservations.date }}<br></span>
+                        {% if reservations.date == today %}
+                                <button class="res_date btn" id="show{{ forloop.counter }}" onclick="show{{ forloop.counter }}()">{{ reservations.date }}<br></button><br>
+                                {% else %}
+                                <button id="show{{ forloop.counter }}" onclick="show{{ forloop.counter }}()" class="btn" style="margin-top:5px;">{{ reservations.date }}<br></button><br>
+                                {% endif %}
 
                         <div id="hide{{ forloop.counter }}" style="display: none;">
                         {% for reservation in reservations.reservations %}
