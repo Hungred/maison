@@ -1,5 +1,20 @@
-from django.db import models
+import datetime
 
+from django.db import models
+def increment_wait_number():
+  last_wait = Ord.objects.all().order_by('wid').last()
+  if not last_wait:
+    return str(datetime.date.today().year) + str(datetime.date.today().month).zfill(2) + str(datetime.date.today().day).zfill(2) + '000001'
+  else:
+      last_date = int(last_wait.wid[0:8])
+      cur_date = int(str(datetime.date.today().year) + str(datetime.date.today().month).zfill(2) + str(datetime.date.today().day).zfill(2))
+      if last_date != cur_date:
+        return str(datetime.date.today().year) + str(datetime.date.today().month).zfill(2) + str(datetime.date.today().day).zfill(2) + '000001'
+  wid = last_wait.wid
+  wait_int = int(wid[8:14])
+  new_wait_int = wait_int + 1
+  new_wait_id = str(datetime.date.today().year) + str(datetime.date.today().month).zfill(2) + str(datetime.date.today().day).zfill(2)+ str(new_wait_int).zfill(6)
+  return new_wait_id
 class Foodtype(models.TextChoices):
     MAINDISH = 'A', '主餐'
     SIDEMEAL = 'B', '副餐'
@@ -29,13 +44,16 @@ class Ord(models.Model):
     ordtime = models.DateTimeField('日期時間', auto_now=True)
     tabnum = models.CharField('桌號', max_length=3)
     ordcheck = models.IntegerField('處理狀態', default=0)
+    wid = models.CharField('訂單編號', max_length = 20, default = increment_wait_number, editable=True)
 
+    # def __str__(self):
+    #     field_values = []
+    #
+    #     field_values.append(str(self.ordtime))
+    #     field_values.append(str(self.tabnum))
+    #     return ' '.join(field_values)
     def __str__(self):
-        field_values = []
-
-        field_values.append(str(self.ordtime))
-        field_values.append(str(self.tabnum))
-        return ' '.join(field_values)
+        return str('ORD')+str(self.wid)
 
 class ordinfo(models.Model):
     serno = models.AutoField(primary_key=True)
@@ -59,6 +77,7 @@ class ordinfo(models.Model):
     ordice = models.CharField('冰塊', max_length=3, null=True, blank=True)
     ordsua = models.CharField('甜度', max_length=3, null=True, blank=True)
     ordtip = models.TextField('備註', default='', blank=True)
+
 
     def __str__(self):
         return str(self.o_id)
