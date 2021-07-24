@@ -88,48 +88,12 @@
                 <div id="shopCartContent">
                     <p class="noItem">購物車內目前沒有商品</p>
                     <!--購物內容 1-->
-                    <div class="shopCartItem">
-                        <a href="#">
-                            <img src="{% static 'ord/images/img/food_menu/3.jpg' %}" />
-                            <div>
-                                <p>油醋燻鮭魚</p>
-                                <span>$270</span>
-                            </div>
-                        </a>
-                        <span class="ItemQuantity">1份</span>
-                        <button class="DelBtn btn btn-outline-secondary"><span class="fas fa-trash-alt"></span></button>
+                    <div class="shopCartItem" id="shopCartItems">
                     </div>
-
-                    <!--購物內容 2-->
-                    <div class="shopCartItem">
-                        <a href="#">
-                            <img src="{% static 'ord/images/img/food_menu/3.jpg' %}" />
-                            <div>
-                                <p>天使巧克力蛋糕</p>
-                                <span>$120</span>
-                            </div>
-                        </a>
-                        <span class="ItemQuantity">1份</span>
-                        <button class="DelBtn btn btn-outline-secondary"><span class="fas fa-trash-alt"></span></button>
-                    </div>
-
-                    <!--購物內容 3-->
-                    <div class="shopCartItem">
-                        <a href="#">
-                            <img src="{% static 'ord/images/img/food_menu/3.jpg' %}" />
-                            <div>
-                                <p>天使巧克力蛋糕</p>
-                                <span>$120</span>
-                            </div>
-                        </a>
-                        <span class="ItemQuantity">1份</span>
-                        <button class="DelBtn btn btn-outline-secondary"><span class="fas fa-trash-alt"></span></button>
-                    </div>
-                </div>
 
 
                 <div class="shopCartFooter row">
-                    <p>合計：$510</p>
+                    <p> 合計：$<div id="shopCartTotal"><p>0</p></div></p>
                     <a href="{% url 'order:checkout'  %}">立即結帳</a>
                 </div>
             </div>
@@ -515,6 +479,7 @@
 
         var foodcount = 0;
         function addtocart(fid){
+
           cart.push(fid);
           {% for Food in food %}
             flist.push("{{Food.fid}}");
@@ -532,7 +497,9 @@
                         <span class="ItemQuantity">1份</span>
                         <button class="DelBtn btn btn-outline-secondary"><span class="fas fa-trash-alt"></span></button>
                     </div>`
-            document.getElementById("shopCartContent").insertAdjacentHTML('beforeEnd',html);
+            tprice= tprice+parseInt(fprice[flist.indexOf(fid)]);
+            document.getElementById("shopCartItems").insertAdjacentHTML('beforebegin',html);
+             document.getElementById("shopCartTotal").innerHTML=tprice;
           foodcount++;};
 
 
