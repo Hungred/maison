@@ -175,19 +175,10 @@
                                                 <!--按鈕集合-->
                                                 <ul class="footItemIconGruop">
                                                     <li>
-                                                        <!--連結到imagemodal-->
-                                                        <span class="seePicBtn seeFoodDetail" onclick="currentSlide(1)">
-                                                            <i class="fas fa-search"></i>
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <a class="addCartBtn" href="#">
-                                                            <i class="fas fa-cart-plus"></i>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="addLoveBtn" href="#">
-                                                            <i class="fas fa-heart"></i>
+                                                        <button class="addCartBtn" onclick="addtocart('{{Food.fid}}')">添加餐點</button>
+<!--                                                        <a class="addCartBtn" href="#">-->
+<!--                                                            <i class="fas fa-cart-plus"></i>-->
+<!--                                                        </a>-->
                                                         </a>
                                                     </li>
                                                 </ul>
@@ -212,18 +203,8 @@
                                                 <!--按鈕集合-->
                                                 <ul class="footItemIconGruop">
                                                     <li>
-                                                        <span class="seePicBtn">
-                                                            <i class="fas fa-search"></i>
-                                                        </span>
-                                                    </li>
-                                                    <li>
                                                         <a class="addCartBtn" href="#">
                                                             <i class="fas fa-cart-plus"></i>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="addLoveBtn" href="#">
-                                                            <i class="fas fa-heart"></i>
                                                         </a>
                                                     </li>
                                                 </ul>
@@ -249,18 +230,8 @@
                                                 <!--按鈕集合-->
                                                 <ul class="footItemIconGruop">
                                                     <li>
-                                                        <span class="seePicBtn">
-                                                            <i class="fas fa-search"></i>
-                                                        </span>
-                                                    </li>
-                                                    <li>
                                                         <a class="addCartBtn" href="#">
                                                             <i class="fas fa-cart-plus"></i>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="addLoveBtn" href="#">
-                                                            <i class="fas fa-heart"></i>
                                                         </a>
                                                     </li>
                                                 </ul>
@@ -284,20 +255,10 @@
                                                 <p>{{ Food.foodtag }}</p>
                                                 <h5>${{ Food.foodprice }}</h5>
                                                 <!--按鈕集合-->
-                                                <ul class="footItemIconGruop">
-                                                    <li>
-                                                        <span class="seePicBtn">
-                                                            <i class="fas fa-search"></i>
-                                                        </span>
-                                                    </li>
+                                                 <ul class="footItemIconGruop">
                                                     <li>
                                                         <a class="addCartBtn" href="#">
                                                             <i class="fas fa-cart-plus"></i>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="addLoveBtn" href="#">
-                                                            <i class="fas fa-heart"></i>
                                                         </a>
                                                     </li>
                                                 </ul>
@@ -323,18 +284,8 @@
                                                 <!--按鈕集合-->
                                                 <ul class="footItemIconGruop">
                                                     <li>
-                                                        <span class="seePicBtn">
-                                                            <i class="fas fa-search"></i>
-                                                        </span>
-                                                    </li>
-                                                    <li>
                                                         <a class="addCartBtn" href="#">
                                                             <i class="fas fa-cart-plus"></i>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="addLoveBtn" href="#">
-                                                            <i class="fas fa-heart"></i>
                                                         </a>
                                                     </li>
                                                 </ul>
@@ -556,95 +507,33 @@
     <script src="{% static 'ord/js/masterPage.js' %}"></script>
 
     <script>
+ var cart = new Array();
+ var flist = new Array();
+ var fprice = new Array();
+ var fname = new Array();
+ var tprice = 0;
 
-        //數量鍵的使用=======================================
-        $(document).ready(function () {
-
-            var quantitiy = 0;
-            $('.quantity-right-plus').click(function (e) {
-
-                // Stop acting like a button
-                e.preventDefault();
-                // Get the field name
-                var quantity = parseInt($('.quantityTextbox').val());
-
-                // 增加
-                $('.quantityTextbox').val(quantity + 1);
-
-            });
-
-            $('.quantity-left-minus').click(function (e) {
-                // Stop acting like a button
-                e.preventDefault();
-                // Get the field name
-                var quantity = parseInt($('.quantityTextbox').val());
-
-                // 減少
-                if (quantity > 0) {
-                    $('.quantityTextbox').val(quantity - 1);
-                }
-            });
-
-        });
-
-
-
-
-        $('.addCartBtn').click(function () {
-            //使用 Sweet alert.js
-            swal("加入購物車成功", {
-                icon: "success",
-                buttons: false,
-                timer: 1000,
-            });
-
-        });
-
-
-        $('.seeFoodDetail').click(function () {
-            //顯示 food modal
-            $('#imagemodal').modal();
-
-        });
-
-
-        //food modal上一頁與下一頁的切換===============
-        var slideIndex = 1;
-        showSlides(slideIndex);
-
-        // Next/previous controls
-        function plusSlides(n) {
-            showSlides(slideIndex += n);
-        }
-
-        // Thumbnail image controls
-        function currentSlide(n) {
-            showSlides(slideIndex = n);
-        }
-
-        function showSlides(n) {
-            var i;
-            var slides = document.getElementsByClassName("mySlides");
-
-
-            if (n > slides.length) {
-                slideIndex = 1
-            }
-            if (n < 1) {
-                slideIndex = slides.length
-            }
-            for (i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
-            }
-
-            slides[slideIndex - 1].style.display = "block";
-
-        }
-
-
-
-
-    </script>
+        var foodcount = 0;
+        function addtocart(fid){
+          cart.push(fid);
+          {% for Food in food %}
+            flist.push("{{Food.fid}}");
+            fname.push("{{Food.foodname}}");
+            fprice.push("{{Food.foodprice}}");
+          {% endfor %}
+          var html = `<div class="shopCartItem">
+                        <a href="#">
+                            <img src="{% static 'ord/images/img/food_menu/3.jpg' %}" />
+                            <div>
+                                <p>`+fname[flist.indexOf(fid)]+`</p>
+                                <span>$`+fprice[flist.indexOf(fid)]+`</span>
+                            </div>
+                        </a>
+                        <span class="ItemQuantity">1份</span>
+                        <button class="DelBtn btn btn-outline-secondary"><span class="fas fa-trash-alt"></span></button>
+                    </div>`
+            document.getElementById("shopCartContent").insertAdjacentHTML('beforeEnd',html);
+          foodcount++;};</script>
 
 </body>
 
