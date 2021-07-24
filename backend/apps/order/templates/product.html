@@ -62,7 +62,7 @@
         <p id="navTitleFont" style="color:#1A1344;">Maison</p>
         <div class="navlinkGroup">
             <a class="a-trigger" href="" id="navTitle">&nbsp;</a>
-            <a class="navShopCart a-trigger" href="{% url 'order:checkout'  %}"><i class="fas fa-shopping-cart"></i></a>
+            <a class="navShopCart a-trigger" ><i class="fas fa-shopping-cart"></i></a>
             <a class="a-trigger" href="{% url 'order:product'  %}"><i class="fas fa-utensils"></i>菜單</a>
             <button id="rwdMenu" onclick="toggleClass()">
                 <span>menu</span>
@@ -93,7 +93,7 @@
 
 
                 <div class="shopCartFooter row">
-                    <p> 合計：$<div id="shopCartTotal"><p>0</p></div></p>
+                    <p> 合計：$<p id="shopCartTotal"></p>
                     <a href="{% url 'order:checkout'  %}">立即結帳</a>
                 </div>
             </div>
