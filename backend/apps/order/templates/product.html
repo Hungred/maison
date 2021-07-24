@@ -533,8 +533,27 @@
                         <button class="DelBtn btn btn-outline-secondary"><span class="fas fa-trash-alt"></span></button>
                     </div>`
             document.getElementById("shopCartContent").insertAdjacentHTML('beforeEnd',html);
-          foodcount++;};</script>
+          foodcount++;};
 
+
+
+$(function(){
+        $('#BackTop').click(function(){
+            $('html,body').animate({scrollTop:0}, 333);
+        });
+        $(window).scroll(function() {
+            if ( $(this).scrollTop() > 300 ){
+                $('#BackTop').fadeIn(222);
+            } else {
+                $('#BackTop').stop().fadeOut(222);
+            }
+        }).scroll();
+    });
+
+
+
+
+</script>
 </body>
 
 </html>
