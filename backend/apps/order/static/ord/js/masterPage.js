@@ -2,6 +2,7 @@
 //購物車==================================================================
 
 //行動裝置：當視窗小於374時運作----
+var csrftoken = $("[name=csrfmiddlewaretoken]").val();
 if ($(window).width() < 376) {
 
     //位置在下，刪除top的樣式
@@ -80,3 +81,26 @@ function NoItemCart() {
         $('.shopCartFooter').show();
     }
 }
+function checkout(){
+            if (cart.length == 0) {
+                alert("请至少點一道菜！");
+                return;
+            }
+
+
+            $.ajax({
+               type: 'POST',
+               url: "\\order\\product",
+               data: {cart:JSON.stringify(cart),csrfmiddlewaretoken: csrftoken},
+               success: function(data) {
+                        // 加载新的页面 (订单页) url: /order/q{order_id}
+
+                        data = JSON.parse(data);
+                        oid = data["oid"];
+                        $(location).attr(
+                            "href",
+                            "/order/q"
+                        );
+                    }
+            });
+       }
