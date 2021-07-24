@@ -16,8 +16,19 @@
     <script src="{% static 'sche/fullcalendar-5.5.1 (1)/lib/main.js' %}"></script>
 	<link href="{% static 'sche/css/style_manager.css' %}" rel="stylesheet">
 
-
-
+     <script src="https://kit.fontawesome.com/d2b4d68ad0.js" crossorigin="anonymous"></script>
+    <style>
+        .box{
+        width:500px;
+        height:200px;
+        padding-top:20px;
+        margin: auto ;
+        background-color:white;
+        border:2px #ccc solid;
+        border-radius:10px;
+        text-align: center;
+        }
+    </style>
   </head>
   {% load bootstrap4 %}
   {% load auth_extras %}
@@ -46,13 +57,18 @@
 		<div class="row">
 
 
-			<div class="col-md-10" >
-				{% bootstrap_messages %} <!-- #在網頁上顯示處理訊息 -->
-                您的帳號權限不足，無法訪問此頁面。<br>
-                <a href="{% url 'schedule:index' %}" class="btn btn-primary">返回首頁</a>
-                <a href="{% url 'login:logout' %}" class="btn btn-primary">登出</a>
-			</div>
-		</div>
+			<div class="container"  style="display: flex;margin-top:300px; ">
+
+				<div  class="box" >
+                    <i class="fas fa-exclamation-triangle fa-5x" style="color:red;"></i><br>
+                    {% bootstrap_messages %} <!-- #在網頁上顯示處理訊息 -->
+                    您的帳號權限不足，無法訪問此頁面。<br>
+
+                    <a href="{% url 'schedule:index' %}" class="btn btn-primary">返回首頁</a>
+                    <a href="{% url 'login:logout' %}" class="btn btn-primary">登出</a>
+
+                </div>
+		    </div>
 	</div>
 
     <script src="{% static '/js/jquery.min.js' %}"></script>
