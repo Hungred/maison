@@ -19,3 +19,7 @@ def compare_days(value, days):
     else:
         print('456')
         return None
+
+@register.filter(name='times')
+def times(number):
+    return range(1,number)

@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required, permission_required, user_passes_test
 from django import template
 from .models import Employee_data
+from django.contrib.auth.models import Group
 from django.db.models import ProtectedError
 # Create your views here.
 
@@ -100,6 +101,20 @@ def emp_list(request):
 @login_required
 def permission_denied(request):
     return render(request, 'employee/permission_denied.html')
+
+@login_required
+def active_management(request, user):
+    group = Group.objects.get(id=2)
+    userid = User.objects.get(username=user).pk
+    group.user_set.add(userid)
+    return render(request, 'employee/active_management.html')
+
+@login_required
+def remove_management(request, user):
+    group = Group.objects.get(id=2)
+    userid = User.objects.get(username=user).pk
+    group.user_set.remove(userid)
+    return render(request, 'employee/remove_management.html')
 
 @permission_required('login.add_employee_data', raise_exception=True)
 def active_emp(request):
