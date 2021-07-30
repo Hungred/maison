@@ -78,8 +78,7 @@ def update_pf(request, username):
         return redirect('schedule:index')
     return render(request, 'update_pf.html', {'form':form})
 
-def is_member(user):
-    return user.groups.filter(name='boss').exists()
+
 
 def group_required(*group_names):
     """Requires user membership in at least one of the groups passed in."""
@@ -92,7 +91,6 @@ def group_required(*group_names):
     return user_passes_test(in_groups, login_url='login:permission_denied')
 
 @login_required
-# @user_passes_test(is_member)
 @group_required('boss')
 def emp_list(request):
     emps = Employee_data.objects.all()
@@ -102,7 +100,9 @@ def emp_list(request):
 def permission_denied(request):
     return render(request, 'employee/permission_denied.html')
 
+
 @login_required
+@group_required('boss')
 def active_management(request, user):
     group = Group.objects.get(id=2)
     userid = User.objects.get(username=user).pk
@@ -110,6 +110,7 @@ def active_management(request, user):
     return render(request, 'employee/active_management.html')
 
 @login_required
+@group_required('boss')
 def remove_management(request, user):
     group = Group.objects.get(id=2)
     userid = User.objects.get(username=user).pk
@@ -122,7 +123,7 @@ def active_emp(request):
     if form.is_valid():
         form.save()
         messages.success(request, '新增成功')
-        return redirect('schedule:index')
+        return redirect('login:emp_list')
     return render(request,
                   'active_emp.html',
                   {'form':form},
@@ -134,7 +135,8 @@ def update_emp(request, pk):
     form = ActiveEmpForm(request.POST or None, instance=emp)
     if form.is_valid():
         form.save()
-        return redirect('schedule:index')
+        messages.success(request, '修改成功')
+        return redirect('login:emp_list')
     return render(request, 'employee/update_emp.html', {'form':form})
 
 @permission_required('login.delete_employee_data', raise_exception=True) #如果無法刪除如何導向?
@@ -145,7 +147,7 @@ def delete_emp(request, pk):
         try:
             emp.delete()
             messages.success(request, '刪除成功')
-            return redirect('schedule:index')
+            return redirect('login:emp_list')
         except ProtectedError as res:
             messages.error(request, '刪除失敗,因該員工在班表上留有出勤紀錄')
             return redirect('schedule:index')
