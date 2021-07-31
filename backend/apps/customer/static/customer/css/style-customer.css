@@ -1,25 +1,101 @@
+@media (max-width:1025px) {
 
+}
+@media  (min-width: 1420px) {
+    .footer_pho{display:none; }
+    .footer_social{display:none;}
+}
+@media  (max-width: 1420px) {
+    .footer{display:none;}
+    .footer_social{display:none;}
+    .footer_logo{
+        border-radius: 50%;
+        text-align:center;
+        vertical-align: middle;
+        display: flex;
+        align-items: center;
+        margin:auto;
+        width:100px;
+        height:100px;
+    }
+
+
+
+/* width<768*/
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+
+}
+
+}
+@media (max-width: 576px) {
+
+
+}
+
+
+/* width<375*/
+@media (max-width:376px) {
+
+}
 body{
     background-color:black;
-    background-image: url("image/bg.jpg");  
+    background-image: url("image/bg.jpg");
     background-attachment:fixed;
     background-repeat: no-repeat;
-    background-size:1200px 600px;
+    background-size:auto 600px;
     background-position:center;
     font-size: 18px;
 }
-
+.container-fluid{
+    max-width: auto;
+    height: auto;
+    margin: 0 auto;
+}
 #header{
     height: 150px;
     
     padding-bottom: 40px;
+
 }
+
+.burgar_btn {
+    display: none;
+    // PC 時不顯示
+
+    .fas {
+        display: none;
+    }
+
+    @include pad {
+        display: block;
+        // 在 pad 螢幕解析度以下顯示
+        color: $primary-color;
+        font-size: $font-l;
+        float: right;
+        margin-right: 1em;
+        line-height: 50px;
+
+        .fas {
+            display: block;
+            line-height: 50px;
+            // 在 pad 螢幕解析度以下顯示
+        }
+    }
+}
+
 #logo{
     border-radius: 10px;
     text-align: center;
     position:relative;
     z-index:100;
-
+    @media screen and (max-width: 1560px){
+    width:210px:
+    height:210px:
+    }
+    @media screen and (max-width: 1000px){
+    width:110px:
+    height:110px:
+    }
 }
 
 #button{

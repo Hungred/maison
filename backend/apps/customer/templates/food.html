@@ -11,10 +11,31 @@
     <meta name="author" content="LayoutIt!">
 {% load static %}
     <link href="{% static 'customer/css/bootstrap.min.css' %}" rel="stylesheet">
-    <link href="{% static 'customer/css/style-customer.css' %}" rel="stylesheet">
-
+    <link href="{% static 'customer/css/style-customer.css' %}" rel="stylesheet" charset="UTF-8">
+	<style>
+		.flex {
+  				display: flex;
+			  	height: flex;
+			 	padding: 15px;
+			  	background-color: transparent;
+			  	justify-content:  center;
+			  	align-items: center ;
+			  	flex-wrap: wrap;
+			  	flex-direction: row;
+		}
+		.item {
+				  flex: 0 0 25%;
+				  background-color: transparent;
+				  margin: 10px;
+				  display: flex;
+				  justify-content: center;
+				  align-items: center;
+				  color: white;
+				  font-size: 2rem;
+		}
+	</style>
   </head>
-   {% load bootstrap4 %}
+  {% load bootstrap4 %}
   <body style="background-image: url({% static 'customer/image/bg.jpg' %});">
 
     <div class="container-fluid">
@@ -46,7 +67,7 @@
 				</td>
 			</tr>
 		</table>
-		
+
 	</div>
 	<div class="row" id="carousel">
 		<div class="col-md-12">
@@ -70,11 +91,11 @@
 						<img class="d-block w-100" id="carousel-img" alt="Carousel Bootstrap Third" src="{% static 'customer/image/2.jpg' %}">
 					</div>
 				</div> <a class="carousel-control-prev" href="#carousel-685819" data-slide="prev">
-						<span class="carousel-control-prev-icon"></span> 
+						<span class="carousel-control-prev-icon"></span>
 						<span class="sr-only">Previous</span>
-					</a> 
+					</a>
 					<a class="carousel-control-next" href="#carousel-685819" data-slide="next">
-						<span class="carousel-control-next-icon"></span> 
+						<span class="carousel-control-next-icon"></span>
 						<span class="sr-only">Next</span>
 					</a>
 			</div>
@@ -87,7 +108,7 @@
 					<h2>餐點介紹</h2>
 				</div>
 				<div class="col-md-6" id="food-con">
-					
+
 				</div>
 			</div>
 		</div>
@@ -101,10 +122,11 @@
 						<span><a href="#main2" >附餐</a></span>
 						<span><a href="#main3" >甜點</a></span>
 						<span><a href="#main4" >飲料</a></span>
+
 					</div>
 				</div>
 				<div class="col-md-6" id="food-con">
-					
+
 				</div>
 			</div>
 		</div>
@@ -154,6 +176,35 @@
 		<div class="item"><img src="{% static 'customer/image/food1.jpg' %}" width="220" height="200" /></div>
 		<div class="item"><img src="{% static 'customer/image/food1.jpg' %}" width="220" height="200" /></div>
 	</div>
+
+
+
+	<!-- <div class="row">
+		<div class="col-md-12">
+			<div class="row" id="menu">
+				<table>
+					<tr>
+						<td><img src="image/food1.jpg" alt=""></td>
+						<td><img src="image/food1.jpg" alt=""></td>
+						<td><img src="image/food1.jpg" alt=""></td>
+						<td><img src="image/food1.jpg" alt=""></td>
+						<td><img src="image/food1.jpg" alt=""></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div> -->
+
+
+
+
 
 	<div class="row" style="background-color: #707070; height: 200px;padding-top:50px ;">
 		<div class="col-md-12">

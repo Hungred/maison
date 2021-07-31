@@ -13,6 +13,7 @@
     <link href="{% static 'customer/css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'customer/css/style-customer.css' %}" rel="stylesheet">
 
+	<script src="https://kit.fontawesome.com/d2b4d68ad0.js" crossorigin="anonymous"></script>
   </head>
     {% load bootstrap4 %}
   <body style="background-image: url({% static 'customer/image/bg.jpg' %});">
@@ -46,7 +47,9 @@
 				</td>
 			</tr>
 		</table>
-
+		<a href="#" class="burgar_btn">
+            <i class="fas fa-bars"></i>
+        </a>
 	</div>
 	<div class="row" id="carousel">
 		<div class="col-md-12">
@@ -70,7 +73,7 @@
 						<img class="d-block w-100" id="carousel-img" alt="Carousel Bootstrap Third" src="{% static 'customer/image/2.jpg' %}">
 					</div>
 				</div> <a class="carousel-control-prev" href="#carousel-685819" data-slide="prev">
-						<span class="carousel-control-prev-icon"></span>
+						<span class="carousel-control-prev-icon fix "></span>
 						<span class="sr-only">Previous</span>
 					</a>
 					<a class="carousel-control-next" href="#carousel-685819" data-slide="next">
@@ -129,32 +132,38 @@
 	{% block main %}
 	{% endblock %}
 	</body>
-	<div class="row" style="background-color: #707070; height: 200px;padding-top:50px ;">
+	<div class="row" style="background-color: #707070; height: auto;padding-top:20px ;width:100%;margin:auto;">
 		<div class="col-md-12">
 			<div class="row">
-
-				<table style="width: 100%;">
-					<tr>
-						<td style="text-align:left;width: 50%;padding-left: 400px;">
-							<h4>地址_宜蘭縣頭城鄉大坑路211號</h4>
-						</td>
-					</tr>
-					<tr>
-						<td style="text-align: left;width: 50%;padding-left: 400px;">
-							<h4>電話_03-9776788</h4></td>
-					</tr>
-					<tr>
-						<td style="text-align: left;width: 50%;padding-left: 400px;"><h4>時間_每日12:00-19:00，每週三公休</h4></td>
-						<td style="text-align: right;width: 50%;padding-right: 400px;"><h2>maison de océan</h2></td>
-					</tr>
+				<div class="col-md-12">
+				<table class="footer" style="margin:auto;width:40%">
+					<thead>
+                    <tr>
+                        <th>地址_宜蘭縣頭城鄉大坑路211號</th>
+                    </tr>
+                	</thead>
+					<tbody>
+                        <tr>
+                            <td>電話_03-9776788</td>
+                        </tr>
+                        <tr>
+                            <td>時間_每日12:00-19:00，每週三公休</td>
+							<td class="float-right"><h2>maison de océan</h2></td>
+                        </tr>
+                    </tbody>
 				</table>
-			</div>
+				<div class="footer_pho">
+					<img  class="footer_logo" src="{% static 'ord/images/img/logo.jpg' %}">
+					<h2 style="text-align: center;">maison de océan</h2>
+				</div>
+				</div>
+				</div>
 		</div>
 	</div>
 
-	<div class="row">
+	<div class="footer_social">
 		<div class="col-md-12">
-			<div class="row">
+			<div class="row ">
 				<div class="col-md-6">
 					<p style="color: white;">滿山望海</p>
 				</div>
