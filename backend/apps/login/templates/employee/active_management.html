@@ -1,7 +1,9 @@
 {% extends 'share/layout.html' %}
 
 {% block main %}
-
+<head>
+	 <script src="https://kit.fontawesome.com/d2b4d68ad0.js" crossorigin="anonymous"></script>
+</head>
 <style>
 	select{
 		width: 500px;
@@ -37,19 +39,32 @@
 	p>input{
 		width: 240px;
 	}
+	.box{
+        width:500px;
+        height:300px;
+        padding-top:20px;
+        margin: auto ;
+        background-color:white;
+        border:2px #ccc solid;
+        border-radius:10px;
+        text-align: center;
+        }
 </style>
+<div class="container"  style="display: flex; ">
+	<div  class="box" >
+		<h3 style="margin-bottom: 20px; text-align: center; margin-top: 20px;">啟用權限</h3>
+		<i class="far fa-check-circle  fa-5x" style="color:green;margin-bottom: 20px;"></i><br>
+		<table style="background-color:transparent; margin: 0 auto; font-size: 24px; width: 400px; border: none;">
 
-<h3 style="margin-bottom: 20px; text-align: center; margin-top: 20px;">啟用權限</h3>
+			<h4>開啟管理員權限成功</h4>
 
-<table style="background-color: #D3DAEF; margin: 0 auto; font-size: 24px; width: 400px; border: none;">
-	開啟管理員權限成功
+			<tr  style="text-align:center;display: inline-block;vertical-align: middle">
+				<th style="padding-top: 10px;">
 
-	<tr style="float: right;">
-		<th style="padding-top: 10px;">
-
-			<a href="{% url 'login:emp_list' %}" class="btn btn-primary">返回</a>
-		</th>
-	</tr>
-</table>
-
+					<a href="{% url 'login:emp_list' %}" class="btn btn-primary" >返回</a>
+				</th>
+			</tr>
+		</table>
+	</div>
+</div>
 {% endblock %}

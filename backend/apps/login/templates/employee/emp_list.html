@@ -7,39 +7,42 @@
 				<h3 class="page_title" style="margin-bottom: 20px; text-align: center; margin-top: 20px;">
 					員工列表
 				</h3>
-                <table class="table table-striped">
-                <thead>
-            <tr>
-                <th>使用者名稱</th>
-                <th>員工編號</th>
-                <th>員工姓名</th>
-                <th>職位</th>
-                <th>權限</th>
-            </tr>
-            </thead>
+                <table class="table table-hover table table-bordered" style="margin-left:auto; margin-right:auto; width:80%;" >
+                <thead style="  background-color: #1A1344; color:white;" >
+                    <tr >
+                        <th style="text-align:center;">使用者名稱</th>
+                        <th style="text-align:center;">員工編號</th>
+                        <th style="text-align:center;">員工姓名</th>
+                        <th style="text-align:center;">職位</th>
+                        <th style="text-align:center;">權限</th>
+                        <th style="text-align:center;">操作</th>
+                    </tr>
+                </thead>
                     <tbody>
 				{% for emp in emps %}
-            <tr>
-                <td>{{ emp.user }}</td>
-                <td>
-                    {{ emp.empid }}</a>        </td>
-                <td>{{ emp.empname }}</td>
-                <td>{{ emp.position|topos }}</td>
-                <td>
-                    {% if emp.user|has_group:"manage" %}
-                    <a href="{% url 'login:remove_management' emp.user %}" class="btn btn-danger">移除權限</a>
-                    {%else%}
-                    <a href="{% url 'login:active_management' emp.user %}" class="btn btn-primary">啟用權限</a>
-                    {% endif %}
-                    <a href="{% url 'login:update_emp' emp.id %}" class="btn btn-primary float-right">修改</a>
-                    <a href="{% url 'login:delete_emp' emp.id %}" class="btn btn-primary float-right" style="margin-right: 10px;">刪除</a>
-                </td>
-            </tr>
-            {% empty %}
-            <tr>
-                <td class="text-center" colspan="4">無資料</td>
-            </tr>
-            {% endfor %}
+                        <tr>
+                            <td>{{ emp.user }}</td>
+                            <td>
+                                {{ emp.empid }}</a>        </td>
+                            <td>{{ emp.empname }}</td>
+                            <td>{{ emp.position|topos }}</td>
+                            <td style="text-align:center;">
+                                {% if emp.user|has_group:"manage" %}
+                                <a href="{% url 'login:remove_management' emp.user %}" class="btn btn-danger">移除權限</a>
+                                {%else%}
+                                <a href="{% url 'login:active_management' emp.user %}" class="btn btn-success">啟用權限</a>
+                                {% endif %}
+                            </td>
+                            <td style="text-align:center;">
+                                <a href="{% url 'login:update_emp' emp.id %}" class="btn btn-info">修改</a>
+                                <a href="{% url 'login:delete_emp' emp.id %}" class="btn btn-danger " style="margin-right: 10px;">刪除</a>
+                            </td>
+                        </tr>
+                {% empty %}
+                        <tr>
+                            <td class="text-center" colspan="4">無資料</td>
+                        </tr>
+                {% endfor %}
                     </tbody>
-                </table>
+            </table>
 {% endblock %}
