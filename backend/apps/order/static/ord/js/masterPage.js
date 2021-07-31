@@ -96,10 +96,11 @@ function checkout(){
                         // 加载新的页面 (订单页) url: /order/q{order_id}
 
                         data = JSON.parse(data);
-                        oid = data["oid"];
+                        oid = data["order_id"];
+                        console.log(data);
                         $(location).attr(
                             "href",
-                            "/order/q"
+                            "/order/checkout/"+String(oid)
                         );
                     }
             });

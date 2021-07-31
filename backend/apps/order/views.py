@@ -4,7 +4,7 @@ from django.template import context
 from django.views.decorators.csrf import requires_csrf_token
 
 from .models import *
-
+import base64
 from django.contrib import messages
 from django.core import serializers
 from django.forms.models import model_to_dict
@@ -29,8 +29,18 @@ def orderdetail(request):
     }
     return render(request, 'orderdetail.html', context)
 
-def checkout(request):
-    return render(request, 'checkout.html')
+def checkout(request,oid):
+    try:
+        decodedBytes = base64.b64decode(oid)
+        decoded_order_id = str(decodedBytes, "utf-8")
+    except :
+        return redirect("/order/product")
+
+    orid = ordinfo.objects.filter(o_id__wid__contains=decoded_order_id)
+    if not orid:
+        return redirect("/order/product")
+    params = {'oid': orid, 'search': decoded_order_id}
+    return render(request, 'checkout.html', params)
 
 @requires_csrf_token
 def product(request):
@@ -61,9 +71,10 @@ def product(request):
                 f_id=curFood,
                 foodq=food_amount,
             )
-
+        encodedBytes = base64.b64encode(order_id.encode("utf-8"))
+        encoded_order_id = str(encodedBytes, "utf-8")
         return HttpResponse(json.dumps({
-            'order_id': order_id
+            'order_id': encoded_order_id
         }))
 
 

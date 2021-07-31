@@ -130,6 +130,7 @@
         <section id="cartList" class="sectionTab">
             <div class="container">
                 <!--產品1-->
+                {% for Oid in oid %}
                 <article class="product">
                     <header>
                         <a class="remove">
@@ -137,49 +138,12 @@
                             <h3>刪除</h3>
                         </a>
                     </header>
-
                     <div class="content">
-
-                        <h1>油醋燻鮭魚</h1>
+                        <h1>{{ Oid.f_id.foodname }}</h1>
                         <p>
-                            以蘿蔓生菜為基底，鋪上肥美鮮嫩的燻鮭魚
-                            再淋上義式油醋醬，適合2-3人分享
+                            {{ Oid.f_id.foodtag }}
                         </p>
                     </div>
-
-                    <footer class="content">
-                        <span class="qt-minus">-</span>
-                        <span class="qt">2</span>
-                        <span class="qt-plus">+</span>
-
-                        <h2 class="full-price">
-                            200
-                        </h2>
-
-                        <h2 class="price">
-                            100
-                        </h2>
-                    </footer>
-                </article>
-                <!--產品2-->
-                <article class="product">
-                    <header>
-                        <a class="remove">
-                            <img src="image/img/food_menu/lg/3.jpg" />
-                            <h3>刪除</h3>
-                        </a>
-                    </header>
-
-                    <div class="content">
-
-                        <h1>油醋燻鮭魚</h1>
-                        <p>
-                            以蘿蔓生菜為基底，鋪上肥美鮮嫩的燻鮭魚
-                            再淋上義式油醋醬，適合2-3人分享
-                        </p>
-
-                    </div>
-
                     <footer class="content">
 
                         <span class="qt-minus">-</span>
@@ -187,48 +151,18 @@
                         <span class="qt-plus">+</span>
 
                         <h2 class="full-price">
-                            100
+                            {{ Oid.f_id.foodprice }}
                         </h2>
 
                         <h2 class="price">
-                            100
+                            {{ Oid.f_id.foodprice }}
                         </h2>
                     </footer>
                 </article>
-                <!--產品3-->
-                <article class="product">
-                    <header>
-                        <a class="remove">
-                            <img src="image/img/food_menu/lg/3.jpg" />
-                            <h3>刪除</h3>
-                        </a>
-                    </header>
+                {% empty %}
+                    nono
+                {% endfor %}
 
-                    <div class="content">
-
-                        <h1>油醋燻鮭魚</h1>
-                        <p>
-                            以蘿蔓生菜為基底，鋪上肥美鮮嫩的燻鮭魚
-                            再淋上義式油醋醬，適合2-3人分享
-                        </p>
-
-                    </div>
-
-                    <footer class="content">
-
-                        <span class="qt-minus">-</span>
-                        <span class="qt">3</span>
-                        <span class="qt-plus">+</span>
-
-                        <h2 class="full-price">
-                            300
-                        </h2>
-
-                        <h2 class="price">
-                           100
-                        </h2>
-                    </footer>
-                </article>
             </div>
 
             <!--結帳頁尾-->
