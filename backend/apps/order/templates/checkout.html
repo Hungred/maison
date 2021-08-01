@@ -159,13 +159,12 @@
                         </h2>
                     </footer>
                 </article>
-                {% empty %}
-                    nono
                 {% endfor %}
 
             </div>
 
             <!--結帳頁尾-->
+            {% block main %}
             <div id="chechout-footer">
                 <div class="container-fluid">
 
@@ -174,7 +173,7 @@
                             <table width="100%">
                                 <tr>
                                     <td width="50%">小計</td>
-                                    <td width="50%" class="money"><div>$&nbsp;&nbsp;<span class="subtotal">600</span></div></td>
+                                    <td width="50%" class="money"><div>$&nbsp;&nbsp;<span class="subtotal">{{ total_price }}</span></div></td>
                                 </tr>
 <!--                                <tr>-->
 <!--                                    <td>折扣</td>-->
@@ -190,7 +189,7 @@
                                 <tr>
                                     <td>總計</td>
                                     <td class="money">
-                                        <div>$&nbsp;&nbsp;<span class="total">600</span></div>
+                                        <div>$&nbsp;&nbsp;<span class="total">{{ total_price }}</span></div>
                                     </td>
                                 </tr>
                             </table>
@@ -212,6 +211,7 @@
                     </div>
                 </div>
             </div>
+            {% endblock %}
         </section>
 
         <!--2.填寫資料-->
@@ -336,11 +336,7 @@
             price = Math.round(price * 100) / 100;
             var discount = parseInt($(".discount").html());
             var shipping = parseFloat($(".shipping").html());
-            var fullPrice = Math.round((price + shipping + discount) * 100) / 100;
-
-            if (price == 0) {
-                fullPrice = 0;
-            }
+            var fullPrice = price;
 
             $(".subtotal").html(price);
             $(".discount").html(discount);

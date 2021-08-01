@@ -39,7 +39,9 @@ def checkout(request,oid):
     orid = ordinfo.objects.filter(o_id__wid__contains=decoded_order_id)
     if not orid:
         return redirect("/order/product")
-    params = {'oid': orid, 'search': decoded_order_id}
+    order = Ord.objects.get(wid=decoded_order_id)
+    total_price = order.total_price
+    params = {'oid': orid, 'total_price': total_price}
     return render(request, 'checkout.html', params)
 
 @requires_csrf_token
@@ -58,19 +60,20 @@ def product(request):
         new_order = Ord(ordcheck=0)
         new_order.save()
         order_id = new_order.wid
-        food_amount=0;
         total_price =0
         for food in cart:
             curFood = Food.objects.get(pk=food)
             price = curFood.foodprice
-            food_amount+=1
             total_price+=price
 
             ordinfo.objects.create(
                 o_id=new_order,
                 f_id=curFood,
-                foodq=food_amount,
+                foodq=1,
             )
+            new_order.total_price=total_price
+            new_order.save()
+
         encodedBytes = base64.b64encode(order_id.encode("utf-8"))
         encoded_order_id = str(encodedBytes, "utf-8")
         return HttpResponse(json.dumps({
