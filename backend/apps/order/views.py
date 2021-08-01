@@ -12,10 +12,13 @@ import json
 from django.contrib.auth.decorators import login_required, permission_required, user_passes_test
 from django.utils import timezone
 import datetime as dt
+
+
 # Create your views here.
 
 def group_required(*group_names):
     """Requires user membership in at least one of the groups passed in."""
+
     def in_groups(u):
         if u.is_authenticated:
             if bool(u.groups.filter(name__in=group_names)) | u.is_superuser:
@@ -24,11 +27,12 @@ def group_required(*group_names):
 
     return user_passes_test(in_groups, login_url='login:permission_denied')
 
+
 @login_required(login_url="login:index")
 def index(request):
     order = Ord.objects.all()
 
-    #閒置超過10分鐘自動從清單中移除(仍在資料庫中)
+    # 閒置超過10分鐘自動從清單中移除(仍在資料庫中)
     now = timezone.localtime(timezone.now())
     checktime = now - dt.timedelta(minutes=10)
     for ord in order:
@@ -38,14 +42,13 @@ def index(request):
                 ord.ordcheck = 2
                 ord.save()
 
-
-    #抓出未結帳訂單
+    # 抓出未結帳訂單
     handling = Ord.objects.filter(ordcheck=0)
     # 定義要傳到前端的資料串
     handling2 = [{
-        'no':(i),
+        'no': (i),
         'order': []
-    }for i in range(len(handling))]
+    } for i in range(len(handling))]
     # 將資料分類到資料串
     for i in range(len(handling)):
         handling2[i]['order'].append(handling[i])
@@ -58,12 +61,13 @@ def index(request):
     for i in range(len(checked)):
         checked2[i]['order'].append(checked[i])
 
-    context={
+    context = {
         'order': order,
         'handling': handling2,
-        'checked':  checked2,
+        'checked': checked2,
     }
     return render(request, 'order.html', context)
+
 
 @login_required
 @group_required('manage', 'boss', 'employee')
@@ -73,6 +77,7 @@ def pass_to_checked(request, serno):
     ord.ordcheck = 1
     ord.save()
     return redirect('order:index')
+
 
 def orderdetail(request):
     food = Food.objects.all()
@@ -86,20 +91,25 @@ def orderdetail(request):
     }
     return render(request, 'orderdetail.html', context)
 
-def checkout(request,oid):
+
+def checkout(request, oid):
     try:
         decodedBytes = base64.b64decode(oid)
         decoded_order_id = str(decodedBytes, "utf-8")
-    except :
+    except:
         return redirect("/order/product")
 
     orid = ordinfo.objects.filter(o_id__wid__contains=decoded_order_id)
     if not orid:
         return redirect("/order/product")
     order = Ord.objects.get(wid=decoded_order_id)
+    order_status = order.ordcheck
+    if order_status != 0:
+        return redirect("/order/product")
     total_price = order.total_price
     params = {'oid': orid, 'total_price': total_price}
     return render(request, 'checkout.html', params)
+
 
 @requires_csrf_token
 def product(request):
@@ -117,18 +127,18 @@ def product(request):
         new_order = Ord(ordcheck=0)
         new_order.save()
         order_id = new_order.wid
-        total_price =0
+        total_price = 0
         for food in cart:
             curFood = Food.objects.get(pk=food)
             price = curFood.foodprice
-            total_price+=price
+            total_price += price
 
             ordinfo.objects.create(
                 o_id=new_order,
                 f_id=curFood,
                 foodq=1,
             )
-            new_order.total_price=total_price
+            new_order.total_price = total_price
             new_order.save()
 
         encodedBytes = base64.b64encode(order_id.encode("utf-8"))
@@ -136,5 +146,3 @@ def product(request):
         return HttpResponse(json.dumps({
             'order_id': encoded_order_id
         }))
-
-
