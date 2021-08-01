@@ -9,13 +9,70 @@ from django.contrib import messages
 from django.core import serializers
 from django.forms.models import model_to_dict
 import json
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required, user_passes_test
+from django.utils import timezone
+import datetime as dt
 # Create your views here.
+
+def group_required(*group_names):
+    """Requires user membership in at least one of the groups passed in."""
+    def in_groups(u):
+        if u.is_authenticated:
+            if bool(u.groups.filter(name__in=group_names)) | u.is_superuser:
+                return True
+        return False
+
+    return user_passes_test(in_groups, login_url='login:permission_denied')
 
 @login_required(login_url="login:index")
 def index(request):
     order = Ord.objects.all()
-    return render(request, 'order.html', {'order':order})
+
+    #閒置超過10分鐘自動從清單中移除(仍在資料庫中)
+    now = timezone.localtime(timezone.now())
+    checktime = now - dt.timedelta(minutes=10)
+    for ord in order:
+        ordtime = ord.ordtime
+        if ordtime < checktime:
+            if ord.ordcheck != 1:
+                ord.ordcheck = 2
+                ord.save()
+
+
+    #抓出未結帳訂單
+    handling = Ord.objects.filter(ordcheck=0)
+    # 定義要傳到前端的資料串
+    handling2 = [{
+        'no':(i),
+        'order': []
+    }for i in range(len(handling))]
+    # 將資料分類到資料串
+    for i in range(len(handling)):
+        handling2[i]['order'].append(handling[i])
+
+    checked = Ord.objects.filter(ordcheck=1)
+    checked2 = [{
+        'no': (i),
+        'order': []
+    } for i in range(len(checked))]
+    for i in range(len(checked)):
+        checked2[i]['order'].append(checked[i])
+
+    context={
+        'order': order,
+        'handling': handling2,
+        'checked':  checked2,
+    }
+    return render(request, 'order.html', context)
+
+@login_required
+@group_required('manage', 'boss', 'employee')
+def pass_to_checked(request, serno):
+    print(serno)
+    ord = Ord.objects.get(serno=serno)
+    ord.ordcheck = 1
+    ord.save()
+    return redirect('order:index')
 
 def orderdetail(request):
     food = Food.objects.all()

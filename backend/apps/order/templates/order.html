@@ -26,10 +26,12 @@
 			<div class="col-md-6">
 				<h3 class="nav_logo">
 					MAISON DE OCÉAN
+                    <a class="btn  btn-primary" href="{% url 'login:logout' %}" role="button">登出 &#187;</a>
 				</h3>
 			</div>
 			<div class="col-md-6 nav_align">
 				<img alt="Bootstrap Image Preview" src="{% static '/ord/images/logo.jpg' %}" class="rounded-circle nav_img">
+                <h4 style="color:white; float: right; padding-top: 15px; margin-left: 10px;"><a href="{% url 'login:profile' user.username %}" style="color:white;">{{ user.username }}</a>, 您好!</h4>
 			</div>
 		</div>
 
@@ -67,69 +69,35 @@
 
 				<div class="row">
                     <div class="col-md-6">
-                        <span class="res_date">訂單</span>
-                        {% for Ord in order %}
+                        <span class="res_date">已收到訂單</span>
+                        {% for handling in handling %}
+                        {% for Ord in handling.order %}
                         <table>
                             <tr>
-                                <th>{{ Ord.ordtime|date:'Y-m-d h:i'}}</th>
+                                <th>{{ Ord.ordtime|date:'m月d日 G:i'}}</th>
                                 <th>{{ Ord.tabnum }}桌</th>
-                                <td>{{ Ord.ordcheck }}</td>
+                                <td>${{ Ord.total_price }}</td>
+                                <td><a href="{% url 'order:pass' Ord.serno %}" class="btn btn-primary">結帳完成</a> </td>
                             </tr>
                         </table>
                         {% endfor %}
-                        <table>
-                            <tr>
-                                <th>林小姐</th>
-                                <th>A01桌</th>
-                                <td>$1,200</td>
-                            </tr>
-                        </table>
-                        <table>
-                            <tr>
-                                <th>林小姐</th>
-                                <th>A01桌</th>
-                                <td>$1,200</td>
-                            </tr>
-                        </table>
-                        <table>
-                            <tr>
-                                <th>林小姐</th>
-                                <th>A01桌</th>
-                                <td>$1,200</td>
-                            </tr>
-                        </table>
+                        {% endfor %}
+
 					</div>
 
                     <div class="col-md-6">
-                        <span class="res_date">已結帳</span>
+                        <span class="res_date">已結帳訂單</span>
+                        {% for checked in checked %}
+                        {% for Ord in checked.order %}
                         <table>
                             <tr>
-                                <th>林小姐</th>
-                                <th>A01桌</th>
-                                <td>$1,200</td>
+                                <th>{{ Ord.changetime|date:'m月d日 G:i'}}</th>
+                                <th>{{ Ord.tabnum }}桌</th>
+                                <td>${{ Ord.total_price }}</td>
                             </tr>
                         </table>
-                        <table>
-                            <tr>
-                                <th>林小姐</th>
-                                <th>A01桌</th>
-                                <td>$1,200</td>
-                            </tr>
-                        </table>
-                        <table>
-                            <tr>
-                                <th>林小姐</th>
-                                <th>A01桌</th>
-                                <td>$1,200</td>
-                            </tr>
-                        </table>
-                        <table>
-                            <tr>
-                                <th>林小姐</th>
-                                <th>A01桌</th>
-                                <td>$1,200</td>
-                            </tr>
-                        </table>
+                        {% endfor %}
+                        {% endfor %}
 					</div>
 				</div>
 			</div>

@@ -5,5 +5,5 @@ from ..order.models import *
 admin.site.register(Worksche)
 
 admin.site.register(Food)
-admin.site.register(Ord)
+
 admin.site.register(ordinfo)

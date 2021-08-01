@@ -41,7 +41,8 @@ class Food(models.Model):
 
 class Ord(models.Model):
     serno = models.AutoField(primary_key=True)
-    ordtime = models.DateTimeField('日期時間', auto_now=True)
+    ordtime = models.DateTimeField('訂單時間', auto_now_add=True)
+    changetime = models.DateTimeField('變更時間', auto_now=True)
     tabnum = models.CharField('桌號', max_length=3)
     ordcheck = models.IntegerField('處理狀態', default=0)
     wid = models.CharField('訂單編號', max_length = 20, default = increment_wait_number, editable=True)

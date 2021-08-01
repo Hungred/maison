@@ -29,7 +29,7 @@ def index(request):
     start_week = date - dt.timedelta(date.weekday())
     end_week = start_week + dt.timedelta(7)
     recent_sche = Worksche.objects.filter(workdate__range=[start_week, end_week])
-
+    print('recent:', recent_sche)
     #定義要傳到前端的資料串
     week_sche = [{
         'weekday': (i),
@@ -47,7 +47,7 @@ def index(request):
 
         # week_sche['sche'].append(worksche)
 
-
+    print('week:', week_sche)
     context = {'worksches': worksches, 'employees': employees,
                'today': date, 'weeksche': week_sche,
                'start': start_week}
