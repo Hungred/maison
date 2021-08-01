@@ -44,7 +44,7 @@ def index(request):
                 ord.save()
 
     # 抓出未結帳訂單
-    handling = order.filter(ordcheck=0)
+    handling = order.filter(ordcheck=1)
     # 定義要傳到前端的資料串
     handling2 = [{
         'no': (i),
@@ -54,7 +54,7 @@ def index(request):
     for i in range(len(handling)):
         handling2[i]['order'].append(handling[i])
 
-    checked = order.filter(ordcheck=1)
+    checked = order.filter(ordcheck=2)
     checked2 = [{
         'no': (i),
         'order': []
@@ -75,7 +75,7 @@ def index(request):
 def pass_to_checked(request, serno):
     print(serno)
     ord = Ord.objects.get(serno=serno)
-    ord.ordcheck = 1
+    ord.ordcheck = 2
     ord.save()
     return redirect('order:index')
 
@@ -99,18 +99,19 @@ def checkout(request, oid):
         decoded_order_id = str(decodedBytes, "utf-8")
     except:
         return redirect("/order/product")
-
-    orid = ordinfo.objects.filter(o_id__wid__contains=decoded_order_id)
-    if not orid:
-        return redirect("/order/product")
-    order = Ord.objects.get(wid=decoded_order_id)
-    order_status = order.ordcheck
-    if order_status != 0:
-        return redirect("/order/product")
-    total_price = order.total_price
-    params = {'oid': orid, 'total_price': total_price}
-    return render(request, 'checkout.html', params)
-
+    if request.method == "GET":
+        orid = ordinfo.objects.filter(o_id__wid__contains=decoded_order_id)
+        if not orid:
+            return redirect("/order/product")
+        order = Ord.objects.get(wid=decoded_order_id)
+        order_status = order.ordcheck
+        if order_status != 0:
+            return redirect("/order/product")
+        total_price = order.total_price
+        params = {'oid': orid, 'total_price': total_price}
+        return render(request, 'checkout.html', params)
+    elif request.method == "POST":
+        i = 1;
 
 @requires_csrf_token
 def product(request):

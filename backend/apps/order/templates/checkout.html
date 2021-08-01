@@ -30,7 +30,7 @@
 </head>
  {% load bootstrap4 %}
 <body>
-
+{% csrf_token %}
     <!--start  navbar-->
     <!--網頁版的nav-->
     <div class="topMenu">
@@ -244,7 +244,7 @@
 <!--                            </div>-->
                             <div class="form-group row">
                                 <div class="col-md-12">
-                                    <button class="submit-btn">送出訂單</button>
+                                    <button class="submit-btn" onclick="comfirmOrder()">送出訂單</button>
                                     <a class="return-btn" style="text-align:left;" href="#cartList">回上一步</a>
                                 </div>
                             </div>

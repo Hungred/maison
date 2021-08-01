@@ -105,3 +105,14 @@ function checkout(){
                     }
             });
        }
+function comfirmOrder(){
+            encoded_order_id =window.location.toString().substr(window.location.toString().lastIndexOf("/")+1, 19)
+            order_id = atob(encoded_order_id)
+            $.ajax({
+               type: 'POST',
+               data: {csrfmiddlewaretoken: csrftoken},
+               url: "\\order\\checkout\\"+encoded_order_id,
+               success: function(data) {
+                    }
+            });
+       }
