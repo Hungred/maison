@@ -30,7 +30,8 @@ def group_required(*group_names):
 
 @login_required(login_url="login:index")
 def index(request):
-    order = Ord.objects.all()
+    #只抓當日
+    order = Ord.objects.filter(wid__contains=int(str(datetime.date.today().year) + str(datetime.date.today().month).zfill(2) + str(datetime.date.today().day).zfill(2)))
 
     # 閒置超過10分鐘自動從清單中移除(仍在資料庫中)
     now = timezone.localtime(timezone.now())
@@ -43,7 +44,7 @@ def index(request):
                 ord.save()
 
     # 抓出未結帳訂單
-    handling = Ord.objects.filter(ordcheck=0)
+    handling = order.filter(ordcheck=0)
     # 定義要傳到前端的資料串
     handling2 = [{
         'no': (i),
@@ -53,7 +54,7 @@ def index(request):
     for i in range(len(handling)):
         handling2[i]['order'].append(handling[i])
 
-    checked = Ord.objects.filter(ordcheck=1)
+    checked = order.filter(ordcheck=1)
     checked2 = [{
         'no': (i),
         'order': []
