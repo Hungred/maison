@@ -11,7 +11,7 @@ class Position(models.TextChoices):
 
 
 class Employee_data(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, related_name='empdata', on_delete=models.CASCADE)
     empid = models.CharField('員工編號', max_length=5, unique=True)
     empname = models.CharField('員工姓名', max_length=4)
     phonenum = models.CharField('電話號碼', max_length=10)

@@ -74,14 +74,15 @@
                         {% for Ord in handling.order %}
                         <table>
                             <tr>
-                                <th>{{ Ord.ordtime|date:'m月d日 G:i'}}</th>
+                                <th><a href="{% url 'order:orderinfo' Ord.serno %}">{{ Ord.ordtime|date:'m月d日 G:i'}}</a></th>
                                 <th>{{ Ord.tabnum }}桌</th>
                                 <td>${{ Ord.total_price }}</td>
-                                <td><a href="{% url 'order:pass' Ord.serno %}" class="btn btn-primary">結帳完成</a> </td>
+                                <td><a href="{% url 'order:pass' Ord.serno %}" class="btn btn-primary">結帳完成</a></td>
                             </tr>
+
+                            {% endfor %}
+                            {% endfor %}
                         </table>
-                        {% endfor %}
-                        {% endfor %}
 
 					</div>
 
@@ -91,7 +92,7 @@
                         {% for Ord in checked.order %}
                         <table>
                             <tr>
-                                <th>{{ Ord.changetime|date:'m月d日 G:i'}}</th>
+                                <th><a href="{% url 'order:orderinfo' Ord.serno %}">{{ Ord.changetime|date:'m月d日 G:i'}}</a></th>
                                 <th>{{ Ord.tabnum }}桌</th>
                                 <td>${{ Ord.total_price }}</td>
                             </tr>

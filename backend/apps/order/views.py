@@ -62,6 +62,9 @@ def index(request):
     for i in range(len(checked)):
         checked2[i]['order'].append(checked[i])
 
+
+
+
     context = {
         'order': order,
         'handling': handling2,
@@ -79,6 +82,15 @@ def pass_to_checked(request, serno):
     ord.save()
     return redirect('order:index')
 
+#後台訂單詳細資料
+@login_required(login_url="login:index")
+def orderinfo(request, pk):
+    order = get_object_or_404(Ord, serno=pk)
+
+    context = {
+        'order': order,
+        }
+    return render(request, 'orderinfo.html', context)
 
 def orderdetail(request):
     food = Food.objects.all()

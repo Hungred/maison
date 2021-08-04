@@ -34,7 +34,7 @@ class Food(models.Model):
         field_values = []
 
         field_values.append(str(self.foodname))
-        field_values.append(str(self.fid))
+
         return ' '.join(field_values)
 
 
@@ -45,7 +45,7 @@ class Ord(models.Model):
     changetime = models.DateTimeField('變更時間', auto_now=True)
     tabnum = models.CharField('桌號', max_length=3)
     ordcheck = models.IntegerField('處理狀態', default=0)
-    wid = models.CharField('訂單編號', max_length = 20, default = increment_wait_number, editable=True)
+    wid = models.CharField('訂單編號', max_length=20, default=increment_wait_number, editable=True)
     total_price = models.IntegerField('總金額', default=0)
     # def __str__(self):
     #     field_values = []

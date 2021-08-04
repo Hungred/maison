@@ -1,6 +1,7 @@
 {% extends 'share/layout.html' %}
 
 {% block main %}
+{% load emptags %}
 				<h3 class="page_title" style="text-align: center; margin-top: 20px; margin-bottom: 20px;">
 					個人資料
 				</h3>
@@ -8,6 +9,10 @@
 				<h4>
 					<p><b>帳號: </b>{{ user.username }}</p>
 					<p><b>電子郵件: </b>{{ user.email }}</p>
+					<p><b>員工編號: </b>{{ user.empdata.empid }}</p>
+					<p><b>員工姓名: </b>{{ user.empdata.empname }}</p>
+					<p><b>電話號碼: </b>{{ user.empdata.phonenum }}</p>
+					<p><b>職位: </b>{{ user.empdata.position|topos }}</p>
 
 					<a href="{% url 'schedule:index' %}" class="btn waves-effect waves-light right sche_btn">返回</a>
 					<a href="{% url 'login:change' %}" class="btn btn-danger">修改密碼</a>

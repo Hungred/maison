@@ -51,7 +51,7 @@ def get_user(request):
 @login_required(login_url="login:index")
 def detailbook(request, pk):
     book = get_object_or_404(Book, serno=pk)
-    return render(request, 'reservation_detail.html', {'book':book})
+    return render(request, 'orderinfo.html', {'book':book})
 
 @permission_required('reservation.add_book', raise_exception=True)
 def addbook(request):

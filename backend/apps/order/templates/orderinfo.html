@@ -1,0 +1,53 @@
+{% extends 'share/layout.html' %}
+
+{% block main %}
+				<h3 class="page_title" style="margin-bottom: 40px; text-align: center; margin-top: 20px;">
+					訂單詳細
+				</h3>
+
+				<table style="background-color: #D3DAEF; margin: 0 auto; font-size: 24px; width: 300px; border: none;">
+					<tr>
+						<th style="padding-bottom: 10px;">
+							<p><b>訂單時間：</b>{{ order.ordtime }}</p>
+						</th>
+					</tr>
+
+					<tr>
+						<th style="padding-bottom: 10px; padding-top: 10px;">
+							<p><b>桌號：</b>{{ order.tabnum }}</p>
+						</th>
+					</tr>
+
+                    <tr>
+						<th style="padding-bottom: 10px; padding-top: 10px;">
+							<p><b>訂單編號：</b>{{ order.wid }}</p>
+						</th>
+					</tr>
+
+					<tr>
+						<th style="padding-bottom: 10px; padding-top: 10px;">
+							<p><b>訂單金額：</b>{{ order.total_price }}</p>
+						</th>
+					</tr>
+
+                    <tr>
+						<th style="padding-bottom: 10px; padding-top: 10px;">
+							<b>訂單內容：</b>
+							{% for info in order.ordinfo_set.all %}
+							<p>{{ info.f_id }} *{{ info.foodq }}</p>
+							{% endfor %}
+						</th>
+					</tr>
+
+					<tr style="float: right;">
+						<th style="padding-top: 10px;">
+							<a href="{% url 'order:index' %}" class="btn waves-effect waves-light right sche_btn">返回</a>
+<a href="#" class="btn waves-effect waves-light right sche_btn">修改</a>
+<a href="#" class="btn btn-danger">刪除</a>
+						</th>
+					</tr>
+					
+				</table>
+
+{% endblock %}
+
