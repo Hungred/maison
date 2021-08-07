@@ -70,8 +70,8 @@
 
 	</div>
 	<div class="row" id="carousel">
-		<div class="col-md-12">
-			<div class="carousel slide" id="carousel-685819">
+		<div class="col-md-12" >
+			<div class="carousel slide" id="carousel-685819"  >
 				<ol class="carousel-indicators">
 					<li data-slide-to="0" data-target="#carousel-685819" class="active">
 					</li>
@@ -80,7 +80,7 @@
 					<li data-slide-to="2" data-target="#carousel-685819">
 					</li>
 				</ol>
-				<div class="carousel-inner" style="height:800px ;z-index:-1;">
+				<div class="carousel-inner" style="width:auto; z-index:-1;">
 					<div class="carousel-item carousel-item-next carousel-item-left">
 						<img  class="d-block w-100" id="carousel-img" alt="Carousel Bootstrap First" src="{% static 'customer/image/2.jpg' %}">
 					</div>
@@ -91,7 +91,7 @@
 						<img class="d-block w-100" id="carousel-img" alt="Carousel Bootstrap Third" src="{% static 'customer/image/2.jpg' %}">
 					</div>
 				</div> <a class="carousel-control-prev" href="#carousel-685819" data-slide="prev">
-						<span class="carousel-control-prev-icon"></span>
+						<span class="carousel-control-prev-icon" style="position: absolute;"></span>
 						<span class="sr-only">Previous</span>
 					</a>
 					<a class="carousel-control-next" href="#carousel-685819" data-slide="next">
@@ -206,31 +206,37 @@
 
 
 
-	<div class="row" style="background-color: #707070; height: 200px;padding-top:50px ;">
+	<div class="row" style="background-color: #707070; height: auto;padding-top:20px ;width:100%;margin:auto;">
 		<div class="col-md-12">
 			<div class="row">
-
-				<table style="width: 100%;">
-					<tr>
-						<td style="text-align:left;width: 50%;padding-left: 400px;">
-							<h4>地址_宜蘭縣頭城鄉大坑路211號</h4>
-						</td>
-					</tr>
-					<tr>
-						<td style="text-align: left;width: 50%;padding-left: 400px;">
-							<h4>電話_03-9776788</h4></td>
-					</tr>
-					<tr>
-						<td style="text-align: left;width: 50%;padding-left: 400px;"><h4>時間_每日12:00-19:00，每週三公休</h4></td>
-						<td style="text-align: right;width: 50%;padding-right: 400px;"><h2>maison de océan</h2></td>
-					</tr>
+				<div class="col-md-12">
+				<table class="footer" style="margin:auto;width:40%">
+					<thead>
+                    <tr>
+                        <th>地址_宜蘭縣頭城鄉大坑路211號</th>
+                    </tr>
+                	</thead>
+					<tbody>
+                        <tr>
+                            <td>電話_03-9776788</td>
+                        </tr>
+                        <tr>
+                            <td>時間_每日12:00-19:00，每週三公休</td>
+							<td class="float-right"><h2>maison de océan</h2></td>
+                        </tr>
+                    </tbody>
 				</table>
-			</div>
+				<div class="footer_pho">
+					<img  class="footer_logo" src="{% static 'ord/images/img/logo.jpg' %}">
+					<h2 style="text-align: center;">maison de océan</h2>
+				</div>
+				</div>
+				</div>
 		</div>
 	</div>
-	<div class="row">
+	<div class="footer_social">
 		<div class="col-md-12">
-			<div class="row">
+			<div class="row ">
 				<div class="col-md-6">
 					<p style="color: white;">滿山望海</p>
 				</div>
@@ -246,5 +252,8 @@
     <script src="{% static 'customer/js/jquery.min.js' %}"></script>
     <script src="{% static 'customer/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'customer/js/scripts.js' %}"></script>
+
+
+
   </body>
 </html>
