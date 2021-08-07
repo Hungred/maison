@@ -27,6 +27,8 @@ class Food(models.Model):
     foodname = models.CharField('餐點名稱', max_length=10)
     foodprice = models.IntegerField('餐點價錢')
     foodtag = models.TextField('餐點特徵')
+    on_sales = models.IntegerField('是否上架', max_length=1, default=1)
+    image = models.ImageField('餐點圖片', upload_to='foodimage', blank=True, null=True)
 
 
 

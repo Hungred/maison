@@ -4,6 +4,7 @@ from django.template import context
 from django.views.decorators.csrf import requires_csrf_token
 
 from .models import *
+from .forms import *
 import base64
 from django.contrib import messages
 from django.core import serializers
@@ -81,6 +82,30 @@ def pass_to_checked(request, serno):
     ord.ordcheck = 2
     ord.save()
     return redirect('order:index')
+
+def menu_index(request):
+    foods = Food.objects.all()
+    return render(request, 'manage/menu.html', {'foods': foods})
+
+@login_required(login_url="login:index")
+def fooddetail(request, fid):
+    food = get_object_or_404(Food, fid=fid)
+
+    context = {
+        'food': food,
+        }
+    return render(request, 'manage/food_detail.html', context)
+
+# @permission_required('order.change_food', raise_exception=True)
+def updatefood(request, fid):
+    food = get_object_or_404(Food, fid=fid)
+    form = FoodForm(request.POST or None, instance=food)
+    # imgform = UploadModelForm(request.POST, request.FILES)
+    if form.is_valid():
+        form.save()
+        # imgform.save()
+        return redirect('order:menu')
+    return render(request, 'manage/food_update.html', {'form':form, })
 
 #後台訂單詳細資料
 @login_required(login_url="login:index")

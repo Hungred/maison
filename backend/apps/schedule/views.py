@@ -22,7 +22,7 @@ import datetime as dt
 def index(request):
     worksches = Worksche.objects.all()
     employees = Employee_data.objects.all()
-    
+
     #抓出這一周的班表
     date = dt.date.today()
     start_week = date - dt.timedelta(date.weekday())

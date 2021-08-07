@@ -1,0 +1,26 @@
+{% extends 'share/layout.html' %}
+
+{% block main %}
+{% load ordtags %}
+				<h3 class="page_title" style="margin-bottom: 40px; text-align: center; margin-top: 20px;">
+					菜單列表
+				</h3>
+
+				{% for food in foods %}
+            <table style="margin-left:auto; margin-right:auto;">
+                <tr>
+                    <th style="padding-bottom: 30px; padding-left: 10px;">
+                        餐點類型: {{ food.foodtype|to_foodtype }}
+                        餐點名稱: {{ food.foodname }}
+                        <br>
+                        <a href="{% url 'order:food_detail' food.fid %}">詳細>></a>
+                    </th>
+                    <td class="feed_time" style="padding-top: 60px; padding-right: 10px;"></td>
+                </tr>
+
+            {% endfor %}
+
+				</table>
+
+{% endblock %}
+
