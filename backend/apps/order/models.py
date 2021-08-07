@@ -1,6 +1,12 @@
 import datetime
 
 from django.db import models
+
+class BOOL_CHOICES(models.TextChoices):
+    YES = 'Y', '是',
+    NO = 'N', '否'
+
+
 def increment_wait_number():
   last_wait = Ord.objects.all().order_by('wid').last()
   if not last_wait:
@@ -29,7 +35,8 @@ class Food(models.Model):
     foodtag = models.TextField('餐點特徵')
     on_sales = models.IntegerField('是否上架', max_length=1, default=1)
     image = models.ImageField('餐點圖片', upload_to='foodimage', blank=True, null=True)
-
+    isIce = models.CharField('可調整冰塊', choices=BOOL_CHOICES.choices, max_length=128, default='N')
+    isSug = models.CharField('可調整甜度', choices=BOOL_CHOICES.choices, max_length=128, default='N')
 
 
     def __str__(self):
