@@ -10,8 +10,12 @@
     <meta name="description" content="Source code generated using layoutit.com">
     <meta name="author" content="LayoutIt!">
 {% load static %}
-    <link href="{% static 'customer/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'customer/css/bootstrap.min.css' %}" rel="stylesheet" media="screen">
     <link href="{% static 'customer/css/style-customer.css' %}" rel="stylesheet">
+
+<style></style>
+
+
 
   </head>
   <body style="background-image: url({% static 'customer/image/bg.jpg' %});">
@@ -50,9 +54,10 @@
 		</table>
 		
 	</div>
-	<div class="row" id="carousel">
-		<div class="col-md-12">
-			<div class="carousel slide" id="carousel-685819">
+
+<div class="row" id="carousel">
+		<div class="col-md-12" >
+			<div class="carousel slide" id="carousel-685819"  >
 				<ol class="carousel-indicators">
 					<li data-slide-to="0" data-target="#carousel-685819" class="active">
 					</li>
@@ -61,7 +66,7 @@
 					<li data-slide-to="2" data-target="#carousel-685819">
 					</li>
 				</ol>
-				<div class="carousel-inner" style="height:800px ;z-index:-1;">
+				<div class="carousel-inner" style="width:auto; z-index:-1;">
 					<div class="carousel-item carousel-item-next carousel-item-left">
 						<img  class="d-block w-100" id="carousel-img" alt="Carousel Bootstrap First" src="{% static 'customer/image/2.jpg' %}">
 					</div>
@@ -72,16 +77,18 @@
 						<img class="d-block w-100" id="carousel-img" alt="Carousel Bootstrap Third" src="{% static 'customer/image/2.jpg' %}">
 					</div>
 				</div> <a class="carousel-control-prev" href="#carousel-685819" data-slide="prev">
-						<span class="carousel-control-prev-icon"></span> 
+						<span class="carousel-control-prev-icon" style="position: absolute;"></span>
 						<span class="sr-only">Previous</span>
-					</a> 
+					</a>
 					<a class="carousel-control-next" href="#carousel-685819" data-slide="next">
-						<span class="carousel-control-next-icon"></span> 
+						<span class="carousel-control-next-icon"></span>
 						<span class="sr-only">Next</span>
 					</a>
 			</div>
 		</div>
 	</div>
+
+
 	<div class="row">
 		<div class="col-md-12">
 			<div class="row" id="food">
@@ -200,8 +207,15 @@
 	</div>
 </div>
 
-     <script src="{% static 'customer/js/jquery.min.js' %}"></script>
+    <script src="{% static 'customer/js/jquery.min.js' %}"></script>
     <script src="{% static 'customer/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'customer/js/scripts.js' %}"></script>
+<script>
+$("#slidershow").carousel({
+       interval: 1000
+});
+</script>
+
+
   </body>
 </html>

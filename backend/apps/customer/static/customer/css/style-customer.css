@@ -4,6 +4,9 @@
 @media  (min-width: 1420px) {
     .footer_pho{display:none; }
     .footer_social{display:none;}
+      #carousel-img{height:1000px;}
+    .carousel-inner{height:1000px;}
+
 }
 @media  (max-width: 1420px) {
     .footer{display:none;}
@@ -20,7 +23,11 @@
     }
 
 
+@media (min-width: 577px) {
+   #carousel-img{height:800px;}
+    .carousel-inner{height:800px;}
 
+}
 /* width<768*/
 @media only screen and (min-width: 576px) and (max-width: 767px) {
 
@@ -28,14 +35,16 @@
 
 }
 @media (max-width: 576px) {
-
+ #carousel-img{height:400px}
+ .carousel-inner{height:400px;}
 
 }
 
 
 /* width<375*/
 @media (max-width:376px) {
-
+ #carousel-img{height:300px}
+ .carousel-inner{height:300px;}
 }
 body{
     background-color:black;
@@ -123,14 +132,15 @@ a:hover{
 }
 
 #carousel{
-    height: 800px;
+    height: auto;
     position:relative;
    
    
 }
 #carousel-img{
     position:absolute;
-    
+    width: auto;
+
 }
 #food{
     margin-top: 50px;
