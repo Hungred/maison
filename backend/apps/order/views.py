@@ -82,10 +82,13 @@ def pass_to_checked(request, serno):
     ord.save()
     return redirect('order:index')
 
+@login_required
+@group_required('manage', 'boss')
 def menu_index(request):
     foods = Food.objects.all()
     return render(request, 'manage/menu.html', {'foods': foods})
 
+@group_required('manage', 'boss')
 @login_required(login_url="login:index")
 def fooddetail(request, fid):
     food = get_object_or_404(Food, fid=fid)
@@ -95,16 +98,45 @@ def fooddetail(request, fid):
         }
     return render(request, 'manage/food_detail.html', context)
 
-# @permission_required('order.change_food', raise_exception=True)
+@group_required('manage', 'boss')
+@permission_required('order.add_food', raise_exception=True)
+def addfood(request):
+    form = FoodForm(request.POST or None, request.FILES or None)
+    if form.is_valid():
+        try:
+            form.save()
+            messages.success(request, '新增成功')
+            return redirect('order:menu')
+        except Exception:
+            messages.error(request, '請確認資料無誤')
+            return redirect('order:menu')
+    return render(request,
+                  'manage/food_add.html',
+                  {'form': form},
+                  )
+
+@group_required('manage', 'boss')
+@permission_required('order.change_food', raise_exception=True)
 def updatefood(request, fid):
-    food = get_object_or_404(Food, fid=fid)
+    food = Food.objects.get(fid=fid)
     form = FoodForm(request.POST or None, instance=food)
-    # imgform = UploadModelForm(request.POST, request.FILES)
+    if request.method == 'POST':
+        form = FoodForm(request.POST or None, request.FILES or None, instance=food)
+
     if form.is_valid():
         form.save()
-        # imgform.save()
         return redirect('order:menu')
-    return render(request, 'manage/food_update.html', {'form':form, })
+    return render(request, 'manage/food_update.html', {'form': form})
+
+@group_required('manage', 'boss')
+@permission_required('order.delete_food', raise_exception=True)
+def delfood(request, fid):
+    food = get_object_or_404(Food, fid=fid)
+    form = DeleteConfirmForm(request.POST or None)
+    if form.is_valid() and form.cleaned_data['check']:
+        food.delete()
+        return redirect('order:menu')
+    return render(request, 'manage/food_del.html', {'form': form})
 
 #後台訂單詳細資料
 @login_required(login_url="login:index")

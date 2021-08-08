@@ -8,12 +8,11 @@ class FoodForm(ModelForm):
     class Meta:
         model = Food
         fields = '__all__'
+        widgets = {
+            'image': forms.FileInput(attrs={'class': 'form-control-file'})
+        }
 
 
-# class UploadModelForm(forms.ModelForm):
-#     class Meta:
-#         model = Food
-#         fields = ('image',)
-#         widgets = {
-#             'image': forms.FileInput(attrs={'class': 'form-control-file'})
-#         }
+class DeleteConfirmForm(forms.Form):
+    check = forms.BooleanField(label='你確定要刪除嗎？')
+
