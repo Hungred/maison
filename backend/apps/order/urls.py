@@ -12,5 +12,6 @@ urlpatterns = [
     path('foodupdate/<str:fid>', views.updatefood, name='food_update'),
     path('orderdetail', views.orderdetail, name='orderdetail'),
     path('checkout/<str:oid>', views.checkout, name='checkout'),
+    path('checkout/confirmed/', views.checkoutconfirmed, name='checkoutconfirmed'),
     path('product', views.product, name='product'),
 ]

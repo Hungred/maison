@@ -82,7 +82,7 @@ class ordinfo(models.Model):
         default=''
     )
 
-
+    foodp = models.IntegerField('小結', default=0)
     foodq = models.IntegerField('數量', default=0)
     ordice = models.CharField('冰塊', max_length=3, null=True, blank=True)
     ordsua = models.CharField('甜度', max_length=3, null=True, blank=True)
