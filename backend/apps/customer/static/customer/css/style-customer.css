@@ -6,7 +6,7 @@
     .footer_social{display:none;}
       #carousel-img{height:1000px;}
     .carousel-inner{height:1000px;}
-
+    .head_burger{display:none;}
 }
 @media  (max-width: 1420px) {
     .footer{display:none;}
@@ -21,26 +21,36 @@
         width:100px;
         height:100px;
     }
+    #food-img{
+     width:auto;
+     height:auto;
+    }
+}
 
+@media (max-width: 767px) {
+
+.head_list{display:none}
+
+}
+@media (min-width: 768px) {
+
+.head_burger{display:none;}
+
+}
+
+/* width<768*/
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+}
 
 @media (min-width: 577px) {
    #carousel-img{height:800px;}
-    .carousel-inner{height:800px;}
-
-}
-/* width<768*/
-@media only screen and (min-width: 576px) and (max-width: 767px) {
-
-}
-
+   .carousel-inner{height:800px;}
 }
 @media (max-width: 576px) {
  #carousel-img{height:400px}
  .carousel-inner{height:400px;}
 
 }
-
-
 /* width<375*/
 @media (max-width:376px) {
  #carousel-img{height:300px}
@@ -62,11 +72,8 @@ body{
 }
 #header{
     height: 150px;
-    
     padding-bottom: 40px;
-
 }
-
 .burgar_btn {
     display: none;
     // PC 時不顯示

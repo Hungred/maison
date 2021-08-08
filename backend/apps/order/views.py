@@ -2,8 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, JsonResponse
 from django.template import context
 from django.views.decorators.csrf import requires_csrf_token
-
 from .models import *
+from .forms import *
 import base64
 from django.contrib import messages
 from django.core import serializers
@@ -31,7 +31,7 @@ def group_required(*group_names):
 @login_required(login_url="login:index")
 def index(request):
     #只抓當日
-    order = Ord.objects.filter(wid__contains=int(str(datetime.date.today().year) + str(datetime.date.today().month).zfill(2) + str(datetime.date.today().day).zfill(2)))
+    order = Ord.objects.filter(wid__contains=int(str(dt.date.today().year) + str(dt.date.today().month).zfill(2) + str(dt.date.today().day).zfill(2)))
 
     # 閒置超過10分鐘自動從清單中移除(仍在資料庫中)
     now = timezone.localtime(timezone.now())
@@ -39,8 +39,8 @@ def index(request):
     for ord in order:
         ordtime = ord.ordtime
         if ordtime < checktime:
-            if ord.ordcheck != 1:
-                ord.ordcheck = 2
+            if ord.ordcheck < 2:
+                ord.ordcheck = 3
                 ord.save()
 
     # 抓出未結帳訂單
@@ -82,6 +82,62 @@ def pass_to_checked(request, serno):
     ord.save()
     return redirect('order:index')
 
+@login_required
+@group_required('manage', 'boss')
+def menu_index(request):
+    foods = Food.objects.all()
+    return render(request, 'manage/menu.html', {'foods': foods})
+
+@group_required('manage', 'boss')
+@login_required(login_url="login:index")
+def fooddetail(request, fid):
+    food = get_object_or_404(Food, fid=fid)
+
+    context = {
+        'food': food,
+        }
+    return render(request, 'manage/food_detail.html', context)
+
+@group_required('manage', 'boss')
+@permission_required('order.add_food', raise_exception=True)
+def addfood(request):
+    form = FoodForm(request.POST or None, request.FILES or None)
+    if form.is_valid():
+        try:
+            form.save()
+            messages.success(request, '新增成功')
+            return redirect('order:menu')
+        except Exception:
+            messages.error(request, '請確認資料無誤')
+            return redirect('order:menu')
+    return render(request,
+                  'manage/food_add.html',
+                  {'form': form},
+                  )
+
+@group_required('manage', 'boss')
+@permission_required('order.change_food', raise_exception=True)
+def updatefood(request, fid):
+    food = Food.objects.get(fid=fid)
+    form = FoodForm(request.POST or None, instance=food)
+    if request.method == 'POST':
+        form = FoodForm(request.POST or None, request.FILES or None, instance=food)
+
+    if form.is_valid():
+        form.save()
+        return redirect('order:menu')
+    return render(request, 'manage/food_update.html', {'form': form})
+
+@group_required('manage', 'boss')
+@permission_required('order.delete_food', raise_exception=True)
+def delfood(request, fid):
+    food = get_object_or_404(Food, fid=fid)
+    form = DeleteConfirmForm(request.POST or None)
+    if form.is_valid() and form.cleaned_data['check']:
+        food.delete()
+        return redirect('order:menu')
+    return render(request, 'manage/food_del.html', {'form': form})
+
 #後台訂單詳細資料
 @login_required(login_url="login:index")
 def orderinfo(request, pk):
@@ -122,9 +178,14 @@ def checkout(request, oid):
         total_price = order.total_price
         params = {'oid': orid, 'total_price': total_price}
         return render(request, 'checkout.html', params)
-    elif request.method == "POST":
-        i = 1;
 
+def checkoutconfirmed(request):
+    if request.method == "POST":
+        order_id = request.POST.get('order_id')
+        print("Hello")
+        return HttpResponse(json.dumps({
+            'order_id': order_id
+        }))
 @requires_csrf_token
 def product(request):
     if request.method == "GET":
@@ -138,19 +199,23 @@ def product(request):
         return render(request, 'product.html', context)
     elif request.method == "POST":
         cart = json.loads(request.POST.get('cart'))
+        print(cart)
         new_order = Ord(ordcheck=0)
         new_order.save()
         order_id = new_order.wid
         total_price = 0
         for food in cart:
-            curFood = Food.objects.get(pk=food)
+            curFood = Food.objects.get(pk=food['foodid'])
             price = curFood.foodprice
-            total_price += price
+            sum_price = price * food['foodamount']
+
+            total_price += sum_price
 
             ordinfo.objects.create(
                 o_id=new_order,
                 f_id=curFood,
-                foodq=1,
+                foodq=food['foodamount'],
+                foodp=sum_price,
             )
             new_order.total_price = total_price
             new_order.save()

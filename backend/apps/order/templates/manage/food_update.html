@@ -1,0 +1,61 @@
+{% extends 'share/layout.html' %}
+
+{% block main %}
+
+<style>
+	select{
+		width: 500px;
+		height: 45px;
+		border-radius: .25rem;
+		border: 1px solid rgba(0,0,0,.15);
+	}
+
+	select:focus{
+		background-color: #fff;
+		border-color: #5cb3fd;
+		outline: 0;
+	}
+
+	input{
+		-ms-touch-action: manipulation;
+      	touch-action: manipulation;
+		width: 500px;
+		background-clip: padding-box;
+		border: 1px solid rgba(0,0,0,.15);
+		border-radius: .25rem;
+		-webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+		transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+
+	}
+
+	input:focus{
+		background-color: #fff;
+		border-color: #5cb3fd;
+		outline: 0;
+	}
+
+	p>input{
+		width: 500px;
+	}
+</style>
+
+
+
+
+
+<h3 class="page_title" style="margin-bottom: 40px; text-align: center; margin-top: 20px;">
+	修改餐點
+</h3>
+{% load bootstrap4 %}
+{% load widget_tweaks %}<form action="" method="POST" enctype="multipart/form-data">
+<table style="background-color: #D3DAEF; margin: 0 auto; font-size: 24px; width: 400px; border: none;">
+
+		{% csrf_token %}
+    	{% bootstrap_form form %}
+
+    	<button type="submit" class="btn btn-primary float-right">送出</button>
+
+</table>
+
+</form>
+{% endblock %}

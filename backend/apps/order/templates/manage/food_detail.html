@@ -1,0 +1,55 @@
+{% extends 'share/layout.html' %}
+
+{% block main %}
+{% load ordtags %}
+{% load static %}
+<h3 class="page_title" style="margin-bottom: 40px; text-align: center; margin-top: 20px;">
+					餐點詳細
+				</h3>
+
+				<table style="background-color: #D3DAEF; margin: 0 auto; font-size: 24px; width: 300px; border: none;">
+					<tr>
+						<th style="padding-bottom: 10px;">
+							<img class="card-img-top" src="{{ food.image.url }}" />
+
+						</th>
+					</tr>
+					<tr>
+						<th style="padding-bottom: 10px;">
+							<p>餐點編號: {{ food.fid }}</p>
+						</th>
+					</tr>
+
+					<tr>
+						<th style="padding-bottom: 10px; padding-top: 10px;">
+							<p>餐點名稱: {{ food.foodname }}</p>
+						</th>
+					</tr>
+
+                    <tr>
+						<th style="padding-bottom: 10px; padding-top: 10px;">
+							<p>餐點價錢: {{ food.foodprice }}</p>
+						</th>
+					</tr>
+
+					<tr>
+						<th style="padding-bottom: 10px; padding-top: 10px;">
+							<p>餐點特徵: {{ food.foodtag }}</p>
+						</th>
+					</tr>
+
+
+
+					<tr style="float: right;">
+						<th style="padding-top: 10px;">
+							<a href="{% url 'order:menu' %}" class="btn waves-effect waves-light right sche_btn">返回</a>
+<a href="{% url 'order:food_update' food.fid %}" class="btn waves-effect waves-light right sche_btn">修改</a>
+<a href="{% url 'order:food_delete' food.fid %}" class="btn btn-danger">刪除</a>
+						</th>
+					</tr>
+
+				</table>
+
+
+{% endblock %}
+

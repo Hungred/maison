@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import path, include
 from django.shortcuts import redirect
 from utils import error_handlers
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('', lambda request: redirect('schedule:index'), name='root'),
@@ -30,5 +32,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
 ]
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 handler403 = 'utils.error_handlers.permission_denied'
