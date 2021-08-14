@@ -7,6 +7,7 @@
       #carousel-img{height:1000px;}
     .carousel-inner{height:1000px;}
     .head_burger{display:none;}
+    .food-img{text-align:right;}
 }
 @media  (max-width: 1420px) {
     .footer{display:none;}
@@ -28,14 +29,24 @@
 }
 
 @media (max-width: 767px) {
-
+.food-photo{text-align: center;}
+#food-con{text-align:center;}
+.about-photo{text-align: center;}
+#about-con{text-align:center;}
+.group_food{display:none;}
 .head_list{display:none}
-
+.food-img{text-align:center;}
 }
+
 @media (min-width: 768px) {
-
+.food-photo{text-align: right;}
+#food-con{text-align:left;}
+.about-photo{text-align: left;}
+#about-con{text-align:right;}
+.phone_food{display:none;}
 .head_burger{display:none;}
-
+.showmenu{display:none !important;}
+.food-img{text-align:right;}
 }
 
 /* width<768*/
@@ -74,29 +85,37 @@ body{
     height: 150px;
     padding-bottom: 40px;
 }
-.burgar_btn {
-    display: none;
-    // PC 時不顯示
+.list_logo{
+	float: left;
+	width: 100px;
+	height: 100px;
+	z-index:100;
+}
+.menu{
+	float: right;
+	display:none;
+}
+.menu li{
+	float: left;
+}
+.menu li a{
+	display: block;
+	color: white;
+	padding: 1em;
+	text-decoration: none;
+}
 
-    .fas {
-        display: none;
-    }
-
-    @include pad {
-        display: block;
-        // 在 pad 螢幕解析度以下顯示
-        color: $primary-color;
-        font-size: $font-l;
-        float: right;
-        margin-right: 1em;
-        line-height: 50px;
-
-        .fas {
-            display: block;
-            line-height: 50px;
-            // 在 pad 螢幕解析度以下顯示
-        }
-    }
+.burger_logo{
+	border-radius: 50%;
+	text-align:center;
+	vertical-align: middle;
+	display: flex;
+	align-items: center;
+	margin:auto;
+	margin-top:10px;
+	width:100px;
+	height:100px;
+	display:none;
 }
 
 #logo{
@@ -153,15 +172,14 @@ a:hover{
     margin-top: 50px;
     margin-bottom: 50px;
 }
+
 #food-img{
     width: 500px;
     height: 500px;
-    
 }
 #food-con{
     font-size: 18px;
     color:white;
-    
 }
 .logo{
     max-width: 100%;
@@ -232,7 +250,10 @@ a:hover{
 height: 600px;
 font-size: 18px;
 }
-
+#about-con{
+    font-size: 18px;
+    color:white;
+}
 
 #food
 .nav-list{

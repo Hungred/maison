@@ -12,17 +12,65 @@
 {% load static %}
     <link href="{% static 'customer/css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'customer/css/style-customer.css' %}" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/d2b4d68ad0.js" crossorigin="anonymous"></script>
+	<style>
+		@media (max-width: 767px){
+		  .menu {
+			/*隱藏選單開始*/
+			max-height: 0px;
+			overflow: hidden;
+			/*隱藏選單結束*/
+			transition: max-height 1.5s;
+			margin-top: 30px;
+			/*絕對定位疊在網頁上*/
+			position: absolute;
+			z-index: 100;
+			/*header 80px+1px boder 線條*/
+			top: 81px;
+			left: 0;
+			right: 0;
+			/*left跟right寫0，呈現滿版*/
+			background: black;
+			display:block;
+		  }
+		  .menu li{
+			float: none;
+			border-bottom: 1px dashed #69CA62;
+		  }
+		  .menu li a{
+			transition:  all .5s;
+			/*所有屬性漸變時間0.5秒*/
+		  }
+		  .menu li a:hover{
+			background: white;
+			color: black;
+		/*     transition:  all 5s; */
+		  }
+		  .burger_logo{
+		  	display:block;
+		  }
+		  .showmenu{
+			display: block;
+			float: right;
+			margin: 10px;
 
+		  }
+		  /*jQ點擊後動態在 body 加上 class */
+		  .menu-show .menu{
+			max-height: 500px
+		  }
+        }
+	  </style>
   </head>
   <body style="background-image: url({% static 'customer/image/bg.jpg' %});">
 {% load bootstrap4 %}
     <div class="container-fluid">
 	<div class="row" id="header" >
-		<table style="width: 100%;">
+		<table class="head_list" style="width: 100%;">
 			<tr>
 				<td style="text-align: center;">
-					<button id ="button" type="button" >
-						<a href="{% url 'customer:environment'  %}">環境介紹</a>
+					<button id ="button" type="button" href="">
+						<a style="color:white" href="{% url 'customer:environment'  %}"> 環境介紹 </a>
 					</button>
 				</td>
 				<td style="text-align: center;">
@@ -45,6 +93,19 @@
 				</td>
 			</tr>
 		</table>
+		<div class="head_burger" ></div>
+		  <img  class="burger_logo" src="{% static 'ord/images/img/logo.jpg' %}">
+		  <ul class="menu">
+			  <li><a href="{% url 'customer:index'  %}">首頁</a></li>
+			  <li><a href="{% url 'customer:environment'  %}">環境介紹</a></li>
+			  <li><a href="{% url 'customer:food'  %}">餐點介紹</a></li>
+			  <li><a href="{% url 'customer:activity'  %}">活動專區</a></li>
+			  <li><a href="{% url 'customer:about'  %}">關於我們</a></li>
+		  </ul>
+			<i class="fas fa-bars  fa-3x  showmenu"  style="color:white;"></i>
+<!--      		<a href="#" class="showmenu">menu</a>-->
+    	</div>
+	</div>
 		
 	</div>
 	<div class="row" id="carousel">
@@ -136,26 +197,32 @@
 			</div>
 		</div>
 	</div>
-	<div class="row" style="background-color: #707070; height: 200px;padding-top:50px ;">
+	<div class="row" style="background-color: #707070; height: auto;padding-top:20px ;width:100%;margin:auto;">
 		<div class="col-md-12">
 			<div class="row">
-
-				<table style="width: 100%;">
-					<tr>
-						<td style="text-align:left;width: 50%;padding-left: 400px;">
-							<h4>地址_宜蘭縣頭城鄉大坑路211號</h4>
-						</td>
-					</tr>
-					<tr>
-						<td style="text-align: left;width: 50%;padding-left: 400px;">
-							<h4>電話_03-9776788</h4></td>
-					</tr>
-					<tr>
-						<td style="text-align: left;width: 50%;padding-left: 400px;"><h4>時間_每日12:00-19:00，每週三公休</h4></td>
-						<td style="text-align: right;width: 50%;padding-right: 400px;"><h2>maison de océan</h2></td>
-					</tr>
+				<div class="col-md-12">
+				<table class="footer" style="margin:auto;width:40%">
+					<thead>
+                    <tr>
+                        <th>地址_宜蘭縣頭城鄉大坑路211號</th>
+                    </tr>
+                	</thead>
+					<tbody>
+                        <tr>
+                            <td>電話_03-9776788</td>
+                        </tr>
+                        <tr>
+                            <td>時間_每日12:00-19:00，每週三公休</td>
+							<td class="float-right"><h2>maison de océan</h2></td>
+                        </tr>
+                    </tbody>
 				</table>
-			</div>
+				<div class="footer_pho">
+					<img  class="footer_logo" src="{% static 'ord/images/img/logo.jpg' %}">
+					<h2 style="text-align: center;">maison de océan</h2>
+				</div>
+				</div>
+				</div>
 		</div>
 	</div>
 	     
@@ -177,5 +244,13 @@
      <script src="{% static 'customer/js/jquery.min.js' %}"></script>
     <script src="{% static 'customer/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'customer/js/scripts.js' %}"></script>
+<script>
+	$(document).ready(function() {
+   $('.showmenu').on('click',  function(e){
+      e.preventDefault();
+      $('body').toggleClass('menu-show');
+	  });
+	});
+</script>
   </body>
 </html>

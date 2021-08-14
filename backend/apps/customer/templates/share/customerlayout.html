@@ -18,39 +18,6 @@
 	<link href="{% static 'customer/css/slick.css' %}" rel="stylesheet">
 	<link href="{% static 'customer/css/slick-theme.css' %}" rel="stylesheet">
 	  <style>
-		  .list_logo{
-			  float: left;
-			  width: 100px;
-			  height: 100px;
-			  z-index:100;
-			}
-			.menu{
-			  float: right;
-			  display:none;
-			}
-			.menu li{
-			  float: left;
-			}
-			.menu li a{
-			  display: block;
-			  color: white;
-			  padding: 1em;
-			  text-decoration: none;
-			}
-			.showmenu{
-			  display: none;
-			}
-			.burger_logo{
-				border-radius: 50%;
-				text-align:center;
-				vertical-align: middle;
-				display: flex;
-				align-items: center;
-				margin:auto;
-				width:100px;
-				height:100px;
-				display:none;
-			}
 		@media (max-width: 767px){
 		  .menu {
 			/*隱藏選單開始*/
@@ -97,7 +64,6 @@
 			max-height: 500px
 		  }
         }
-
 	  </style>
   </head>
     {% load bootstrap4 %}
@@ -135,13 +101,13 @@
 		<div class="head_burger" ></div>
 		  <img  class="burger_logo" src="{% static 'ord/images/img/logo.jpg' %}">
 		  <ul class="menu">
-			  <li><a href="#">首頁</a></li>
-			  <li><a href="#">環境介紹</a></li>
-			  <li><a href="#">餐點介紹</a></li>
-			  <li><a href="#">活動專區</a></li>
-			  <li><a href="#">關於我們</a></li>
+			  <li><a href="{% url 'customer:index'  %}">首頁</a></li>
+			  <li><a href="{% url 'customer:environment'  %}">環境介紹</a></li>
+			  <li><a href="{% url 'customer:food'  %}">餐點介紹</a></li>
+			  <li><a href="{% url 'customer:activity'  %}">活動專區</a></li>
+			  <li><a href="{% url 'customer:about'  %}">關於我們</a></li>
 		  </ul>
-			<i class="fas fa-bars  fa-3x  showmenu"  style="color:white"></i>
+			<i class="fas fa-bars  fa-3x  showmenu"  style="color:white;"></i>
 <!--      		<a href="#" class="showmenu">menu</a>-->
     	</div>
 	</div>
@@ -181,10 +147,10 @@
 	<div class="row">
 		<div class="col-md-12">
 			<div class="row" id="food">
-				<div class="col-md-6"  style="text-align: right;">
-					<img  id="food-img" alt="Bootstrap Image Preview" src="{% static 'customer/image/food.jpg' %}"  >
+				<div class="col-md-6 food-photo"  >
+					<img  id="food-img" alt="Bootstrap Image Preview" src="{% static 'customer/image/food.jpg' %}"  style="max-width:100%;height:auto;">
 				</div>
-				<div class="col-md-6" id="food-con">
+				<div class="col-md-6" id="food-con" >
 					<dl>
 						<dt>
 							滿山望海
@@ -204,20 +170,23 @@
 		</div>
 	</div>
 	<div class="row">
-		<table style="width: 100%;">
+		<table class="group_food" style="width: 100%;">
 			<tr>
-			  <td rowspan="2"  style=" width:25%; height:800px;background:url({% static 'customer/image/3-1.jpg' %});"></td>
-			  <td rowspan="2"  style=" width:25%; height:800px;background:url({% static 'customer/image/3-2.jpg' %});"></td>
-			  <td colspan="2"  style=" width:50%; height:400px;background:url({% static 'customer/image/3-3.jpg' %});"></td>
+			  <td rowspan="2"  style=" width:25%; height:800px;background:url({% static 'customer/image/3-1.jpg' %});" style="max-width:100%;"></td>
+			  <td rowspan="2"  style=" width:25%; height:800px;background:url({% static 'customer/image/3-2.jpg' %});" style="max-width:100%;"></td>
+			  <td colspan="2"  style=" width:50%; height:400px;background:url({% static 'customer/image/3-3.jpg' %});" style="max-width:100%;"></td>
 			</tr>
 			<tr>
-			  <td colspan="2"  style=" width:50%; height:400px;background:url({% static 'customer/image/3-4.jpg' %});"></td>
+			  <td colspan="2"  style=" width:50%; height:400px;background:url({% static 'customer/image/3-4.jpg' %});" style="max-width:100%;"></td>
 			</tr>
 		</table>
+		<div class="phone_food">
+			<img src="{% static 'customer/image/3-2.jpg' %}" style="max-width:100%;margin:auto;">
+		</div>
 	</div>
 	<div class="row">
 		<div class="col-md-12" style="text-align: center;margin-top: 50px;margin-bottom: 50px;">
-			<img src="{% static 'customer/image/ins.png' %}" >
+			<img src="{% static 'customer/image/ins.png' %}" style="max-width:100%;">
 		</div>
 	</div>
 |
