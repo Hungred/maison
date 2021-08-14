@@ -21,6 +21,7 @@ def increment_wait_number():
   new_wait_int = wait_int + 1
   new_wait_id = str(datetime.date.today().year) + str(datetime.date.today().month).zfill(2) + str(datetime.date.today().day).zfill(2)+ str(new_wait_int).zfill(6)
   return new_wait_id
+
 class Foodtype(models.TextChoices):
     MAINDISH = 'A', '主餐'
     SIDEMEAL = 'B', '副餐'
@@ -33,7 +34,7 @@ class Food(models.Model):
     foodname = models.CharField('餐點名稱', max_length=10)
     foodprice = models.IntegerField('餐點價錢')
     foodtag = models.TextField('餐點特徵')
-    on_sales = models.IntegerField('是否上架', default=1)
+    on_sales = models.BooleanField('是否上架', default=True)
     image = models.ImageField('餐點圖片', upload_to='foodimage', blank=True, default='foodimage/default.png')
     isIce = models.CharField('可調整冰塊', choices=BOOL_CHOICES.choices, max_length=128, default='N')
     isSug = models.CharField('可調整甜度', choices=BOOL_CHOICES.choices, max_length=128, default='N')

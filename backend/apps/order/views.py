@@ -125,6 +125,7 @@ def updatefood(request, fid):
 
     if form.is_valid():
         form.save()
+        messages.success(request, '修改成功')
         return redirect('order:menu')
     return render(request, 'manage/food_update.html', {'form': form})
 
