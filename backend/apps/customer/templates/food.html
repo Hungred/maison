@@ -193,46 +193,35 @@
 		<span style="margin-left:15%;color:white;">主餐</span>
 	</div>
 	<div class="flex" >
-		<div class="item"><img src="{% static 'customer/image/food1.jpg' %}" width="220" height="200" /></div>
-		<div class="item"><img src="{% static 'customer/image/food1.jpg' %}" width="220" height="200" /></div>
-		<div class="item"><img src="{% static 'customer/image/food1.jpg' %}" width="220" height="200" /></div>
-		<div class="item"><img src="{% static 'customer/image/food1.jpg' %}" width="220" height="200" /></div>
-		<div class="item"><img src="{% static 'customer/image/food1.jpg' %}" width="220" height="200" /></div>
-		<div class="item"><img src="{% static 'customer/image/food1.jpg' %}" width="220" height="200" /></div>
+		{% for food in foodA %}
+
+		<div class="item"><img src="{{ food.image.url }}" width="220" height="200" />{{ food.foodname }}</div>
+		{% endfor %}
 	</div>
 	<div id="main2">
 		<span style="margin-left:15%;color:white;">副餐</span>
 	</div>
 	<div class="flex">
-		<div class="item"><img src="{% static 'customer/image/food1.jpg' %}" width="220" height="200" /></div>
-		<div class="item"><img src="{% static 'customer/image/food1.jpg' %}" width="220" height="200" /></div>
-		<div class="item"><img src="{% static 'customer/image/food1.jpg' %}" width="220" height="200" /></div>
-		<div class="item"><img src="{% static 'customer/image/food1.jpg' %}" width="220" height="200" /></div>
-		<div class="item"><img src="{% static 'customer/image/food1.jpg' %}" width="220" height="200" /></div>
-		<div class="item"><img src="{% static 'customer/image/food1.jpg' %}" width="220" height="200" /></div>
+		{% for food in foodB %}
+		<div class="item"><img src="{{ food.image.url }}" width="220" height="200" />{{ food.foodname }}</div>
+		{% endfor %}
 	</div>
 	<div id="main3">
 		<span style="margin-left:15%;color:white;">甜點</span>
 	</div>
 	<div class="flex" >
-		<div class="item"><img src="{% static 'customer/image/food1.jpg' %}" width="220" height="200" /></div>
-		<div class="item"><img src="{% static 'customer/image/food1.jpg' %}" width="220" height="200" /></div>
-		<div class="item"><img src="{% static 'customer/image/food1.jpg' %}" width="220" height="200" /></div>
-		<div class="item"><img src="{% static 'customer/image/food1.jpg' %}" width="220" height="200" /></div>
-		<div class="item"><img src="{% static 'customer/image/food1.jpg' %}" width="220" height="200" /></div>
-		<div class="item"><img src="{% static 'customer/image/food1.jpg' %}" width="220" height="200" /></div>
+		{% for food in foodC %}
+		<div class="item"><img src="{{ food.image.url }}" width="220" height="200" />{{ food.foodname }}</div>
+		{% endfor %}
 	</div>
 
 	<div id="main4">
 		<span style="margin-left:15%;color:white;">飲料</span>
 	</div>
 	<div class="flex" >
-		<div class="item"><img src="{% static 'customer/image/food1.jpg' %}" width="220" height="200" /></div>
-		<div class="item"><img src="{% static 'customer/image/food1.jpg' %}" width="220" height="200" /></div>
-		<div class="item"><img src="{% static 'customer/image/food1.jpg' %}" width="220" height="200" /></div>
-		<div class="item"><img src="{% static 'customer/image/food1.jpg' %}" width="220" height="200" /></div>
-		<div class="item"><img src="{% static 'customer/image/food1.jpg' %}" width="220" height="200" /></div>
-		<div class="item"><img src="{% static 'customer/image/food1.jpg' %}" width="220" height="200" /></div>
+		{% for food in foodD %}
+		<div class="item"><img src="{{ food.image.url }}" width="220" height="200" />{{ food.foodname }}</div>
+		{% endfor %}
 	</div>
 
 
