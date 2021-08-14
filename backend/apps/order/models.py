@@ -21,6 +21,7 @@ def increment_wait_number():
   new_wait_int = wait_int + 1
   new_wait_id = str(datetime.date.today().year) + str(datetime.date.today().month).zfill(2) + str(datetime.date.today().day).zfill(2)+ str(new_wait_int).zfill(6)
   return new_wait_id
+
 class Foodtype(models.TextChoices):
     MAINDISH = 'A', '主餐'
     SIDEMEAL = 'B', '副餐'
