@@ -20,10 +20,10 @@ def environment(request):
     return render(request, 'environment.html')
 #
 def food(request):
-    foodA = Food.objects.filter(foodtype='A')
-    foodB = Food.objects.filter(foodtype='B')
-    foodC = Food.objects.filter(foodtype='C')
-    foodD = Food.objects.filter(foodtype='D')
+    foodA = Food.objects.filter(foodtype='A', on_sales=True)
+    foodB = Food.objects.filter(foodtype='B', on_sales=True)
+    foodC = Food.objects.filter(foodtype='C', on_sales=True)
+    foodD = Food.objects.filter(foodtype='D', on_sales=True)
 
     context = {
         'foodA': foodA,
