@@ -6,15 +6,20 @@ from django.template import context
 # Create your views here.
 from .forms import BookForm
 from ..order.models import Food
+from ..event.models import Events
 
 def index(request):
-    return render(request, 'index.html')
+    return render(request, 'event_index.html')
 
 def about(request):
     return render(request, 'about.html')
 
 def activity(request):
-    return render(request, 'activity1.html')
+    events = Events.objects.filter(on_going=True)
+    context = {
+        'events': events
+    }
+    return render(request, 'activity1.html', context)
 
 def environment(request):
     return render(request, 'environment.html')

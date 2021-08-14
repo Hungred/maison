@@ -29,6 +29,7 @@ urlpatterns = [
     path('report/', include('apps.report.urls')),
     path('feedback/', include('apps.feedback.urls')),
     path('customer/', include('apps.customer.urls')),
+    path('event/', include('apps.event.urls')),
     path('admin/', admin.site.urls),
 
 ]

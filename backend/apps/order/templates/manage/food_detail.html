@@ -10,7 +10,11 @@
 				<table style="background-color: #D3DAEF; margin: 0 auto; font-size: 24px; width: 300px; border: none;">
 					<tr>
 						<th style="padding-bottom: 10px;">
+							{% if food.image %}
 							<img class="card-img-top" src="{{ food.image.url }}" />
+							{% else %}
+							<img class="card-img-top" src="/media/foodimage/default.png">
+							{% endif %}
 
 						</th>
 					</tr>

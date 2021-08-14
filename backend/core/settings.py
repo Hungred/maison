@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'apps.reservation',
     'apps.schedule',
     'apps.customer',
+    'apps.event',
 ]
 
 MIDDLEWARE = [

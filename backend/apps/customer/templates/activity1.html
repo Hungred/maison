@@ -83,7 +83,7 @@
 		<div class="col-md-12">
 			<div class="row" id="food">
 				<div class="col-md-6"  style="text-align: center;color:white;">
-					<h2>關於我們</h2>
+					<h2>活動一覽</h2>
 				</div>
 				<div class="col-md-6" id="food-con">
 					
@@ -95,48 +95,20 @@
 		<div class="contenter">
 			<section class="content">
 				<ul class="more">
+					{% for event in events %}
 					<li>
-						<figure class="pic"><img src="{% static 'customer/image/act1.jpg' %}"   width="400" height="420" /></figure>
+						<figure class="pic">
+							{% if event.coverimage %}
+							<img class="card-img-top" src="{{ event.coverimage.url }}" width="400" height="420" />
+							{% else %}
+							<img class="card-img-top" src="/media/eventimage/default.png" width="400" height="420" />
+							{% endif %}
 						<div class="more-des">
-							<p>【心理測驗！】</p>
-							<button>詳細介紹</button>
+							<p>{{ event.eventname }}</p>
+							<button><a href="{{ event.hyperlink }}">詳細介紹</a></button>
 						</div>
 					</li>
-					<li>
-						<figure class="pic"><img src="{% static 'customer/image/act2.jpg' %}"  width="400" height="420" /></figure>
-						<div class="more-des">
-							<p>【滿山望海 × 麒麟山告解室】</p>
-							<button>詳細介紹</button>
-						</div>
-					</li>
-					<li>
-						<figure class="pic"><img src="{% static 'customer/image/act3.jpg' %}" width="400" height="420" /></figure>
-						<div class="more-des">
-							<p>【Merry Christmas】</p>
-							<button>詳細介紹</button>
-						</div>
-					</li>
-					<li>
-						<figure class="pic"><img src="{% static 'customer/image/act1.jpg' %}"  width="400" height="420" /></figure>
-						<div class="more-des">
-							<p>【心理測驗！】</p>
-							<button>詳細介紹</button>
-						</div>
-					</li>
-					<li>
-						<figure class="pic"><img src="{% static 'customer/image/act2.jpg' %}"   width="400" height="420" /></figure>
-						<div class="more-des">
-							<p>【滿山望海 × 麒麟山告解室】</p>
-							<button>詳細介紹</button>
-						</div>
-					</li>
-					<li>
-						<figure class="pic"><img src="{% static 'customer/image/act3.jpg' %}" width="400" height="420" /></figure>
-						<div class="more-des">
-							<p>【Merry Christmas】</p>
-							<button>詳細介紹</button>
-						</div>
-					</li>
+					{% endfor %}
 				</ul>
 			</section>
 		</div>

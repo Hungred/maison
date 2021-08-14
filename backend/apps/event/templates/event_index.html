@@ -1,0 +1,26 @@
+{% extends 'share/layout.html' %}
+
+{% block main %}
+{% load evttags %}
+				<h3 class="page_title" style="margin-bottom: 40px; text-align: center; margin-top: 20px;">
+					活動列表
+				</h3>
+    <a href="{% url 'event:add' %}" type="submit" class="btn btn-primary float-right">新增活動</a>
+				{% for event in events %}
+            <table style="margin-left:auto; margin-right:auto;">
+                <tr>
+                    <th style="padding-bottom: 30px; padding-left: 10px;">
+                        活動名稱: {{ event.eventname }}
+                        <p>是否張貼: {{ event.on_going|True_or_False }}</p>
+                        <br>
+                        <a href="{% url 'event:detail' event.id %}">詳細>></a>
+                    </th>
+                    <td class="feed_time" style="padding-top: 60px; padding-right: 10px;"></td>
+                </tr>
+
+            {% endfor %}
+
+				</table>
+
+{% endblock %}
+
