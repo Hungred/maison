@@ -562,6 +562,11 @@
                     </div>`
             text +=addText;
         }
+        var totalprice =0;
+        for (var i = 0; i < cart.length; i++) {
+                totalprice += parseInt(cart[i].foodAmount) * parseInt(fprice[flist.indexOf(cart[i].foodid)])
+        }
+        document.getElementById("shopCartTotal").innerHTML=totalprice;
      document.getElementById("shopCartContent").innerHTML=text;}
 $(function(){
         $('#BackTop').click(function(){

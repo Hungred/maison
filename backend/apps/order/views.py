@@ -200,7 +200,6 @@ def product(request):
         return render(request, 'product.html', context)
     elif request.method == "POST":
         cart = json.loads(request.POST.get('cart'))
-        print(cart)
         new_order = Ord(ordcheck=0)
         new_order.save()
         order_id = new_order.wid
@@ -208,15 +207,18 @@ def product(request):
         for food in cart:
             curFood = Food.objects.get(pk=food['foodid'])
             price = curFood.foodprice
-            sum_price = price * food['foodamount']
+            sum_price = price * food['foodAmount']
 
             total_price += sum_price
 
             ordinfo.objects.create(
                 o_id=new_order,
                 f_id=curFood,
-                foodq=food['foodamount'],
+                foodq=food['foodAmount'],
                 foodp=sum_price,
+                ordice=food['ice'],
+                ordsua=food['sug'],
+                ordtip=food['tip']
             )
             new_order.total_price = total_price
             new_order.save()

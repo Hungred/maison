@@ -331,6 +331,8 @@ ul.social-network li {
 
     .shopCartItem .ItemQuantity {
         flex: 1;
+        text-align: center;
+        margin-top: 5px;
     }
 
     .shopCartItem .DelBtn {
