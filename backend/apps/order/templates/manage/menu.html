@@ -2,11 +2,82 @@
 
 {% block main %}
 {% load ordtags %}
+                <style>
+                    .tab {
+                      background-color: #f1f1f1;
+                      margin-left: 90px;
+                    }
+
+                    /* Style the buttons that are used to open the tab content */
+                    .tab button {
+                      background-color: inherit;
+                      float: left;
+                      border: none;
+                      outline: none;
+                      cursor: pointer;
+                      padding: 14px 16px;
+                      transition: 0.3s;
+                      font-size: 20px;
+                    }
+
+                    /* Change background color of buttons on hover */
+                    .tab button:hover {
+                      background-color: #ddd;
+                    }
+
+                    /* Create an active/current tablink class */
+                    .tab button.active {
+                      background-color: #1A1344;
+                      color: white;
+                    }
+
+                    /* Style the tab content */
+                    .tabcontent {
+                      display: none;
+                      padding: 6px 12px;
+                      margin-top: 100px;
+                    }
+                </style>
+
+                <script>
+                    function openCity(evt, cityName) {
+                      // Declare all variables
+                      var i, tabcontent, tablinks;
+
+                      // Get all elements with class="tabcontent" and hide them
+                      tabcontent = document.getElementsByClassName("tabcontent");
+                      for (i = 0; i < tabcontent.length; i++) {
+                        tabcontent[i].style.display = "none";
+                      }
+
+                      // Get all elements with class="tablinks" and remove the class "active"
+                      tablinks = document.getElementsByClassName("tablinks");
+                      for (i = 0; i < tablinks.length; i++) {
+                        tablinks[i].className = tablinks[i].className.replace(" active", "");
+                      }
+
+                      // Show the current tab, and add an "active" class to the button that opened the tab
+                      document.getElementById(cityName).style.display = "block";
+                      evt.currentTarget.className += " active";
+                    }
+                </script>
+
 				<h3 class="page_title" style="margin-bottom: 40px; text-align: center; margin-top: 20px;">
 					菜單列表
 				</h3>
-    <a href="{% url 'order:food_add' %}" type="submit" class="btn btn-primary float-right">新增餐點</a>
-				{% for food in foods %}
+
+    <div class="tab">
+      <button class="tablinks" onclick="openCity(event, 'breakfast')">主餐</button>
+      <button class="tablinks" onclick="openCity(event, 'launch')">附餐</button>
+      <button class="tablinks" onclick="openCity(event, 'sneaks')">甜點</button>
+      <button class="tablinks" onclick="openCity(event, 'drinks')">飲料</button>
+    </div>
+
+    <a href="{% url 'order:food_add' %}" type="submit" class="btn btn-primary float-right" style="margin-right: 90px; margin-top: 5px;">新增餐點</a>
+
+    <div id="breakfast" class="tabcontent">
+      {% for food in foods %}
+        {% if food.foodtype in "A" %}
             <table style="margin-left:auto; margin-right:auto;">
                 <tr>
                     <th style="padding-bottom: 30px; padding-left: 10px;">
@@ -18,9 +89,71 @@
                     <td class="feed_time" style="padding-top: 60px; padding-right: 10px;"></td>
                 </tr>
 
+            {% endif %}
             {% endfor %}
 
-				</table>
+            </table>
+    </div>
+
+    <div id="launch" class="tabcontent">
+      {% for food in foods %}
+        {% if food.foodtype in "B" %}
+            <table style="margin-left:auto; margin-right:auto;">
+                <tr>
+                    <th style="padding-bottom: 30px; padding-left: 10px;">
+                        餐點類型: {{ food.foodtype|to_foodtype }}
+                        餐點名稱: {{ food.foodname }}
+                        <br>
+                        <a href="{% url 'order:food_detail' food.fid %}">詳細>></a>
+                    </th>
+                    <td class="feed_time" style="padding-top: 60px; padding-right: 10px;"></td>
+                </tr>
+
+            {% endif %}
+            {% endfor %}
+
+            </table>
+    </div>
+
+    <div id="sneaks" class="tabcontent">
+      {% for food in foods %}
+        {% if food.foodtype in "C" %}
+            <table style="margin-left:auto; margin-right:auto;">
+                <tr>
+                    <th style="padding-bottom: 30px; padding-left: 10px;">
+                        餐點類型: {{ food.foodtype|to_foodtype }}
+                        餐點名稱: {{ food.foodname }}
+                        <br>
+                        <a href="{% url 'order:food_detail' food.fid %}">詳細>></a>
+                    </th>
+                    <td class="feed_time" style="padding-top: 60px; padding-right: 10px;"></td>
+                </tr>
+
+            {% endif %}
+            {% endfor %}
+
+            </table>
+    </div>
+
+    <div id="drinks" class="tabcontent">
+     {% for food in foods %}
+        {% if food.foodtype in "D" %}
+            <table style="margin-left:auto; margin-right:auto;">
+                <tr>
+                    <th style="padding-bottom: 30px; padding-left: 10px;">
+                        餐點類型: {{ food.foodtype|to_foodtype }}
+                        餐點名稱: {{ food.foodname }}
+                        <br>
+                        <a href="{% url 'order:food_detail' food.fid %}">詳細>></a>
+                    </th>
+                    <td class="feed_time" style="padding-top: 60px; padding-right: 10px;"></td>
+                </tr>
+
+            {% endif %}
+            {% endfor %}
+
+            </table>
+    </div>
 
 {% endblock %}
 
