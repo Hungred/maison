@@ -287,7 +287,7 @@ ul.social-network li {
     right: 0;
     display: none;
     background-color: white;
-    width: auto;
+    width: 400px;
     /*min-height: 100%;*/
     height: auto;
     box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
@@ -318,7 +318,6 @@ ul.social-network li {
         padding-left: 1rem;
         font-size: 1.1rem;
         line-height: 1rem;
-        padding-top: 5px;
     }
 
         .shopCartItem div > span {
@@ -420,7 +419,7 @@ ul.social-network li {
     .shopCart {
         padding-top:0;
         /*在masterPage.js裡有位置設定*/
-        width: auto;
+        width: 320px;
         /*min-height: 20%;*/
         height:auto;
         z-index: 3;

@@ -116,3 +116,10 @@ function comfirmOrder(){
                     }
             });
        }
+function presentOfFood(fid,ice,sug,tip){
+    for (var i = 0; i < cart.length; i++) {
+            if (cart[i].foodid == fid && cart[i].ice == ice && cart[i].sug==sug && cart[i].tip==tip) {
+                return i;
+            }
+        }
+}

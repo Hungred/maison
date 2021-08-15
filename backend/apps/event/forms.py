@@ -8,9 +8,7 @@ class EventForm(ModelForm):
     class Meta:
         model = Events
         fields = '__all__'
-        widgets = {
-            'image': forms.FileInput(attrs={'class': 'form-control-file'})
-        }
+
 
 
 class DeleteConfirmForm(forms.Form):

@@ -35,7 +35,7 @@ class Food(models.Model):
     foodprice = models.IntegerField('餐點價錢')
     foodtag = models.TextField('餐點特徵')
     on_sales = models.BooleanField('是否上架', default=True)
-    image = models.ImageField('餐點圖片', upload_to='foodimage', blank=True, default='foodimage/default.png')
+    image = models.ImageField('餐點圖片', upload_to='foodimage', blank=True, null=True, default='foodimage/default.png')
     isIce = models.CharField('可調整冰塊', choices=BOOL_CHOICES.choices, max_length=128, default='N')
     isSug = models.CharField('可調整甜度', choices=BOOL_CHOICES.choices, max_length=128, default='N')
 

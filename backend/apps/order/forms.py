@@ -8,9 +8,6 @@ class FoodForm(ModelForm):
     class Meta:
         model = Food
         fields = '__all__'
-        widgets = {
-            'image': forms.FileInput(attrs={'class': 'form-control-file'})
-        }
 
 
 class DeleteConfirmForm(forms.Form):

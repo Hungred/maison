@@ -111,7 +111,7 @@ def addfood(request):
             messages.error(request, '請確認資料無誤')
             return redirect('order:menu')
     return render(request,
-                  'manage/event_add.html',
+                  'manage/food_add.html',
                   {'form': form},
                   )
 
