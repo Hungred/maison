@@ -1,8 +1,14 @@
 
 {% extends 'share/layout.html' %}
-
+{% load static %}
 {% block main %}
 
+<script src="{% static '/res/js/jquery.min.js' %}"></script>
+<script type="text/javascript" src="https://unpkg.com/jquery-datetimepicker@2.5.21/build/jquery.datetimepicker.full.min.js"></script>
+
+
+<!-- XDSoft DateTimePicker -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css" integrity="sha256-DOS9W6NR+NFe1fUhEE0PGKY/fubbUCnOfTje2JMDw3Y=" crossorigin="anonymous" />
 <style>
 	select{
 		width: 500px;
@@ -85,7 +91,12 @@
 				{{ form.job }}
 			</th>
 		</tr>
-		
+    <script>
+     $("#id_workdate").datetimepicker({
+    timepicker:false,
+    format:'Y-m-d'
+});
+    </script>
 		<tr style="float: right;">
 			<th style="padding-top: 10px;">
 				<button type="submit" class="btn btn-primary">送出</button>

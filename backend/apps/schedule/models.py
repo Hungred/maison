@@ -22,8 +22,36 @@ from ..login.models import Employee_data
 
 
 
+class DutyHour(models.TextChoices):
+    Zero = '00', '00'
+    ONE = '01', '01'
+    TWO = '02', '02'
+    THREE = '03', '03'
+    FOUR = '04', '04'
+    FIVE = '05', '05'
+    SIX = '06', '06'
+    SEVEN = '07', '07'
+    EIGHT = '08','08'
+    NINE = '09','09'
+    TEN = '10','10'
+    ELEVEN = '11','11'
+    TWELVE = '12','12'
+    THIRTEEN = '13','13'
+    FOURTEEN = '14','14'
+    FIFTEEN = '15','15'
+    SIXTEEN = '16','16'
+    SEVENTEEN = '17','17'
+    EIGHTEEN = '18','18'
+    NINETEEN = '19','19'
+    TWENTY = '20','20'
+    TWENTYONE = '21', '21'
+    TWENTYTWO = '22', '22'
+    TWENTYTHREE = '23', '23'
 
 
+class DutyMin(models.TextChoices):
+    HOUR = '00', '00'
+    HALF_HOUR = '30', '30'
 class Job(models.TextChoices):
     # enum = value, display
     KITCHEN = 'Kitchen', '廚房'
@@ -39,10 +67,10 @@ class Worksche(models.Model):
         on_delete=models.CASCADE, #應思考如何刪除員工但留下班表紀錄
         verbose_name='員工編號')
     workdate = models.DateField('出勤日期', auto_now=False, auto_now_add=False)
-    workhour = models.CharField('出勤時', max_length=2)
-    workmin = models.CharField('出勤分', max_length=2)
-    offhour = models.CharField('退勤時', max_length=2)
-    offmin = models.CharField('退勤分', max_length=2)
+    workhour = models.CharField('出勤時', max_length=2, choices=DutyHour.choices, default="09")
+    workmin = models.CharField('出勤分', max_length=2,choices=DutyMin.choices,default="00")
+    offhour = models.CharField('退勤時', max_length=2,choices=DutyHour.choices,default="18")
+    offmin = models.CharField('退勤分', max_length=2,choices=DutyMin.choices,default="00")
     job = models.CharField('工作崗位', max_length=10, choices=Job.choices)
 
     def __str__(self):
