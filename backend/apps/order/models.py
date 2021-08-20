@@ -32,6 +32,7 @@ class Food(models.Model):
     fid = models.CharField('餐點編號', max_length=3, primary_key=True)
     foodtype = models.CharField('餐點類型', max_length=1, choices=Foodtype.choices)
     foodname = models.CharField('餐點名稱', max_length=10)
+    foodnameEng = models.CharField('餐點名稱英文', max_length=10,  default='')
     foodprice = models.IntegerField('餐點價錢')
     foodtag = models.TextField('餐點特徵')
     on_sales = models.BooleanField('是否上架', default=True)
