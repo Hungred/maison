@@ -33,6 +33,10 @@
 {% csrf_token %}
     <!--start  navbar-->
     <!--網頁版的nav-->
+    <script type="text/javascript">
+        var received_data = "{{cart|safe}}";
+        console.log(received_data);
+    </script>
     <div class="topMenu">
         <div id="navLogo">
             <a href="product.html" ><img src="{% static 'ord/images/img/logo.jpg' %}" alt=""></a>
@@ -298,6 +302,7 @@
     <script src="{% static 'ord/js/popper.js' %}"></script>
     <script src="{% static 'ord/js/custom.js' %}"></script>
     <script src="{% static 'ord/js/masterPage.js' %}"></script>
+    <script src="{% static 'ord/js/checkout.js' %}"></script>
 
 
     <!--此網站的js-->

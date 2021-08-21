@@ -2,6 +2,18 @@
 //購物車==================================================================
 
 //行動裝置：當視窗小於374時運作----
+$(document).ready(function() {
+            $.ajax({
+               type: 'POST',
+               data: {csrfmiddlewaretoken: csrftoken},
+               url: "\\order\\foodlist",
+               success: function(data) {
+//                  data = JSON.parse(data);
+                    foodlist=data;
+                    console.log(data);
+                    }
+            });
+});
 var csrftoken = $("[name=csrfmiddlewaretoken]").val();
 if ($(window).width() < 376) {
 
@@ -97,7 +109,6 @@ function checkout(){
 
                         data = JSON.parse(data);
                         oid = data["order_id"];
-                        console.log(data);
                         $(location).attr(
                             "href",
                             "/order/checkout/"+String(oid)
@@ -106,16 +117,23 @@ function checkout(){
             });
        }
 function comfirmOrder(){
-            encoded_order_id =window.location.toString().substr(window.location.toString().lastIndexOf("/")+1, 19)
+            encoded_order_id =window.location.toString().substr(window.location.toString().lastIndexOf("/")+1, 20)
             order_id = atob(encoded_order_id)
             $.ajax({
                type: 'POST',
-               data: {csrfmiddlewaretoken: csrftoken},
-               url: "\\order\\checkout\\"+encoded_order_id,
+               data: {order_id: order_id,csrfmiddlewaretoken: csrftoken},
+               url: "\\order\\checkout\\confirmed\\",
                success: function(data) {
-                    }
+                    console.log(data)}
             });
        }
+function indexOfFood(fid){
+    for (var i = 0; i < foodlist.length; i++) {
+            if (foodlist[i].foodid == fid) {
+                return i;
+            }
+        }
+}
 function presentOfFood(fid,ice,sug,tip){
     for (var i = 0; i < cart.length; i++) {
             if (cart[i].foodid == fid && cart[i].ice == ice && cart[i].sug==sug && cart[i].tip==tip) {

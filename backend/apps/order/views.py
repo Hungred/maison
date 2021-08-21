@@ -172,26 +172,57 @@ def checkout(request, oid):
         orid = ordinfo.objects.filter(o_id__wid__contains=decoded_order_id)
         if not orid:
             return redirect("/order/product")
+        cartitems = []
+        for orders in orid:
+            cartitem = {"foodid": orders.f_id.fid, "foodAmount": orders.foodq, "ice": orders.ordice, "sug": orders.ordsua, "tip": orders.ordtip}
+            cartitems.append(cartitem)
+        js_data = json.dumps(cartitems)
         order = Ord.objects.get(wid=decoded_order_id)
         order_status = order.ordcheck
         if order_status != 0:
             return redirect("/order/product")
         total_price = order.total_price
-        params = {'oid': orid, 'total_price': total_price}
+
+        params = {'oid': orid, 'total_price': total_price, 'cart': js_data}
+
         return render(request, 'checkout.html', params)
+    elif request.method == "POST":
+        cartitems = []
+        orid = ordinfo.objects.filter(o_id__wid__contains=decoded_order_id)
+        for orders in orid:
+            cartitem = {"foodid": orders.f_id.fid, "foodAmount": orders.foodq, "ice": orders.ordice,
+                        "sug": orders.ordsua, "tip": orders.ordtip}
+            cartitems.append(cartitem)
+        return HttpResponse(json.dumps({
+            'cart': cartitems
+        }))
+
 
 def checkoutconfirmed(request):
     if request.method == "POST":
         order_id = request.POST.get('order_id')
-        print("Hello")
         return HttpResponse(json.dumps({
             'order_id': order_id
         }))
+
+def foodlist(request):
+    if request.method == "POST":
+        food = Food.objects.all()
+        foodlist = []
+        for foods in food:
+            fooddict = {"foodid": foods.fid, "foodname": foods.foodname, "foodPrice": foods.foodprice, "foodImg": foods.image.url}
+            foodlist.append(fooddict)
+        return JsonResponse(foodlist,safe=False)
+        # return HttpResponse(json.dumps({
+        #     'foodlist': foodlist
+        # }))
+
 @requires_csrf_token
 def product(request):
     if request.method == "GET":
         food = Food.objects.all()
         ord = Ord.objects.all()
+
 
         context = {
             'food': food,
