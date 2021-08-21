@@ -12,6 +12,7 @@ import json
 from django.contrib.auth.decorators import login_required, permission_required, user_passes_test
 from django.utils import timezone
 import datetime as dt
+from .classes import *
 
 
 # Create your views here.
@@ -87,6 +88,31 @@ def pass_to_checked(request, serno):
 def menu_index(request):
     foods = Food.objects.all()
     return render(request, 'manage/menu.html', {'foods': foods})
+
+def foo(var):
+    return {
+    '主餐': 'A',
+    'b': 2,
+    'c': 3,
+    }.get(var, 'error')
+
+def SearchPage(request):
+    srh = request.GET['query']
+    srh2 = foo(srh)
+
+    foods = Food.objects.filter(foodname__icontains=srh)
+
+    if not foods:
+        foods = Food.objects.filter(fid__icontains=srh)
+
+    if not foods:
+        foods = Food.objects.filter(foodprice__icontains=srh)
+
+    if not foods:
+        foods = Food.objects.filter(foodtype__icontains=srh2)
+
+    params = {'foods': foods, 'search': srh}
+    return render(request, 'manage/search_page.html', params)
 
 @group_required('manage', 'boss')
 @login_required(login_url="login:index")

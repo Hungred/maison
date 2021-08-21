@@ -65,6 +65,14 @@
 				<h3 class="page_title" style="margin-bottom: 40px; text-align: center; margin-top: 20px;">
 					菜單列表
 				</h3>
+<div class="row">
+        <div class="col-md-11" style="padding-right: 62px;">
+            <form action="{% url 'order:search_result' %}" method="get" style="margin-bottom: 20px; text-align: right;">
+                <input name="query" type="text" placeholder="ex:餐點名稱,價錢,編號" >
+                <button type="submit" name="button" class="btn btn-primary">搜尋</button>
+            </form>
+        </div>
+    </div>
 
     <div class="tab">
       <button class="tablinks" onclick="openCity(event, 'breakfast')">主餐</button>
@@ -73,14 +81,67 @@
       <button class="tablinks" onclick="openCity(event, 'drinks')">飲料</button>
     </div>
 
+    <div class="tab">
+      <button class="tablinks" onclick="openCity(event, 'on_sale')">上架中</button>
+      <button class="tablinks" onclick="openCity(event, 'not_on_sale')">未上架</button>
+    </div>
+
     <a href="{% url 'order:food_add' %}" type="submit" class="btn btn-primary float-right" style="margin-right: 90px; margin-top: 5px;">新增餐點</a>
+
+    <div id="on_sale" class="tabcontent">
+      {% for food in foods %}
+        {% if food.on_sales is True %}
+            <table style="margin-left:auto; margin-right:auto;">
+                {% for food in foods %}
+                    {% cycle 'row' '' as row silent %}
+                    {% if row %}<tr>{% endif %}
+                        <th class="col-md-1" style="padding-left: 10px;">
+                            {% if food.image %}
+                                <img class="card-img-top" src="{{ food.image.url }}" style="max-width:70px; max-height:70px;"/>
+                                {% else %}
+                                <img class="card-img-top" src="/media/foodimage/default.png" style="max-width:70px; max-height:70px;" />
+                            {% endif %}
+                        </th>
+                        <th class="col-md-5" style="padding-left: 10px;">
+                            餐點類型: {{ food.foodtype|to_foodtype }}
+                            餐點名稱: {{ food.foodname }}
+                            <br>
+                            <a href="{% url 'order:food_detail' food.fid %}">詳細>></a>
+                        </th>
+                    {% if not row %}</tr>{% endif %}
+                {% endfor %}
+            {% endif %}
+            {% endfor %}
+
+            </table>
+    </div>
+
+    <div id="not_on_sale" class="tabcontent">
+      {% for food in foods %}
+        {% if food.on_sales is False %}
+            <table style="margin-left:auto; margin-right:auto;">
+                <tr>
+                    <th style="padding-left: 10px;">
+                        餐點類型: {{ food.foodtype|to_foodtype }}
+                        餐點名稱: {{ food.foodname }}
+                        <br>
+                        <a href="{% url 'order:food_detail' food.fid %}">詳細>></a>
+                    </th>
+                    <td class="feed_time" style="padding-top: 60px; padding-right: 10px;"></td>
+                </tr>
+
+            {% endif %}
+            {% endfor %}
+
+            </table>
+    </div>
 
     <div id="breakfast" class="tabcontent">
       {% for food in foods %}
         {% if food.foodtype in "A" %}
             <table style="margin-left:auto; margin-right:auto;">
                 <tr>
-                    <th style="padding-bottom: 30px; padding-left: 10px;">
+                    <th style="padding-left: 10px;">
                         餐點類型: {{ food.foodtype|to_foodtype }}
                         餐點名稱: {{ food.foodname }}
                         <br>
@@ -100,7 +161,7 @@
         {% if food.foodtype in "B" %}
             <table style="margin-left:auto; margin-right:auto;">
                 <tr>
-                    <th style="padding-bottom: 30px; padding-left: 10px;">
+                    <th style="padding-left: 10px;">
                         餐點類型: {{ food.foodtype|to_foodtype }}
                         餐點名稱: {{ food.foodname }}
                         <br>
@@ -120,7 +181,7 @@
         {% if food.foodtype in "C" %}
             <table style="margin-left:auto; margin-right:auto;">
                 <tr>
-                    <th style="padding-bottom: 30px; padding-left: 10px;">
+                    <th style="padding-left: 10px;">
                         餐點類型: {{ food.foodtype|to_foodtype }}
                         餐點名稱: {{ food.foodname }}
                         <br>
@@ -140,7 +201,7 @@
         {% if food.foodtype in "D" %}
             <table style="margin-left:auto; margin-right:auto;">
                 <tr>
-                    <th style="padding-bottom: 30px; padding-left: 10px;">
+                    <th style="padding-left: 10px;">
                         餐點類型: {{ food.foodtype|to_foodtype }}
                         餐點名稱: {{ food.foodname }}
                         <br>
