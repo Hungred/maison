@@ -11,9 +11,9 @@
 					<tr>
 						<th style="padding-bottom: 10px;">
 							{% if event.coverimage %}
-							<img class="card-img-top" src="{{ event.coverimage.url }}" />
+							<img class="card-img-top" src="{{ event.coverimage.url }}" style="max-width:960px; max-height:540px;"/>
 							{% else %}
-							<img class="card-img-top" src="/media/eventimage/default.png">
+							<img class="card-img-top" src="/media/eventimage/default.png" style="max-width:960px; max-height:540px;">
 							{% endif %}
 
 						</th>

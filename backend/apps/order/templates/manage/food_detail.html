@@ -11,9 +11,9 @@
 					<tr>
 						<th style="padding-bottom: 10px;">
 							{% if food.image %}
-							<img class="card-img-top" src="{{ food.image.url }}" />
+							<img class="card-img-top" src="{{ food.image.url }}" style="max-width:960px; max-height:540px;"/>
 							{% else %}
-							<img class="card-img-top" src="/media/foodimage/default.png">
+							<img class="card-img-top" src="/media/foodimage/default.png" style="max-width:960px; max-height:540px;" />
 							{% endif %}
 
 						</th>
