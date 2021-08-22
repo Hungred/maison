@@ -76,7 +76,7 @@
 
     <div class="tab">
       <button class="tablinks" onclick="openCity(event, 'breakfast')">主餐</button>
-      <button class="tablinks" onclick="openCity(event, 'launch')">附餐</button>
+      <button class="tablinks" onclick="openCity(event, 'launch')">副餐</button>
       <button class="tablinks" onclick="openCity(event, 'sneaks')">甜點</button>
       <button class="tablinks" onclick="openCity(event, 'drinks')">飲料</button>
     </div>
@@ -91,8 +91,8 @@
     <div id="on_sale" class="tabcontent">
         <div class="row">
             <div class="col-md-6">
-            {% for food in foods %}
-            {% if food.on_sales is True %}
+            {% for food in Os_1 %}
+
                 <table style="margin-left:auto; margin-right:auto; width:80%";>
                       <tr>
                             <th class="col-md-1" style="padding-left: 10px;">
@@ -109,15 +109,15 @@
                                 <a href="{% url 'order:food_detail' food.fid %}">詳細>></a>
                             </th>
                        </tr>
-                {% endif %}
+
                 {% endfor %}
 
                 </table>
             </div>
 
             <div class="col-md-6">
-            {% for food in foods %}
-            {% if food.on_sales is True %}
+            {% for food in Os_2 %}
+
                 <table style="margin-left:auto; margin-right:auto; width:80%";>
                     <tr>
                             <th class="col-md-1" style="padding-left: 10px;">
@@ -134,7 +134,7 @@
                                 <a href="{% url 'order:food_detail' food.fid %}">詳細>></a>
                             </th>
                         </tr>
-                {% endif %}
+
                 {% endfor %}
 
                 </table>
@@ -143,103 +143,277 @@
     </div>
 
     <div id="not_on_sale" class="tabcontent">
-      {% for food in foods %}
-        {% if food.on_sales is False %}
-            <table style="margin-left:auto; margin-right:auto;">
-                <tr>
-                    <th style="padding-left: 10px;">
-                        餐點類型: {{ food.foodtype|to_foodtype }}
-                        餐點名稱: {{ food.foodname }}
-                        <br>
-                        <a href="{% url 'order:food_detail' food.fid %}">詳細>></a>
-                    </th>
-                    <td class="feed_time" style="padding-top: 60px; padding-right: 10px;"></td>
-                </tr>
+      <div class="row">
+            <div class="col-md-6">
+            {% for food in Xs_1 %}
 
-            {% endif %}
-            {% endfor %}
+                <table style="margin-left:auto; margin-right:auto; width:80%";>
+                      <tr>
+                            <th class="col-md-1" style="padding-left: 10px;">
+                                {% if food.image %}
+                                    <img class="card-img-top" src="{{ food.image.url }}" style="max-width:70px; max-height:70px;"/>
+                                    {% else %}
+                                    <img class="card-img-top" src="/media/foodimage/default.png" style="max-width:70px; max-height:70px;" />
+                                {% endif %}
+                            </th>
+                            <th class="col-md-11" style="padding-left: 10px;">
+                                餐點類型: {{ food.foodtype|to_foodtype }}
+                                餐點名稱: {{ food.foodname }}
+                                <br>
+                                <a href="{% url 'order:food_detail' food.fid %}">詳細>></a>
+                            </th>
+                       </tr>
 
-            </table>
+                {% endfor %}
+
+                </table>
+            </div>
+
+            <div class="col-md-6">
+            {% for food in Xs_2 %}
+
+                <table style="margin-left:auto; margin-right:auto; width:80%";>
+                    <tr>
+                            <th class="col-md-1" style="padding-left: 10px;">
+                                {% if food.image %}
+                                    <img class="card-img-top" src="{{ food.image.url }}" style="max-width:70px; max-height:70px;"/>
+                                    {% else %}
+                                    <img class="card-img-top" src="/media/foodimage/default.png" style="max-width:70px; max-height:70px;" />
+                                {% endif %}
+                            </th>
+                            <th class="col-md-11" style="padding-left: 10px;">
+                                餐點類型: {{ food.foodtype|to_foodtype }}
+                                餐點名稱: {{ food.foodname }}
+                                <br>
+                                <a href="{% url 'order:food_detail' food.fid %}">詳細>></a>
+                            </th>
+                        </tr>
+
+                {% endfor %}
+
+                </table>
+            </div>
+        </div>
     </div>
 
     <div id="breakfast" class="tabcontent">
-      {% for food in foods %}
-        {% if food.foodtype in "A" %}
-            <table style="margin-left:auto; margin-right:auto;">
-                <tr>
-                    <th style="padding-left: 10px;">
-                        餐點類型: {{ food.foodtype|to_foodtype }}
-                        餐點名稱: {{ food.foodname }}
-                        <br>
-                        <a href="{% url 'order:food_detail' food.fid %}">詳細>></a>
-                    </th>
-                    <td class="feed_time" style="padding-top: 60px; padding-right: 10px;"></td>
-                </tr>
+      <div class="row">
+            <div class="col-md-6">
 
-            {% endif %}
-            {% endfor %}
+            {% for food in As_1 %}
 
-            </table>
+                <table style="margin-left:auto; margin-right:auto; width:80%";>
+                      <tr>
+                            <th class="col-md-1" style="padding-left: 10px;">
+                                {% if food.image %}
+                                    <img class="card-img-top" src="{{ food.image.url }}" style="max-width:70px; max-height:70px;"/>
+                                    {% else %}
+                                    <img class="card-img-top" src="/media/foodimage/default.png" style="max-width:70px; max-height:70px;" />
+                                {% endif %}
+                            </th>
+                            <th class="col-md-11" style="padding-left: 10px;">
+                                餐點類型: {{ food.foodtype|to_foodtype }}
+                                餐點名稱: {{ food.foodname }}
+                                <br>
+                                <a href="{% url 'order:food_detail' food.fid %}">詳細>></a>
+                            </th>
+                       </tr>
+
+                {% endfor %}
+
+                </table>
+            </div>
+
+            <div class="col-md-6">
+            {% for food in As_2 %}
+
+                <table style="margin-left:auto; margin-right:auto; width:80%";>
+                    <tr>
+                            <th class="col-md-1" style="padding-left: 10px;">
+                                {% if food.image %}
+                                    <img class="card-img-top" src="{{ food.image.url }}" style="max-width:70px; max-height:70px;"/>
+                                    {% else %}
+                                    <img class="card-img-top" src="/media/foodimage/default.png" style="max-width:70px; max-height:70px;" />
+                                {% endif %}
+                            </th>
+                            <th class="col-md-11" style="padding-left: 10px;">
+                                餐點類型: {{ food.foodtype|to_foodtype }}
+                                餐點名稱: {{ food.foodname }}
+                                <br>
+                                <a href="{% url 'order:food_detail' food.fid %}">詳細>></a>
+                            </th>
+                        </tr>
+
+                {% endfor %}
+
+                </table>
+            </div>
+        </div>
     </div>
 
     <div id="launch" class="tabcontent">
-      {% for food in foods %}
-        {% if food.foodtype in "B" %}
-            <table style="margin-left:auto; margin-right:auto;">
-                <tr>
-                    <th style="padding-left: 10px;">
-                        餐點類型: {{ food.foodtype|to_foodtype }}
-                        餐點名稱: {{ food.foodname }}
-                        <br>
-                        <a href="{% url 'order:food_detail' food.fid %}">詳細>></a>
-                    </th>
-                    <td class="feed_time" style="padding-top: 60px; padding-right: 10px;"></td>
-                </tr>
+      <div class="row">
+            <div class="col-md-6">
 
-            {% endif %}
-            {% endfor %}
+            {% for food in Bs_1 %}
 
-            </table>
+                <table style="margin-left:auto; margin-right:auto; width:80%";>
+                      <tr>
+                            <th class="col-md-1" style="padding-left: 10px;">
+                                {% if food.image %}
+                                    <img class="card-img-top" src="{{ food.image.url }}" style="max-width:70px; max-height:70px;"/>
+                                    {% else %}
+                                    <img class="card-img-top" src="/media/foodimage/default.png" style="max-width:70px; max-height:70px;" />
+                                {% endif %}
+                            </th>
+                            <th class="col-md-11" style="padding-left: 10px;">
+                                餐點類型: {{ food.foodtype|to_foodtype }}
+                                餐點名稱: {{ food.foodname }}
+                                <br>
+                                <a href="{% url 'order:food_detail' food.fid %}">詳細>></a>
+                            </th>
+                       </tr>
+
+                {% endfor %}
+
+                </table>
+            </div>
+
+            <div class="col-md-6">
+            {% for food in Bs_2 %}
+
+                <table style="margin-left:auto; margin-right:auto; width:80%";>
+                    <tr>
+                            <th class="col-md-1" style="padding-left: 10px;">
+                                {% if food.image %}
+                                    <img class="card-img-top" src="{{ food.image.url }}" style="max-width:70px; max-height:70px;"/>
+                                    {% else %}
+                                    <img class="card-img-top" src="/media/foodimage/default.png" style="max-width:70px; max-height:70px;" />
+                                {% endif %}
+                            </th>
+                            <th class="col-md-11" style="padding-left: 10px;">
+                                餐點類型: {{ food.foodtype|to_foodtype }}
+                                餐點名稱: {{ food.foodname }}
+                                <br>
+                                <a href="{% url 'order:food_detail' food.fid %}">詳細>></a>
+                            </th>
+                        </tr>
+
+                {% endfor %}
+
+                </table>
+            </div>
+        </div>
     </div>
 
     <div id="sneaks" class="tabcontent">
-      {% for food in foods %}
-        {% if food.foodtype in "C" %}
-            <table style="margin-left:auto; margin-right:auto;">
-                <tr>
-                    <th style="padding-left: 10px;">
-                        餐點類型: {{ food.foodtype|to_foodtype }}
-                        餐點名稱: {{ food.foodname }}
-                        <br>
-                        <a href="{% url 'order:food_detail' food.fid %}">詳細>></a>
-                    </th>
-                    <td class="feed_time" style="padding-top: 60px; padding-right: 10px;"></td>
-                </tr>
+      <div class="row">
+            <div class="col-md-6">
 
-            {% endif %}
-            {% endfor %}
+            {% for food in Cs_1 %}
 
-            </table>
+                <table style="margin-left:auto; margin-right:auto; width:80%";>
+                      <tr>
+                            <th class="col-md-1" style="padding-left: 10px;">
+                                {% if food.image %}
+                                    <img class="card-img-top" src="{{ food.image.url }}" style="max-width:70px; max-height:70px;"/>
+                                    {% else %}
+                                    <img class="card-img-top" src="/media/foodimage/default.png" style="max-width:70px; max-height:70px;" />
+                                {% endif %}
+                            </th>
+                            <th class="col-md-11" style="padding-left: 10px;">
+                                餐點類型: {{ food.foodtype|to_foodtype }}
+                                餐點名稱: {{ food.foodname }}
+                                <br>
+                                <a href="{% url 'order:food_detail' food.fid %}">詳細>></a>
+                            </th>
+                       </tr>
+
+                {% endfor %}
+
+                </table>
+            </div>
+
+            <div class="col-md-6">
+            {% for food in Cs_2 %}
+
+                <table style="margin-left:auto; margin-right:auto; width:80%";>
+                    <tr>
+                            <th class="col-md-1" style="padding-left: 10px;">
+                                {% if food.image %}
+                                    <img class="card-img-top" src="{{ food.image.url }}" style="max-width:70px; max-height:70px;"/>
+                                    {% else %}
+                                    <img class="card-img-top" src="/media/foodimage/default.png" style="max-width:70px; max-height:70px;" />
+                                {% endif %}
+                            </th>
+                            <th class="col-md-11" style="padding-left: 10px;">
+                                餐點類型: {{ food.foodtype|to_foodtype }}
+                                餐點名稱: {{ food.foodname }}
+                                <br>
+                                <a href="{% url 'order:food_detail' food.fid %}">詳細>></a>
+                            </th>
+                        </tr>
+
+                {% endfor %}
+
+                </table>
+            </div>
+        </div>
     </div>
 
     <div id="drinks" class="tabcontent">
-     {% for food in foods %}
-        {% if food.foodtype in "D" %}
-            <table style="margin-left:auto; margin-right:auto;">
-                <tr>
-                    <th style="padding-left: 10px;">
-                        餐點類型: {{ food.foodtype|to_foodtype }}
-                        餐點名稱: {{ food.foodname }}
-                        <br>
-                        <a href="{% url 'order:food_detail' food.fid %}">詳細>></a>
-                    </th>
-                    <td class="feed_time" style="padding-top: 60px; padding-right: 10px;"></td>
-                </tr>
+     <div class="row">
+            <div class="col-md-6">
 
-            {% endif %}
-            {% endfor %}
+            {% for food in Ds_1 %}
 
-            </table>
+                <table style="margin-left:auto; margin-right:auto; width:80%";>
+                      <tr>
+                            <th class="col-md-1" style="padding-left: 10px;">
+                                {% if food.image %}
+                                    <img class="card-img-top" src="{{ food.image.url }}" style="max-width:70px; max-height:70px;"/>
+                                    {% else %}
+                                    <img class="card-img-top" src="/media/foodimage/default.png" style="max-width:70px; max-height:70px;" />
+                                {% endif %}
+                            </th>
+                            <th class="col-md-11" style="padding-left: 10px;">
+                                餐點類型: {{ food.foodtype|to_foodtype }}
+                                餐點名稱: {{ food.foodname }}
+                                <br>
+                                <a href="{% url 'order:food_detail' food.fid %}">詳細>></a>
+                            </th>
+                       </tr>
+
+                {% endfor %}
+
+                </table>
+            </div>
+
+            <div class="col-md-6">
+            {% for food in Ds_2 %}
+
+                <table style="margin-left:auto; margin-right:auto; width:80%";>
+                    <tr>
+                            <th class="col-md-1" style="padding-left: 10px;">
+                                {% if food.image %}
+                                    <img class="card-img-top" src="{{ food.image.url }}" style="max-width:70px; max-height:70px;"/>
+                                    {% else %}
+                                    <img class="card-img-top" src="/media/foodimage/default.png" style="max-width:70px; max-height:70px;" />
+                                {% endif %}
+                            </th>
+                            <th class="col-md-11" style="padding-left: 10px;">
+                                餐點類型: {{ food.foodtype|to_foodtype }}
+                                餐點名稱: {{ food.foodname }}
+                                <br>
+                                <a href="{% url 'order:food_detail' food.fid %}">詳細>></a>
+                            </th>
+                        </tr>
+
+                {% endfor %}
+
+                </table>
+            </div>
+        </div>
     </div>
 
 {% endblock %}
