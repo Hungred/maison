@@ -86,8 +86,37 @@ def pass_to_checked(request, serno):
 @login_required
 @group_required('manage', 'boss')
 def menu_index(request):
-    foods = Food.objects.all()
-    return render(request, 'manage/menu.html', {'foods': foods})
+    #主餐
+    As = Food.objects.filter(foodtype='A')
+    halfA = (As.count() / 2)
+    #副餐
+    Bs = Food.objects.filter(foodtype='B')
+    halfB = (Bs.count() / 2)
+    #甜點
+    Cs = Food.objects.filter(foodtype='C')
+    halfC = (Cs.count() / 2)
+    #飲料
+    Ds = Food.objects.filter(foodtype='D')
+    halfD = (Ds.count() / 2)
+    #上架中
+    Os = Food.objects.filter(on_sales=True)
+    halfO = (Os.count() / 2)
+    #未上架
+    Xs = Food.objects.filter(on_sales=False)
+    halfX = (Xs.count() / 2)
+
+
+
+    context = {
+        'As_2': As[0:halfA], 'As_1': As[halfA:],
+        'Bs_2': Bs[0:halfB], 'Bs_1': Bs[halfB:],
+        'Cs_2': Cs[0:halfC], 'Cs_1': Cs[halfC:],
+        'Ds_2': Ds[0:halfD], 'Ds_1': Ds[halfD:],
+        'Os_2': Os[0:halfO], 'Os_1': Os[halfO:],
+        'Xs_2': Xs[0:halfX], 'Xs_1': Xs[halfX:],
+
+    }
+    return render(request, 'manage/menu.html', context)
 
 def foo(var):
     return {

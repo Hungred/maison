@@ -95,7 +95,6 @@
 		.menu-list li a{
 			display: block;
 			text-decoration: none;
-			padding: 1em;
 		}
 		li{
 			list-style: none;
@@ -105,6 +104,9 @@
 			float: right;
 		}
 		@media(max-width: 768px){
+			body{
+				height: 800px;
+			}
 			.list_bar{
 				background: none;
 				height: 0px;
@@ -115,26 +117,29 @@
 				position: absolute;
 				right: 0;
 				left: 0;
-				top:81px;
+				top:80px;
 				z-index:100;
 				transition: max-height 2.3s;
-				background: #0F222B;
+				background: #1A1344;
 			}
-			.menu li{
+			.menu-list li{
 				float: none;
-				height:80px;
+				margin-top: 20px;
 		  	}
-		  	.menu li a{
+		  	.menu-list li a{
 				transition: all 0.3s;
+				color: white;
+			}
+			.menu-list li a:hover{
+				color: #0275d8;
 			}
 			.showmenu{
 				display: block;
 				float: right;
-    			margin: 1em;
 			}
 			/*jQ點擊後動態在 body 加上 class*/
 			.menu-show .menu-list{
-				max-height: 800px;
+				max-height: 640px;
 			}
 			.sche_table{
 				margin-top: 10px;
@@ -214,8 +219,7 @@
 						{% endif %}
 					</ul>
 					<a href="#" class="showmenu">
-						menu
-<!--						<img alt="Bootstrap Image Preview" src="{% static 'sche/images/logo.jpg' %}" class="rounded-circle nav_img">-->
+						<img alt="Bootstrap Image Preview" src="{% static 'sche/images/logo.jpg' %}" class="rounded-circle nav_img">
 					</a>
 				</div>
 			</div>
