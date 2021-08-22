@@ -89,31 +89,57 @@
     <a href="{% url 'order:food_add' %}" type="submit" class="btn btn-primary float-right" style="margin-right: 90px; margin-top: 5px;">新增餐點</a>
 
     <div id="on_sale" class="tabcontent">
-      {% for food in foods %}
-        {% if food.on_sales is True %}
-            <table style="margin-left:auto; margin-right:auto;">
-                {% for food in foods %}
-                    {% cycle 'row' '' as row silent %}
-                    {% if row %}<tr>{% endif %}
-                        <th class="col-md-1" style="padding-left: 10px;">
-                            {% if food.image %}
-                                <img class="card-img-top" src="{{ food.image.url }}" style="max-width:70px; max-height:70px;"/>
-                                {% else %}
-                                <img class="card-img-top" src="/media/foodimage/default.png" style="max-width:70px; max-height:70px;" />
-                            {% endif %}
-                        </th>
-                        <th class="col-md-5" style="padding-left: 10px;">
-                            餐點類型: {{ food.foodtype|to_foodtype }}
-                            餐點名稱: {{ food.foodname }}
-                            <br>
-                            <a href="{% url 'order:food_detail' food.fid %}">詳細>></a>
-                        </th>
-                    {% if not row %}</tr>{% endif %}
+        <div class="row">
+            <div class="col-md-6">
+            {% for food in foods %}
+            {% if food.on_sales is True %}
+                <table style="margin-left:auto; margin-right:auto; width:80%";>
+                      <tr>
+                            <th class="col-md-1" style="padding-left: 10px;">
+                                {% if food.image %}
+                                    <img class="card-img-top" src="{{ food.image.url }}" style="max-width:70px; max-height:70px;"/>
+                                    {% else %}
+                                    <img class="card-img-top" src="/media/foodimage/default.png" style="max-width:70px; max-height:70px;" />
+                                {% endif %}
+                            </th>
+                            <th class="col-md-11" style="padding-left: 10px;">
+                                餐點類型: {{ food.foodtype|to_foodtype }}
+                                餐點名稱: {{ food.foodname }}
+                                <br>
+                                <a href="{% url 'order:food_detail' food.fid %}">詳細>></a>
+                            </th>
+                       </tr>
+                {% endif %}
                 {% endfor %}
-            {% endif %}
-            {% endfor %}
 
-            </table>
+                </table>
+            </div>
+
+            <div class="col-md-6">
+            {% for food in foods %}
+            {% if food.on_sales is True %}
+                <table style="margin-left:auto; margin-right:auto; width:80%";>
+                    <tr>
+                            <th class="col-md-1" style="padding-left: 10px;">
+                                {% if food.image %}
+                                    <img class="card-img-top" src="{{ food.image.url }}" style="max-width:70px; max-height:70px;"/>
+                                    {% else %}
+                                    <img class="card-img-top" src="/media/foodimage/default.png" style="max-width:70px; max-height:70px;" />
+                                {% endif %}
+                            </th>
+                            <th class="col-md-11" style="padding-left: 10px;">
+                                餐點類型: {{ food.foodtype|to_foodtype }}
+                                餐點名稱: {{ food.foodname }}
+                                <br>
+                                <a href="{% url 'order:food_detail' food.fid %}">詳細>></a>
+                            </th>
+                        </tr>
+                {% endif %}
+                {% endfor %}
+
+                </table>
+            </div>
+        </div>
     </div>
 
     <div id="not_on_sale" class="tabcontent">
