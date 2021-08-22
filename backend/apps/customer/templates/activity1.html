@@ -60,6 +60,26 @@
 			max-height: 500px
 		  }
         }
+        .container_act {
+			display: flex;
+			flex-wrap: wrap;
+			width:1000px;
+			max-width:100%;
+			justify-content:  center;
+			background-color: #a5def5;
+			margin:10% 10%;
+			}
+		.item{
+		   flex: 0 0 5%;
+			margin:20px 20px;
+			width:400px;
+			align-items: center;
+			flex-flow: column nowrap;
+			background-color: #00A0E9;
+			color: white;
+			position: relative;
+			text-align:center;
+		  }
 	  </style>
   </head>
   <body style="background-image: url({% static 'customer/image/bg.jpg' %});">
@@ -174,7 +194,25 @@
 			</section>
 		</div>
 	</div>
-	
+
+	<div class="row">
+		<div class="container_act">
+			{% for event in events %}
+			<div class="item">
+				{% if event.coverimage %}
+				<img src="{{ event.coverimage.url }}"  width="400" height="400"/>
+				{% else %}
+				<img class="card-img-top" src="/media/eventimage/default.png"  />
+				{% endif %}
+				<div class="more-des">
+					<p style="color:black;">{{ event.eventname }}</p>
+					<button><a href="{{ event.hyperlink }}">詳細介紹</a></button>
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+
     <div class="row">
 		<div class="col-md-12">
 			<div class="row" id="food">
