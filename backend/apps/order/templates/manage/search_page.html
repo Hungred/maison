@@ -2,32 +2,67 @@
 {% extends 'share/layout.html' %}
 
 {% block main %}
+{% load ordtags %}
 			
 				<h3 class="page_title" style="margin-bottom: 20px; text-align: center;">
 					搜尋結果
 				</h3>
+		<div class="row">
+            <div class="col-md-6">
+            {% for food in foods_1 %}
 
-				<div class="row">
-                    <div class="col-md-12">
-                        {% for food in foods %}
-                        <table style="margin-left:auto; margin-right:auto;">
-                            <tr>
-                                <th style="padding-bottom: 30px; padding-left: 10px;">
-									顧客姓名: {{ food.foodname }}
-									<br>
-									<a href="{% url 'order:food_detail' food.fid %}">詳細>></a>
-								</th>
-								<td class="feed_time" style="padding-top: 60px; padding-right: 10px;"></td>
-                            </tr>
-                        </table>
-						{% empty %}
-   							查無相關資料
+                <table style="margin-left:auto; margin-right:auto; width:80%";>
+                      <tr>
+                            <th class="col-md-1" style="padding-left: 10px;">
+                                {% if food.image %}
+                                    <img class="card-img-top" src="{{ food.image.url }}" style="max-width:70px; max-height:70px;"/>
+                                    {% else %}
+                                    <img class="card-img-top" src="/media/foodimage/default.png" style="max-width:70px; max-height:70px;" />
+                                {% endif %}
+                            </th>
+                            <th class="col-md-11" style="padding-left: 10px;">
+                                餐點類型: {{ food.foodtype|to_foodtype }}
+                                餐點名稱: {{ food.foodname }}
+                                <br>
+                                <a href="{% url 'order:food_detail' food.fid %}">詳細>></a>
+                            </th>
+                       </tr>
 
-                        {% endfor %}
+
+                {% endfor %}
+
+                </table>
+            </div>
+
+            <div class="col-md-6">
+            {% for food in foods_2 %}
+
+                <table style="margin-left:auto; margin-right:auto; width:80%";>
+                    <tr>
+                            <th class="col-md-1" style="padding-left: 10px;">
+                                {% if food.image %}
+                                    <img class="card-img-top" src="{{ food.image.url }}" style="max-width:70px; max-height:70px;"/>
+                                    {% else %}
+                                    <img class="card-img-top" src="/media/foodimage/default.png" style="max-width:70px; max-height:70px;" />
+                                {% endif %}
+                            </th>
+                            <th class="col-md-11" style="padding-left: 10px;">
+                                餐點類型: {{ food.foodtype|to_foodtype }}
+                                餐點名稱: {{ food.foodname }}
+                                <br>
+                                <a href="{% url 'order:food_detail' food.fid %}">詳細>></a>
+                            </th>
+                        </tr>
+
+                {% endfor %}
+
+                </table>
+            </div>
+        </div>
+
+
+
 						<p><a class="btn  btn-primary" href="{% url 'order:menu' %}">返回</a></p>
-					</div>
 
-				</div>
-			
 
 {% endblock %}

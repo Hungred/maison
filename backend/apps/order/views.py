@@ -88,22 +88,22 @@ def pass_to_checked(request, serno):
 def menu_index(request):
     #主餐
     As = Food.objects.filter(foodtype='A')
-    halfA = (As.count() / 2)
+    halfA = int(As.count() / 2)
     #副餐
     Bs = Food.objects.filter(foodtype='B')
-    halfB = (Bs.count() / 2)
+    halfB = int(Bs.count() / 2)
     #甜點
     Cs = Food.objects.filter(foodtype='C')
-    halfC = (Cs.count() / 2)
+    halfC = int(Cs.count() / 2)
     #飲料
     Ds = Food.objects.filter(foodtype='D')
-    halfD = (Ds.count() / 2)
+    halfD = int(Ds.count() / 2)
     #上架中
     Os = Food.objects.filter(on_sales=True)
-    halfO = (Os.count() / 2)
+    halfO = int(Os.count() / 2)
     #未上架
     Xs = Food.objects.filter(on_sales=False)
-    halfX = (Xs.count() / 2)
+    halfX = int(Xs.count() / 2)
 
 
 
@@ -118,16 +118,9 @@ def menu_index(request):
     }
     return render(request, 'manage/menu.html', context)
 
-def foo(var):
-    return {
-    '主餐': 'A',
-    'b': 2,
-    'c': 3,
-    }.get(var, 'error')
 
 def SearchPage(request):
     srh = request.GET['query']
-    srh2 = foo(srh)
 
     foods = Food.objects.filter(foodname__icontains=srh)
 
@@ -137,10 +130,10 @@ def SearchPage(request):
     if not foods:
         foods = Food.objects.filter(foodprice__icontains=srh)
 
-    if not foods:
-        foods = Food.objects.filter(foodtype__icontains=srh2)
 
-    params = {'foods': foods, 'search': srh}
+    half = int(foods.count() / 2)
+
+    params = {'foods_2': foods[0:half], 'foods_1': foods[half:], 'search': srh}
     return render(request, 'manage/search_page.html', params)
 
 @group_required('manage', 'boss')
