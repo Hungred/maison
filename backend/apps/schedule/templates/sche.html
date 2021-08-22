@@ -74,12 +74,7 @@
                   hide.style.display = 'none';
             }
         }
-		$(document).ready(function() {
-			$('.showmenu').on('click',  function(e) {
-				e.preventDefault();
-				$('.menu-list').toggleClass('active');
-			});
-		});
+
  	</script>
 	<style>
     	.sche_table{
@@ -96,6 +91,11 @@
 		}
 		.menu-list{
 			padding: 0px;
+		}
+		.menu-list li a{
+			display: block;
+			text-decoration: none;
+			padding: 1em;
 		}
 		li{
 			list-style: none;
@@ -117,16 +117,24 @@
 				left: 0;
 				top:81px;
 				z-index:100;
+				transition: max-height 2.3s;
+				background: #0F222B;
 			}
 			.menu li{
 				float: none;
+				height:80px;
 		  	}
+		  	.menu li a{
+				transition: all 0.3s;
+			}
 			.showmenu{
 				display: block;
+				float: right;
+    			margin: 1em;
 			}
 			/*jQ點擊後動態在 body 加上 class*/
-			.active .menu-list{
-				max-height: 500px;
+			.menu-show .menu-list{
+				max-height: 800px;
 			}
 			.sche_table{
 				margin-top: 10px;
@@ -271,6 +279,14 @@
     <script src="{% static 'sche/js/jquery.min.js' %}"></script>
     <script src="{% static 'sche/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'sche/js/scripts.js' %}"></script>
+	<script>
+	$(document).ready(function() {
+	$('.showmenu').on('click', function(event) {
+		event.preventDefault();
+		$('body').toggleClass('menu-show');
+		});
 
+	});
+	</script>
   </body>
 </html>
