@@ -33,10 +33,6 @@
 {% csrf_token %}
     <!--start  navbar-->
     <!--網頁版的nav-->
-    <script type="text/javascript">
-        var received_data = "{{cart|safe}}";
-        console.log(received_data);
-    </script>
     <div class="topMenu">
         <div id="navLogo">
             <a href="product.html" ><img src="{% static 'ord/images/img/logo.jpg' %}" alt=""></a>
@@ -132,38 +128,38 @@
 
         <!--1.確認商品-->
         <section id="cartList" class="sectionTab">
-            <div class="container">
-                <!--產品1-->
-                {% for Oid in oid %}
-                <article class="product">
-                    <header>
-                        <a class="remove">
-                            <img src="image/img/food_menu/lg/3.jpg" />
-                            <h3>刪除</h3>
-                        </a>
-                    </header>
-                    <div class="content">
-                        <h1>{{ Oid.f_id.foodname }}</h1>
-                        <p>
-                            {{ Oid.f_id.foodtag }}
-                        </p>
-                    </div>
-                    <footer class="content">
+            <div class="container" id="cartListDiv">
+<!--                &lt;!&ndash;產品1&ndash;&gt;-->
+<!--                {% for Oid in oid %}-->
+<!--                <article class="product">-->
+<!--                    <header>-->
+<!--                        <a class="remove">-->
+<!--                            <img src="image/img/food_menu/lg/3.jpg" />-->
+<!--                            <h3>刪除</h3>-->
+<!--                        </a>-->
+<!--                    </header>-->
+<!--                    <div class="content">-->
+<!--                        <h1>{{ Oid.f_id.foodname }}</h1>-->
+<!--                        <p>-->
+<!--                            {{ Oid.f_id.foodtag }}-->
+<!--                        </p>-->
+<!--                    </div>-->
+<!--                    <footer class="content">-->
 
-                        <span class="qt-minus">-</span>
-                        <span class="qt">{{ Oid.foodq }}</span>
-                        <span class="qt-plus">+</span>
+<!--                        <span class="qt-minus">-</span>-->
+<!--                        <span class="qt">{{ Oid.foodq }}</span>-->
+<!--                        <span class="qt-plus">+</span>-->
 
-                        <h2 class="full-price">
-                            {{ Oid.foodp }}
-                        </h2>
+<!--                        <h2 class="full-price">-->
+<!--                            {{ Oid.foodp }}-->
+<!--                        </h2>-->
 
-                        <h2 class="price">
-                            {{ Oid.f_id.foodprice }}
-                        </h2>
-                    </footer>
-                </article>
-                {% endfor %}
+<!--                        <h2 class="price">-->
+<!--                            {{ Oid.f_id.foodprice }}-->
+<!--                        </h2>-->
+<!--                    </footer>-->
+<!--                </article>-->
+<!--                {% endfor %}-->
 
             </div>
 
@@ -209,7 +205,7 @@
                         </div>
                         <div class="col-md"></div>
                         <div class="col-md-4 next-col">
-                            <a class="next-btn" href="#fillDate">下一步</a>
+                            <a class="next-btn" >下一步</a>
                         </div>
 
                     </div>
@@ -227,32 +223,32 @@
                         <p>確認訂單</p>
                     </div>
                     <div class="filldata-content">
-                        <form>
-<!--                            <div class="form-group row">-->
-<!--                                <label for="" class="col-4 col-form-label">姓名</label>-->
-<!--                                <div class="col-8">-->
-<!--                                    <input id="" name="" type="text" class="form-control">-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                            <div class="form-group row">-->
-<!--                                <label for="" class="col-4 col-form-label">電話</label>-->
-<!--                                <div class="col-8">-->
-<!--                                    <input id="" name="" type="text" class="form-control">-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                            <div class="form-group row">-->
-<!--                                <label for="" class="col-4 col-form-label">e-mail</label>-->
-<!--                                <div class="col-8">-->
-<!--                                    <input id="" name="" type="text" class="form-control">-->
-<!--                                </div>-->
-<!--                            </div>-->
+
+                            <div class="form-group row">
+                                <label for="" class="col-4 col-form-label">姓名</label>
+                                <div class="col-8">
+                                    <input id="" name="" type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="" class="col-4 col-form-label">電話</label>
+                                <div class="col-8">
+                                    <input id="" name="" type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="" class="col-4 col-form-label">e-mail</label>
+                                <div class="col-8">
+                                    <input id="" name="" type="text" class="form-control">
+                                </div>
+                            </div>
                             <div class="form-group row">
                                 <div class="col-md-12">
                                     <button class="submit-btn" onclick="comfirmOrder()">送出訂單</button>
-                                    <a class="return-btn" style="text-align:left;" href="#cartList">回上一步</a>
+                                    <a class="return-btn" style="text-align:left;" >回上一步</a>
                                 </div>
                             </div>
-                        </form>
+
                     </div>
 
                 </div>
@@ -302,7 +298,7 @@
     <script src="{% static 'ord/js/popper.js' %}"></script>
     <script src="{% static 'ord/js/custom.js' %}"></script>
     <script src="{% static 'ord/js/masterPage.js' %}"></script>
-    <script src="{% static 'ord/js/checkout.js' %}"></script>
+    <script defer src="{% static 'ord/js/checkout.js' %}"></script>
 
 
     <!--此網站的js-->
@@ -350,7 +346,7 @@
 
         $(document).ready(function () {
 
-            $(".remove").click(function () {
+            $("#cartListDiv").on("click",".remove", function() {
                 var el = $(this);
                 el.parent().parent().addClass("removed");
                 window.setTimeout(
@@ -369,7 +365,7 @@
                     }, 200);
             });
 
-            $(".qt-plus").click(function () {
+            $("#cartListDiv").on("click", ".qt-plus",function() {
                 $(this).parent().children(".qt").html(parseInt($(this).parent().children(".qt").html()) + 1);
 
                 $(this).parent().children(".full-price").addClass("added");
@@ -377,8 +373,7 @@
                 var el = $(this);
                 window.setTimeout(function () { el.parent().children(".full-price").removeClass("added"); changeVal(el); }, 150);
             });
-
-            $(".qt-minus").click(function () {
+            $("#cartListDiv").on("click",".qt-minus", function() {
 
                 child = $(this).parent().children(".qt");
 

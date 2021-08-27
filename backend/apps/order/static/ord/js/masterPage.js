@@ -2,15 +2,14 @@
 //購物車==================================================================
 
 //行動裝置：當視窗小於374時運作----
+var foodlist;
 $(document).ready(function() {
             $.ajax({
                type: 'POST',
                data: {csrfmiddlewaretoken: csrftoken},
                url: "\\order\\foodlist",
                success: function(data) {
-//                  data = JSON.parse(data);
                     foodlist=data;
-                    console.log(data);
                     }
             });
 });
@@ -121,7 +120,7 @@ function comfirmOrder(){
             order_id = atob(encoded_order_id)
             $.ajax({
                type: 'POST',
-               data: {order_id: order_id,csrfmiddlewaretoken: csrftoken},
+               data: {order_id: order_id,cart:JSON.stringify(cart),csrfmiddlewaretoken: csrftoken},
                url: "\\order\\checkout\\confirmed\\",
                success: function(data) {
                     console.log(data)}

@@ -31,8 +31,9 @@ def group_required(*group_names):
 
 @login_required(login_url="login:index")
 def index(request):
-    #只抓當日
-    order = Ord.objects.filter(wid__contains=int(str(dt.date.today().year) + str(dt.date.today().month).zfill(2) + str(dt.date.today().day).zfill(2)))
+    # 只抓當日
+    order = Ord.objects.filter(wid__contains=int(
+        str(dt.date.today().year) + str(dt.date.today().month).zfill(2) + str(dt.date.today().day).zfill(2)))
 
     # 閒置超過10分鐘自動從清單中移除(仍在資料庫中)
     now = timezone.localtime(timezone.now())
@@ -63,9 +64,6 @@ def index(request):
     for i in range(len(checked)):
         checked2[i]['order'].append(checked[i])
 
-
-
-
     context = {
         'order': order,
         'handling': handling2,
@@ -83,29 +81,28 @@ def pass_to_checked(request, serno):
     ord.save()
     return redirect('order:index')
 
+
 @login_required
 @group_required('manage', 'boss')
 def menu_index(request):
-    #主餐
+    # 主餐
     As = Food.objects.filter(foodtype='A')
     halfA = int(As.count() / 2)
-    #副餐
+    # 副餐
     Bs = Food.objects.filter(foodtype='B')
     halfB = int(Bs.count() / 2)
-    #甜點
+    # 甜點
     Cs = Food.objects.filter(foodtype='C')
     halfC = int(Cs.count() / 2)
-    #飲料
+    # 飲料
     Ds = Food.objects.filter(foodtype='D')
     halfD = int(Ds.count() / 2)
-    #上架中
+    # 上架中
     Os = Food.objects.filter(on_sales=True)
     halfO = int(Os.count() / 2)
-    #未上架
+    # 未上架
     Xs = Food.objects.filter(on_sales=False)
     halfX = int(Xs.count() / 2)
-
-
 
     context = {
         'As_2': As[0:halfA], 'As_1': As[halfA:],
@@ -130,11 +127,11 @@ def SearchPage(request):
     if not foods:
         foods = Food.objects.filter(foodprice__icontains=srh)
 
-
     half = int(foods.count() / 2)
 
     params = {'foods_2': foods[0:half], 'foods_1': foods[half:], 'search': srh}
     return render(request, 'manage/search_page.html', params)
+
 
 @group_required('manage', 'boss')
 @login_required(login_url="login:index")
@@ -143,8 +140,9 @@ def fooddetail(request, fid):
 
     context = {
         'food': food,
-        }
+    }
     return render(request, 'manage/food_detail.html', context)
+
 
 @group_required('manage', 'boss')
 @permission_required('order.add_food', raise_exception=True)
@@ -163,6 +161,7 @@ def addfood(request):
                   {'form': form},
                   )
 
+
 @group_required('manage', 'boss')
 @permission_required('order.change_food', raise_exception=True)
 def updatefood(request, fid):
@@ -177,6 +176,7 @@ def updatefood(request, fid):
         return redirect('order:menu')
     return render(request, 'manage/food_update.html', {'form': form})
 
+
 @group_required('manage', 'boss')
 @permission_required('order.delete_food', raise_exception=True)
 def delfood(request, fid):
@@ -187,15 +187,17 @@ def delfood(request, fid):
         return redirect('order:menu')
     return render(request, 'manage/food_del.html', {'form': form})
 
-#後台訂單詳細資料
+
+# 後台訂單詳細資料
 @login_required(login_url="login:index")
 def orderinfo(request, pk):
     order = get_object_or_404(Ord, serno=pk)
 
     context = {
         'order': order,
-        }
+    }
     return render(request, 'orderinfo.html', context)
+
 
 def orderdetail(request):
     food = Food.objects.all()
@@ -220,18 +222,13 @@ def checkout(request, oid):
         orid = ordinfo.objects.filter(o_id__wid__contains=decoded_order_id)
         if not orid:
             return redirect("/order/product")
-        cartitems = []
-        for orders in orid:
-            cartitem = {"foodid": orders.f_id.fid, "foodAmount": orders.foodq, "ice": orders.ordice, "sug": orders.ordsua, "tip": orders.ordtip}
-            cartitems.append(cartitem)
-        js_data = json.dumps(cartitems)
         order = Ord.objects.get(wid=decoded_order_id)
         order_status = order.ordcheck
         if order_status != 0:
             return redirect("/order/product")
         total_price = order.total_price
 
-        params = {'oid': orid, 'total_price': total_price, 'cart': js_data}
+        params = {'oid': orid, 'total_price': total_price}
 
         return render(request, 'checkout.html', params)
     elif request.method == "POST":
@@ -241,36 +238,62 @@ def checkout(request, oid):
             cartitem = {"foodid": orders.f_id.fid, "foodAmount": orders.foodq, "ice": orders.ordice,
                         "sug": orders.ordsua, "tip": orders.ordtip}
             cartitems.append(cartitem)
-        return HttpResponse(json.dumps({
-            'cart': cartitems
-        }))
+        return JsonResponse(cartitems, safe=False)
 
 
 def checkoutconfirmed(request):
     if request.method == "POST":
         order_id = request.POST.get('order_id')
+        order = Ord.objects.get(wid=order_id)
+
+        total_price = 0
+        orid = ordinfo.objects.filter(o_id__wid__contains=order_id)
+        # orid.delete()
+        cart = json.loads(request.POST.get('cart'))
+
+        for food in cart:
+            curFood = Food.objects.get(pk=food['foodid'])
+            price = curFood.foodprice
+            sum_price = price * food['foodAmount']
+
+            total_price += sum_price
+
+            curOrd = orid.filter(f_id__fid__contains=food['foodid'])
+            curOrd.update(
+                foodq=food['foodAmount'],
+                foodp=sum_price,
+                ordice=food['ice'],
+                ordsua=food['sug'],
+                ordtip=food['tip']
+            )
+            # curOrd.save()
+            order.total_price = total_price
+            order.ordcheck = 1
+            order.save()
         return HttpResponse(json.dumps({
             'order_id': order_id
         }))
+
 
 def foodlist(request):
     if request.method == "POST":
         food = Food.objects.all()
         foodlist = []
         for foods in food:
-            fooddict = {"foodid": foods.fid, "foodname": foods.foodname, "foodPrice": foods.foodprice, "foodImg": foods.image.url}
+            fooddict = {"foodid": foods.fid, "foodname": foods.foodname, "foodPrice": foods.foodprice,
+                        "foodImg": foods.image.url}
             foodlist.append(fooddict)
-        return JsonResponse(foodlist,safe=False)
+        return JsonResponse(foodlist, safe=False)
         # return HttpResponse(json.dumps({
         #     'foodlist': foodlist
         # }))
+
 
 @requires_csrf_token
 def product(request):
     if request.method == "GET":
         food = Food.objects.all()
         ord = Ord.objects.all()
-
 
         context = {
             'food': food,
