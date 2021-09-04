@@ -132,12 +132,14 @@
                                         {% for Food in food %}
                                         <div class="single_food_item media">
                                             {% if Food.image %}
-                                            <img src="{{ Food.image.url }}"class="mr-3 seeFoodDetail" class="mr-3 seeFoodDetail"  data-toggle="modal" data-target="#foodmodal-{{Food.fid}}" alt="...">
+                                            <img src="{{ Food.image.url }}"class="mr-3 seeFoodDetail" class="mr-3 seeFoodDetail"  style="min-height:200px;min-width:200px;max-height:200px;max-width:200px;" data-toggle="modal" data-target="#foodmodal-{{Food.fid}}" alt="...">
                                             {% else %}
-							                <img class="card-img-top" src="/media/foodimage/default.png">
+							                <img class="card-img-top" style="min-height:200px;min-width:200px;max-height:200px;max-width:200px;" src="/media/foodimage/default.png">
                                             {% endif %}
                                             <div class="media-body align-self-center">
                                                 <h3> {{ Food.foodname }} </h3>
+                                                  <h4> {{ Food.foodnameEng }} </h4>
+
                                                 <p>{{ Food.foodtag }}</p>
                                                 <h5>${{ Food.foodprice }}</h5>
                                                 <!--按鈕集合-->

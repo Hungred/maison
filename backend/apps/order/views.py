@@ -236,7 +236,7 @@ def checkout(request, oid):
         orid = ordinfo.objects.filter(o_id__wid__contains=decoded_order_id)
         for orders in orid:
             cartitem = {"foodid": orders.f_id.fid, "foodAmount": orders.foodq, "ice": orders.ordice,
-                        "sug": orders.ordsua, "tip": orders.ordtip}
+                        "sug": orders.ordsua, "tip": orders.ordtip, "unique_id": orders.unique_idy}
             cartitems.append(cartitem)
         return JsonResponse(cartitems, safe=False)
 
@@ -306,16 +306,18 @@ def product(request):
         new_order.save()
         order_id = new_order.wid
         total_price = 0
+        unique_id=0
         for food in cart:
             curFood = Food.objects.get(pk=food['foodid'])
             price = curFood.foodprice
             sum_price = price * food['foodAmount']
 
             total_price += sum_price
-
+            unique_id+=1
             ordinfo.objects.create(
                 o_id=new_order,
                 f_id=curFood,
+                unique_id=unique_id,
                 foodq=food['foodAmount'],
                 foodp=sum_price,
                 ordice=food['ice'],

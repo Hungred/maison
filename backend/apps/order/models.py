@@ -83,7 +83,7 @@ class ordinfo(models.Model):
         verbose_name='餐點編號',
         default=''
     )
-
+    unique_id = models.IntegerField('專屬ID',default=0)
     foodp = models.IntegerField('小結', default=0)
     foodq = models.IntegerField('數量', default=0)
     ordice = models.CharField('冰塊', max_length=3, null=True, blank=True)
