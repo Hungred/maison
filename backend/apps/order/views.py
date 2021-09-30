@@ -236,7 +236,7 @@ def checkout(request, oid):
         orid = ordinfo.objects.filter(o_id__wid__contains=decoded_order_id)
         for orders in orid:
             cartitem = {"foodid": orders.f_id.fid, "foodAmount": orders.foodq, "ice": orders.ordice,
-                        "sug": orders.ordsua, "tip": orders.ordtip, "unique_id": orders.unique_idy}
+                        "sug": orders.ordsua, "tip": orders.ordtip, "unique_id": orders.unique_id}
             cartitems.append(cartitem)
         return JsonResponse(cartitems, safe=False)
 
@@ -258,7 +258,7 @@ def checkoutconfirmed(request):
 
             total_price += sum_price
 
-            curOrd = orid.filter(f_id__fid__contains=food['foodid'])
+            curOrd = orid.filter(f_id__fid__contains=food['foodid']).filter(unique_id=food['unique_id'])
             curOrd.update(
                 foodq=food['foodAmount'],
                 foodp=sum_price,
