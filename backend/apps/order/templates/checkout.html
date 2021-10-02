@@ -230,26 +230,16 @@
                                     <input id="" name="" type="text" class="form-control">
                                 </div>
                             </div>
+
                             <div class="form-group row">
-<!--                                <label for="" class="col-4 col-form-label">電話</label>-->
-<!--                                <div class="col-8">-->
-<!--                                    <input id="" name="" type="text" class="form-control">-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                            <div class="form-group row">-->
-<!--                                <label for="" class="col-4 col-form-label">e-mail</label>-->
-<!--                                <div class="col-8">-->
-<!--                                    <input id="" name="" type="text" class="form-control">-->
-<!--                                </div>-->
-<!--                            </div>-->
-                            <div class="form-group row">
-                                <div class="col-md-12">
-                                    <button class="submit-btn" onclick="comfirmOrder()">送出訂單</button>
-                                    <a class="return-btn" style="text-align:left;" >回上一步</a>
+                                <div class="col-md-12" >
+                                    <button class="submit-btn col" onclick="comfirmOrder()">送出訂單</button>
+                                    <a class="return-btn col" style="margin-top:10px;text-align:center;" >回上一步</a>
                                 </div>
+
                             </div>
 
-                    </div>
+
 
                 </div>
 
@@ -425,22 +415,22 @@
         $(function () {
 
             $('.submit-btn').click(function () {
-
+                const el = document.createElement('div')
+                el.innerHTML = "Here's a <a href='{% url 'order:orderdetail'  %}'>link</a>"
                 swal({
                     title: "確定要送出訂單嗎?",
                     text: "將傳送訂購資料到商家，請勿關閉頁面",
                     icon: "warning",
                     buttons: ["取消", "確定"],
                     dangerMode: true,
+
                 })
                     .then((willDelete) => {
                         if (willDelete) {
                             swal({
                                 title: "訂購完成",
-
-
-                                text: "你的訂單編號是: 20210518 如需查詢訂單內容：請至訂單明細，即可查看內容",
-
+                                text: "你的訂單編號是: 20210518 如需查詢訂單內容：請按一下連結至訂單明細，即可查看內容",
+                                content: el,
                                 icon: "success",
                             });
                         } else {
