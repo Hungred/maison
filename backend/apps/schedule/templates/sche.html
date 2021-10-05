@@ -81,7 +81,7 @@
     		background-color:white;
     		border:3px #cccccc solid;
     		height:280px;
-    		width:1020px;
+    		width:1330px;
     	}
 		.sche_table td{
 			width:100px;
@@ -103,10 +103,53 @@
 			display: none;
 			float: right;
 		}
+
+		@media(max-width: 1024px){
+			.sche_table{
+				margin-top: 10px;
+				height:50px;
+				width:600px;
+				font-size: 10px;
+			}
+		}
+
 		@media(max-width: 768px){
+			.sche_table{
+				margin-top: 10px;
+				height:50px;
+				width:600px;
+				font-size: 10px;
+			}
+		}
+
+		@media(max-width: 767px){
 			body{
 				height: 800px;
 			}
+
+			.nav_logo{
+				font-size: 20px;
+			}
+
+			.fc-toolbar-chunk{
+				font-size: 8px;
+			}
+
+			.fc-col-header-cell-cushion{
+				font-size: 10px;
+			}
+
+			.fc-daygrid-day-number{
+				font-size: 10px;
+			}
+
+			.sche_table{
+				margin-top: 10px;
+				height:50px;
+				width:300px;
+				font-size: 10px;
+			}
+
 			.list_bar{
 				background: none;
 				height: 0px;
@@ -141,10 +184,6 @@
 			.menu-show .menu-list{
 				max-height: 640px;
 			}
-			.sche_table{
-				margin-top: 10px;
-				width:510px;
-    		}
 		}
 	</style>
     <div class="container-fluid">
@@ -238,18 +277,17 @@
 						<table class="sche_table">
 
 							<td>員工</td>
-
                                 {% if start == today %}
-                                <td><font color="red">{{start|date:'m月d日'}}<br>Mon</font></td>
+                                <td><font color="red">{{start|date:'m/d'}}<br>Mon</font></td>
                                 {% else %}
-                                <td>{{start|date:'m月d日'}}<br>Mon</td>
+                                <td>{{start|date:'m/d'}}<br>Mon</td>
                                 {% endif %}
 
                                 {% for i in 7|times %}
                                 {% if start|weekdate:i == today %}
-                                <td><font color="red">{{ start|weekdate:i|date:'m月d日' }}<br>{{i|to_weekday}}</font></td>
+                                <td><font color="red">{{ start|weekdate:i|date:'m/d' }}<br>{{i|to_weekday}}</font></td>
                                 {% else %}
-                                <td>{{ start|weekdate:i|date:'m月d日' }}<br>{{i|to_weekday}}</td>
+                                <td>{{ start|weekdate:i|date:'m/d' }}<br>{{i|to_weekday}}</td>
                                 {% endif %}
                                 {% endfor %}
                             </tr>
