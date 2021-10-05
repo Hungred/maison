@@ -39,6 +39,7 @@
 }
 
 @media (min-width: 768px) {
+.container_act {}
 .food-photo{text-align: right;}
 #food-con{text-align:left;}
 .about-photo{text-align: left;}
@@ -47,6 +48,7 @@
 .head_burger{display:none;}
 .showmenu{display:none !important;}
 .food-img{text-align:right;}
+.container_act {margin:10% 10%;}
 }
 
 /* width<768*/
@@ -66,6 +68,7 @@
 @media (max-width:376px) {
  #carousel-img{height:300px}
  .carousel-inner{height:300px;}
+ .card-img-top{width:320px;300px; }
 }
 body{
     background-color:black;
@@ -75,6 +78,9 @@ body{
     background-size:auto 600px;
     background-position:center;
     font-size: 18px;
+}
+.row{
+    margin:0 ;
 }
 .container-fluid{
     max-width: auto;
@@ -160,7 +166,7 @@ a:hover{
 #carousel{
     height: auto;
     position:relative;
-   
+
    
 }
 #carousel-img{
@@ -230,7 +236,6 @@ a:hover{
     width:500px;
 }
 .more-des{
-    width: 400px;
     background-color: whitesmoke;
     text-align: center;
 }

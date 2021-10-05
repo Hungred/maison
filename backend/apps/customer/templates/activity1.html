@@ -63,16 +63,16 @@
         .container_act {
 			display: flex;
 			flex-wrap: wrap;
-			width:100%;
+			width:auto;
 			max-width:100%;
 			justify-content:  center;
 			background-color: #a5def5;
-			margin:10% 10%;
+			text-align:center;
 			}
 		.item{
 		   flex: 0 0 5%;
 			margin:20px 20px;
-			width:400px;
+			width:350px;
 			align-items: center;
 			flex-flow: column nowrap;
 			background-color: #00A0E9;
@@ -128,7 +128,7 @@
 	</div>
 		
 	</div>
-	<div class="row" id="carousel">
+	<div class="row" id="carousel" >
 		<div class="col-md-12" >
 			<div class="carousel slide" id="carousel-685819"  >
 				<ol class="carousel-indicators">
@@ -172,35 +172,35 @@
 			</div>
 		</div>
 	</div>
-    <div class="row">
-		<div class="contenter">
-			<section class="content">
-				<ul class="more">
-					{% for event in events %}
-					<li>
-						<figure class="pic">
-							{% if event.coverimage %}
-							<img class="card-img-top" src="{{ event.coverimage.url }}" width="400" height="420" />
-							{% else %}
-							<img class="card-img-top" src="/media/eventimage/default.png" width="400" height="420" />
-							{% endif %}
-						<div class="more-des">
-							<p>{{ event.eventname }}</p>
-							<button><a href="{{ event.hyperlink }}">詳細介紹</a></button>
-						</div>
-					</li>
-					{% endfor %}
-				</ul>
-			</section>
-		</div>
-	</div>
+<!--    <div class="row">-->
+<!--		<div class="contenter">-->
+<!--			<section class="content">-->
+<!--				<ul class="more">-->
+<!--					{% for event in events %}-->
+<!--					<li>-->
+<!--						<figure class="pic">-->
+<!--							{% if event.coverimage %}-->
+<!--							<img class="card-img-top" src="{{ event.coverimage.url }}" width="400" height="420" />-->
+<!--							{% else %}-->
+<!--							<img class="card-img-top" src="/media/eventimage/default.png" width="400" height="420" />-->
+<!--							{% endif %}-->
+<!--						<div class="more-des">-->
+<!--							<p>{{ event.eventname }}</p>-->
+<!--							<button><a href="{{ event.hyperlink }}">詳細介紹</a></button>-->
+<!--						</div>-->
+<!--					</li>-->
+<!--					{% endfor %}-->
+<!--				</ul>-->
+<!--			</section>-->
+<!--		</div>-->
+<!--	</div>-->
 
 	<div class="row">
 		<div class="container_act">
 			{% for event in events %}
 			<div class="item">
 				{% if event.coverimage %}
-				<img src="{{ event.coverimage.url }}"  width="400" height="400"/>
+				<img src="{{ event.coverimage.url }}"  width="350" height="300"/>
 				{% else %}
 				<img class="card-img-top" src="/media/eventimage/default.png"  />
 				{% endif %}
@@ -216,10 +216,10 @@
     <div class="row">
 		<div class="col-md-12">
 			<div class="row" id="food">
-				<div class="col-md-6"  style="text-align: right;">
-					<img  id="food-img" alt="Bootstrap Image Preview"  src="{% static 'customer/image/map.png' %}"  >
+				<div class="col-md-6"  style="text-align: center;">
+					<img  id="food-img" alt="Bootstrap Image Preview" src="{% static 'customer/image/map.png' %}"   style="max-width:100% ;height:auto;">
 				</div>
-				<div class="col-md-6" id="food-con" style="margin-top:200px;">
+				<div class="col-md-6" id="food-con" style="margin-top:100px;">
 					<dl>
 						<dt>
 							交通資訊
@@ -227,9 +227,9 @@
 						<dd>
 							步行:從頭城火車站走過去只需要 15分鐘
 						</dd>
-						<dt>
+						<dd>
 							開車:從台北開車約40分鐘~1小時就可以抵達
-						</dt>
+						</dd>
 					</dl>
 				</div>
 			</div>
