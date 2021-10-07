@@ -75,8 +75,6 @@ function main() {
     NoItemCart();
 }
 
-
-
 //無商品的購物車--------------------------------
 function NoItemCart() {
     var cartCount = document.getElementsByClassName("shopCartItem");
@@ -118,9 +116,10 @@ function checkout(){
 function comfirmOrder(){
             encoded_order_id =window.location.toString().substr(window.location.toString().lastIndexOf("/")+1, 20)
             order_id = atob(encoded_order_id)
+            tabnum = document.getElementById("tabnum").value
             $.ajax({
                type: 'POST',
-               data: {order_id: order_id,cart:JSON.stringify(cart),csrfmiddlewaretoken: csrftoken},
+               data: {order_id: order_id,tabnum: tabnum,cart:JSON.stringify(cart),csrfmiddlewaretoken: csrftoken},
                url: "\\order\\checkout\\confirmed\\",
                success: function(data) {
                     console.log(data)}

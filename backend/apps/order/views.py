@@ -268,6 +268,7 @@ def checkoutconfirmed(request):
             )
             # curOrd.save()
             order.total_price = total_price
+            order.tabnum=request.POST.get('tabnum')
             order.ordcheck = 1
             order.save()
         return HttpResponse(json.dumps({
