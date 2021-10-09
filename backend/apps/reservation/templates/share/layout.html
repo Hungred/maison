@@ -221,15 +221,15 @@
     <script src="{% static '/js/bootstrap.min.js' %}"></script>
     <script src="{% static '/js/scripts.js' %}"></script>
 	<script>
-      $(function () {
+    $(function () {
         $("#id_booktime").datetimepicker();
-      });
-	  $(document).ready(function() {
+    });
+
+	$(document).ready(function() {
 		$('.showmenu').on('click', function(event) {
 		event.preventDefault();
 		$('body').toggleClass('menu-show');
 		});
-
 	});
   </script>
   

@@ -37,11 +37,37 @@
 	p>input{
 		width: 240px;
 	}
+
+	table{
+		background-color: #D3DAEF; 
+		margin: 0 auto; 
+		font-size: 24px; 
+		width: 400px; 
+		border: none;
+	}
+
+	@media(max-width: 767px){
+		select{
+			width:130px;
+		}
+
+		input{
+			width:130px;
+		}
+
+		.btn-out{
+			margin-right: 100px;
+		}
+
+		table{
+			width:300px;
+		}
+	}
 </style>
 
 <h3 style="text-align: center; margin-top: 20px; margin-bottom: 40px;">修改資料</h3>
 
-<table style="background-color: #D3DAEF; margin: 0 auto; font-size: 24px; width: 400px; border: none;">
+<table>
 	<form action="" method="POST">
 	{% csrf_token %}
 	<tr>

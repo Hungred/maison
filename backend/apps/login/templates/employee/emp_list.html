@@ -3,12 +3,34 @@
 {% block main %}
 {% load auth_extras %}
 {% load emptags %}
+<style>
+    .table{
+        margin-left:auto; 
+        margin-right:auto; 
+        width:80%;
+    }
+
+    @media(max-width: 767px){
+        .table{
+            margin-left:auto; 
+            margin-right:auto; 
+            width: 150px;
+            font-size: 10px;
+        }
+
+        .btn_size{
+            font-size: 10px;
+            width: 70px;
+            padding: 5px;
+        }
+	}
+</style>
                 <a href="{% url 'login:active_emp' %}" class="btn btn-primary float-right" style="float: right; margin-top: 20px;">新增</a>
 				<h3 class="page_title" style="margin-bottom: 20px; text-align: center; margin-top: 20px;">
 					員工列表
 				</h3>
-                <table class="table table-hover table table-bordered" style="margin-left:auto; margin-right:auto; width:80%;" >
-                <thead style="  background-color: #1A1344; color:white;" >
+            <table class="table table-hover table-bordered">
+                <thead style="background-color: #1A1344; color:white;" >
                     <tr >
                         <th style="text-align:center;">使用者名稱</th>
                         <th style="text-align:center;">員工編號</th>
@@ -28,14 +50,14 @@
                             <td>{{ emp.position|topos }}</td>
                             <td style="text-align:center;">
                                 {% if emp.user|has_group:"manage" %}
-                                <a href="{% url 'login:remove_management' emp.user %}" class="btn btn-danger">移除權限</a>
+                                <a href="{% url 'login:remove_management' emp.user %}" class="btn btn-danger btn_size">移除權限</a>
                                 {%else%}
-                                <a href="{% url 'login:active_management' emp.user %}" class="btn btn-success">啟用權限</a>
+                                <a href="{% url 'login:active_management' emp.user %}" class="btn btn-success btn_size">啟用權限</a>
                                 {% endif %}
                             </td>
                             <td style="text-align:center;">
-                                <a href="{% url 'login:update_emp' emp.id %}" class="btn btn-info">修改</a>
-                                <a href="{% url 'login:delete_emp' emp.id %}" class="btn btn-danger " style="margin-right: 10px;">刪除</a>
+                                <a href="{% url 'login:update_emp' emp.id %}" class="btn btn-info btn_size">修改</a>
+                                <a href="{% url 'login:delete_emp' emp.id %}" class="btn btn-danger btn_size" style="margin-right: 10px;">刪除</a>
                             </td>
                         </tr>
                 {% empty %}
