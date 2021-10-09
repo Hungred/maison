@@ -16,6 +16,28 @@
 
   </head>
   {% load bootstrap4 %}
+  <style>
+    
+  
+    @media(max-width: 767px){
+      select{
+        width:130px;
+      }
+  
+      .btn-out{
+        margin-right: 100px;
+      }
+  
+      table{
+        width:300px;
+      }
+
+      .nav_logo{
+				font-size: 20px;
+			}
+    }
+  </style>
+
   <body class="body_bg">
 
     <div class="container-fluid">
@@ -85,8 +107,8 @@
 
 
             <br/>
-            <a href="{% url 'schedule:index' %}" class="btn btn-primary">返回</a>
-            <input class="btn btn-primary" type="submit" value="送出" style="float: right;"  />
+            <a href="{% url 'schedule:index' %}" class="btn btn-primary" style="float: right;">返回</a>
+            <input class="btn btn-primary" type="submit" value="送出" style="float: right; margin-right: 10px;"  />
           </form>
         </div>
       </div>
