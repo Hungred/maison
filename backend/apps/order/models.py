@@ -1,11 +1,9 @@
 import datetime
-
 from django.db import models
 
 class BOOL_CHOICES(models.TextChoices):
     YES = 'Y', '是',
     NO = 'N', '否'
-
 
 def increment_wait_number():
   last_wait = Ord.objects.all().order_by('wid').last()
@@ -28,6 +26,16 @@ class Foodtype(models.TextChoices):
     DESSERT = 'C', '甜點'
     DRINK = 'D', '飲料'
 
+
+class SugOpt(models.TextChoices):
+    FREE = '0', '無糖'
+    HALF = '1', '微糖'
+    REGULAR = '2', '正常糖'
+
+class IceOpt(models.TextChoices):
+    FREE = '0', '去冰'
+    HALF = '1', '微冰'
+    REGULAR = '2', '正常冰'
 class Food(models.Model):
     fid = models.CharField('餐點編號', max_length=3, primary_key=True)
     foodtype = models.CharField('餐點類型', max_length=1, choices=Foodtype.choices)
@@ -84,10 +92,10 @@ class ordinfo(models.Model):
         default=''
     )
     unique_id = models.IntegerField('專屬ID',default=0)
-    foodp = models.IntegerField('小結', default=0)
+    foodp = models.IntegerField('小結', default=0, )
     foodq = models.IntegerField('數量', default=0)
-    ordice = models.CharField('冰塊', max_length=3, null=True, blank=True)
-    ordsua = models.CharField('甜度', max_length=3, null=True, blank=True)
+    ordice = models.CharField('冰塊', max_length=3, choices=IceOpt.choices, null=True, blank=True)
+    ordsua = models.CharField('甜度', max_length=3, choices=SugOpt.choices,null=True, blank=True)
     ordtip = models.TextField('備註', default='', blank=True)
 
 

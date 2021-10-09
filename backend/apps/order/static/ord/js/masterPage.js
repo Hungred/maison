@@ -122,8 +122,13 @@ function comfirmOrder(){
                data: {order_id: order_id,tabnum: tabnum,cart:JSON.stringify(cart),csrfmiddlewaretoken: csrftoken},
                url: "\\order\\checkout\\confirmed\\",
                success: function(data) {
-                    console.log(data)}
-            });
+                    data = JSON.parse(data);
+                        oid = data["order_id"];
+                        $(location).attr(
+                            "href",
+                            "/order/orderdetail/"+String(oid)
+                        );
+            }});
        }
 function indexOfFood(fid){
     for (var i = 0; i < foodlist.length; i++) {

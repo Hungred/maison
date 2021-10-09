@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -13,7 +13,7 @@
 
     <!--    iconfont-->
     <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
-   
+
     {% load static %}
 
     <link rel="stylesheet" href="{% static '/ord/css/front/master.css' %}">
@@ -31,21 +31,21 @@
     <!--網頁版的nav-->
     <div class="topMenu">
         <div id="navLogo">
-            <a href="product.html" ><img src="{% static 'ord/images/img/logo.jpg' %}" alt=""></a>
+            <a href="{% url 'order:product'  %}" ><img src="{% static 'ord/images/img/logo.jpg' %}" alt=""></a>
         </div>
          <p id="navTitleFont" style="color:#1A1344;">Maison</p>
         <div class="navlinkGroup">
             <a class="a-trigger" href="" id="navTitle">&nbsp;</a>
             <a class="navShopCart a-trigger" href="#"><i class="fas fa-shopping-cart"></i></a>
-            <a class="a-trigger" href="OrderDetail.html"><i class="fas fa-user"></i>訂單明細</a>
+<!--            <a class="a-trigger" href="{% url 'order:product'  %}"><i class="fas fa-user"></i>訂單明細</a>-->
             <a class="a-trigger" href="{% url 'order:product'  %}" ><i class="fas fa-utensils"></i>菜單</a>
-            <a class="a-trigger" href="index.html"><i class="fas fa-store"></i>簡介</a>
+            <a class="a-trigger" href="{% url 'customer:index'  %}"><i class="fas fa-store"></i>簡介</a>
             <button id="rwdMenu" onclick="toggleClass()">
                 <span>menu</span>
             </button>
         </div>
     </div>
-    
+
     <!--行動裝置的nav-->
     <div class="bottomMenu">
         <div class="row">
@@ -118,50 +118,50 @@
         <!--start 訂單明細 content -->
         <div class="container">
             <div class="OrderDetail">
-                <h1>訂單明細</h1>
+                <h1>客戶回饋</h1>
                 <!--Tabs_list-->
                 <div class="table-list row">
                     <div class="tab">
-                        <button class="tablinks" onclick="openLab(event, 'fristlist')" id="defaultOpen">最新購買</button>
+<!--                        <button class="tablinks" onclick="openLab(event, 'fristlist')" id="defaultOpen">最新購買</button>-->
 <!--                        <button class="tablinks" onclick="openLab(event, 'twolist')">歷史記錄</button>-->
-<!--                        <button class="tablinks" onclick="openLab(event, 'threelist')">客服回應</button>-->
+                        <button class="tablinks" onclick="openLab(event, 'threelist')">客服回應</button>
                     </div>
                 </div>
 
                 <!--Tabs_最新購買 內容-->
-                <div class="row">
-                    <div id="fristlist" class="tabcontent">
-                        <!--start accordion-->
-                        <h1>訂單編號 : {{ ord.wid }}</h1>
+<!--                <div class="row">-->
+<!--                    <div id="fristlist" class="tabcontent">-->
+<!--                        &lt;!&ndash;start accordion&ndash;&gt;-->
+<!--                        <h1>訂單編號 : {{ ord.wid }}</h1>-->
 
-                        {% for Orderinfo in orderinfo %}
+<!--                        {% for Orderinfo in orderinfo %}-->
 
 
-                        <div class="container">
+<!--                        <div class="container">-->
 
-                            <div class="accordion">
+<!--                            <div class="accordion">-->
 
-                                <div class="accordion-item">
+<!--                                <div class="accordion-item">-->
 
-                                    <a  style="color:black"> {{ Orderinfo.f_id }} </a>
-                                    <div class="content">
-                                        {% if Orderinfo.f_id.image %}
-                                            <img src="{{ Orderinfo.f_id.image.url }}">
-                                            {% else %}
-                                            <img class="card-img-top" src="/media/foodimage/default.png">
-                                            {% endif %}
-                                         {% if Orderinfo.f_id.isIce in "Y" %}
-                                        <p>{{ Orderinfo.ordice|iceopt}}
-                                            {% endif %}
-                                        &nbsp;{% if Orderinfo.f_id.isSug in "Y" %}
-                                            {{ Orderinfo.ordice|iceopt }}
-                                            {% endif %}
-                                        </p>
-                                        <p>數量{{ Orderinfo.foodq }}份 &nbsp;&nbsp;&nbsp;$<span>{{ Orderinfo.foodp}}</span>元</p>
-                                        <p> {{ Orderinfo.ordtip }} </p>
-                                    </div>
+<!--                                    <a  style="color:black"> {{ Orderinfo.f_id }} </a>-->
+<!--                                    <div class="content">-->
+<!--                                        {% if Orderinfo.f_id.image %}-->
+<!--                                            <img src="{{ Orderinfo.f_id.image.url }}">-->
+<!--                                            {% else %}-->
+<!--                                            <img class="card-img-top" src="/media/foodimage/default.png">-->
+<!--                                            {% endif %}-->
+<!--                                         {% if Orderinfo.f_id.isIce in "Y" %}-->
+<!--                                        <p>{{ Orderinfo.ordice|iceopt}}-->
+<!--                                            {% endif %}-->
+<!--                                        &nbsp;{% if Orderinfo.f_id.isSug in "Y" %}-->
+<!--                                            {{ Orderinfo.ordice|iceopt }}-->
+<!--                                            {% endif %}-->
+<!--                                        </p>-->
+<!--                                        <p>數量{{ Orderinfo.foodq }}份 &nbsp;&nbsp;&nbsp;$<span>{{ Orderinfo.foodp}}</span>元</p>-->
+<!--                                        <p> {{ Orderinfo.ordtip }} </p>-->
+<!--                                    </div>-->
 
-                                </div>
+<!--                                </div>-->
 
 <!--                                <div class="accordion-item">-->
 <!--                                    <a>{{ Food.foodname }}</a>-->
@@ -179,28 +179,28 @@
 <!--                                        <p>數量1份 &nbsp;&nbsp;&nbsp;$<span>358</span>元</p>-->
 <!--                                    </div>-->
 <!--                                </div>-->
-                            </div>
+<!--                            </div>-->
 
-                        </div>
-
-
-                         {% endfor %}
+<!--                        </div>-->
 
 
-                        <!--end accordion-->
-                                                    <table width="100%">
+<!--                         {% endfor %}-->
 
-                                <tr style="border-bottom:1px solid #CDCDCD"><td><p></p></td></tr>
-                                <tr>
-                                    <td>總計</td>
-                                    <td class="money">
-                                        <div>$&nbsp;&nbsp;<span class="total">{{ ord.total_price }}</span></div>
-                                    </td>
-                                </tr>
-                            </table>
-                    </div>
-                </div>
-                
+
+<!--                        &lt;!&ndash;end accordion&ndash;&gt;-->
+<!--                                                    <table width="100%">-->
+
+<!--                                <tr style="border-bottom:1px solid #CDCDCD"><td><p></p></td></tr>-->
+<!--                                <tr>-->
+<!--                                    <td>總計</td>-->
+<!--                                    <td class="money">-->
+<!--                                        <div>$&nbsp;&nbsp;<span class="total">{{ ord.total_price }}</span></div>-->
+<!--                                    </td>-->
+<!--                                </tr>-->
+<!--                            </table>-->
+<!--                    </div>-->
+<!--                </div>-->
+
                 <!--Tabs_歷史紀錄 內容-->
 <!--                <div class="row">-->
 <!--                    <div id="twolist" class="tabcontent">-->
@@ -268,66 +268,61 @@
 <!--                        </div>-->
 <!--                    </div>-->
 <!--                </div>-->
-                <a href="{% url 'order:feedback' %}"
-                   class="btn btn-outline-info float-right">
-                    客服回應
-                </a>
-                <!--Tabs_客戶回應 內容-->
-<!--                <div class="row">-->
-<!--                    <div id="threelist" class="customer-sevice tabcontent">-->
-<!--                        <div class="customer-sevice-panel">-->
-<!--                            {% load bootstrap4 %}-->
+                <div class="row">
+                    <div id="threelist" class="customer-sevice tabcontent">
+                        <div class="customer-sevice-panel">
+                            {% load bootstrap4 %}
 
-<!--                            {% load widget_tweaks %}-->
-<!--                            {% load static %}-->
-<!--                                <script src="{% static 'customer/js/jquery.min.js' %}"></script>-->
-<!--                                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js" integrity="sha256-FEqEelWI3WouFOo2VWP/uJfs1y8KJ++FLh2Lbqc8SJk=" crossorigin="anonymous"></script>-->
+                            {% load widget_tweaks %}
+                            {% load static %}
+                                <script src="{% static 'customer/js/jquery.min.js' %}"></script>
+                                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js" integrity="sha256-FEqEelWI3WouFOo2VWP/uJfs1y8KJ++FLh2Lbqc8SJk=" crossorigin="anonymous"></script>
 
-<!--                            <form method="post" novalidate >-->
-<!--                              {% csrf_token %}-->
+                            <form method="post" novalidate >
+                              {% csrf_token %}
 
-<!--                              {% for hidden_field in form.hidden_fields %}-->
-<!--                                {{ hidden_field }}-->
-<!--                              {% endfor %}-->
+                              {% for hidden_field in form.hidden_fields %}
+                                {{ hidden_field }}
+                              {% endfor %}
 
-<!--                              {% for field in form.visible_fields %}-->
-<!--                                <div class="form-group">-->
-<!--                                  {{ field.label_tag }}-->
-<!--                                  {% render_field field class="form-control" %}-->
-<!--                                  {% if field.help_text %}-->
-<!--                                    <small class="form-text text-muted">{{ field.help_text }}</small>-->
-<!--                                  {% endif %}-->
-<!--                                  {% for error in field.errors %}-->
-<!--                                  <span class="help-block">{{ error }}</span>-->
-<!--                                  {% endfor %}-->
+                              {% for field in form.visible_fields %}
+                                <div class="form-group">
+                                  {{ field.label_tag }}
+                                  {% render_field field class="form-control" %}
+                                  {% if field.help_text %}
+                                    <small class="form-text text-muted">{{ field.help_text }}</small>
+                                  {% endif %}
+                                  {% for error in field.errors %}
+                                  <span class="help-block">{{ error }}</span>
+                                  {% endfor %}
+                                </div>
+                                {% endfor %}
+                                 <button type="submit" class="btn btn-outline-info float-right">送出</button>
+                            </form>
+
+
+
+<!--                            <form>-->
+<!--                                <div class="message-content row">-->
+<!--                                    <input  class="common-input mt-10" placeholder="Enter your name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your name'" required="" type="text">-->
+<!--                                    <input class="common-input mt-10" placeholder="Enter email address" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'"  required="" type="email">-->
+<!--                                    <textarea class="common-input mt-10" placeholder="Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'" required=""></textarea>-->
 <!--                                </div>-->
-<!--                                {% endfor %}-->
-<!--                                 <button type="submit" class="btn btn-outline-info float-right">送出</button>-->
+<!--                                <div class="send-MsgBtn row">-->
+<!--                                    <button class="btn btn-success">送出</button>-->
+<!--                                </div>-->
 <!--                            </form>-->
 
+                        </div>
+                    </div>
+                </div>
 
-
-<!--&lt;!&ndash;                            <form>&ndash;&gt;-->
-<!--&lt;!&ndash;                                <div class="message-content row">&ndash;&gt;-->
-<!--&lt;!&ndash;                                    <input  class="common-input mt-10" placeholder="Enter your name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your name'" required="" type="text">&ndash;&gt;-->
-<!--&lt;!&ndash;                                    <input class="common-input mt-10" placeholder="Enter email address" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'"  required="" type="email">&ndash;&gt;-->
-<!--&lt;!&ndash;                                    <textarea class="common-input mt-10" placeholder="Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'" required=""></textarea>&ndash;&gt;-->
-<!--&lt;!&ndash;                                </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                                <div class="send-MsgBtn row">&ndash;&gt;-->
-<!--&lt;!&ndash;                                    <button class="btn btn-success">送出</button>&ndash;&gt;-->
-<!--&lt;!&ndash;                                </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                            </form>&ndash;&gt;-->
-
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-               
 
 
 
             </div>
         </div>
-       
+
         <!--end 訂單明細 content-->
 
         <!--必要! 為了把footer置底用-->
@@ -337,7 +332,7 @@
     <!--start Footer -->
     <footer class="bs-footer">
         <!-- Copyright -->
-        
+
 
 
     </footer>
@@ -373,12 +368,12 @@
         //測試用手風琴======================================
         const items = document.querySelectorAll(".accordion a");
 
-        
+
         items.forEach(item => item.addEventListener('click', toggleAccordion));
 
         function toggleAccordion() {
             this.classList.toggle('active');
-            this.nextElementSibling.classList.toggle('active'); 
+            this.nextElementSibling.classList.toggle('active');
         }
 
 
@@ -414,7 +409,7 @@
         })
         //自動打開 第一頁分頁的Lab
         document.getElementById("defaultOpen").click();
-        
+
         $(function(){
             $('#BackTop').click(function(){
                 $('html,body').animate({scrollTop:0}, 333);

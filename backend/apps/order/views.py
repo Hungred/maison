@@ -199,10 +199,21 @@ def orderinfo(request, pk):
     return render(request, 'orderinfo.html', context)
 
 
-def orderdetail(request):
+def orderdetail(request, oid):
+    try:
+        decodedBytes = base64.b64decode(oid)
+        decoded_order_id = str(decodedBytes, "utf-8")
+    except:
+        return redirect("/order/product")
+
+    split=decoded_order_id.split("DET")
+    order_id=split[1]
     food = Food.objects.all()
-    ord = Ord.objects.all()
-    orderinfo = ordinfo.objects.all()
+    ord = Ord.objects.get(wid__contains=order_id)
+    order_status = ord.ordcheck
+    if order_status != 1:
+        return redirect("/order/product")
+    orderinfo = ordinfo.objects.filter(o_id__wid__contains=order_id)
     context = {
         'food': food,
         'ord': ord,
@@ -210,6 +221,17 @@ def orderdetail(request):
 
     }
     return render(request, 'orderdetail.html', context)
+
+def feedback(request):
+    try:
+        form = FeedbackForm(request.POST or None)
+        if form.is_valid():
+            form.save()
+            messages.success(request, '新增成功')
+            return redirect('order:product')
+        return render(request, 'feedbacks.html', {'form': form})
+    except:
+        return redirect("/order/product")
 
 
 def checkout(request, oid):
@@ -271,8 +293,11 @@ def checkoutconfirmed(request):
             order.tabnum=request.POST.get('tabnum')
             order.ordcheck = 1
             order.save()
+        detailid="DET"+order_id
+        encodedBytes = base64.b64encode(detailid.encode("utf-8"))
+        encoded_order_id = str(encodedBytes, "utf-8")
         return HttpResponse(json.dumps({
-            'order_id': order_id
+            'order_id': encoded_order_id
         }))
 
 

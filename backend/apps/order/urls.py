@@ -15,7 +15,9 @@ urlpatterns = [
     path('fooddelete/<str:fid>', views.delfood, name='food_delete'),
     path('orderdetail', views.orderdetail, name='orderdetail'),
     path('checkout/<str:oid>', views.checkout, name='checkout'),
+    path('orderdetail/<str:oid>', views.orderdetail, name='orderdetail'),
     path('foodlist', views.foodlist, name='foodlist'),
     path('checkout/confirmed/', views.checkoutconfirmed, name='checkoutconfirmed'),
     path('product', views.product, name='product'),
+    path('feedback/', views.feedback, name='feedback'),
 ]
