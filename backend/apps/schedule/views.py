@@ -39,6 +39,7 @@ def index(request):
     #將最近的班表分類到資料串
     for worksche in recent_sche:
         check_day = worksche.workdate.isoweekday()
+        print(type(worksche))
         for i in range(7):
             if check_day == week_sche[i]['weekday']:
                 week_sche[i]['sche'].append(worksche)

@@ -1,0 +1,13 @@
+{% load bootstrap4 %}
+<style>
+    
+</style>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    <button type="submit" class="btn btn-primary">送出</button>
+    <a href="{% url 'schedule:index' %}" class="btn btn-primary">返回</a>
+
+</form>
+

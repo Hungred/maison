@@ -1,0 +1,52 @@
+{% extends 'share/layout.html' %}
+{% load bootstrap4 %}
+{% load reptags %}
+{% block main %}
+
+<h3 class="page_title" style="margin-bottom: 20px; text-align: center; margin-top: 20px;">薪水計算器</h3>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    <button type="submit" class="btn btn-primary">送出</button>
+    <a href="{% url 'schedule:index' %}" class="btn btn-primary">返回</a>
+
+
+    <p>計算薪水如下</p>
+
+
+
+
+    <table class="table table-hover table table-bordered" style="margin-left:auto; margin-right:auto; width:80%;" >
+                <thead style="  background-color: #1A1344; color:white;" >
+                    <tr >
+                        <th style="text-align:center;">員工編號</th>
+                        <th style="text-align:center;">員工姓名</th>
+                        <th style="text-align:center;">職位</th>
+                        <th style="text-align:center;">薪水</th>
+                    </tr>
+                </thead>
+                    <tbody>
+				{% for list in salary_list %}
+                {% for salary in list.salary %}
+                    {% for emp in list.emp %}
+                        <tr>
+                            <td>{{ emp.empid__empid }}</td>
+                            <td>{{ emp.empid__empname }}</td>
+                            <td>{{ emp.empid__position|topos }}</td>
+                            <td>{{ salary }}</td>
+
+
+                        </tr>
+                {% empty %}
+                        <tr>
+                            <td class="text-center" colspan="4">無資料</td>
+                        </tr>
+                {% endfor %}
+                    {% endfor %}
+                    {% endfor %}
+
+                    </tbody>
+            </table>
+
+{% endblock %}

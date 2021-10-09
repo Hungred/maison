@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>MAISON DE OCÉAN</title>
+
+    <meta name="description" content="Source code generated using layoutit.com">
+    <meta name="author" content="LayoutIt!">
+{% load static %}
+   <link href="{% static 'sche/css/bootstrap.min.css' %}" rel="stylesheet">
+	<link href="{% static 'sche/fullcalendar-5.5.1 (1)/lib/main.css' %}" rel='stylesheet' />
+    <script src="{% static 'sche/fullcalendar-5.5.1 (1)/lib/main.js' %}"></script>
+	<link href="{% static 'sche/css/style_manager.css' %}" rel="stylesheet">
+
+
+  </head>
+  {% load bootstrap4 %}
+  {% load auth_extras %}
+  <body class="body_bg">
+	<style>
+    	.sche_table{
+    		background-color:white;
+    		border:3px #cccccc solid;
+    		height:280px;
+    		width:1330px;
+    	}
+		.sche_table td{
+			width:100px;
+			height:55.81px;
+			border: 1px solid;
+			word-break: break-all;
+		}
+		.menu-list{
+			padding: 0px;
+		}
+		.menu-list li a{
+			display: block;
+			text-decoration: none;
+		}
+		li{
+			list-style: none;
+		}
+		.showmenu{
+			display: none;
+			float: right;
+		}
+
+		@media(max-width: 1024px){
+			.sche_table{
+				margin-top: 10px;
+				height:50px;
+				width:600px;
+				font-size: 10px;
+			}
+		}
+
+		@media(max-width: 768px){
+			.sche_table{
+				margin-top: 10px;
+				height:50px;
+				width:600px;
+				font-size: 10px;
+			}
+		}
+
+		@media(max-width: 767px){
+			body{
+				height: 800px;
+			}
+
+			.nav_logo{
+				font-size: 20px;
+			}
+
+			.fc-toolbar-chunk{
+				font-size: 8px;
+			}
+
+			.fc-col-header-cell-cushion{
+				font-size: 10px;
+			}
+
+			.fc-daygrid-day-number{
+				font-size: 10px;
+			}
+
+			.sche_table{
+				margin-top: 10px;
+				height:50px;
+				width:300px;
+				font-size: 10px;
+			}
+
+			.list_bar{
+				background: none;
+				height: 0px;
+			}
+			.menu-list{
+				max-height: 0px;
+				overflow: hidden;
+				position: absolute;
+				right: 0;
+				left: 0;
+				top:80px;
+				z-index:100;
+				transition: max-height 2.3s;
+				background: #1A1344;
+			}
+			.menu-list li{
+				float: none;
+				margin-top: 20px;
+		  	}
+		  	.menu-list li a{
+				transition: all 0.3s;
+				color: white;
+			}
+			.menu-list li a:hover{
+				color: #0275d8;
+			}
+			.showmenu{
+				display: block;
+				float: right;
+			}
+			/*jQ點擊後動態在 body 加上 class*/
+			.menu-show .menu-list{
+				max-height: 640px;
+			}
+		}
+	</style>
+
+    <div class="container-fluid">
+		<div class="row nav_bg">
+			<div class="col-md-6">
+				{% bootstrap_messages %}
+				<h3 class="nav_logo">
+					MAISON DE OCÉAN
+					<a class="btn  btn-primary" href="{% url 'login:logout' %}" role="button">登出 &#187;</a>
+				</h3>
+			</div>
+			<div class="col-md-6 nav_align">
+				
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-2 list_bar">
+				<div class="menu clearfix">
+					<ul class="menu-list clearfix">
+						<li>
+							<h3 class="list_text">
+								<a  href="{% url 'login:profile' user.username %}">個人資料</a>
+						  	</h3>
+						</li>
+					  	<li>
+							<h3 class="list_text">
+								<a  href="{% url 'schedule:index' %}">班表</a>
+						  	</h3>
+						</li>
+					  	<li>
+							<h3 class="list_text">
+								<a href="{% url 'reservation:index' %}">訂位</a>
+						  	</h3>
+						</li>
+					  	<li>
+							<h3 class="list_text">
+								<a  href="{% url 'order:index' %}">點餐</a>
+						  	</h3>
+						</li>
+					  	<li>
+							<h3 class="list_text">
+								<a  href="{% url 'feedback:index' %}">顧客回饋</a>
+						  	</h3>
+						</li>
+					  	<li>
+							<h3 class="list_text">
+								<a  href="">營收報表</a>
+						  	</h3>
+						</li>
+						{% if request.user|has_group:"boss" %}
+					  	<li>
+							<h3 class="list_text">
+								<a  href="{% url 'order:menu' %}" >菜單管理</a>
+						  	</h3>
+						</li>
+						<li>
+							<h3 class="list_text">
+								<a  href="{% url 'event:index' %}" >活動管理</a>
+						  	</h3>
+						</li>
+						{% endif %}
+						{% if request.user|has_group:"boss" %}
+						<li>
+							<h3 class="list_text">
+								<a  href="{% url 'login:emp_list' %}" >員工管理</a>
+						  	</h3>
+						</li>
+						{% endif %}
+					</ul>
+					<a href="#" class="showmenu">
+						<img alt="Bootstrap Image Preview" src="{% static 'sche/images/logo.jpg' %}" class="rounded-circle nav_img">
+					</a>
+				</div>
+			</div>
+
+			<div class="col-md-10 cal" >
+				{% bootstrap_messages %} <!-- #在網頁上顯示處理訊息 -->
+                {% block main %}{% endblock %}
+			</div>
+		</div>
+	</div>
+
+    <script src="{% static '/js/jquery.min.js' %}"></script>
+    <script src="{% static '/js/bootstrap.min.js' %}"></script>
+    <script src="{% static '/js/scripts.js' %}"></script>
+	<script>
+		$(document).ready(function() {
+		$('.showmenu').on('click', function(event) {
+			event.preventDefault();
+			$('body').toggleClass('menu-show');
+			});
+	
+		});
+		</script>
+  </body>
+</html>
