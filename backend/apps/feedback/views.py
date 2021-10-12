@@ -5,7 +5,7 @@ from .models import *
 
 def index(request):
     feedbacks = CustomerFeedback.objects.all()
-    return render(request, 'feedbacks.html', {'feedbacks':feedbacks})
+    return render(request, 'feedbacks.html', {'feedbacks': feedbacks})
 
 def detail(request, pk):
     feedbacks = get_object_or_404(CustomerFeedback, pk=pk)

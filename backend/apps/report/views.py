@@ -6,16 +6,30 @@ from django.db.models.functions import ExtractYear, ExtractMonth
 from datetime import datetime, date
 from django.utils.timezone import datetime, timedelta
 import datetime as dt
-
+from django.contrib.auth.decorators import login_required, permission_required, user_passes_test
 
 from ..schedule.models import *
 from .forms import *
 from ..login.models import *
 # Create your views here.
 
+
+def group_required(*group_names):
+    """Requires user membership in at least one of the groups passed in."""
+    def in_groups(u):
+        if u.is_authenticated:
+            if bool(u.groups.filter(name__in=group_names)) | u.is_superuser:
+                return True
+        return False
+
+    return user_passes_test(in_groups, login_url='login:permission_denied')
+
+@login_required(login_url="login:index")
 def index(request):
     return HttpResponse('報表')
 
+@login_required(login_url="login:index")
+@group_required('boss', 'manage')
 def salary(request):
 
     emp_list = Worksche.objects.values('empid', 'empid__empname', 'empid__empid', 'empid__position').distinct()
