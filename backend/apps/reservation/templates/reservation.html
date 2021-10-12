@@ -45,7 +45,7 @@
 			headerToolbar: {
 			  left: 'prev,next today',
 			  center: 'title',
-			  right: 'dayGridMonth,timeGridWeek,timeGridDay'
+			  right: 'dayGridMonth'
 			},
 
 			navLinks: true, // can click day/week names to navigate views
@@ -80,17 +80,17 @@
 		opener.location.reload(true);
     	window.close();
 
-{% for i in 5|times %}
-    	function show{{i}}() {
-            var show{{i}} = document.getElementById('show{{i}}');
-            var hide{{i}} = document.getElementById('hide{{i}}');
-            if (hide{{i}}.style.display === 'none') {
-                  hide{{i}}.style.display = 'block';
-            }
-            else {
-                  hide{{i}}.style.display = 'none';
-            }
-        }
+		{% for i in 5|times %}
+			function show{{i}}() {
+				var show{{i}} = document.getElementById('show{{i}}');
+				var hide{{i}} = document.getElementById('hide{{i}}');
+				if (hide{{i}}.style.display === 'none') {
+					hide{{i}}.style.display = 'block';
+				}
+				else {
+					hide{{i}}.style.display = 'none';
+				}
+			}
         {% endfor %}
 	</script>
 
@@ -98,7 +98,7 @@
 
 
   <body class="body_bg">
-    <style>
+	<style>
     	.sche_table{
     		background-color:white;
     		border:3px #cccccc solid;
@@ -206,6 +206,24 @@
 			.menu-show .menu-list{
 				max-height: 640px;
 			}
+
+			.user_rwd{
+				display: none;
+			}
+
+			.btn_rwd{
+				width: 140px;
+				font-size: 14px;
+			}
+
+			.res_table{
+				width: 140px;
+				font-size: 14px;
+			}
+
+			.new_rwd{
+				margin-top: 10px;
+			}
 		}
 	</style>
 
@@ -217,7 +235,8 @@
                     <a class="btn  btn-primary" href="{% url 'login:logout' %}" role="button">登出 &#187;</a>
 				</h3>
 			</div>
-			<div class="col-md-6 nav_align">
+			<div class="col-md-6 nav_align user_rwd" style="color: white; font-size: 30px; margin-top: 5px;">
+				您好, {{request.user}}
 			</div>
 		</div>
 
@@ -250,12 +269,13 @@
 								<a  href="{% url 'feedback:index' %}">顧客回饋</a>
 						  	</h3>
 						</li>
+						{% if request.user|has_group:"manage" %}
 					  	<li>
 							<h3 class="list_text">
 								<a  href="">營收報表</a>
 						  	</h3>
 						</li>
-						{% if request.user|has_group:"boss" %}
+
 					  	<li>
 							<h3 class="list_text">
 								<a  href="{% url 'order:menu' %}" >菜單管理</a>
@@ -293,14 +313,14 @@
                         {% endif %}
 
                         {% if reservations.date == today %}
-                                <button class="res_date btn" id="show{{ forloop.counter }}" onclick="show{{ forloop.counter }}()">{{ reservations.date }}<br></button><br>
+                                <button class="res_date btn btn_rwd" id="show{{ forloop.counter }}" onclick="show{{ forloop.counter }}()">{{ reservations.date }}<br></button><br>
                                 {% else %}
-                                <button id="show{{ forloop.counter }}" onclick="show{{ forloop.counter }}()" class="btn" style="margin-top:5px;">{{ reservations.date }}<br></button><br>
+                                <button id="show{{ forloop.counter }}" onclick="show{{ forloop.counter }}()" class="btn btn_rwd" style="margin-top:5px;">{{ reservations.date }}<br></button><br>
                                 {% endif %}
 
                         <div id="hide{{ forloop.counter }}" style="display: none;margin-top:5px;">
                         {% for reservation in reservations.reservations %}
-                            <table>
+                            <table class="res_table">
                                 <tr>
                                     <th><a href="{% url 'reservation:detail' reservation.serno %}">{{ reservation.bookname }}小姐/先生</a></th>
                                     <th>{{ reservation.bookadt }}大{{ reservation.bookchd }}小</th>
@@ -309,11 +329,9 @@
                             </table>
 
                         {% empty %}
-                            <table>
+                            <table class="res_table">
                                 <tr>
                                     <th>暫無資料</th>
-                                    <th></th>
-                                    <td></td>
                                 </tr>
                             </table>
 
@@ -325,7 +343,7 @@
                     {% endfor %}
 
                 </div>
-                <a href="{% url 'reservation:add' %}" type="submit" class="btn btn-primary" style="float: right;">新增訂位</a><br>
+                <a href="{% url 'reservation:add' %}" type="submit" class="btn btn-primary new_rwd" style="float: right;">新增訂位</a><br>
                 <div id='calendar'></div>
 			</div>
 		</div>

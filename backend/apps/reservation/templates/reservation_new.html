@@ -40,6 +40,40 @@
 	p>input{
 		width: 500px;
 	}
+
+	table{
+		background-color: #D3DAEF; 
+		margin: 0 auto; 
+		font-size: 24px; 
+		width: 400px; 
+		border: none;
+	}
+
+	@media(max-width: 767px){
+		select{
+			width:130px;
+		}
+
+		input{
+			width:290px;
+		}
+
+		p>input{
+			width: 290px;
+		}
+
+		.btn-out{
+			margin-right: 80px;
+		}
+
+		table{
+			width:300px;
+		}
+
+		textarea{
+			width:290px;
+		}
+	}
 </style>
 
     <script src="{% static '/res/js/jquery.min.js' %}"></script>
@@ -54,7 +88,7 @@
 </h3>
 
 {% load widget_tweaks %}
-<table style="background-color: #D3DAEF; margin: 0 auto; font-size: 24px; width: 400px; border: none;">
+<table>
 	<form action="" method="POST">
 		{% csrf_token %}
 
@@ -109,7 +143,7 @@
 		<tr style="float: right;">
 			<th style="padding-top: 10px;">
 				<button type="submit" class="btn btn-primary">送出</button>
-				<a href="{% url 'reservation:index' %}" class="btn btn-primary">返回</a>
+				<a href="{% url 'reservation:index' %}" class="btn btn-primary btn-out">返回</a>
 			</th>
 		</tr>
 </table>
