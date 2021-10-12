@@ -10,54 +10,94 @@
         width:80%;
     }
 
+    .new_emp{
+        margin-top: 20px;
+    }
+
+    .hide{
+        display: none;
+    }
+    
     @media(max-width: 767px){
         .table{
             margin-left:auto; 
             margin-right:auto; 
-            width: 150px;
-            font-size: 10px;
+            width: 300px;
+            font-size: 12px;
         }
 
         .btn_size{
             font-size: 10px;
-            width: 70px;
+            width: 100px;
             padding: 5px;
+            margin-bottom: 5px;
+        }
+
+        .new_emp{
+            margin-top: 80px;
+            margin-bottom: 20px;
+        }
+
+        .page_title{
+            margin-left: 50px;
+        }
+
+        .hide_rwd{
+            display: none;
+        }
+
+        .hide{
+            display: block;
+        }
+
+        .list_detail{
+            width: 120px;
         }
 	}
 </style>
-                <a href="{% url 'login:active_emp' %}" class="btn btn-primary float-right" style="float: right; margin-top: 20px;">新增</a>
+                <a href="{% url 'login:active_emp' %}" class="btn btn-primary float-right new_emp">新增</a>
 				<h3 class="page_title" style="margin-bottom: 20px; text-align: center; margin-top: 20px;">
 					員工列表
 				</h3>
+
             <table class="table table-hover table-bordered">
                 <thead style="background-color: #1A1344; color:white;" >
                     <tr >
-                        <th style="text-align:center;">使用者名稱</th>
-                        <th style="text-align:center;">員工編號</th>
+                        <th style="text-align:center;" class="hide_rwd">使用者名稱</th>
+                        <th style="text-align:center;" class="hide_rwd">員工編號</th>
                         <th style="text-align:center;">員工姓名</th>
                         <th style="text-align:center;">職位</th>
-                        <th style="text-align:center;">權限</th>
-                        <th style="text-align:center;">操作</th>
+                        <th style="text-align:center;" class="hide_rwd">權限</th>
+                        <th style="text-align:center;" class="list_detail">操作</th>
                     </tr>
                 </thead>
                     <tbody>
 				{% for emp in emps %}
                         <tr>
-                            <td>{{ emp.user }}</td>
-                            <td>
+                            <td class="hide_rwd">{{ emp.user }}</td>
+                            <td class="hide_rwd">
                                 {{ emp.empid }}</a>        </td>
                             <td>{{ emp.empname }}</td>
                             <td>{{ emp.position|topos }}</td>
-                            <td style="text-align:center;">
+                            <td style="text-align:center;" class="hide_rwd">
                                 {% if emp.user|has_group:"manage" %}
                                 <a href="{% url 'login:remove_management' emp.user %}" class="btn btn-danger btn_size">移除權限</a>
                                 {%else%}
                                 <a href="{% url 'login:active_management' emp.user %}" class="btn btn-success btn_size">啟用權限</a>
                                 {% endif %}
                             </td>
-                            <td style="text-align:center;">
+                            <td style="text-align:center;" class="hide_rwd">
                                 <a href="{% url 'login:update_emp' emp.id %}" class="btn btn-info btn_size">修改</a>
-                                <a href="{% url 'login:delete_emp' emp.id %}" class="btn btn-danger btn_size" style="margin-right: 10px;">刪除</a>
+                                <a href="{% url 'login:delete_emp' emp.id %}" class="btn btn-danger btn_size">刪除</a>
+                            </td>
+                            <td style="text-align:center;" class="hide">
+                                {% if emp.user|has_group:"manage" %}
+                                <a href="{% url 'login:remove_management' emp.user %}" class="btn btn-danger btn_size">移除權限</a>
+                                {%else%}
+                                <a href="{% url 'login:active_management' emp.user %}" class="btn btn-success btn_size">啟用權限</a>
+                                {% endif %}
+                                <a href="{% url 'login:update_emp' emp.id %}" class="btn btn-info btn_size">修改</a>
+                                <a href="{% url 'login:delete_emp' emp.id %}" class="btn btn-danger btn_size">刪除</a>
                             </td>
                         </tr>
                 {% empty %}
