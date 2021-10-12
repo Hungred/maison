@@ -135,6 +135,10 @@
 			.menu-show .menu-list{
 				max-height: 640px;
 			}
+
+			.user_rwd{
+				display: none;
+			}
 		}
 	</style>
 
@@ -146,8 +150,8 @@
                     <a class="btn  btn-primary" href="{% url 'login:logout' %}" role="button">登出 &#187;</a>
 				</h3>
 			</div>
-			<div class="col-md-6 nav_align">
-				
+			<div class="col-md-6 nav_align user_rwd" style="color: white; font-size: 30px; margin-top: 5px;">
+				您好, {{request.user}}
 			</div>
 		</div>
 
