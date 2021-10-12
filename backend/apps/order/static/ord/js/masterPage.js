@@ -2,8 +2,8 @@
 //購物車==================================================================
 
 //行動裝置：當視窗小於374時運作----
-var foodlist;
-$(document).ready(function() {
+
+$(document).ready(getFoodlist =function () {
             $.ajax({
                type: 'POST',
                data: {csrfmiddlewaretoken: csrftoken},
@@ -13,6 +13,8 @@ $(document).ready(function() {
                     }
             });
 });
+
+var foodlist;
 var csrftoken = $("[name=csrfmiddlewaretoken]").val();
 if ($(window).width() < 376) {
 

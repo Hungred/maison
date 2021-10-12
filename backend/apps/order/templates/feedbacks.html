@@ -124,7 +124,7 @@
                     <div class="tab">
 <!--                        <button class="tablinks" onclick="openLab(event, 'fristlist')" id="defaultOpen">最新購買</button>-->
 <!--                        <button class="tablinks" onclick="openLab(event, 'twolist')">歷史記錄</button>-->
-                        <button class="tablinks" onclick="openLab(event, 'threelist')">客服回應</button>
+                        <button class="tablinks" onclick="openLab(event, 'threelist')" id="defaultOpen">客服回應</button>
                     </div>
                 </div>
 
@@ -393,20 +393,7 @@
             evt.currentTarget.className += " active";
         }
 
-        $(document).ready(function () {
-            //$('.accordion').on('click', function () {
-            //    //添加下面這行是因為Lab點擊時顏色會改變,但是
-            //    //Lab要自動打開,所以網頁在load時顏色會閃一下
-            //    //所以移除一開始的顏色功能
-            //    $('.accordion').removeClass('active');
-            //})
-            ////自動打開 手風琴Lab
-            //$('.accordion').click();
 
-
-
-
-        })
         //自動打開 第一頁分頁的Lab
         document.getElementById("defaultOpen").click();
 

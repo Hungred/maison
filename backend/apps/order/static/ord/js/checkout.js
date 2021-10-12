@@ -10,8 +10,11 @@ $(document).ready(function() {
                success: function(data) {
                   cart =carts.concat(data);
                   try {
+                     getFoodlist();
                      DrawCartCheckout();
                     } catch (error) {
+                    var foodlist;
+                     getFoodlist();
                      DrawCartCheckout();
                      }
             }});
