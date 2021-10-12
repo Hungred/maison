@@ -235,12 +235,13 @@
 								<a  href="{% url 'feedback:index' %}">顧客回饋</a>
 						  	</h3>
 						</li>
+						{% if request.user|has_group:"manage" %}
 					  	<li>
 							<h3 class="list_text">
 								<a  href="">營收報表</a>
 						  	</h3>
 						</li>
-						{% if request.user|has_group:"boss" %}
+
 					  	<li>
 							<h3 class="list_text">
 								<a  href="{% url 'order:menu' %}" >菜單管理</a>
