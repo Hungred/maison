@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
-from django.db.models import Avg, Max, Min
+from django.db.models import Avg, Max, Min, Count, F, Sum
+from django.http import JsonResponse
 from django.db.models.functions import ExtractYear, ExtractMonth
 
 from datetime import datetime, date
@@ -11,6 +12,8 @@ from django.contrib.auth.decorators import login_required, permission_required, 
 from ..schedule.models import *
 from .forms import *
 from ..login.models import *
+from ..order.models import *
+from utils.charts import *
 # Create your views here.
 
 
@@ -25,8 +28,71 @@ def group_required(*group_names):
     return user_passes_test(in_groups, login_url='login:permission_denied')
 
 @login_required(login_url="login:index")
-def index(request):
-    return HttpResponse('報表')
+def statistics_view(request):
+    return render(request, 'statistics.html', {})
+
+
+def get_filter_options(request):
+    grouped_purchases = Ord.objects.annotate(year=ExtractYear('ordtime')).values('year').order_by('-year').distinct()
+
+    options = [purchase['year'] for purchase in grouped_purchases]
+
+    return JsonResponse({
+        'options': options,
+    })
+
+def Sales(request, year):
+    sales = Ord.objects.filter(ordtime__year=year)
+    month_sales = sales.annotate(price=F('total_price')).annotate(month=ExtractMonth('ordtime'))\
+        .values('month').annotate(total=Sum('total_price')).values('month', 'total').order_by('month')
+    sales_dict = get_year_dict()
+
+    for sales in month_sales:
+        sales_dict[months[sales['month'] - 1]] = round(sales['total'], 2)
+
+
+    return JsonResponse({
+        'title': 'Sales in 2021',
+        'data': {
+            'labels': list(sales_dict.keys()),
+            'datasets': [{
+                'label': 'Amount ($)',
+                'backgroundColor': colorPrimary,
+                'borderColor': colorPrimary,
+                'data': list(sales_dict.values()),
+            }]
+        },
+    })
+
+def payment_method_chart(request, year):
+    foods = ordinfo.objects.filter(o_id__ordtime__year=year).filter(o_id__ordcheck=3)
+    food_list = list(Food.objects.values_list('fid', 'foodname').distinct())
+
+    grouped_purchases = foods.values('f_id') \
+        .annotate(count=Count('foodq')).values('f_id', 'count').order_by('foodq')
+
+    food_q_dict = dict()
+
+    for food_name in food_list:
+        food_q_dict[food_name[1]] = 0
+
+
+    for group in grouped_purchases:
+        food_q_dict[dict(food_list)[group['f_id']]] = group['count']
+
+    return JsonResponse({
+        'title': f'{year}年餐點售出圓餅圖 ',
+        'data': {
+            'labels': list(food_q_dict.keys()),
+            'datasets': [{
+                'label': 'Amount ($)',
+                'backgroundColor': generate_color_palette(len(food_q_dict)),
+                'borderColor': generate_color_palette(len(food_q_dict)),
+                'data': list(food_q_dict.values()),
+            }]
+        },
+    })
+
 
 @login_required(login_url="login:index")
 @group_required('boss', 'manage')
