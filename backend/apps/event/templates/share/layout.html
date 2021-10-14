@@ -180,7 +180,7 @@
 						{% if request.user|has_group:"manage" %}
 					  	<li>
 							<h3 class="list_text">
-								<a  href="">營收報表</a>
+								<a  href="{% url 'report:index' %}">營收報表</a>
 						  	</h3>
 						</li>
 					  	<li>

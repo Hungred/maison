@@ -67,7 +67,7 @@ def Sales(request, year):
         sales_dict[months[sales['month'] - 1]] = round(sales['total'], 2)
 
     return JsonResponse({
-        'title': 'Sales in 2021',
+        'title': f'{year}年每月營收 ',
         'data': {
             'labels': list(sales_dict.keys()),
             'datasets': [{
