@@ -13,8 +13,11 @@
       <form id="filterForm">
         <label for="year">Choose a year:</label>
         <select name="year" id="year"></select>
+        <label for="month">Choose a month:</label>
+        <select name="month" id="month"></select>
         <input type="submit" value="Load" name="_load">
       </form>
+
       <div class="row">
         <div class="col-6">
           <canvas id="salesChart"></canvas>
@@ -26,7 +29,7 @@
           <canvas id="spendPerCustomerChart"></canvas>
         </div>
         <div class="col-6">
-          <canvas id="paymentMethodChart"></canvas>
+          <canvas id="yearlyProductChart"></canvas>
         </div>
       </div>
       <script>
@@ -45,14 +48,32 @@
             },
             error: () => console.log("Failed to fetch chart filter options!")
           });
+          $.ajax({
+            url: "/report/chart/month-options/",
+            type: "GET",
+            dataType: "json",
+            success: (jsonResponse) => {
+              // Load all the options
+              jsonResponse.options.forEach(option => {
+                $("#month").append(new Option(option, option));
+              });
+              // Load data for the first option
+              loadAllCharts($("#month").children().first().val());
+            },
+            error: () => console.log("Failed to fetch chart filter options!")
+          });
         });
 
       $("#filterForm").on("submit", (event) => {
         event.preventDefault();
 
         const year = $("#year").val();
-        loadAllCharts(year)
+
+        const month = $("#month").val();
+        loadAllCharts(year, month)
       });
+
+
 
       function loadChart(chart, endpoint) {
         $.ajax({
@@ -82,11 +103,11 @@
         });
       }
 
-      function loadAllCharts(year) {
+      function loadAllCharts(year, month) {
         loadChart(salesChart, `/report/chart/sales/${year}/`);
         loadChart(spendPerCustomerChart, `/report/chart/spend-per-customer/${year}/`);
         loadChart(paymentSuccessChart, `/report/chart/payment-success/${year}/`);
-        loadChart(paymentMethodChart, `/report/chart/payment-method/${year}/`);
+        loadChart(yearlyProductChart, `/report/chart/yearly_product_chart/${year}/${month}/`);
       }
       </script>
       <script>
@@ -119,8 +140,8 @@
             }
           }
         });
-        let paymentMethodCtx = document.getElementById("paymentMethodChart").getContext("2d");
-        let paymentMethodChart = new Chart(paymentMethodCtx, {
+        let yearlyProductChartCtx = document.getElementById("yearlyProductChart").getContext("2d");
+        let yearlyProductChart = new Chart(yearlyProductChartCtx, {
           type: "pie",
           options: {
             responsive: true,

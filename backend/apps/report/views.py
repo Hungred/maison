@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
-from django.db.models import Avg, Max, Min, Count, F, Sum
+from django.db.models import Avg, Max, Min, Count, F, Sum, Q
 from django.http import JsonResponse
 from django.db.models.functions import ExtractYear, ExtractMonth
 
@@ -14,11 +14,14 @@ from .forms import *
 from ..login.models import *
 from ..order.models import *
 from utils.charts import *
+
+
 # Create your views here.
 
 
 def group_required(*group_names):
     """Requires user membership in at least one of the groups passed in."""
+
     def in_groups(u):
         if u.is_authenticated:
             if bool(u.groups.filter(name__in=group_names)) | u.is_superuser:
@@ -26,6 +29,7 @@ def group_required(*group_names):
         return False
 
     return user_passes_test(in_groups, login_url='login:permission_denied')
+
 
 @login_required(login_url="login:index")
 def statistics_view(request):
@@ -41,15 +45,26 @@ def get_filter_options(request):
         'options': options,
     })
 
+
+def get_month_options(request):
+    grouped_purchases = Ord.objects.annotate(month=ExtractMonth('ordtime')).values('month').order_by('month').distinct()
+
+    options = [purchase['month'] for purchase in grouped_purchases]
+    options.append('全年')
+
+    return JsonResponse({
+        'options': options,
+    })
+
+
 def Sales(request, year):
     sales = Ord.objects.filter(ordtime__year=year)
-    month_sales = sales.annotate(price=F('total_price')).annotate(month=ExtractMonth('ordtime'))\
+    month_sales = sales.annotate(price=F('total_price')).annotate(month=ExtractMonth('ordtime')) \
         .values('month').annotate(total=Sum('total_price')).values('month', 'total').order_by('month')
     sales_dict = get_year_dict()
 
     for sales in month_sales:
         sales_dict[months[sales['month'] - 1]] = round(sales['total'], 2)
-
 
     return JsonResponse({
         'title': 'Sales in 2021',
@@ -64,8 +79,17 @@ def Sales(request, year):
         },
     })
 
-def payment_method_chart(request, year):
-    foods = ordinfo.objects.filter(o_id__ordtime__year=year).filter(o_id__ordcheck=3)
+
+def yearly_product_chart(request, year, month):
+
+    if month == '全年':
+        foods = ordinfo.objects.filter(o_id__ordtime__year=year).filter(
+            Q(o_id__ordcheck=3) | Q(o_id__ordcheck=2))
+    else:
+        foods = ordinfo.objects.filter(o_id__ordtime__year=year).filter(o_id__ordtime__month=month).filter(
+            Q(o_id__ordcheck=3) | Q(o_id__ordcheck=2))
+
+
     food_list = list(Food.objects.values_list('fid', 'foodname').distinct())
 
     grouped_purchases = foods.values('f_id') \
@@ -76,12 +100,11 @@ def payment_method_chart(request, year):
     for food_name in food_list:
         food_q_dict[food_name[1]] = 0
 
-
     for group in grouped_purchases:
         food_q_dict[dict(food_list)[group['f_id']]] = group['count']
 
     return JsonResponse({
-        'title': f'{year}年餐點售出圓餅圖 ',
+        'title': f'{year}/{month} 餐點售出圓餅圖 ',
         'data': {
             'labels': list(food_q_dict.keys()),
             'datasets': [{
@@ -97,7 +120,6 @@ def payment_method_chart(request, year):
 @login_required(login_url="login:index")
 @group_required('boss', 'manage')
 def salary(request):
-
     emp_list = Worksche.objects.values('empid', 'empid__empname', 'empid__empid', 'empid__position').distinct()
 
     salary_list = [{
@@ -117,7 +139,6 @@ def salary(request):
         hourlyrate = int(form['hourly_rate'].value())
         this_month_sche = Worksche.objects.filter(workdate__year=year).filter(workdate__month=month)
 
-
         for count, emp in enumerate(emp_list):
             check_emp = int(emp.get('empid'))
             hours = 0
@@ -136,8 +157,6 @@ def salary(request):
                     hours += off_hour - on_hour + 0.5
 
             salary_list[count]['salary'].append(hours * hourlyrate)
-
-
 
     context = {'form': form, 'salary_list': salary_list, }
     return render(request, 'salary.html', context)
