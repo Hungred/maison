@@ -15,15 +15,12 @@
 
       </form>
       <a href="{% url 'report:salary' %}" class="btn btn-primary" style="float-left">薪資計算器</a>
-      <a href="{% url 'report:product' %}" class="btn btn-primary" style="float-left">產品售出比例</a>
+      <a href="{% url 'report:index' %}" class="btn btn-primary" style="float-left">每月營收</a>
 
 
         <div>
-          <canvas id="salesChart"></canvas>
+          <canvas id="yearlyProductChart"></canvas>
         </div>
-
-
-
 
       <script>
         $(document).ready(function() {
@@ -97,20 +94,25 @@
       }
 
       function loadAllCharts(year, month) {
-        loadChart(salesChart, `/report/chart/sales/${year}/`);
-
+        loadChart(yearlyProductChart, `/report/chart/yearly_product_chart/${year}/${month}/`);
       }
       </script>
       <script>
-        let salesCtx = document.getElementById("salesChart").getContext("2d");
-        let salesChart = new Chart(salesCtx, {
-          type: "bar",
+        let yearlyProductChartCtx = document.getElementById("yearlyProductChart").getContext("2d");
+        let yearlyProductChart = new Chart(yearlyProductChartCtx, {
+          type: "pie",
           options: {
             responsive: true,
+            layout: {
+              padding: {
+                left: 0,
+                right: 0,
+                top: 0,
+                bottom: 25
+              }
+            }
           }
         });
-
-
       </script>
     </div>
 

@@ -35,6 +35,13 @@ def group_required(*group_names):
 def statistics_view(request):
     return render(request, 'statistics.html', {})
 
+@login_required(login_url="login:index")
+def product_sales_statistics_view(request):
+    context = {}
+    return render(request, 'product_sales.html', context)
+
+
+
 
 def get_filter_options(request):
     grouped_purchases = Ord.objects.annotate(year=ExtractYear('ordtime')).values('year').order_by('-year').distinct()
@@ -81,7 +88,6 @@ def Sales(request, year):
 
 
 def yearly_product_chart(request, year, month):
-
     if month == '全年':
         foods = ordinfo.objects.filter(o_id__ordtime__year=year).filter(
             Q(o_id__ordcheck=3) | Q(o_id__ordcheck=2))
@@ -92,8 +98,9 @@ def yearly_product_chart(request, year, month):
 
     food_list = list(Food.objects.values_list('fid', 'foodname').distinct())
 
-    grouped_purchases = foods.values('f_id') \
-        .annotate(count=Count('foodq')).values('f_id', 'count').order_by('foodq')
+    grouped_purchases = foods.values('f_id').annotate(count=Sum('foodq'))
+
+    print(grouped_purchases)
 
     food_q_dict = dict()
 

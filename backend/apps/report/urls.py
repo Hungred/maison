@@ -5,6 +5,7 @@ from . import views
 app_name= 'report'
 urlpatterns = [
     path('', views.statistics_view, name='index'),
+    path('product-sales/', views.product_sales_statistics_view, name='product'),
     path('chart/filter-options/', views.get_filter_options, name='chart-filter-options'),
     path('chart/month-options/', views.get_month_options, name='chart-month-options'),
     path('chart/sales/<int:year>/', views.Sales, name='chart-sales'),
