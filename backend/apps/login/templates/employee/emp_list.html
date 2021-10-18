@@ -56,10 +56,11 @@
 	}
 </style>
                 <a href="{% url 'login:active_emp' %}" class="btn btn-primary float-right new_emp">新增</a>
-				<h3 class="page_title" style="margin-bottom: 20px; text-align: center; margin-top: 20px;">
-					員工列表
-				</h3>
 
+<h3 class="page_title" style="margin-bottom: 20px; text-align: center; margin-top: 20px;">
+					在職員工列表
+				</h3>
+<p></p>
             <table class="table table-hover table-bordered">
                 <thead style="background-color: #1A1344; color:white;" >
                     <tr >
@@ -72,7 +73,7 @@
                     </tr>
                 </thead>
                     <tbody>
-				{% for emp in emps %}
+				{% for emp in working_emps %}
                         <tr>
                             <td class="hide_rwd">{{ emp.user }}</td>
                             <td class="hide_rwd">
@@ -106,5 +107,61 @@
                         </tr>
                 {% endfor %}
                     </tbody>
+
+
+            </table>
+<h3 class="page_title" style="margin-bottom: 20px; text-align: center; margin-top: 20px;">
+					其他員工列表
+				</h3>
+<table class="table table-hover table-bordered">
+                <thead style="background-color: #1A1344; color:white;" >
+                    <tr >
+                        <th style="text-align:center;" class="hide_rwd">員工狀態</th>
+                        <th style="text-align:center;" class="hide_rwd">使用者名稱</th>
+                        <th style="text-align:center;" class="hide_rwd">員工編號</th>
+                        <th style="text-align:center;">員工姓名</th>
+                        <th style="text-align:center;">職位</th>
+                        <th style="text-align:center;" class="hide_rwd">權限</th>
+                        <th style="text-align:center;" class="list_detail">操作</th>
+                    </tr>
+                </thead>
+                    <tbody>
+				{% for emp in other_emps %}
+                        <tr>
+                            <td class="hide_rwd">{{ emp.status }}</td>
+                            <td class="hide_rwd">{{ emp.user }}</td>
+                            <td class="hide_rwd">
+                                {{ emp.empid }}</a>        </td>
+                            <td>{{ emp.empname }}</td>
+                            <td>{{ emp.position|topos }}</td>
+                            <td style="text-align:center;" class="hide_rwd">
+                                {% if emp.user|has_group:"manage" %}
+                                <a href="{% url 'login:remove_management' emp.user %}" class="btn btn-danger btn_size">移除權限</a>
+                                {%else%}
+                                <a href="{% url 'login:active_management' emp.user %}" class="btn btn-success btn_size">啟用權限</a>
+                                {% endif %}
+                            </td>
+                            <td style="text-align:center;" class="hide_rwd">
+                                <a href="{% url 'login:update_emp' emp.id %}" class="btn btn-info btn_size">修改</a>
+                                <a href="{% url 'login:delete_emp' emp.id %}" class="btn btn-danger btn_size">刪除</a>
+                            </td>
+                            <td style="text-align:center;" class="hide">
+                                {% if emp.user|has_group:"manage" %}
+                                <a href="{% url 'login:remove_management' emp.user %}" class="btn btn-danger btn_size">移除權限</a>
+                                {%else%}
+                                <a href="{% url 'login:active_management' emp.user %}" class="btn btn-success btn_size">啟用權限</a>
+                                {% endif %}
+                                <a href="{% url 'login:update_emp' emp.id %}" class="btn btn-info btn_size">修改</a>
+                                <a href="{% url 'login:delete_emp' emp.id %}" class="btn btn-danger btn_size">刪除</a>
+                            </td>
+                        </tr>
+                {% empty %}
+                        <tr>
+                            <td class="text-center" colspan="4">無資料</td>
+                        </tr>
+                {% endfor %}
+                    </tbody>
+
+
             </table>
 {% endblock %}

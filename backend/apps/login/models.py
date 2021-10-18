@@ -9,6 +9,12 @@ class Position(models.TextChoices):
     MANAGER = 'M', '管理人員'
     EMP = 'E', '一般員工'
 
+class Status(models.TextChoices):
+    WORKING = 1, '在職'
+    QUIT = 4, '離職'
+    REST = 2, '暫休'
+    OTHERS = 3, '其他'
+
 
 class Employee_data(models.Model):
     user = models.OneToOneField(User, related_name='empdata', on_delete=models.CASCADE)
@@ -16,12 +22,15 @@ class Employee_data(models.Model):
     empname = models.CharField('員工姓名', max_length=4)
     phonenum = models.CharField('電話號碼', max_length=10)
     position = models.CharField('職位', max_length=1, choices=Position.choices)
+    status = models.CharField('員工狀態', max_length=10,choices=Status.choices, default='在職')
+
 
     def __str__(self):
         field_values = []
 
         field_values.append(str(self.empid))
         field_values.append(str(self.empname))
+
         return ' '.join(field_values)
 
 # @receiver(post_delete, sender=Employee_data)

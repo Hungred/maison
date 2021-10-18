@@ -9,13 +9,11 @@
       <form id="filterForm">
         <label for="year">選取年份:</label>
         <select name="year" id="year"></select>
-        <label for="month">選取月份:</label>
-        <select name="month" id="month"></select>
         <input type="submit" value="送出" class="btn btn-primary" name="_load">
 
       </form>
-      <a href="{% url 'report:salary' %}" class="btn btn-primary" style="float-left">薪資計算器</a>
-      <a href="{% url 'report:product' %}" class="btn btn-primary" style="float-left">產品售出比例</a>
+      <a href="{% url 'report:salary' %}" class="btn btn-primary" >薪資計算器</a>
+      <a href="{% url 'report:product' %}" class="btn btn-primary" >產品售出比例</a>
 
 
         <div>
@@ -38,20 +36,6 @@
               });
               // Load data for the first option
               loadAllCharts($("#year").children().first().val());
-            },
-            error: () => console.log("Failed to fetch chart filter options!")
-          });
-          $.ajax({
-            url: "/report/chart/month-options/",
-            type: "GET",
-            dataType: "json",
-            success: (jsonResponse) => {
-              // Load all the options
-              jsonResponse.options.forEach(option => {
-                $("#month").append(new Option(option, option));
-              });
-              // Load data for the first option
-              loadAllCharts($("#month").children().first().val());
             },
             error: () => console.log("Failed to fetch chart filter options!")
           });

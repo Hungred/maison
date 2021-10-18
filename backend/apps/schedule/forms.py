@@ -1,5 +1,6 @@
 from django.forms import ModelForm
 from .models import Worksche
+from ..login.models import *
 from django import forms
 import datetime as dt
 class WorkscheForm(ModelForm):
@@ -11,11 +12,17 @@ class WorkscheForm(ModelForm):
         possible_hour = list(range(1, 25))
         possible_min = list(range(0, 60))
         date = dt.date.today()
-        print(date)
         workhour = self.cleaned_data.get('workhour')
         offhour = self.cleaned_data.get('offhour')
+
+        cut = str(self.cleaned_data.get('empid'))[:4]
+        print(cut)
+        emp = Employee_data.objects.get(empid=cut)
+        print(emp)
         todaysche = Worksche.objects.filter(workdate=self.cleaned_data.get('workdate')).filter(empid=self.cleaned_data.get('empid'))
 
+        if emp.status != '在職':
+            raise forms.ValidationError('該員工狀態不可排班')
 
         if int(workhour) not in possible_hour:
             raise forms.ValidationError('非可能的出勤時間')
@@ -50,6 +57,8 @@ class WorkscheForm(ModelForm):
             if workhour <= on:
                 if offhour >= off:
                     raise forms.ValidationError('班表重疊')
+
+
         return
 
 

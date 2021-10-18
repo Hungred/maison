@@ -53,7 +53,6 @@
 			  {	title: '{{ worksche.empid }} {{ worksche.workhour }}~{{ worksche.offhour }} {{ worksche.job }}',
 			  	start: '{{ worksche.workdate|date:'Y-m-d' }}',
 			  	url:'{% url 'schedule:detail' worksche.serno %}',
-
 			  },
 			{% endfor %}]
 		  });

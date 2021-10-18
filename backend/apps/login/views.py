@@ -93,8 +93,11 @@ def group_required(*group_names):
 @login_required
 @group_required('boss')
 def emp_list(request):
-    emps = Employee_data.objects.all()
-    return render(request, 'employee/emp_list.html', {'emps': emps})
+    working_emps = Employee_data.objects.filter(status='在職')
+    other_emps = Employee_data.objects.exclude(status='在職').order_by('status')
+    print(other_emps)
+    return render(request, 'employee/emp_list.html', {'working_emps': working_emps,
+                                                      'other_emps': other_emps})
 
 @login_required
 def permission_denied(request):
