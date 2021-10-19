@@ -67,10 +67,10 @@
              var hereTip=cart[i].tip}
              Tip += "<p>"+String(hereTip)+"</p><br>"
             var SugIce="";
-            if(cart[i].ice!=null && cart[i].sug!=null){
+            if(cart[i].ice!=null || cart[i].sug!=null){
                 var hereIce;
                 var hereSug;
-                switch(cart[i].ice) {
+               try { switch(cart[i].ice) {
                      case "0":
                         hereIce = "去冰";
                         break;
@@ -81,19 +81,24 @@
                          hereIce = "正常冰";
                         break;
                      default:
+                     hereIce = "";
                 }
-                switch(cart[i].sug) {
-                     case "0":
-                        hereSug = "無糖";
-                        break;
-                     case "1":
-                        hereSug = "微糖";
-                        break;
-                     case "2":
-                         hereSug = "正常糖";
-                        break;
-                     default:
-                }
+               } catch (error) {var hereIce = ""}
+               try {
+                    switch(cart[i].sug) {
+                         case "0":
+                            hereSug = "無糖";
+                            break;
+                         case "1":
+                            hereSug = "微糖";
+                            break;
+                         case "2":
+                             hereSug = "正常糖";
+                            break;
+                         default:
+                            hereSug = "";
+                    }
+                }catch(error){var hereSug = ""}
                 SugIce = `<p>`+hereSug+hereIce+`</p>`
             }
 

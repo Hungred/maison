@@ -94,7 +94,7 @@ function NoItemCart() {
 }
 function checkout(){
             if (cart.length == 0) {
-                alert("请至少點一道菜！");
+                alert("請至少點一道菜！");
                 return;
             }
 
