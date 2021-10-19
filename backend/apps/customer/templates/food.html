@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en">{% load static %}
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+	<link rel="icon" href="{% static 'customer/image/logo.ico' %}" type="image/x-icon" />
     <title>Food</title>
 
     <meta name="description" content="Source code generated using layoutit.com">
     <meta name="author" content="LayoutIt!">
-{% load static %}
+
     <link href="{% static 'customer/css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'customer/css/style-customer.css' %}" rel="stylesheet" charset="UTF-8">
 	<script src="https://kit.fontawesome.com/d2b4d68ad0.js" crossorigin="anonymous"></script>
@@ -17,9 +17,9 @@
 		.flex {
   				display: flex;
 			  	height: flex;
-			 	padding: 15px;
+			 	padding: 50px;
 			  	background-color: transparent;
-			  	justify-content:  center;
+			  	/*justify-content:  center;*/
 			  	align-items: center ;
 			  	flex-wrap: wrap;
 			  	flex-direction: row;
@@ -33,7 +33,7 @@
 				  justify-content: center;
 				  align-items: center;
 				  color: white;
-				  font-size: 2rem;
+
 				  flex-wrap: wrap;
 				  position: relative;
 				  width:200px;
@@ -200,7 +200,7 @@
 		{% for food in foodA %}
 		<div class="item">
 			<img   src="{{ food.image.url }}"  width="200" height="200" />
-			<div align="center" valign="center" class="on-top">{{ food.foodname }}</div>
+			<div  class="on-top">{{ food.foodname }}</div>
 		</div>
 		{% endfor %}
 	</div>
