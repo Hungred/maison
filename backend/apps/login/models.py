@@ -10,10 +10,10 @@ class Position(models.TextChoices):
     EMP = 'E', '一般員工'
 
 class Status(models.TextChoices):
-    WORKING = 1, '在職'
-    QUIT = 4, '離職'
-    REST = 2, '暫休'
-    OTHERS = 3, '其他'
+    WORKING = '在職', '在職'
+    QUIT = '離職', '離職'
+    REST = '暫休', '暫休'
+    OTHERS = '其他', '其他'
 
 
 class Employee_data(models.Model):
