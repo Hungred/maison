@@ -48,6 +48,8 @@ def index(request):
         # week_sche['sche'].append(worksche)
 
 
+
+
     context = {'worksches': worksches, 'employees': employees,
                'today': date, 'weeksche': week_sche,
                'start': start_week}

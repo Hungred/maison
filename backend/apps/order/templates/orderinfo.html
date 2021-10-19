@@ -30,12 +30,22 @@
 						</th>
 					</tr>
 
+					<tr>
+						<th style="padding-bottom: 10px; padding-top: 10px;">
+
+
+
+						</th>
+					</tr>
+
                     <tr>
 						<th style="padding-bottom: 10px; padding-top: 10px;">
 							<b>訂單內容：</b>
-							{% for info in order.ordinfo_set.all %}
-							<p>{{ info.f_id }} *{{ info.foodq }}</p>
-							{% endfor %}
+							{% for order in order_list %}
+							{% for orderinfo in order.food %}
+							<p>{{ orderinfo.f_id }} *{{ orderinfo.foodq }}
+								{% if orderinfo.ordtip %}備註：</b>{{ orderinfo.ordtip }}</p>{% endif %}
+							{% endfor %}{% endfor %}
 						</th>
 					</tr>
 

@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, JsonResponse
 from django.template import context
 from django.views.decorators.csrf import requires_csrf_token
+from django.db.models import Avg, Max, Min, Count, F, Sum, Q
 from .models import *
 from .forms import *
 import base64
@@ -192,9 +193,20 @@ def delfood(request, fid):
 @login_required(login_url="login:index")
 def orderinfo(request, pk):
     order = get_object_or_404(Ord, serno=pk)
+    order0 = ordinfo.objects.filter(o_id__wid__contains=order.wid)
+
+    order_list = [{
+        'no': (i),
+        'food': [],
+        'tip': [],
+    } for i in range(0, len(order0))]
+
+    for i in range(0, len(order0)):
+        order_list[i]['food'].append(order0[i])
 
     context = {
         'order': order,
+        'order_list': order_list,
     }
     return render(request, 'orderinfo.html', context)
 
