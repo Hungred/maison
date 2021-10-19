@@ -43,8 +43,10 @@
 							<b>訂單內容：</b>
 							{% for order in order_list %}
 							{% for orderinfo in order.food %}
-							<p>{{ orderinfo.f_id }} *{{ orderinfo.foodq }}
-								{% if orderinfo.ordtip %}備註：</b>{{ orderinfo.ordtip }}</p>{% endif %}
+							<p>{{ orderinfo.f_id }} *{{ orderinfo.foodq }}</p>
+								<p>{% if orderinfo.ordtip %}﹂備註：</b>{{ orderinfo.ordtip }}{% endif %}</p>
+							<p> {% if orderinfo.ordice  %}﹂冰塊：{{orderinfo.ordice}}{% endif %}
+								{% if orderinfo.ordsua  %}甜度：{{orderinfo.ordsua}}{% endif %}</p>
 							{% endfor %}{% endfor %}
 						</th>
 					</tr>
