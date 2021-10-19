@@ -71,13 +71,13 @@
                 var hereIce;
                 var hereSug;
                try { switch(cart[i].ice) {
-                     case "0":
+                     case "去冰":
                         hereIce = "去冰";
                         break;
-                     case "1":
+                     case "微冰":
                         hereIce = "微冰";
                         break;
-                     case "2":
+                     case "正常冰":
                          hereIce = "正常冰";
                         break;
                      default:
@@ -86,13 +86,13 @@
                } catch (error) {var hereIce = ""}
                try {
                     switch(cart[i].sug) {
-                         case "0":
+                         case "無糖":
                             hereSug = "無糖";
                             break;
-                         case "1":
+                         case "微糖":
                             hereSug = "微糖";
                             break;
-                         case "2":
+                         case "正常糖":
                              hereSug = "正常糖";
                             break;
                          default:

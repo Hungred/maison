@@ -28,14 +28,14 @@ class Foodtype(models.TextChoices):
 
 
 class SugOpt(models.TextChoices):
-    FREE = '0', '無糖'
-    HALF = '1', '微糖'
-    REGULAR = '2', '正常糖'
+    FREE = '無糖', '無糖'
+    HALF = '微糖', '微糖'
+    REGULAR = '正常糖', '正常糖'
 
 class IceOpt(models.TextChoices):
-    FREE = '0', '去冰'
-    HALF = '1', '微冰'
-    REGULAR = '2', '正常冰'
+    FREE = '去冰', '去冰'
+    HALF = '微冰', '微冰'
+    REGULAR = '正常冰', '正常冰'
 class Food(models.Model):
     fid = models.CharField('餐點編號', max_length=3, primary_key=True)
     foodtype = models.CharField('餐點類型', max_length=1, choices=Foodtype.choices)

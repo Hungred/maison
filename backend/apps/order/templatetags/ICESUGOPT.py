@@ -6,15 +6,15 @@ register = template.Library()
 @register.filter(name='iceopt')
 def iceopt(type):
     return {
-        '0':'去冰',
-        '1':'微冰',
-        '2':'正常冰'
+        '去冰':'去冰',
+        '微冰':'微冰',
+        '正常冰':'正常冰'
     }[str(type)]
 
 @register.filter(name='sugopt')
 def sugopt(type):
     return {
-        '0':'無糖',
-        '1':'微糖',
-        '2':'正常糖'
+        '無糖':'無糖',
+        '微糖':'微糖',
+        '正常糖':'正常糖'
     }[str(type)]
