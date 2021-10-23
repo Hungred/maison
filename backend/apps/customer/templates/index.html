@@ -1,19 +1,25 @@
 {% extends 'share/customerlayout.html' %}
 
 {% block main %}
-<button class="open-button" onclick="openForm()">互動機器人</button>
+{% load static %}
+<button class="open-button" onclick="openForm()" ><img src="{% static 'customer/image/bot.png' %}" style="width:100px;height:100px"  ></button>
 
 		<div class="chat-popup" id="myForm">
 		  <div action="" class="form-container">
-			<h1>互動機器人</h1>
-			<button type="button" class="btn ord" onclick="">
+			<img src="{% static 'customer/image/bot.png' %}" style="width:20px;height:20px">滿山望海</img>
+			<button type="button" class="btn ord" onclick="" href="{% url 'customer:book' %}">
 				<a href="{% url 'customer:book' %}"
                    class="btn btn-outline-info float-right">
                     訂位
                 </a>
 			</button>
 
-			<button type="button" class="btn ord" onclick=""> 價目</button>
+			<button type="button" class="btn ord" onclick="">
+				<a href="{% url 'customer:food'  %}"
+                   class="btn btn-outline-info float-right">
+                    價目
+                </a>
+			</button>
 			<div class="row">
 				<div class="col">
 					<!-- 加上訊息顯示 -->

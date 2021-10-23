@@ -319,17 +319,16 @@ font-size: 18px;
 * {box-sizing: border-box;}
 
 /* Button used to open the chat form - fixed at the bottom of the page */
-.open-button {
-  background-color: #555;
-  color: white;
-  padding: 16px 20px;
+ .open-button {
+  background-color:transparent;
   border: none;
   cursor: pointer;
   opacity: 0.8;
   position: fixed;
   bottom: 23px;
   right: 28px;
-  width: 280px;
+  z-index: 8;
+  height:100px;
 }
 
 /* The popup chat - hidden by default */
@@ -368,9 +367,8 @@ font-size: 18px;
 
 /* Set a style for the submit/send button */
 .form-container .btn {
-  background-color: #04AA6D;
+  background-color: #00a0e9;
   color: white;
-  padding: 16px 20px;
   border: none;
   cursor: pointer;
   width: 100%;
