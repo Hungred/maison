@@ -54,8 +54,9 @@
 					<tr style="float: right;">
 						<th style="padding-top: 10px;">
 							<a href="{% url 'order:index' %}" class="btn waves-effect waves-light right sche_btn">返回</a>
-<a href="#" class="btn waves-effect waves-light right sche_btn">修改</a>
-<a href="#" class="btn btn-danger">刪除</a>
+{% if not order.ordcheck == 2 %}
+<a href="{% url 'order:order_delete' order.serno %}" class="btn btn-danger">刪除</a>
+							{% endif %}
 						</th>
 					</tr>
 					

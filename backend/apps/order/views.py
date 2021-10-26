@@ -210,6 +210,13 @@ def orderinfo(request, pk):
     }
     return render(request, 'orderinfo.html', context)
 
+@login_required
+@group_required('manage', 'boss', 'employee')
+def pass_to_abandon(request, serno):
+    ord = Ord.objects.get(serno=serno)
+    ord.ordcheck = 3
+    ord.save()
+    return redirect('order:index')
 
 def orderdetail(request, oid):
     try:

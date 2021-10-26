@@ -44,7 +44,7 @@
 
 
 <h3 class="page_title" style="margin-bottom: 40px; text-align: center; margin-top: 20px;">
-	刪除菜單
+	刪除訂單
 </h3>
 {% load bootstrap4 %}
 {% load widget_tweaks %}<form action="" method="POST" enctype="multipart/form-data">
@@ -54,7 +54,7 @@
     	{% bootstrap_form form %}
 
     	<button type="submit" class="btn btn-primary float-right">送出</button>
-<a href="{% url 'order:menu' %}" class="btn waves-effect waves-light right sche_btn">返回</a>
+<a href="{% url 'order:index' %}" class="btn waves-effect waves-light right sche_btn">返回</a>
 </table>
 
 </form>
