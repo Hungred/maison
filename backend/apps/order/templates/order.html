@@ -28,6 +28,10 @@
 
   <body class="body_bg">
     <style>
+    	table{
+    		width:600px;
+    	}
+
     	.sche_table{
     		background-color:white;
     		border:3px #cccccc solid;
@@ -139,6 +143,27 @@
 			.user_rwd{
 				display: none;
 			}
+
+			table{
+				width:100px;
+				font-size: 16px;
+			}
+
+			th{
+				padding-right:50px;
+			}
+
+			td{
+				padding-right:10px;
+			}
+
+			.btn_order{
+				font-size: 10px;
+			}
+
+			.table_check{
+				width:300px;
+			]
 		}
 	</style>
 
@@ -228,10 +253,10 @@
                         {% for Ord in handling.order %}
                         <table>
                             <tr>
-                                <th><a href="{% url 'order:orderinfo' Ord.serno %}">{{ Ord.ordtime|date:'m月d日 G:i'}}</a></th>
-                                <th>{{ Ord.tabnum }}桌</th>
+                                <th><a href="{% url 'order:orderinfo' Ord.serno %}">{{ Ord.ordtime|date:'m/d G:i'}}</a></th>
+                                <th class="th_table">{{ Ord.tabnum }}桌</th>
                                 <td>${{ Ord.total_price }}</td>
-                                <td><a href="{% url 'order:pass' Ord.serno %}" class="btn btn-primary">結帳完成</a></td>
+                                <td><a href="{% url 'order:pass' Ord.serno %}" class="btn btn-primary btn_order">結帳完成</a></td>
                             </tr>
 
                             {% endfor %}
@@ -244,9 +269,9 @@
                         <span class="res_date">已結帳訂單</span>
                         {% for checked in checked %}
                         {% for Ord in checked.order %}
-                        <table>
+                        <table class="table_check">
                             <tr>
-                                <th><a href="{% url 'order:orderinfo' Ord.serno %}">{{ Ord.changetime|date:'m月d日 G:i'}}</a></th>
+                                <th><a href="{% url 'order:orderinfo' Ord.serno %}">{{ Ord.changetime|date:'m/d G:i'}}</a></th>
                                 <th>{{ Ord.tabnum }}桌</th>
                                 <td>${{ Ord.total_price }}</td>
                             </tr>
