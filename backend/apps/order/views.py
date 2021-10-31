@@ -325,9 +325,10 @@ def foodlist(request):
         food = Food.objects.all()
         foodlist = []
         for foods in food:
-            fooddict = {"foodid": foods.fid, "foodname": foods.foodname, "foodPrice": foods.foodprice,
-                        "foodImg": foods.image.url}
-            foodlist.append(fooddict)
+            if foods.on_sales:
+                fooddict = {"foodid": foods.fid, "foodname": foods.foodname, "foodPrice": foods.foodprice,
+                            "foodImg": foods.image.url}
+                foodlist.append(fooddict)
         return JsonResponse(foodlist, safe=False)
         # return HttpResponse(json.dumps({
         #     'foodlist': foodlist
