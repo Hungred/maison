@@ -10,14 +10,16 @@
         <label for="year">選取年份:</label>
         <select name="year" id="year"></select>
         <input type="submit" value="送出" class="btn btn-primary" name="_load">
+        <p>
 
       </form>
+      <p>
       <a href="{% url 'report:salary' %}" class="btn btn-primary" >薪資計算器</a>
       <a href="{% url 'report:product' %}" class="btn btn-primary" >產品售出比例</a>
 
 
         <div>
-          <canvas id="salesChart"></canvas>
+          <canvas id="salesChart" style="background-color: white; margin-top: 20px;"></canvas>
         </div>
 
 

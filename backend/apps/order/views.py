@@ -246,7 +246,6 @@ def feedback(request):
         form = FeedbackForm(request.POST or None)
         if form.is_valid():
             form.save()
-            messages.success(request, '新增成功')
             return redirect('order:product')
         return render(request, 'feedbacks.html', {'form': form})
     except:

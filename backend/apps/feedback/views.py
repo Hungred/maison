@@ -4,7 +4,7 @@ from .models import *
 # Create your views here.
 
 def index(request):
-    feedbacks = CustomerFeedback.objects.all()
+    feedbacks = CustomerFeedback.objects.order_by('-id')
     return render(request, 'feedback.html', {'feedbacks':feedbacks})
 
 def detail(request, pk):
