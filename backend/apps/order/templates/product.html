@@ -165,6 +165,7 @@
                                 <div class="row">
                                     <div class="col-sm-6 col-lg-6">
                                         {% for Food in  food %}
+                                        {% if Food.on_sales %}
                                         {% if Food.foodtype in "A" %}
                                         <div class="single_food_item media">
                                             {% if Food.image %}
@@ -189,6 +190,7 @@
                                             </div>
                                         </div>
                                         {% endif %}
+                                        {% endif %}
                                         {% endfor %}
                                     </div>
                                 </div>
@@ -198,6 +200,7 @@
                                 <div class="row">
                                     <div class="col-sm-6 col-lg-6">
                                         {% for Food in  food %}
+                                        {% if Food.on_sales %}
                                         {% if Food.foodtype in "B" %}
                                         <div class="single_food_item media">
                                             {% if Food.image %}
@@ -222,6 +225,7 @@
                                             </div>
                                         </div>
                                         {% endif %}
+                                        {% endif %}
                                         {% endfor %}
                                     </div>
                                 </div>
@@ -231,6 +235,7 @@
                                 <div class="row">
                                     <div class="col-sm-6 col-lg-6">
                                         {% for Food in  food %}
+                                        {% if Food.on_sales %}
                                         {% if Food.foodtype in "C" %}
                                         <div class="single_food_item media">
                                             {% if Food.image %}
@@ -255,6 +260,7 @@
                                             </div>
                                         </div>
                                         {% endif %}
+                                        {% endif %}
                                         {% endfor %}
                                     </div>
                                 </div>
@@ -264,6 +270,7 @@
                                 <div class="row">
                                     <div class="col-sm-6 col-lg-6">
                                         {% for Food in  food %}
+                                        {% if Food.on_sales %}
                                         {% if Food.foodtype in "D" %}
                                         <div class="single_food_item media">
                                            {% if Food.image %}
@@ -287,6 +294,7 @@
                                                 </ul>
                                             </div>
                                         </div>
+                                        {% endif %}
                                         {% endif %}
                                         {% endfor %}
                                     </div>
