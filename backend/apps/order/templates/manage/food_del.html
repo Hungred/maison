@@ -37,6 +37,25 @@
 	p>input{
 		width: 500px;
 	}
+
+	table{
+		background-color: #D3DAEF;
+		margin: 0 auto;
+		font-size: 24px;
+		width: 400px;
+		border: none;
+	}
+
+	input{
+		width: 30px;
+	}
+
+	@media(max-width: 768px){
+		table{
+			width: 300px;
+		}
+    }
+
 </style>
 
 
@@ -48,13 +67,13 @@
 </h3>
 {% load bootstrap4 %}
 {% load widget_tweaks %}<form action="" method="POST" enctype="multipart/form-data">
-<table style="background-color: #D3DAEF; margin: 0 auto; font-size: 24px; width: 400px; border: none;">
+<table>
 
 		{% csrf_token %}
     	{% bootstrap_form form %}
 
-    	<button type="submit" class="btn btn-primary float-right">送出</button>
-<a href="{% url 'order:menu' %}" class="btn waves-effect waves-light right sche_btn">返回</a>
+    	<button type="submit" class="btn btn-primary">送出</button>
+		<a href="{% url 'order:menu' %}" class="btn waves-effect waves-light right sche_btn" style="margin-left: 10px;">返回</a>
 </table>
 
 </form>

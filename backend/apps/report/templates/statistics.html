@@ -5,7 +5,20 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-v4-grid-only@1.0.0/dist/bootstrap-grid.min.css">
+
+  <style>
+    @media(max-width: 768px){
+      .salesChart{
+        height: 300px;
+      }
+    }
+  </style>
+
     <div class="container">
+      <h3 class="page_title" style="margin-bottom: 20px; text-align: center;">
+          營收報表
+      </h3>
+
       <form id="filterForm">
         <label for="year">選取年份:</label>
         <select name="year" id="year"></select>
@@ -18,7 +31,7 @@
       <a href="{% url 'report:product' %}" class="btn btn-primary" >產品售出比例</a>
 
 
-        <div>
+        <div style="height: 300px;">
           <canvas id="salesChart" style="background-color: white; margin-top: 20px;"></canvas>
         </div>
 

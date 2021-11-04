@@ -9,17 +9,21 @@
       <form id="filterForm">
         <label for="year">選取年份:</label>
         <select name="year" id="year"></select>
+        <br>
         <label for="month">選取月份:</label>
         <select name="month" id="month"></select>
+        <br>
         <input type="submit" value="送出" class="btn btn-primary" name="_load">
+        <br>
 
       </form>
+      <br>
       <a href="{% url 'report:salary' %}" class="btn btn-primary" style="float-left">薪資計算器</a>
       <a href="{% url 'report:index' %}" class="btn btn-primary" style="float-left">每月營收</a>
 
 
         <div>
-          <canvas id="yearlyProductChart"></canvas>
+          <canvas id="yearlyProductChart" style="min-width:300px;"></canvas>
         </div>
 
       <script>
