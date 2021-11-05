@@ -279,8 +279,16 @@ ul.social-network li {
     text-align: center;
     padding-top: 1rem;
 }
-
+.shopCartContent{
+    height:auto;
+    padding-top: 1rem;
+    width: 400px;
+    /*min-height: 100%;*/
+    overflow: scroll;
+    max-height:85vh;
+}
 .shopCart {
+
     padding-top: 1rem;
     position: fixed;
     /*在masterPage.js裡有位置設定*/
