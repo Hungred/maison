@@ -2,12 +2,62 @@
 
 {% block main %}
 {% load evttags %}
+
+<style>
+    table{
+        margin-left:auto;
+        margin-right:auto;
+    }
+
+    th{
+        padding-bottom: 30px;
+        padding-left: 10px;
+    }
+
+    .btn_new{
+        margin-top: 20px;
+    }
+
+    .btn_new_rwd{
+        display: none;
+    }
+
+    @media(max-width: 768px){
+        table{
+            width: 300px;
+            font-size: 14px;
+        }
+
+        input{
+            width:100px;
+            font-size:12px;
+        }
+
+        .btn_search{
+            font-size:12px;
+        }
+
+        .btn_new{
+            display: none;
+        }
+
+        .btn_new_rwd{
+            display: block;
+            margin-right: 90px;
+            margin-bottom: 20px;
+        }
+    }
+</style>
+                <a href="{% url 'event:add' %}" type="submit" class="btn btn-primary float-right  btn_new">新增活動</a>
+
 				<h3 class="page_title" style="margin-bottom: 40px; text-align: center; margin-top: 20px;">
 					活動列表
 				</h3>
-    <a href="{% url 'event:add' %}" type="submit" class="btn btn-primary float-right">新增活動</a>
+
+                <a href="{% url 'event:add' %}" type="submit" class="btn btn-primary float-right  btn_new_rwd">新增活動</a>
+    
 				{% for event in events %}
-            <table style="margin-left:auto; margin-right:auto;">
+            <table>
                 <tr>
                     <th style="padding-bottom: 30px; padding-left: 10px;">
                         活動名稱: {{ event.eventname }}

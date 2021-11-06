@@ -54,18 +54,18 @@
                     }
 
                     .btn_newfood_rwd{
-                         display: none;
+                        display: none;
                     }
 
-                    @media(max-width: 768px){
+                    @media(max-width: 767px){
                         table{
-                            width: 280px;
+                            width: 350px;
                             font-size: 12px;
                             height: 50px;
                         }
 
                         input{
-                            width:100px;
+                            width:150px;
                             font-size:12px;
                         }
 
@@ -73,16 +73,12 @@
                             font-size:12px;
                         }
 
-                        .rwd{
-                            width: 100px;
-                            height: 40px;
-                        }
-
                         .tab button{
                             font-size: 16px;
                             padding: 10px;
                             margin-right: 5px;
                             margin-bottom: 20px;
+                            margin-top: 20px;
                         }
 
                         .tab{
@@ -110,6 +106,131 @@
                         .btn_newfood_rwd{
                             display: block;
                             margin-bottom: 20px;
+                            margin-right: 120px;
+                            margin-top: 5px;
+                        }
+
+                        .rwd{
+                            width: 150px;
+                            height: 40px;
+                        }
+                    }
+
+                    @media(max-width: 400px){
+                        table{
+                            width: 280px;
+                            font-size: 12px;
+                            height: 50px;
+                        }
+
+                        input{
+                            width:150px;
+                            font-size:12px;
+                        }
+
+                        .btn_search{
+                            font-size:12px;
+                        }
+
+                        .tab button{
+                            font-size: 16px;
+                            padding: 10px;
+                            margin-right: 5px;
+                            margin-bottom: 20px;
+                            margin-top: 20px;
+                        }
+
+                        .tab{
+                            margin-left: 45px;
+                        }
+
+                        th img{
+                            max-width:50px;
+                            max-height:50px;
+                        }
+
+                        table .col-md-11{
+                            width: 0%;
+                            width: 150px;
+                        }
+
+                        table .col-md-1{
+                            width: 0%;
+                        }
+
+                        .btn_newfood{
+                            display: none;
+                        }
+
+                        .btn_newfood_rwd{
+                            display: block;
+                            margin-bottom: 20px;
+                            margin-right: 120px;
+                            margin-top: 5px;
+                        }
+
+                        .rwd{
+                            width: 130px;
+                            height: 40px;
+                        }
+                    }
+
+                    @media(max-width: 350px){
+                        table{
+                            width: 280px;
+                            font-size: 12px;
+                            height: 50px;
+                        }
+
+                        input{
+                            width:100px;
+                            font-size:12px;
+                        }
+
+                        .btn_search{
+                            font-size:12px;
+                        }
+
+                        .rwd{
+                            width: 100px;
+                            height: 40px;
+                        }
+
+                        .tab button{
+                            font-size: 16px;
+                            padding: 10px;
+                            margin-right: 5px;
+                            margin-bottom: 20px;
+                            margin-top: 20px;
+                        }
+
+                        .tab{
+                            margin-left: 45px;
+                        }
+
+                        th img{
+                            max-width:50px;
+                            max-height:50px;
+                        }
+
+                        table .col-md-11{
+                            width: 0%;
+                            width: 150px;
+                        }
+
+                        table .col-md-1{
+                            width: 0%;
+                        }
+
+                        .btn_newfood{
+                            display: none;
+                        }
+
+                        .btn_newfood_rwd{
+                            display: block;
+                            margin-bottom: 20px;
+                            margin-right: 100px;
+                            margin-top: 5px;
                         }
                     }
                 </style>
@@ -149,7 +270,7 @@
         </div>
     </div>
 
-    <a href="{% url 'order:food_add' %}" type="submit" class="btn btn-primary float-right btn_newfood_rwd" style="margin-right: 90px; margin-top: 5px;">新增餐點</a>
+    <a href="{% url 'order:food_add' %}" type="submit" class="btn btn-primary float-right btn_newfood_rwd">新增餐點</a>
 
     <div class="tab">
       <button class="tablinks rwd" onclick="openCity(event, 'breakfast')">主餐</button>
