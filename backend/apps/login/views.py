@@ -12,6 +12,18 @@ from django.contrib.auth.models import Group
 from django.db.models import ProtectedError
 # Create your views here.
 
+
+def group_required(*group_names):
+    """Requires user membership in at least one of the groups passed in."""
+    def in_groups(u):
+        if u.is_authenticated:
+            if bool(u.groups.filter(name__in=group_names)) | u.is_superuser:
+                return True
+        return False
+
+    return user_passes_test(in_groups, login_url='login:permission_denied')
+
+@group_required('boss')
 def sign_up(request):
     form = RegisterForm()
     if request.method == "POST":
@@ -79,16 +91,6 @@ def update_pf(request, username):
     return render(request, 'update_pf.html', {'form':form})
 
 
-
-def group_required(*group_names):
-    """Requires user membership in at least one of the groups passed in."""
-    def in_groups(u):
-        if u.is_authenticated:
-            if bool(u.groups.filter(name__in=group_names)) | u.is_superuser:
-                return True
-        return False
-
-    return user_passes_test(in_groups, login_url='login:permission_denied')
 
 @login_required
 @group_required('boss')
